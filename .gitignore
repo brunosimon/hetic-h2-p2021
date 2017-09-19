@@ -1,0 +1,11 @@
+.DS_Store
+partiels/
+colles/
+kholles/
+rendus/
+temp/
+tools/
+semaines-intensives/
+node_modules/
+composer.phar
+vendor/
