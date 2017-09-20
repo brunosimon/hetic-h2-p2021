@@ -1,0 +1,25 @@
+ul.checked-list li {list-style-type:none;}
+.default{text-transform:none !important;}
+img.no-style {border:none !important;background:none !important;-webkit-box-shadow:none !important;-moz-box-shadow:none !important;box-shadow:none !important;}
+.no-text-transform {text-transform:none !important;}
+table.visible {border:1px solid #fff;width:100%;}
+table.visible td,table.visible th {border:1px solid #fff;margin:0;padding:10px 20px;text-align:center;color:#fff;}
+table.visible td {color:#aaa;}
+span.highlight,span.hl {display:inline-block;padding:0 6px;border:1px solid #FF9D00;}
+span.underline,span.u {border-bottom:0.13em solid #FF9D00 !important;text-decoration:none;}
+.reveal .slide-number {opacity:1;}
+ul.checked-list li {list-style-type:none;}
+ul.checked-list label{cursor:pointer;}
+ul.checked-list input[type=checkbox]{position:relative;top:-0.5em;width:22px;height:22px;margin-right:14px;}
+canvas{background:#fff;}
+.op1  {opacity:0.1;}
+.op2  {opacity:0.2;}
+.op3  {opacity:0.3;}
+.op4  {opacity:0.4;}
+.op5  {opacity:0.5;}
+.op6  {opacity:0.6;}
+.op7  {opacity:0.7;}
+.op8  {opacity:0.8;}
+.op9  {opacity:0.9;}
+.op10 {opacity:0.10;}
+.no-wrap {white-space:nowrap;}

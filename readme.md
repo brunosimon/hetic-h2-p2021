@@ -13,6 +13,7 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 - [ ] Responsive
 - [ ] Newsletter
 - [ ] Canvas
+- [ ] Clean code
 - [ ] Fonts
 - [ ] Task runners
 - [ ] Preprocessing CSS
