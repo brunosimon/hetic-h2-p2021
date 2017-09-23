@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cours 01 - Transformations CSS</title>
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <style>
+            div.container{
+                width:100%;height:200px;
+                -webkit-transform-style:preserve-3d;-webkit-animation:animation 3s ease 0s infinite;-webkit-perspective-origin:0% 0%;-webkit-transform-style:preserve-3d;
+                -moz-transform-style:preserve-3d;-moz-animation:animation 3s ease 0s infinite;-moz-perspective-origin:0% 0%;-moz-transform-style:preserve-3d;
+                transform-style:preserve-3d;animation:animation 3s ease 0s infinite;perspective-origin:0% 0%;transform-style:preserve-3d;
+            }
+            div.transform{
+                /*position:absolute;top:0;left:0;*/width:200px;height:200px;margin:50px auto 0 auto;background:#ff9000;
+                -webkit-animation:animation 3s ease 0s infinite;-webkit-backface-visibility: visible;-webkit-transform-style:preserve-3d;
+                -moz-animation:animation 3s ease 0s infinite;-moz-backface-visibility: visible;-moz-transform-style:preserve-3d;
+                animation:animation 3s ease 0s infinite;backface-visibility: visible;transform-style:preserve-3d;
+            }
+            div.origin-0{
+                -webkit-transform-origin: 0 0;
+                -moz-transform-origin: 0 0;
+                transform-origin: 0 0;
+            }
+            div.origin-50{
+                -webkit-transform-origin: 50% 50%;
+                -moz-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+            }
+            div.origin-100{
+                -webkit-transform-origin: 100% 100%;
+                -moz-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+            div.rotate-x-90{
+                -webkit-transform: rotateX(90deg);
+                -moz-transform: rotateX(90deg);
+                transform: rotateX(90deg);
+            }
+            div.animated-scale{
+                -webkit-animation-name:scale;
+                -moz-animation-name:scale;
+                animation-name:scale;
+            }
+            @-webkit-keyframes scale {
+                0%   {-webkit-transform: scale(1);}
+                50%  {-webkit-transform: scale(3,1.3);}
+                100% {-webkit-transform: scale(1);}
+            }
+            @-moz-keyframes scale {
+                0%   {-moz-transform: scale(1);}
+                50%  {-moz-transform: scale(3,1.3);}
+                100% {-moz-transform: scale(1);}
+            }
+            @keyframes scale {
+                0%   {transform: scale(1);}
+                50%  {transform: scale(3,1.3);}
+                100% {transform: scale(1);}
+            }
+            div.animated-scale-x{
+                -webkit-animation-name:scalex;
+                -moz-animation-name:scalex;
+                animation-name:scalex;
+            }
+            @-webkit-keyframes scalex {
+                0%   {-webkit-transform: scaleX(1);}
+                50%  {-webkit-transform: scaleX(3);}
+                100% {-webkit-transform: scaleX(1);}
+            }
+            @-moz-keyframes scalex {
+                0%   {-moz-transform: scaleX(1);}
+                50%  {-moz-transform: scaleX(3);}
+                100% {-moz-transform: scaleX(1);}
+            }
+            @keyframes scalex {
+                0%   {transform: scaleX(1);}
+                50%  {transform: scaleX(3);}
+                100% {transform: scaleX(1);}
+            }
+            div.animated-scale-y{
+                -webkit-animation-name:scaley;
+                -moz-animation-name:scaley;
+                animation-name:scaley;
+            }
+            @-webkit-keyframes scaley {
+                0%   {-webkit-transform: scaleY(1);}
+                50%  {-webkit-transform: scaleY(1.3);}
+                100% {-webkit-transform: scaleY(1);}
+            }
+            @-moz-keyframes scaley {
+                0%   {-moz-transform: scaleY(1);}
+                50%  {-moz-transform: scaleY(1.3);}
+                100% {-moz-transform: scaleY(1);}
+            }
+            @keyframes scaley {
+                0%   {transform: scaleY(1);}
+                50%  {transform: scaleY(1.3);}
+                100% {transform: scaleY(1);}
+            }
+            div.animated-scale-z{
+                -webkit-animation-name:scalez;
+                -moz-animation-name:scalez;
+                animation-name:scalez;
+            }
+            @-webkit-keyframes scalez {
+                0%   {-webkit-transform: scaleZ(1);}
+                50%  {-webkit-transform: scaleZ(2);}
+                100% {-webkit-transform: scaleZ(1);}
+            }
+            @-moz-keyframes scalez {
+                0%   {-moz-transform: scaleZ(1);}
+                50%  {-moz-transform: scaleZ(2);}
+                100% {-moz-transform: scaleZ(1);}
+            }
+            @keyframes scalez {
+                0%   {transform: scaleZ(1);}
+                50%  {transform: scaleZ(2);}
+                100% {transform: scaleZ(1);}
+            }
+            div.animated-scale-3d{
+                -webkit-animation-name:scale3d;
+                -moz-animation-name:scale3d;
+                animation-name:scale3d;
+            }
+            @-webkit-keyframes scale3d {
+                0%   {-webkit-transform: scale3d(1,1,1);}
+                50%  {-webkit-transform: scale3d(2,1.7,1.5);}
+                100% {-webkit-transform: scale3d(1,1,1);}
+            }
+            @-moz-keyframes scale3d {
+                0%   {-moz-transform: scale3d(1,1,1);}
+                50%  {-moz-transform: scale3d(2,1.7,1.5);}
+                100% {-moz-transform: scale3d(1,1,1);}
+            }
+            @keyframes scale3d {
+                0%   {transform: scale3d(1,1,1);}
+                50%  {transform: scale3d(2,1.7,1.5);}
+                100% {transform: scale3d(1,1,1);}
+            }
+            div.animated-translate{
+                -webkit-animation-name:translate;
+                -moz-animation-name:translate;
+                animation-name:translate;
+            }
+            @-webkit-keyframes translate {
+                0%   {-webkit-transform: translate(0,0);}
+                50%  {-webkit-transform: translate(200px,50px);}
+                100% {-webkit-transform: translate(0,0);}
+            }
+            @-moz-keyframes translate {
+                0%   {-moz-transform: translate(0,0);}
+                50%  {-moz-transform: translate(200px,50px);}
+                100% {-moz-transform: translate(0,0);}
+            }
+            @keyframes translate {
+                0%   {transform: translate(0,0);}
+                50%  {transform: translate(200px,50px);}
+                100% {transform: translate(0,0);}
+            }
+            div.animated-translate-x{
+                -webkit-animation-name:translatex;
+                -moz-animation-name:translatex;
+                animation-name:translatex;
+            }
+            @-webkit-keyframes translatex {
+                0%   {-webkit-transform: translateX(0);}
+                50%  {-webkit-transform: translateX(200px);}
+                100% {-webkit-transform: translateX(0);}
+            }
+            @-moz-keyframes translatex {
+                0%   {-moz-transform: translateX(0);}
+                50%  {-moz-transform: translateX(200px);}
+                100% {-moz-transform: translateX(0);}
+            }
+            @keyframes translatex {
+                0%   {transform: translateX(0);}
+                50%  {transform: translateX(200px);}
+                100% {transform: translateX(0);}
+            }
+            div.animated-translate-y{
+                -webkit-animation-name:translatey;
+                -moz-animation-name:translatey;
+                animation-name:translatey;
+            }
+            @-webkit-keyframes translatey {
+                0%   {-webkit-transform: translateY(0);}
+                50%  {-webkit-transform: translateY(100px);}
+                100% {-webkit-transform: translateY(0);}
+            }
+            @-moz-keyframes translatey {
+                0%   {-moz-transform: translateY(0);}
+                50%  {-moz-transform: translateY(100px);}
+                100% {-moz-transform: translateY(0);}
+            }
+            @keyframes translatey {
+                0%   {transform: translateY(0);}
+                50%  {transform: translateY(100px);}
+                100% {transform: translateY(0);}
+            }
+            div.animated-translate-z{
+                -webkit-animation-name:translatez;
+                -moz-animation-name:translatez;
+                animation-name:translatez;
+            }
+            @-webkit-keyframes translatez {
+                0%   {-webkit-transform: translateZ(0);}
+                50%  {-webkit-transform: translateZ(100px);}
+                100% {-webkit-transform: translateZ(0);}
+            }
+            @-moz-keyframes translatez {
+                0%   {-moz-transform: translateZ(0);}
+                50%  {-moz-transform: translateZ(100px);}
+                100% {-moz-transform: translateZ(0);}
+            }
+            @keyframes translatez {
+                0%   {transform: translateZ(0);}
+                50%  {transform: translateZ(100px);}
+                100% {transform: translateZ(0);}
+            }
+            div.animated-rotate{
+                -webkit-animation-name:rotate;
+                -moz-animation-name:rotate;
+                animation-name:rotate;
+            }
+            @-webkit-keyframes rotate {
+                0%   {-webkit-transform: rotate(0)}
+                50%  {-webkit-transform: rotate(70deg)}
+                100% {-webkit-transform: rotate(0)}
+            }
+            @-moz-keyframes rotate {
+                0%   {-moz-transform: rotate(0)}
+                50%  {-moz-transform: rotate(70deg)}
+                100% {-moz-transform: rotate(0)}
+            }
+            @keyframes rotate {
+                0%   {transform: rotate(0)}
+                50%  {transform: rotate(70deg)}
+                100% {transform: rotate(0)}
+            }
+            div.animated-combination-1{
+                -webkit-animation-name:combination-1;
+                -moz-animation-name:combination-1;
+                animation-name:combination-1;
+            }
+            @-webkit-keyframes combination-1 {
+                0%   {-webkit-transform: rotate(0) translateX(0)}
+                50%  {-webkit-transform: rotate(90deg) translateX(100px)}
+                100% {-webkit-transform: rotate(0) translateX(0)}
+            }
+            @-moz-keyframes combination-1 {
+                0%   {-moz-transform: rotate(0) translateX(0)}
+                50%  {-moz-transform: rotate(90deg) translateX(100px)}
+                100% {-moz-transform: rotate(0) translateX(0)}
+            }
+            @keyframes combination-1 {
+                0%   {transform: rotate(0) translateX(0)}
+                50%  {transform: rotate(90deg) translateX(100px)}
+                100% {transform: rotate(0) translateX(0)}
+            }
+            div.animated-combination-2{
+                -webkit-animation-name:combination-2;
+                -moz-animation-name:combination-2;
+                animation-name:combination-2;
+            }
+            @-webkit-keyframes combination-2 {
+                0%   {-webkit-transform: translateX(0) rotate(0)}
+                50%  {-webkit-transform: translateX(100px) rotate(90deg)}
+                100% {-webkit-transform: translateX(0) rotate(0)}
+            }
+            @-moz-keyframes combination-2 {
+                0%   {-moz-transform: translateX(0) rotate(0)}
+                50%  {-moz-transform: translateX(100px) rotate(90deg)}
+                100% {-moz-transform: translateX(0) rotate(0)}
+            }
+            @keyframes combination-2 {
+                0%   {transform: translateX(0) rotate(0)}
+                50%  {transform: translateX(100px) rotate(90deg)}
+                100% {transform: translateX(0) rotate(0)}
+            }
+            div.animated-rotate-x{
+                -webkit-animation-name:rotatex;
+                -moz-animation-name:rotatex;
+                animation-name:rotatex;
+            }
+            @-webkit-keyframes rotatex {
+                0%   {-webkit-transform: rotateX(0)}
+                50%  {-webkit-transform: rotateX(250deg)}
+                100% {-webkit-transform: rotateX(0)}
+            }
+            @-moz-keyframes rotatex {
+                0%   {-moz-transform: rotateX(0)}
+                50%  {-moz-transform: rotateX(250deg)}
+                100% {-moz-transform: rotateX(0)}
+            }
+            @keyframes rotatex {
+                0%   {transform: rotateX(0)}
+                50%  {transform: rotateX(250deg)}
+                100% {transform: rotateX(0)}
+            }
+            div.animated-rotate-y{
+                -webkit-animation-name:rotatey;
+                -moz-animation-name:rotatey;
+                animation-name:rotatey;
+            }
+            @-webkit-keyframes rotatey {
+                0%   {-webkit-transform: rotateY(0)}
+                50%  {-webkit-transform: rotateY(250deg)}
+                100% {-webkit-transform: rotateY(0)}
+            }
+            @-moz-keyframes rotatey {
+                0%   {-moz-transform: rotateY(0)}
+                50%  {-moz-transform: rotateY(250deg)}
+                100% {-moz-transform: rotateY(0)}
+            }
+            @keyframes rotatey {
+                0%   {transform: rotateY(0)}
+                50%  {transform: rotateY(250deg)}
+                100% {transform: rotateY(0)}
+            }
+            div.animated-rotate-z{
+                -webkit-animation-name:rotatez;
+                -moz-animation-name:rotatez;
+                animation-name:rotatez;
+            }
+            @-webkit-keyframes rotatez {
+                0%   {-webkit-transform: rotateZ(0)}
+                50%  {-webkit-transform: rotateZ(70deg)}
+                100% {-webkit-transform: rotateZ(0)}
+            }
+            @-moz-keyframes rotatez {
+                0%   {-moz-transform: rotateZ(0)}
+                50%  {-moz-transform: rotateZ(70deg)}
+                100% {-moz-transform: rotateZ(0)}
+            }
+            @keyframes rotatez {
+                0%   {transform: rotateZ(0)}
+                50%  {transform: rotateZ(70deg)}
+                100% {transform: rotateZ(0)}
+            }
+            div.animated-skew-x{
+                -webkit-animation-name:skewx;
+                -moz-animation-name:skewx;
+                animation-name:skewx;
+            }
+            @-webkit-keyframes skewx {
+                0%   {-webkit-transform: skewX(0)}
+                50%  {-webkit-transform: skewX(-50deg)}
+                100% {-webkit-transform: skewX(0)}
+            }
+            @-moz-keyframes skewx {
+                0%   {-moz-transform: skewX(0)}
+                50%  {-moz-transform: skewX(-50deg)}
+                100% {-moz-transform: skewX(0)}
+            }
+            @keyframes skewx {
+                0%   {transform: skewX(0)}
+                50%  {transform: skewX(-50deg)}
+                100% {transform: skewX(0)}
+            }
+            div.animated-skew-y{
+                -webkit-animation-name:skewy;
+                -moz-animation-name:skewy;
+                animation-name:skewy;
+            }
+            @-webkit-keyframes skewy {
+                0%   {-webkit-transform: skewY(0)}
+                50%  {-webkit-transform: skewY(-20deg)}
+                100% {-webkit-transform: skewY(0)}
+            }
+            @-moz-keyframes skewy {
+                0%   {-moz-transform: skewY(0)}
+                50%  {-moz-transform: skewY(-20deg)}
+                100% {-moz-transform: skewY(0)}
+            }
+            @keyframes skewy {
+                0%   {transform: skewY(0)}
+                50%  {transform: skewY(-20deg)}
+                100% {transform: skewY(0)}
+            }
+            div.animated-perspective{
+                -webkit-animation-name:perspective;
+                -moz-animation-name:perspective;
+                animation-name:perspective;
+            }
+            @-webkit-keyframes perspective {
+                0%   {-webkit-transform: perspective(200px);}
+                50%  {-webkit-transform: perspective(800px);}
+                100% {-webkit-transform: perspective(200px);}
+            }
+            @-moz-keyframes perspective {
+                0%   {-moz-transform: perspective(200px);}
+                50%  {-moz-transform: perspective(800px);}
+                100% {-moz-transform: perspective(200px);}
+            }
+            @keyframes perspective {
+                0%   {transform: perspective(200px);}
+                50%  {transform: perspective(800px);}
+                100% {transform: perspective(200px);}
+            }
+            div.animated-matrix{
+                -webkit-animation-name:matrix;
+                -moz-animation-name:matrix;
+                animation-name:matrix;
+            }
+            @-webkit-keyframes matrix {
+                0%   {-webkit-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                50%  {-webkit-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                100% {-webkit-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+            }
+            @-moz-keyframes matrix {
+                0%   {-moz-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                50%  {-moz-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                100% {-moz-transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+            }
+            @keyframes matrix {
+                0%   {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                50%  {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+                100% {transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+            }
+            /*.smile {
+                position:relative;
+                -webkit-animation:smile 2s linear infinite;
+                -moz-animation:smile 2s linear infinite;
+                animation:smile 2s linear infinite;
+            }
+            @-webkit-keyframes smile {
+                0% {-webkit-transform: rotate(0deg);}
+                100% {-webkit-transform: rotate(360deg);}
+            }
+            @-moz-keyframes smile {
+                0% {-moz-transform: rotate(0deg);}
+                100% {-moz-transform: rotate(360deg);}
+            }
+            @keyframes smile {
+                0% {transform: rotate(0deg);}
+                100% {transform: rotate(360deg);}
+            }*/
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 01</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Transformations CSS</h1>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Propriété <span class="highlight">transform</span></li>
+                        <li>Arrivée avec le CSS3</li>
+                        <li>Pas compatible avec tous les navigateurs</li>
+                        <li>Permet de faire divers transformations sur l'élément sélectionné tel qu'un déplacement, une rotation, un redimensionnement, etc.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Les exemples qui suivent sont animés dans un but de comparaison</p>
+                    <p><span class="highlight">La transformation n'est pas une animation !</span></p>
+                </section>
+
+                <section>
+                    <h2>Transformations de base</h2>
+                </section>
+                
+                <section>
+                    <h2>Scale</h2>
+                    <p>scale(x, y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des multiplicateurs</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: scale(3, 1.3);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-scale"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>ScaleX</h2>
+                    <p>scaleX(x) où <span class="highlight">x</span> est un multiplicateur</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: scaleX(3);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-scale-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>ScaleY</h2>
+                    <p>scaleX(y) où <span class="highlight">y</span> est un multiplicateur</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: scaleY(1.3);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-scale-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Translate</h2>
+                    <p>translate(x, y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des distances (px, %, em, ...)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: translate(200px, 50px);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-translate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>TranslateX</h2>
+                    <p>translateX(x) où <span class="highlight">x</span> est une distance (px, %, em, ...)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: translateX(200px);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-translate-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>TranslateY</h2>
+                    <p>translateY(y) où <span class="highlight">y</span> est une distance (px, %, em, ...)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: translateY(50px);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-translate-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Rotate</h2>
+                    <p>rotate(a) où <span class="highlight">a</span> est un angle (deg, rad)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: rotate(70deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Skew</h2>
+                    <p>skew(x,y) où <span class="highlight">x</span> et <span class="highlight">y</span> sont des angles (deg, rad)</p>
+                    <p><span class="highlight">Ne pas utiliser skew seul !</span></p>
+                </section>
+                
+                <section>
+                    <h2>SkewX</h2>
+                    <p>skewX(x) où <span class="highlight">x</span> est un angle (deg, rad)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: skewX(-50deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-skew-x"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>SkewY</h2>
+                    <p>skewY(y) où <span class="highlight">y</span> est un angle (deg, rad)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: skewY(-50deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-skew-y"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <p>Il est possible de changer le centre de la transformation à l'aide de transform-origin</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform-origin: 0 0;
+    transform: rotate(-70deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform origin-0 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform-origin: 50% 50%;
+    transform: rotate(-70deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform origin-50 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Centre de la transformation</h2>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform-origin: 100% 100%;
+    transform: rotate(-70deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform origin-100 animated-rotate"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Combiner des transformations</h2>
+                    <p>Il suffit de les séparer par des espaces</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: rotate(90deg) translateX(100px);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-combination-1"></div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Combiner des transformations</h2>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: translateX(100px) rotate(90deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-combination-2"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                </section>
+
+                <section>
+                    <p>Étapes à suivre vis-à-vis de la compatibilité</p>
+                    <img src="src/img/compatibility-schema.png" alt="" class="no-style">
+                </section>
+
+                <section>
+                    <p>Connaître la compatibilité</p>
+                    <p class="fragment"><a href="http://caniuse.com/" target="_blank">CanIUse</a></p>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=transforms2d">http://caniuse.com/#feat=transforms2d</a></p>
+                    <p class="ciu_embed" data-feature="transforms2d" data-periods="future_1,current,past_1,past_2,past_3,past_4">
+                        <a href="http://caniuse.com/#feat=transforms2d">CanIUse</a>
+                    </p>
+                </section>
+
+                <section>
+                    <p>Version préfixée pour une meilleure compatibilité</p>
+                    <pre><code data-trim contenteditable class="css">
+.block
+{
+     -webkit-transform: rotate(-70deg); /* Chrome / Safari */
+        -moz-transform: rotate(-70deg); /* Firefox */
+         -ms-transform: rotate(-70deg); /* Internet Explorer */
+          -o-transform: rotate(-70deg); /* Opera */
+             transform: rotate(-70deg); /* General */
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Transformations 3D</h2>
+                    <p class="fragment smile">:)</p>
+                </section>
+
+                <section>
+                    <h2>rotateY</h2>
+                    <p>rotateY(y) où <span class="highlight">y</span> est un angle (deg, rad)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: rotateY(250deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-rotate-y"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <p>Par défaut, la rotation va sembler plate, sans perspective.</p>
+                    <p>Pour lui rajouter de la perspective, il faut mettre l'élément dans un container et, en CSS, modifier la propriété <span class="hl">perspective</span>.</p>
+
+                    <pre><code  data-trim contenteditable class="css">
+.container
+{
+    perspective:800px;
+}
+.block
+{
+    transform: rotateY(250deg);
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>rotateX</h2>
+                    <p>rotateX(x) où <span class="highlight">x</span> est un angle (deg, rad)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: rotateX(250deg);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-rotate-x"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>translateZ</h2>
+                    <p>translateZ(z) où <span class="highlight">z</span> est une distance (px, %, em, ...)</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: translateZ(100px);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-translate-z"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>scaleZ</h2>
+                    <p>scaleZ(z) où <span class="highlight">z</span> est un multiplicateur</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: scaleZ(2);
+}
+                    </code></pre>
+                    <p class="fragment">Pas de différence ? C'est normal</p>
+                    <div class="container">
+                        <div class="transform animated-scale-z"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>scale3d</h2>
+                    <p>scale3d(x,y,z) où <span class="highlight">x</span>, <span class="highlight">y</span> et <span class="highlight">z</span> sont des multiplicateurs</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: scale3d(2,1.7,1.5);
+}
+                    </code></pre>
+                    <div class="container">
+                        <div class="transform animated-scale-3d"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Backface</h2>
+                    <p>Par défaut, l'arrière d'un élément est visible (sauf sur certains vieux navigateurs)<br/>La propriété <span class="hl">backface-visibility</span> permet de contrôler cette visibilité</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block-1
+{
+    backface-visibility: hidden;
+}
+.block-2
+{
+    backface-visibility: visible;
+}
+                    </code></pre>
+                    <div class="container animated-perspective">
+                        <div style="display:inline-block;-webkit-backface-visibility: hidden;-moz-backface-visibility: hidden;backface-visibility: hidden;" class="transform animated-rotate-y"></div>
+                        <div style="display:inline-block;" class="transform animated-rotate-y"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Perspective</h2>
+                    <p>Il est possible de changer l'impact de la perspective. Cela ne concerne que les déformations 3D (évident)</p>
+                    <p>La perspective doit être avant la transformation</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform: perspective(800px) rotateX(90deg);
+}
+                    </code></pre>
+                    <div class="container animated-perspective">
+                        <div class="transform rotate-x-90"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Perspective</h2>
+                    <p>Il est possible de propager la perspective de manière à obtenir un environnement 3D homogène avec une perspective commune avec <span class="hl">transform-style:preserve-3d</span></p>
+                    <p>Cette modification doit être appliquée sur chaque élément concerné</p>
+                    <pre><code  data-trim contenteditable class="css">
+.block
+{
+    transform-style:preserve-3d;
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Matrices</h2>
+                    <p>Il est possible d'appliquer des matrices de transformation.</p>
+                    <p class="fragment"><a target="_blank" href="http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/">En savoir plus</a> pour les matheux et les curieux.</p>
+                    <pre class="fragment"><code  data-trim contenteditable class="css">
+.block
+{
+    transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);
+}
+                    </code></pre>
+                    <div class="fragment container animated-matrix">
+                        <div class="transform" style=" -webkit-transform: matrix(1, -0.2, 0, 1, 0, 0);"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=transforms3d">http://caniuse.com/#feat=transforms3d</a></p>
+                    <p class="ciu_embed" data-feature="transforms3d" data-periods="future_1,current,past_1,past_2,past_3,past_4">
+                        <a href="http://caniuse.com/#feat=transforms3d">CanIUse</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Démonstrations</h2>
+                    <ul>
+                        <li><a target="blank" href="http://2012.beercamp.nclud.com/">http://2012.beercamp.nclud.com/</a></li>
+                        <li><a target="_blank" href="http://www.eleqtriq.com/wp-content/static/demos/2010/rotation/index.html">http://www.eleqtriq.com/...</a></li>
+                        <li><a target="_blank" href="http://www.keithclark.co.uk/labs/css3-fps-new/">http://www.keithclark.co.uk/labs/css3-fps-new/</a></li>
+                        <li><a target="_blank" href="http://codepen.io/diegopardo/full/GqEho/">http://codepen.io/diegopardo/full/GqEho/</a></li>
+                        <li><a target="_blank" href="http://codepen.io/thebabydino/full/mJojKd/">http://codepen.io/thebabydino/full/mJojKd/</a></li>
+                        <li><a target="_blank" href="https://codepen.io/bodiche/full/EKmwC/">https://codepen.io/bodiche/full/EKmwC/</a></li>
+                        <li><a target="_blank" href="https://codepen.io/bodiche/full/EPdRBR/">https://codepen.io/bodiche/full/EPdRBR/</a></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
