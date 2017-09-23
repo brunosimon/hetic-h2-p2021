@@ -1,0 +1,1 @@
+$(document).ready(function(){function n(){var n=$(window).height();$("#cover").css({height:n})}n(),$(window).resize(function(){n()})});

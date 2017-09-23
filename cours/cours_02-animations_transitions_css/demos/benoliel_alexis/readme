@@ -1,0 +1,30 @@
+ 
+
+________________________________________                                      
+  _                  _                  
+ | |__   ___  _ __  (_) ___  _   _ _ __ 
+ | '_ \ / _ \| '_ \ | |/ _ \| | | | '__|
+ | |_) | (_) | | | || | (_) | |_| | |   
+ |_.__/ \___/|_| |_|/ |\___/ \__,_|_|   
+                  |__/                                  
+________________________________________
+
+
+dans cet exercice de transformation CSS j'ai voulu réaliser une animation 3D basée sur des cubes pour avoir une découpe des cubes propre j'ai dû utiliser jquery pour permettre un aller et un retour de la suite d'animation ainsi qu'une boucle infinie fichier contient une musique à jouer en même temps que l'animation.
+
+le fichier permettant de voir l'animation ce nomme index.html
+
+
+°°°°°°°°°°°°°°°  features :  °°°°°°°°°°°°°°°°°°
+
+	- j'ai utilisé la bibliothèque jquery pour effectuer l'affectation de mes classes contenants mes animations
+
+
+°°°°°°°°°°°°°°° informations complémentaires °°°°°°°°°°°°°°° 
+
+
+	- un fichier nommer css-onli.html et css-onli.css contienne uniquement les animations avec du css et sans jquery si vous voulez y jeter un coup d'oeil
+
+
+ps : merci pour le site bonpatron.com
+

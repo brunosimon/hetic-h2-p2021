@@ -1,0 +1,699 @@
+body {
+    cursor: url("cursor/pills.png"), auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+
+/******* WARNING PAGE *******/
+
+.warning {
+    cursor: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background: #013366;
+}
+
+.warn {
+    font-size: 45px;
+    color: #FFFFFF;
+    width: 80%;
+    margin-top: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.warn span {
+    text-align: center;
+    font-size: 100px;
+}
+
+.advice {
+    font-size: 30px;
+    color: #FFFFFF;
+    width: 80%;
+    margin-top: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.agree {
+    padding: 20px 20px;
+    background: #ff1493;
+    width: 150PX;
+    margin-top: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 25px;
+    color: #ffffff;
+    border-radius: 5px;
+    border-bottom: 5px solid #ce1075;
+    transition: border-bottom 0.2s ease-in;
+}
+
+.agree:hover {
+    border-bottom: 5px solid #ff1493;
+    cursor: pointer;
+}
+
+
+/******* BACKGROUND *******/
+
+.bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: #013366;v
+}
+
+
+/******* RAINBOW *******/
+
+.rainbow {
+    z-index: -3;
+    position: absolute;
+    font-size: 0;
+    top: 290px;
+    left: 0;
+}
+
+
+/* RAINBOW ANIMATION (on x) */
+
+.rainbow .container-columns {
+    width: 100px;
+    height: 120px;
+    position: absolute;
+    left: 800px;
+    margin: 0;
+    padding: 0;
+    animation-name: rainbowX;
+    animation-duration: 1.0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: normal;
+}
+
+@keyframes rainbowX {
+    0% {
+        transform: translateX(0px);
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+}
+
+.rainbow .container-columns:nth-child(1) {
+    animation-delay: 0.00s;
+}
+
+.rainbow .container-columns:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.rainbow .container-columns:nth-child(3) {
+    animation-delay: 0.20s;
+}
+
+.rainbow .container-columns:nth-child(4) {
+    animation-delay: 0.30s;
+}
+
+.rainbow .container-columns:nth-child(5) {
+    animation-delay: 0.40s;
+}
+
+.rainbow .container-columns:nth-child(6) {
+    animation-delay: 0.50s;
+}
+
+.rainbow .container-columns:nth-child(7) {
+    animation-delay: 0.60s;
+}
+
+.rainbow .container-columns:nth-child(8) {
+    animation-delay: 0.70s;
+}
+
+.rainbow .container-columns:nth-child(9) {
+    animation-delay: 0.80s;
+}
+
+.rainbow .container-columns:nth-child(10) {
+    animation-delay: 0.90s;
+}
+
+
+/* RAINBOW ANIMATION (on y) */
+
+.columns {
+    animation-name: rainbowY;
+    animation-duration: 0.15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rainbowY {
+    0% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.columns.columns-1 {
+    transform: translateY(5px);
+    animation-direction: alternate;
+}
+
+.columns.columns-2 {
+    transform: translateY(-5px);
+    animation-direction: alternate-reverse;
+}
+
+
+/* RAINBOW COLOR */
+
+.block {
+    height: 20px;
+}
+
+.block.color-1 {
+    background: #fe0000;
+}
+
+.block.color-2 {
+    background: #ffa500;
+}
+
+.block.color-3 {
+    background: #ffff00;
+}
+
+.block.color-4 {
+    background: #00fb00;
+}
+
+.block.color-5 {
+    background: #009eff;
+}
+
+.block.color-6 {
+    background: #6531ff;
+}
+
+
+/******* NYAN CAT *******/
+
+.nyan {
+    z-index: 10;
+    position: relative;
+    animation-name: nyan;
+    animation-duration: 0.4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    overflow: hidden;
+    height: 220px;
+    width: 340px;
+    left: 720px;
+    top: 246px;
+}
+
+
+/* NYAN ANIMATION (floating) */
+
+@keyframes nyan {
+    /*    0%  {transform:translateY(-5px) translateX(5px);}
+    25% {transform:translateY(5px)  translateX(5px);}
+    50% {transform:translateY(5px)  translateX(-5px);}
+    75% {transform:translateY(-5px) translateX(-5px);}    
+    100%{transform:translateY(-5px) translateX(5px);}*/
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* NYAN BODY */
+
+.nyan-body {
+    position: absolute;
+    width: 200px;
+    height: 163px;
+    left: 60px;
+}
+
+.body1 {
+    z-index: -1;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background: #FF99FF;
+    width: 190px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.body1-shadow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 0;
+    box-shadow: 30px 10px 0 #000000, 40px 10px 0 #000000, 50px 10px 0 #000000, 60px 10px 0 #000000, 70px 10px 0 #000000, 80px 10px 0 #000000, 90px 10px 0 #000000, 100px 10px 0 #000000, 110px 10px 0 #000000, 120px 10px 0 #000000, 130px 10px 0 #000000, 140px 10px 0 #000000, 150px 10px 0 #000000, 160px 10px 0 #000000, 170px 10px 0 #000000, 180px 10px 0 #000000, 190px 10px 0 #000000, 20px 20px 0 #000000, 30px 20px 0 #FDCC99, 40px 20px 0 #FDCC99, 50px 20px 0 #FDCC99, 60px 20px 0 #FDCC99, 70px 20px 0 #FDCC99, 80px 20px 0 #FDCC99, 90px 20px 0 #FDCC99, 100px 20px 0 #FDCC99, 110px 20px 0 #FDCC99, 120px 20px 0 #FDCC99, 130px 20px 0 #FDCC99, 140px 20px 0 #FDCC99, 150px 20px 0 #FDCC99, 160px 20px 0 #FDCC99, 170px 20px 0 #FDCC99, 180px 20px 0 #FDCC99, 190px 20px 0 #FDCC99, 200px 20px 0 #000000, 10px 30px 0 #000000, 20px 30px 0 #FDCC99, 30px 30px 0 #FDCC99, 40px 30px 0 #FDCC99, 50px 30px 0 #FF99FF, 60px 30px 0 #FF99FF, 70px 30px 0 #FF99FF, 80px 30px 0 #FF99FF, 90px 30px 0 #FF99FF, 100px 30px 0 #FF99FF, 110px 30px 0 #FF99FF, 120px 30px 0 #FF99FF, 130px 30px 0 #FF99FF, 140px 30px 0 #FF99FF, 150px 30px 0 #FF99FF, 160px 30px 0 #FF99FF, 170px 30px 0 #FF99FF, 180px 30px 0 #FDCC99, 190px 30px 0 #FDCC99, 200px 30px 0 #FDCC99, 210px 30px 0 #000000, 10px 40px 0 #000000, 20px 40px 0 #FDCC99, 30px 40px 0 #FDCC99, 40px 40px 0 #FF99FF, 100px 40px 0 #EE3696, 130px 40px 0 #EE3696, 180px 40px 0 #FF99FF, 190px 40px 0 #FDCC99, 200px 40px 0 #FDCC99, 210px 40px 0 #000000, 10px 50px 0 #000000, 20px 50px 0 #FDCC99, 30px 50px 0 #FF99FF, 50px 50px 0 #EE3696, 190px 50px 0 #FF99FF, 200px 50px 0 #FDCC99, 210px 50px 0 #000000, 10px 60px 0 #000000, 20px 60px 0 #FDCC99, 30px 60px 0 #FF99FF, 170px 60px 0 #EE3696, 190px 60px 0 #FF99FF, 200px 60px 0 #FDCC99, 210px 60px 0 #000000, 10px 70px 0 #000000, 20px 70px 0 #FDCC99, 30px 70px 0 #FF99FF, 190px 70px 0 #FF99FF, 200px 70px 0 #FDCC99, 210px 70px 0 #000000, 10px 80px 0 #000000, 20px 80px 0 #FDCC99, 30px 80px 0 #FF99FF, 90px 80px 0 #EE3696, 190px 80px 0 #FF99FF, 200px 80px 0 #FDCC99, 210px 80px 0 #000000, 10px 90px 0 #000000, 20px 90px 0 #FDCC99, 30px 90px 0 #FF99FF, 190px 90px 0 #FF99FF, 200px 90px 0 #FDCC99, 210px 90px 0 #000000, 10px 100px 0 #000000, 20px 100px 0 #FDCC99, 30px 100px 0 #FF99FF, 60px 100px 0 #EE3696, 190px 100px 0 #FF99FF, 200px 100px 0 #FDCC99, 210px 100px 0 #000000, 10px 110px 0 #000000, 20px 110px 0 #FDCC99, 30px 110px 0 #FF99FF, 100px 110px 0 #EE3696, 150px 110px 0 #EE3696, 190px 110px 0 #FF99FF, 200px 110px 0 #FDCC99, 210px 110px 0 #000000, 10px 120px 0 #000000, 20px 120px 0 #FDCC99, 30px 120px 0 #FF99FF, 40px 120px 0 #EE3696, 190px 120px 0 #FF99FF, 200px 120px 0 #FDCC99, 210px 120px 0 #000000, 10px 130px 0 #000000, 20px 130px 0 #FDCC99, 30px 130px 0 #FF99FF, 190px 130px 0 #FF99FF, 200px 130px 0 #FDCC99, 210px 130px 0 #000000, 10px 140px 0 #000000, 20px 140px 0 #FDCC99, 30px 140px 0 #FF99FF, 80px 140px 0 #EE3696, 190px 140px 0 #FF99FF, 200px 140px 0 #FDCC99, 210px 140px 0 #000000, 10px 150px 0 #000000, 20px 150px 0 #FDCC99, 30px 150px 0 #FDCC99, 40px 150px 0 #FF99FF, 50px 150px 0 #EE3696, 120px 150px 0 #EE3696, 180px 150px 0 #FF99FF, 190px 150px 0 #FDCC99, 200px 150px 0 #FDCC99, 210px 150px 0 #000000, 10px 160px 0 #000000, 20px 160px 0 #FDCC99, 30px 160px 0 #FDCC99, 40px 160px 0 #FDCC99, 50px 160px 0 #FF99FF, 60px 160px 0 #FF99FF, 70px 160px 0 #FF99FF, 80px 160px 0 #FF99FF, 90px 160px 0 #FF99FF, 100px 160px 0 #FF99FF, 110px 160px 0 #FF99FF, 120px 160px 0 #FF99FF, 130px 160px 0 #FF99FF, 140px 160px 0 #FF99FF, 150px 160px 0 #FF99FF, 160px 160px 0 #FF99FF, 170px 160px 0 #FF99FF, 180px 160px 0 #FDCC99, 190px 160px 0 #FDCC99, 200px 160px 0 #FDCC99, 210px 160px 0 #000000, 20px 170px 0 #000000, 30px 170px 0 #FDCC99, 40px 170px 0 #FDCC99, 50px 170px 0 #FDCC99, 60px 170px 0 #FDCC99, 70px 170px 0 #FDCC99, 80px 170px 0 #FDCC99, 90px 170px 0 #FDCC99, 100px 170px 0 #FDCC99, 110px 170px 0 #FDCC99, 120px 170px 0 #FDCC99, 130px 170px 0 #FDCC99, 140px 170px 0 #FDCC99, 150px 170px 0 #FDCC99, 160px 170px 0 #FDCC99, 170px 170px 0 #FDCC99, 180px 170px 0 #FDCC99, 190px 170px 0 #FDCC99, 200px 170px 0 #000000, 30px 180px 0 #000000, 40px 180px 0 #000000, 50px 180px 0 #000000, 60px 180px 0 #000000, 70px 180px 0 #000000, 80px 180px 0 #000000, 90px 180px 0 #000000, 100px 180px 0 #000000, 110px 180px 0 #000000, 120px 180px 0 #000000, 130px 180px 0 #000000, 140px 180px 0 #000000, 150px 180px 0 #000000, 160px 180px 0 #000000, 170px 180px 0 #000000, 180px 180px 0 #000000, 190px 180px 0 #000000;
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+
+/* NYAN HEAD ANIMATION */
+
+.nyan-head {
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    left: 165px;
+    width: 140px;
+    height: 140px;
+    animation-name: nyan-head;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes nyan-head {
+    0% {
+        transform: translateX(-5px);
+    }
+    25% {
+        transform: translateX(5px) translateY(-5px);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px) translateY(0px);
+    }
+    100% {
+        transform: translateX(-5px);
+    }
+}
+
+
+/* NYAN HEAD */
+
+.head {
+    z-index: -1;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    box-shadow: 30px 10px 0 #000000, 40px 10px 0 #000000, 130px 10px 0 #000000, 140px 10px 0 #000000, 20px 20px 0 #000000, 30px 20px 0 #999999, 40px 20px 0 #999999, 50px 20px 0 #000000, 120px 20px 0 #000000, 130px 20px 0 #999999, 140px 20px 0 #999999, 150px 20px 0 #000000, 20px 30px 0 #000000, 30px 30px 0 #999999, 40px 30px 0 #999999, 50px 30px 0 #999999, 60px 30px 0 #000000, 110px 30px 0 #000000, 120px 30px 0 #999999, 130px 30px 0 #999999, 140px 30px 0 #999999, 150px 30px 0 #000000, 20px 40px 0 #000000, 30px 40px 0 #999999, 40px 40px 0 #999999, 50px 40px 0 #999999, 60px 40px 0 #999999, 70px 40px 0 #000000, 80px 40px 0 #000000, 90px 40px 0 #000000, 100px 40px 0 #000000, 110px 40px 0 #999999, 120px 40px 0 #999999, 130px 40px 0 #999999, 140px 40px 0 #999999, 150px 40px 0 #000000, 20px 50px 0 #000000, 30px 50px 0 #999999, 40px 50px 0 #999999, 50px 50px 0 #999999, 60px 50px 0 #999999, 70px 50px 0 #999999, 80px 50px 0 #999999, 90px 50px 0 #999999, 100px 50px 0 #999999, 110px 50px 0 #999999, 120px 50px 0 #999999, 130px 50px 0 #999999, 140px 50px 0 #999999, 150px 50px 0 #000000, 10px 60px 0 #000000, 20px 60px 0 #999999, 30px 60px 0 #999999, 40px 60px 0 #999999, 50px 60px 0 #999999, 60px 60px 0 #999999, 70px 60px 0 #999999, 80px 60px 0 #999999, 90px 60px 0 #999999, 100px 60px 0 #999999, 110px 60px 0 #999999, 120px 60px 0 #999999, 130px 60px 0 #999999, 140px 60px 0 #999999, 150px 60px 0 #999999, 160px 60px 0 #000000, 10px 70px 0 #000000, 20px 70px 0 #999999, 30px 70px 0 #999999, 40px 70px 0 #999999, 50px 70px 0 #000000, 60px 70px 0 #000000, 70px 70px 0 #999999, 80px 70px 0 #999999, 90px 70px 0 #999999, 100px 70px 0 #999999, 110px 70px 0 #999999, 120px 70px 0 #000000, 130px 70px 0 #000000, 140px 70px 0 #999999, 150px 70px 0 #999999, 160px 70px 0 #000000, 10px 80px 0 #000000, 20px 80px 0 #999999, 30px 80px 0 #999999, 40px 80px 0 #999999, 50px 80px 0 #000000, 60px 80px 0 #000000, 70px 80px 0 #999999, 80px 80px 0 #999999, 90px 80px 0 #999999, 100px 80px 0 #000000, 110px 80px 0 #999999, 120px 80px 0 #000000, 130px 80px 0 #000000, 140px 80px 0 #999999, 150px 80px 0 #999999, 160px 80px 0 #000000, 10px 90px 0 #000000, 20px 90px 0 #999999, 30px 90px 0 #999999, 40px 90px 0 #999999, 50px 90px 0 #999999, 60px 90px 0 #999999, 70px 90px 0 #999999, 80px 90px 0 #999999, 90px 90px 0 #999999, 100px 90px 0 #999999, 110px 90px 0 #999999, 120px 90px 0 #999999, 130px 90px 0 #999999, 140px 90px 0 #999999, 150px 90px 0 #999999, 160px 90px 0 #000000, 10px 100px 0 #000000, 20px 100px 0 #999999, 30px 100px 0 #999999, 40px 100px 0 #999999, 50px 100px 0 #999999, 60px 100px 0 #000000, 70px 100px 0 #999999, 80px 100px 0 #999999, 90px 100px 0 #000000, 100px 100px 0 #999999, 110px 100px 0 #999999, 120px 100px 0 #000000, 130px 100px 0 #999999, 140px 100px 0 #999999, 150px 100px 0 #999999, 160px 100px 0 #000000, 20px 110px 0 #000000, 30px 110px 0 #999999, 40px 110px 0 #999999, 50px 110px 0 #999999, 60px 110px 0 #000000, 70px 110px 0 #000000, 80px 110px 0 #000000, 90px 110px 0 #000000, 100px 110px 0 #000000, 110px 110px 0 #000000, 120px 110px 0 #000000, 130px 110px 0 #999999, 140px 110px 0 #999999, 150px 110px 0 #000000, 30px 120px 0 #000000, 40px 120px 0 #999999, 50px 120px 0 #999999, 60px 120px 0 #999999, 70px 120px 0 #999999, 80px 120px 0 #999999, 90px 120px 0 #999999, 100px 120px 0 #999999, 110px 120px 0 #999999, 120px 120px 0 #999999, 130px 120px 0 #999999, 140px 120px 0 #000000, 40px 130px 0 #000000, 50px 130px 0 #000000, 60px 130px 0 #000000, 70px 130px 0 #000000, 80px 130px 0 #000000, 90px 130px 0 #000000, 100px 130px 0 #000000, 110px 130px 0 #000000, 120px 130px 0 #000000, 130px 130px 0 #000000;
+}
+
+
+/* NYAN EYES */
+
+.eyes {
+    position: absolute;
+    background: #FFFFFF;
+    width: 10px;
+    height: 10px;
+}
+
+.eyes.eyes-1 {
+    top: 70px;
+    left: 50px;
+}
+
+.eyes.eyes-2 {
+    top: 70px;
+    left: 120px;
+}
+
+
+/* NYAN CHEEKS */
+
+.cheek {
+    position: absolute;
+    background: #f59799;
+    width: 20px;
+    height: 20px;
+}
+
+.cheek.cheek-1 {
+    top: 90px;
+    left: 30px;
+}
+
+.cheek.cheek-2 {
+    top: 90px;
+    left: 140px;
+}
+
+
+/* NYAN FOOTS */
+
+.nyan-foot {
+    z-index: -5;
+    position: absolute;
+    top: 159px;
+    left: 90px;
+    background-size: cover;
+    animation-name: nyan-foot;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+
+/* NYAN FOOTS ANIMATION */
+
+@keyframes nyan-foot {
+    0% {
+        transform: translateX(0px);
+    }
+    33% {
+        transform: translateX(-15px);
+    }
+    66% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.foot {
+    z-index: -1;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    box-shadow: 10px 10px 0 #000000, 20px 10px 0 #999999, 30px 10px 0 #999999, 40px 10px 0 #000000, 10px 20px 0 #000000, 20px 20px 0 #999999, 30px 20px 0 #999999, 40px 20px 0 #000000, 10px 30px 0 #000000, 20px 30px 0 #999999, 30px 30px 0 #999999, 40px 30px 0 #000000, 20px 40px 0 #000000, 30px 40px 0 #000000, 40px 40px 0 #000000;
+}
+
+.foot.foot-1 {
+    top: 0px;
+    left: 160px;
+}
+
+.foot.foot-2 {
+    top: 0px;
+    left: 110px;
+}
+
+.foot.foot-3 {
+    top: 0px;
+    left: 20px;
+}
+
+.back-foot {
+    z-index: -1;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    box-shadow: 30px 10px 0 #000000, 40px 10px 0 #999999, 50px 10px 0 #999999, 20px 20px 0 #000000, 30px 20px 0 #999999, 40px 20px 0 #999999, 50px 20px 0 #999999, 10px 30px 0 #000000, 20px 30px 0 #999999, 30px 30px 0 #999999, 40px 30px 0 #999999, 50px 30px 0 #000000, 10px 40px 0 #000000, 20px 40px 0 #999999, 30px 40px 0 #999999, 40px 40px 0 #000000, 10px 50px 0 #000000, 20px 50px 0 #000000, 30px 50px 0 #000000;
+    top: -9px;
+    left: -30px;
+}
+
+
+/* NYAN TAIL */
+
+.nyan-tail {
+    z-index: -5;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 89px;
+    left: 10px;
+    box-shadow: 20px 10px 0 #030303, 30px 10px 0 #030303, 10px 20px 0 #030303, 20px 20px 0 #999999, 30px 20px 0 #999999, 40px 20px 0 #030303, 10px 30px 0 #030303, 20px 30px 0 #999999, 30px 30px 0 #999999, 40px 30px 0 #030303, 50px 30px 0 #030303, 60px 30px 0 #030303, 70px 30px 0 #030303, 20px 40px 0 #030303, 30px 40px 0 #999999, 40px 40px 0 #999999, 50px 40px 0 #999999, 60px 40px 0 #999999, 70px 40px 0 #999999, 30px 50px 0 #030303, 40px 50px 0 #030303, 50px 50px 0 #999999, 60px 50px 0 #999999, 70px 50px 0 #999999, 50px 60px 0 #030303, 60px 60px 0 #030303, 70px 60px 0 #030303;
+    animation-name: nyan-tail;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+
+/* NYAN TAIL ANIMATION */
+
+@keyframes nyan-tail {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/******* STARS (in background) *******/
+
+.stars {
+    z-index: -4;
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    box-shadow: 40px 10px 0 #FFFFFF, 20px 20px 0 #FFFFFF, 60px 20px 0 #FFFFFF, 10px 40px 0 #FFFFFF, 70px 40px 0 #FFFFFF, 20px 60px 0 #FFFFFF, 60px 60px 0 #FFFFFF, 40px 70px 0 #FFFFFF;
+    transform: translateX(-1000px);
+    animation-name: stars;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+
+/* STARS ANIMATION */
+
+@keyframes stars {
+    0% {
+        transform: translateX(1500px) scale(1, 1);
+    }
+    50% {
+        transform: translateX(500px) rotateY(90deg) scale(0.5, 0.5);
+    }
+    75% {
+        transform: translateX(0px) scale(0.8, 0.8);
+    }
+    80% {
+        transform: translateX(-100px);
+    }
+}
+
+.stars.stars-1 {
+    top: 0;
+    animation-delay: 0.00s;
+    animation-duration: 3s;
+}
+
+.stars.stars-2 {
+    top: 75px;
+    animation-delay: 1.40s;
+    animation-duration: 2s;
+}
+
+.stars.stars-3 {
+    top: 150px;
+    animation-delay: 0.50s;
+    animation-duration: 1.6s;
+}
+
+.stars.stars-4 {
+    top: 215px;
+    animation-delay: 1.00s;
+    animation-duration: 2s;
+}
+
+.stars.stars-5 {
+    top: 300px;
+    animation-delay: 0.30s;
+    animation-duration: 1.8s;
+}
+
+.stars.stars-6 {
+    top: 375px;
+    animation-delay: 0.30s;
+    animation-duration: 2s;
+}
+
+.stars.stars-7 {
+    top: 450px;
+    animation-delay: 1.70s;
+    animation-duration: 1.7s;
+}
+
+.stars.stars-8 {
+    top: 515px;
+    animation-delay: 1.15s;
+    animation-duration: 2.2s;
+}
+
+.stars.stars-9 {
+    top: 600px;
+    animation-delay: 0.25s;
+    animation-duration: 2.5s;
+}
+
+.stars.stars-10 {
+    top: 675px;
+    animation-delay: 1.55s;
+    animation-duration: 2.7s;
+}
+
+.nyan:hover ~ .stars {
+    animation-duration: 0.2s;
+    opacity: 0.6;
+}
+
+
+/******* HOVER ANIMATIONS *******/
+
+.nyan:hover .nyan-tail {
+    animation-duration: 0.1s;
+}
+
+.nyan:hover .nyan-foot {
+    animation-duration: 0.2s;
+}
+
+.nyan:hover .nyan-head {
+    animation-duration: 0.3s;
+}
+
+.nyan:hover {
+    animation-duration: 0.2s;
+}
+
+.nyan:hover ~ .rainbow .columns {
+    animation-duration: 0.05s;
+}
+
+.nyan:hover .eyes {
+    animation-name: eyesHard;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform-origin: 100% 100%;
+}
+
+.nyan:hover .eyes.eyes-1 {
+    animation-direction: normal;
+}
+
+.nyan:hover .eyes.eyes-2 {
+    animation-direction: reverse;
+}
+
+@keyframes eyesHard {
+    0% {
+        background: #fe0000;
+        transform: translateX(0%) translateY(0%);
+    }
+    16% {
+        background: #ffa500;
+    }
+    25% {
+        transform: translateX(100%) translateY(0%);
+    }
+    33% {
+        background: #ffff00;
+    }
+    50% {
+        background: #00fb00;
+        transform: translateX(100%) translateY(100%);
+    }
+    66% {
+        background: #009eff;
+    }
+    75% {
+        transform: translateX(0%) translateY(100%);
+    }
+    83% {
+        background: #6531ff;
+    }
+    100% {
+        background: #fe0000;
+        transform: translateX(0%) translateY(0%);
+    }
+}
+
+.nyan:hover .cheek {
+    animation-name: cheekHard;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+@keyframes cheekHard {
+    0% {
+        background: #f59799;
+    }
+    100% {
+        background: deeppink;
+    }
+}
+
+.nyan:hover {
+    animation-duration: 0.1s;
+}
+
+
+/* BACKGROUND ANIMATION */
+
+.nyan:hover ~ .bg {
+    animation-name: backHard;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+@keyframes backHard {
+    0% {
+        background: #fe0000;
+    }
+    16% {
+        background: #ffa500;
+    }
+    33% {
+        background: #ffff00;
+    }
+    50% {
+        background: #00fb00;
+    }
+    66% {
+        background: #009eff;
+    }
+    83% {
+        background: #6531ff;
+    }
+    100% {
+        background: #fe0000;
+    }
+}
+

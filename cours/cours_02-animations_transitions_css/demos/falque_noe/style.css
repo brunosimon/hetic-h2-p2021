@@ -1,0 +1,629 @@
+body {
+	background-color: skyblue;
+	perspective: 850px;
+	height: 100%;
+	overflow: hidden;
+	margin: 0; 
+	padding: 0;
+}
+
+/***** SKY & LIGHT ****/
+
+.sky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -1;
+	background-size: 100vw 500vh;
+	background-image: linear-gradient(to top, #90dffe 20%, #B7490F 45%, #845d80 60%, #000040 75%);
+	will-change: background-position;
+	animation: sky 20.1s linear 20s both;
+/*	animation: sky 20s linear 0s both;*/
+}
+@keyframes sky {
+	100%{background-position: 0 500vh;}
+	0%{background-position: 0 100vh;}
+}
+/* darken 0s linear 20s both*/
+/* darken 0s linear 00s both*/
+@keyframes darken {
+	0%{filter: brightness(100%); }
+	30%{filter: brightness(100%); }
+	70%{filter: brightness(5%); }
+	100%{filter: brightness(5%); }
+}
+@keyframes darkenBuilds {
+	0%{filter: brightness(100%); }
+	30%{filter: brightness(100%); }
+	70%{filter: brightness(1%); }
+	100%{filter: brightness(1%); }
+}
+@keyframes darkenPlane {
+	0%{filter: brightness(100%); }
+	30%{filter: brightness(100%); }
+	70%{filter: brightness(80%); }
+	100%{filter: brightness(70%); }
+}
+
+/***** VIEW ****/
+
+.view {
+	position: absolute;
+	top: 50%;
+	width: 100%; 
+	height: 500px;
+/*	background: rgba(255,255,255,.3);*/
+	transform: scale(1) rotateX(85deg) rotateZ(0deg) translateX(0px) translateY(200px) translateZ(-250px);
+	will-change: transform;
+	transform-style: preserve-3d;
+	animation: viewStart 10s linear both, viewEnd 10s ease-in-out 40s forwards;
+}
+@keyframes viewStart {
+	0%	{transform: scale(3) rotateX(30deg) rotateZ(-70deg) translateY(-100px) translateZ(-350px); animation-timing-function: ease-in-out; }
+	
+	40%	{transform: scale(3) rotateX(70deg) rotateZ(-70deg) translateY(-100px) translateZ(-350px); animation-timing-function: ease-in-out; }
+	
+	100%	{transform: scale(1) rotateX(85deg) rotateZ(0deg) translateX(0px) translateY(200px) translateZ(-250px);}
+}
+@keyframes viewEnd {
+	0%	{transform: scale(1) rotateX(85deg) rotateZ(0deg) translateX(0px) translateY(200px) translateZ(-250px); }
+	
+	50%	{transform: scale(4) translateZ(-300px) rotateZ(110deg) translateY(-100px) translateZ(-350px); }
+	100%{transform: scale(1) translateY(-500px) rotateX(100deg) rotateZ(90deg) translateY(-100px) translateZ(-350px); }
+	
+	
+/*	100%	{transform: scale(2.5) rotateX(120deg) rotateZ(180deg) translateX(0px) translateY(0px) translateZ(-250px);}*/
+}
+
+/** debug **
+.view {	animation: view 10s linear infinite; }
+@keyframes view2 {
+	0%	{transform: scale(3) translateY(0px) translateX(0) rotateX(110deg) rotateY(0deg) rotateZ(0deg); }
+	100%{transform: scale(3) translateY(0px) translateX(0) rotateX(110deg) rotateY(0deg) rotateZ(360deg); }
+}
+@keyframes view {
+	0%{}
+	100%{}
+}
+/** fin debug **/
+
+/*
+.ground {
+position: absolute;
+top: 0; right: 0; bottom: 0; left: 0;
+z-index: 0;
+transform: translateZ(0);
+background: rgba(255,255,255,.3);
+}
+*/
+
+/***** HILLS & BUILDINGS ****/
+
+.move {
+	position: absolute;
+	will-change: transform;
+	animation: move 100s linear 7s;
+	transform-style: preserve-3d;
+}
+@keyframes move {
+	0%	{transform: translateX(-5500px);}
+	40%	{transform: translateX(0px);}
+	100%	{transform: translateX(0px);}
+}
+
+.move.mHills {
+	bottom: 0;
+}
+
+.hills {
+	z-index: 3;
+	width: 6000px;
+	height: 300px; /* ajust hill height*/
+	/*	background: rgba(255,255,255,.1);*/
+	transform:  scale(1, .5) rotateX(-90deg) rotateY(0deg) translateY(00px) translateX(00px) translateZ(0px) ;
+	transform-origin: bottom;
+	will-change: transform;
+	transform-style: preserve-3d;
+}
+.hills div {
+	position: relative;
+	width: 300px;
+	height: 1000px;
+	border-radius: 300px 300px 0 0;
+	background: white;
+	display: inline-block;
+	margin: 0 -15px;
+	margin-right: -100px; 
+/*	background: linear-gradient(90deg, #d5dddd, white);*/
+/*	background: linear-gradient(180deg, #eee 50%, rgba(255,255,255,.0) 90%);*/
+	background: #eee;
+	transform: translateZ(0); /* bugfix acceleration materielle*/
+	transform-origin: bottom;
+	will-change: transform, visibility, filter;
+	transform-style: preserve-3d;
+	animation: unfold 2s ease 12.5s both, darken 20.1s linear 20s both, endFold 1s ease 41s forwards;
+}
+.hills div.low {
+	position: relative;
+/*	background: linear-gradient(180deg, #d8d8d8 50%, rgba(255,255,255,.0) 92%);*/
+	background: #d8d8d8;
+	z-index: -1;
+	top: 15px;
+}
+@keyframes unfold {
+	0%	{visibility: hidden; transform: rotateX(90deg) rotateY(5deg) translateZ(0);}
+	100%{transform: rotateX(0deg) rotateY(0)  translateZ(0);}
+}
+@keyframes endFold {
+	0%	{opacity: 1;}
+	100%{opacity: 0;}
+}
+/*	delays 																						unfold|darken|endFold 	*/
+.hills div:nth-last-child(2) 	{animation-delay: 			8s, 		20s, 		41s;}
+.hills div:nth-last-child(1) 	{animation-delay: 			8.6s, 	20s, 		41s;}
+.hills div:nth-last-child(4) 	{animation-delay: 			9.4s, 	20s, 		41s;}
+.hills div:nth-last-child(3) 	{animation-delay: 			10.2s, 	20s, 		41s;}
+.hills div:nth-last-child(5) 	{animation-delay: 			11.0s, 	20s, 		41s;}
+.hills div:nth-last-child(6) 	{animation-delay: 			11.8s, 	20s, 		41s;}
+.buildings > div:nth-last-child(1) 	{animation-delay: 10.0s, 	20s, 		41s;}
+.buildings > div:nth-last-child(2) 	{animation-delay: 10.5s, 	20s, 		41s;}
+.buildings > div:nth-last-child(3) 	{animation-delay: 11s, 		20s, 		41s;}
+.buildings > div:nth-last-child(4) 	{animation-delay: 11.5s, 	20s, 		41s;}
+.buildings > div:nth-last-child(5) 	{animation-delay: 12s, 		20s, 		41s;}
+.buildings > div:nth-last-child(6) 	{animation-delay: 12.5s, 	20s, 		41s;}
+.buildings > div:nth-last-child(7) 	{animation-delay: 13s, 		20s, 		41s;}
+.buildings > div:nth-last-child(8) 	{animation-delay: 13.5s, 	20s, 		41s;}
+
+/*
+.hills div:after {
+position: absolute;
+width: 10px;
+height: 6px;
+background: rgba(0,255,0,.5);
+}
+*/
+
+.move.mBuilds {
+	bottom: 60%;
+}
+.move.mBuilds2 {
+	bottom: 90%;
+	left: -300px;
+	z-index: -1;
+	transform: translateZ(0);
+}
+
+.buildings {
+	width: 6000px;
+	height: 350px;
+	transform:  scale(1) rotateX(-90deg) rotateY(0deg) translateY(00px) translateX(00px) translateZ(0px) ;
+	transform-origin: bottom;
+	transform-style: preserve-3d;
+	will-change: transform;
+}
+.buildings > div {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+	width: 100px;
+	height: 350px;
+	margin-right: 10px;
+	transform: translateZ(0);
+	transform-origin: bottom;
+	transform-style: preserve-3d;
+	will-change: transform, filter;
+	animation: unfold 1.5s ease 12.5s both, endFold 1s ease 41s forwards;
+}
+.buildings > div:before {
+	/* background applied on the pseudo-element so that the windows are not affected by the brightness filter*/
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #efefef;
+	z-index: -1;
+	animation: darkenBuilds 20.1s linear 20s both;
+}
+.buildings .high.h2 {
+	height: 230px;
+}
+.buildings .low {
+	width: 130px;
+	height: 150px;
+}
+.buildings .low:after {
+	content: "";
+	position: absolute; 
+	top: -29px; 
+	left: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 65px 30px 65px;
+	border-color: transparent transparent #eee transparent;
+	animation: darkenBuilds 20.1s linear 20s both;
+}
+
+.buildings i {
+	display: inline-block;
+	position: relative;
+	width: 14.2%;
+	height: 20px;
+	margin-left: 14.2%;
+	margin-top: 20px;
+	background: rgba(0,0,0,.1);
+	will-change: background;
+	animation: window 0.1s linear 30s both;
+}
+@keyframes window {
+	0% {background: rgba(0,0,0,.1); }
+	100% {background:  rgba(255, 208, 98, 1); }
+}
+.buildings .high.h2 i {
+	border-radius: 50% 50% 0 0;
+}
+.buildings .factory i {
+	border-radius: 13px 13px 0 0;
+	height: 50px;
+	width: 26px;
+	margin-left: 30px;
+	margin-top: 30px;
+}
+.buildings i:nth-child(5n+1) {animation-delay: 31s; }
+.buildings i:nth-child(5n+2) {animation-delay: 34s; }
+.buildings i:nth-child(5n+3) {animation-delay: 37s; }
+.buildings i:nth-child(5n+4) {animation-delay: 33s; }
+.buildings i:nth-child(5n) 	 {animation-delay: 600s; }
+
+.buildings .factory {
+	height: 130px;
+	width: 300px;
+	margin: 0 30px;
+}
+.buildings .factory .roof {
+	content: "";
+	position: absolute; 
+	top: -59px; 
+	left: 00px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 60px 0 0 140px;
+	border-color: transparent transparent transparent #eee;
+	animation: darkenBuilds 20.1s linear 20s both;
+}
+.buildings .factory .roof.r2 {
+	left: 140px;
+}
+.buildings .factory .chimney {
+	position: absolute; 
+	top: -150px; 
+	left: 50px;
+	z-index: -1;
+	width: 15px;
+	height: 150px;
+	background: #e8e8e8;
+	animation: darkenBuilds 20.1s linear 20s both;
+}
+.buildings .factory .chimney:last-child {
+	left: 200px;
+}
+.buildings .smoke span {
+	display: block;
+	position: absolute;
+	top: -15px;
+	left: -5px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #e8e8e8;
+/*	filter: blur(2px);*/
+	will-change: transform, opacity;
+	animation: smoke 15s linear infinite;
+}
+@keyframes smoke {
+	0%	{ opacity: 0; transform: scale(.8) translateX(0) translateY(0); }
+	10%	{ opacity: 0.4; transform: scale(.8) translateX(0) translateY(0); }
+	30%	{ opacity: 0.3; transform: scale(1.5) translateX(5px) translateY(-10px); }
+	60%	{ opacity: 0.1; transform: scale(5) translateX(-5px) translateY(-20px); }
+	100%	{ opacity: 0; transform: scale(10) translateX(1px) translateY(-30px); }
+}
+.buildings .smoke span:nth-child(2n){ 
+	animation-name: smoke2 
+}
+@keyframes smoke2 {
+	0%	{ opacity: 0; transform: scale(.8) translateX(0) translateY(0); }
+	15%	{ opacity: 0.4; transform: scale(.8) translateX(0) translateY(0); }
+	30%	{ opacity: 0.3; transform: scale(1.5) translateX(1px) translateY(-5px); }
+	80%	{ opacity: 0.1; transform: scale(4) translateX(3px) translateY(-10px); }
+	100%	{ opacity: 0; transform: scale(8) translateX(8px) translateY(-25px); }
+}
+.buildings .smoke span:nth-child(5n+2){ animation-delay: -3s }
+.buildings .smoke span:nth-child(5n+3){ animation-delay: -8s }
+.buildings .smoke span:nth-child(5n+4){ animation-delay: -10s }
+.buildings .smoke span:nth-child(5n+5){ animation-delay: -12.5s }
+
+.buildings > div:nth-child(3n):before {background: #d5dddd;}
+.buildings .low:nth-child(3n):after {border-bottom-color: #d5dddd;}
+.buildings .factory:nth-child(3n):after, .buildings .factory:nth-child(3n) .roof {border-left-color: #d5dddd;}
+.buildings > div:nth-child(3n+1):before {background: #e5e5e5;}
+.buildings .low:nth-child(3n+1):after {border-bottom-color: #e5e5e5;}
+.buildings .factory:nth-child(3n+1):after, .buildings .factory:nth-child(3n+1) .roof {border-left-color: #e5e5e5;}
+
+
+/***** PLANE ****/
+
+.plane {
+	position: absolute;
+	top: 70%; margin-top: -48px;
+	left: 50%; margin-left: -32px;
+	z-index: 9;
+	width: 96px;
+	height: 64px;
+	/*	background: rgba(200,255,255,.2);*/
+	transform-style: preserve-3d;
+	will-change: transform;
+	animation: updown 10s ease-in-out 0s infinite alternate, landing 5s ease-in-out ;
+}
+
+.plane div, .plane div:after {
+	animation: darkenPlane 20.1s linear 20s forwards;
+}
+
+@keyframes updown {
+	0%{transform: translateZ(350px) rotateZ(-90deg) rotateY(0deg); animation-timing-function: ease-in-out;}
+	20%{transform: translateZ(352px) rotateZ(-90deg) rotateX(-3deg) rotateY(-10deg); transition-timing-function: ease-in-out;}
+	60%{transform: translateZ(340px) rotateZ(-90deg) rotateX(-5deg) rotateY(-2deg); transition-timing-function: ease-in-out;}
+	80%{transform: translateZ(355px) rotateZ(-90deg) rotateX(-1deg) rotateY(5deg); transition-timing-function: ease-in-out;}
+	100%{transform: translateZ(362px) rotateZ(-90deg) rotateX(1deg) rotateY(-3deg); transition-timing-function: ease-in-out;}
+}
+
+.side {
+	position: absolute;
+	width: 48px;
+	height: 64px;
+	/*	background: rgba(255,200,255,.1);*/
+	transform-style: preserve-3d;
+}
+.side.sL {
+	left; 0;
+	/*	transform: rotateY(70deg);*/
+	transform-origin: 100% 0;
+	animation: sideL 1s ease-in-out 4s both;
+}
+@keyframes sideL {
+	0%{transform: rotateY(0deg)}
+	100%{transform: rotateY(70deg)}
+}
+.side.sR {
+	right: 0;
+	/*	transform: rotateY(-70deg);*/
+	transform-origin: 0% 0;
+	animation: sideR 1s ease-in-out 3s both;
+}
+@keyframes sideR {
+	0%{transform: rotateY(0deg)}
+	100%{transform: rotateY(-70deg)}
+}
+
+.side .fuselage {
+	background: #f5f5f5;
+	width: 16px;
+	height: 48px;
+	position: absolute;
+	transform-style: preserve-3d;
+}
+.side.sL .fuselage {
+	right: 0;
+	bottom: 0;
+}
+.side.sR .fuselage {
+	left: 0;
+	bottom: 0;
+}
+
+.side .fuselage:after, .side .wing:after {
+	content:"";
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	top: -16px;
+}
+.side.sL .fuselage:after {
+	border-width: 16px 16px 0 0;
+	border-color: transparent #f5f5f5 transparent transparent;
+}
+.side.sR .fuselage:after {
+	border-width: 16px 0 0 16px ;
+	border-color: transparent transparent transparent #f5f5f5;
+}
+
+.side .wing {
+	position: absolute;
+	width: 32px;
+	height: 16px;
+	background: white;
+	transform-style: preserve-3d;
+}
+.side.sL .wing {
+	left: 0;
+	bottom: 0;
+	/*	transform: rotateY(-70deg);*/
+	transform-origin: right;
+	animation: wingL 1s ease-in-out 5s both;
+}
+@keyframes wingL {
+	0%{transform: rotateY(0deg)}
+	100%{transform: rotateY(-80deg)}
+}
+.side.sR .wing {
+	right: 0;
+	bottom: 0;
+	/*	transform: rotateY(70deg);*/
+	transform-origin: left;
+	animation: wingR 1s ease-in-out 6s both;
+}
+@keyframes wingR {
+	0%{transform: rotateY(0deg)}
+	100%{transform: rotateY(80deg)}
+}
+
+.side.sL .wing:after {
+	top: -32px;
+	border-width: 32px 32px 0 0;
+	border-color: transparent white transparent transparent;
+}
+.side.sR .wing:after {
+	top: -32px;
+	border-width: 32px 0 0 32px ;
+	border-color: transparent transparent transparent white;
+}
+
+.side .flap {
+	position: absolute;
+	height: 48px;
+	width: 48px;
+	transform-style: preserve-3d;
+}
+.side.sL .flap {
+	top: 0;
+	left: 0;
+	/*	transform: rotate3d(1, -1, 0, 175deg);*/
+	transform-origin: 50% 50%;
+	animation: flapL 1s ease-in-out 1s both;
+}
+@keyframes flapL {
+	0%{transform: rotate3d(-1, 1, 0, 0deg)}
+	100%{transform: rotate3d(-1, 1, 0, 177deg)}
+}
+.side.sR .flap {
+	top: 0;
+	right: 0;
+	/*	transform: rotate3d(-1, -1, 0, -175deg);*/
+	transform-origin: 50% 50%;
+	animation: flapR 1s ease-in-out 1.5s both;
+}
+@keyframes flapR {
+	0%{transform: rotate3d(1, 1, 0, 0deg)}
+	100%{transform: rotate3d(1, 1, 0, -177deg)}
+}
+
+.side .wingFlap {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	top: 16px;
+	box-shadow: none;
+	transform-style: preserve-3d;
+}
+.side.sL .wingFlap {
+	border-width: 32px 32px 0 0;
+	border-color: #f9f9f9 transparent transparent transparent;
+	transform-origin: 100% 0;
+	/*	transform: rotateX(70deg); */
+	animation: wingFlaps 1s ease-in-out 5s both;
+}
+.side.sR .wingFlap {
+	right: 0px;
+	border-width: 0 32px 32px 0;
+	border-color: transparent #f9f9f9 transparent transparent;
+	transform-origin: 100% 0;
+	/*	transform: rotateX(70deg); */
+	animation: wingFlaps 1s ease-in-out 6s both;
+}
+@keyframes wingFlaps {
+	0%{transform: rotateX(0deg);}
+	100%{transform: rotateX(77deg);}
+}
+
+.side .fuseFlap {
+	background: #eee;
+	height: 16px;
+	width: 32px;
+	position: absolute;
+	top: 0;
+	transform-style: preserve-3d;
+}
+.side.sL .fuseFlap {
+	left: 0;
+}
+.side.sR .fuseFlap {
+	right: 0;
+}
+
+.side .fuseFlap:after {
+	content:"";
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+.side.sL .fuseFlap:after {
+	right: -16px;
+	border-width: 0 0 16px 16px ;
+	border-color: transparent transparent transparent #eee;
+}
+.side.sR .fuseFlap:after {
+	left: -16px;
+	border-width: 16px 0 0 16px;
+	border-color: #eee transparent transparent transparent;
+}
+
+
+
+/***** PLAY/PAUSE ****/
+
+input[type=checkbox].pauseCheck {
+	position: fixed; 
+	top: -100px;
+}
+
+.pause {
+	display: block;
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 10;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: 4px solid silver;
+	text-align: center;
+	line-height: 35px;
+}
+.pause span {
+	display: inline-block;
+	border-left: 4px solid silver;
+	border-right: 4px solid silver;
+	width: 5px;
+	height: 15px;
+	will-change: border, height, padding;
+	transition: border-left .3s, border-right .3s;
+}
+.pauseCheck:checked + .view + .sky + .pause span {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 8px 0 8px 12px;
+	border-color: transparent transparent transparent silver;
+	will-change: border, height, padding;
+	transition: border-left .3s, border-right .3s;
+}
+
+.pauseCheck:checked + .view *,
+.pauseCheck:checked + .view *:after,
+.pauseCheck:checked + .view,
+.pauseCheck:checked + .view + .sky {
+	animation-play-state: paused;
+}
+
+/** {animation: none !important;}*/
+
+
