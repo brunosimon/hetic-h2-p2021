@@ -1,0 +1,49 @@
+	
++------+.      +------+       +------+       +------+      .+------+
+|`.    | `.    |\     |\      |      |      /|     /|    .' |    .'|
+|  `+--+---+   | +----+-+     +------+     +-+----+ |   +---+--+'  |
+|   |  |   |   | |    | |     |      |     | |    | |   |   |  |   |
++---+--+.  |   +-+----+ |     +------+     | +----+-+   |  .+--+---+
+ `. |    `.|    \|     \|     |      |     |/     |/    |.'    | .'
+   `+------+     +------+     +------+     +------+     +------+'
+
+				 
+Développement Web - Bruno Simon
+Exercice du 18/10 de Claire ZUNDA (H2 G2)
+
+						Beach Tennis HTML5 CSS3
+
+ ▲ ▲  Un hover sur le body est nécessaire pour voir toutes les animations/transitions ▲ ▲ 
+
+Éléments: 
+	- une sphère en 3D : la balle
+	- deux raquettes en 3D 
+	- titre
+
+Fonctionnalités: 
+	- Au hover sur le body : le titre apparaît (jeu sur l'opacité, la couleur et la disposition) et les raquettes s'approchent un peu
+	- La balle rebondit entre les deux raquettes qui effectuent des rotations 
+	- Une musique accompagne l'animation
+
+
+Difficultés rencontrées : 
+	- gestion de la perspective de manière homogène
+	- apparence de la sphère (qui n'est toujours pas satisfaisante, pas assez lisse)
+	- nécessité de créer des fonctions js pour gérer le style des "ring" (cf fonction en commentaire dans script.js)
+	- mise en place des préfixes très laborieuse (beaucoup de transformations)
+	- problèmes de compatibilité avec Safari
+
+Ressources : 
+	https://desandro.github.io/3dtransforms/docs/rectangular-prism.html
+	http://codepen.io/peterwestendorp/pen/wGECk
+
+	♩♪♫♬ God Only Knows des Beach Boys ♩♪♫♬
+
+
++------+.      +------+       +------+       +------+      .+------+
+|`.    | `.    |\     |\      |      |      /|     /|    .' |    .'|
+|  `+--+---+   | +----+-+     +------+     +-+----+ |   +---+--+'  |
+|   |  |   |   | |    | |     |      |     | |    | |   |   |  |   |
++---+--+.  |   +-+----+ |     +------+     | +----+-+   |  .+--+---+
+ `. |    `.|    \|     \|     |      |     |/     |/    |.'    | .'
+   `+------+     +------+     +------+     +------+     +------+'

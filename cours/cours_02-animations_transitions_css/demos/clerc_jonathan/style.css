@@ -1,0 +1,758 @@
+
+/* 
+ * ------------------------------------
+ *               COLORS
+ * ------------------------------------
+ * 
+ */
+
+body {
+    background: -webkit-radial-gradient(center -600px, ellipse, #A6AAB5 0%, #1E232D 100%);
+    background: -moz-radial-gradient(center -600px, ellipse, #A6AAB5 0%, #1E232D 100%);
+    background: -o-radial-gradient(center -600px, ellipse, #A6AAB5 0%, #1E232D 100%);
+    background: radial-gradient(ellipse at center -600px, #A6AAB5 0%, #1E232D 100%);
+}
+
+.color {
+    background: #3AB39B;
+}
+
+.light {
+    background: #FFFFFF;
+}
+
+.dark {
+    background: #333333;
+}
+
+/* 
+ * ------------------------------------
+ *               MAIN APP
+ * ------------------------------------
+ * 
+ */
+
+.app {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: 50%;
+    left: 50%;   
+}
+
+.app-center {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    top: -200px;
+    left: -150px;
+}
+
+/* 
+ * ------------------------------------
+ *               CLOCK
+ * ------------------------------------
+ * 
+ */
+
+.clock {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    -webkit-perspective: 10000px;
+       -moz-perspective: 10000px;
+         -o-perspective: 10000px;
+            perspective: 10000px;
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .3s;
+       -moz-transition: -moz-transform .3s;
+         -o-transition: -o-transform .3s;
+            transition: transform .3s;
+}
+
+.clock * {
+    pointer-events: none;
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .3s;
+       -moz-transition: -moz-transform .3s;
+         -o-transition: -o-transform .3s;
+            transition: transform .3s;
+    /* These lines cause a bug on Chrome:
+     * backface-visibility: hidden;
+     * transform: translateZ(0);
+     */
+}
+
+/* Base frame */
+
+.frame > * {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.frame .border {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.3);
+    -webkit-transform: translateZ(-5px);
+       -moz-transform: translateZ(-5px);
+         -o-transform: translateZ(-5px);
+            transform: translateZ(-5px);
+}
+
+.frame .shadow {
+    overflow: hidden;
+}
+
+.frame .shadow .inner {
+    width: 300px;
+    height: 300px;
+    background: black;
+    opacity: 0.05;
+    -webkit-transform: rotate(45deg) translateX(150px);
+       -moz-transform: rotate(45deg) translateX(150px);
+         -o-transform: rotate(45deg) translateX(150px);
+            transform: rotate(45deg) translateX(150px);
+}
+
+/* Gears */
+
+.frame .gear {
+    width: 100px;
+    height: 100px;
+    -webkit-transform: translateZ(-3px);
+       -moz-transform: translateZ(-3px);
+         -o-transform: translateZ(-3px);
+            transform: translateZ(-3px);
+}
+
+.frame .gear-1, .gear-1 .bar { background: #666; }
+.frame .gear-2, .gear-2 .bar { background: #777; }
+.frame .gear-3, .gear-3 .bar { background: #888; }
+.frame .gear-4, .gear-4 .bar { background: #777; }
+
+.frame .gear-1 { top: 100px; left: 35px; width: 130px; height: 130px; }
+.frame .gear-2 { top: 55px;  left: 50px; }
+.frame .gear-3 { top: 165px; left: 80px; }
+.frame .gear-4 { top: 160px; left: 150px; width: 80px; height: 80px; }
+
+.frame .gear .inner {
+    width: 100%;
+    height: 100%;
+    -webkit-animation: rotate 2s linear infinite;
+       -moz-animation: rotate 2s linear infinite;
+         -o-animation: rotate 2s linear infinite;
+            animation: rotate 2s linear infinite;
+}
+
+.frame .gear.gear-1 .inner { -webkit-animation-duration: 5s; -moz-animation-duration: 5s; -o-animation-duration: 5s; animation-duration: 5s; }
+.frame .gear.gear-3 .inner { -webkit-animation-direction: reverse; -moz-animation-direction: reverse; -o-animation-direction: reverse; animation-direction: reverse; }
+.frame .gear.gear-4 .inner { -webkit-animation-duration: 1s; -moz-animation-duration: 1s; -o-animation-duration: 1s; animation-duration: 1s; }
+
+.frame .gear .bar {
+    width: 120%;
+    height: 30%;
+    position: absolute;
+    top: 34%;
+    left: -10%;
+}
+
+.frame .gear .bar.bar-1 { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+.frame .gear .bar.bar-2 { -webkit-transform: rotate(60deg); -moz-transform: rotate(60deg); -o-transform: rotate(60deg); transform: rotate(60deg); }
+.frame .gear .bar.bar-3 { -webkit-transform: rotate(120deg); -moz-transform: rotate(120deg); -o-transform: rotate(120deg); transform: rotate(120deg); }
+
+.frame .gear .circle {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    border-radius: 50%;
+    background: black;
+    opacity: 0.2;
+    -webkit-transform: translateZ(1px);
+       -moz-transform: translateZ(1px);
+         -o-transform: translateZ(1px);
+            transform: translateZ(1px);
+}
+
+/* White transparent levels (only viewable in 3D mode) */
+
+.frame .level {
+    -webkit-transform: translateZ(0px);
+       -moz-transform: translateZ(0px);
+         -o-transform: translateZ(0px);
+            transform: translateZ(0px);
+    width: 270px;
+    height: 270px;
+    top: 15px;
+    left: 15px;
+    opacity: 0.5;
+}
+
+/* Top frame */
+
+.frame .background {
+    -webkit-transform: translateZ(0px);
+       -moz-transform: translateZ(0px);
+         -o-transform: translateZ(0px);
+            transform: translateZ(0px);
+    width: 270px;
+    height: 270px;
+    top: 15px;
+    left: 15px;
+}
+
+.frame .small-shadow {
+    overflow: hidden;
+    top: 15px;
+    left: 15px;
+}
+
+.frame .small-shadow .inner {
+    width: 270px;
+    height: 270px;
+    background: black;
+    opacity: 0.05;
+    -webkit-transform: rotate(45deg) translateX(135px);
+       -moz-transform: rotate(45deg) translateX(135px);
+         -o-transform: rotate(45deg) translateX(135px);
+            transform: rotate(45deg) translateX(135px);
+}
+
+.frame .rotor-border {
+    width: 14px;
+    height: 14px;
+    top: 143px;
+    left: 143px;
+}
+
+.frame .rotor-top {
+    width: 8px;
+    height: 8px;
+    top: 146px;
+    left: 146px;
+}
+
+/* Arrows */
+
+.clock .arrows {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: rotate(-90deg);
+       -moz-transform: rotate(-90deg);
+         -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+}
+
+.clock .arrows .arrow .inner {
+    position: absolute;
+    -webkit-transform-origin: 0 50%;
+       -moz-transform-origin: 0 50%;
+         -o-transform-origin: 0 50%;
+            transform-origin: 0 50%;
+    -webkit-animation-name: rotate;
+       -moz-animation-name: rotate;
+         -o-animation-name: rotate;
+            animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+       -moz-animation-iteration-count: infinite;
+         -o-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: steps(60);
+       -moz-animation-timing-function: steps(60);
+         -o-animation-timing-function: steps(60);
+            animation-timing-function: steps(60);
+}
+
+.clock .arrows .arrow {
+    -webkit-animation-iteration-count: infinite;
+       -moz-animation-iteration-count: infinite;
+         -o-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+}
+
+.clock .arrows .arrow.hours .inner {
+    width: 80px;
+    height: 8px;
+    top: -4px;
+    border-radius: 8px;
+    /* 43200 = 86400 / 2 */
+    -webkit-animation-duration: 43200s;
+       -moz-animation-duration: 43200s;
+         -o-animation-duration: 43200s;
+            animation-duration: 43200s;
+    -webkit-animation-timing-function: linear;
+       -moz-animation-timing-function: linear;
+         -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+}
+
+.clock .arrows .arrow.minutes {
+    -webkit-animation-name: ticker-minutes;
+       -moz-animation-name: ticker-minutes;
+         -o-animation-name: ticker-minutes;
+            animation-name: ticker-minutes;
+    -webkit-animation-duration: 60s;
+       -moz-animation-duration: 60s;
+         -o-animation-duration: 60s;
+            animation-duration: 60s;
+}
+
+.clock .arrows .arrow.minutes .inner {
+    width: 105px;
+    height: 6px;
+    top: -3px;
+    border-radius: 6px;
+    -webkit-animation-duration: 3600s;
+       -moz-animation-duration: 3600s;
+         -o-animation-duration: 3600s;
+            animation-duration: 3600s;
+}
+
+.clock .arrows .arrow.seconds {
+    -webkit-animation-name: ticker-seconds;
+       -moz-animation-name: ticker-seconds;
+         -o-animation-name: ticker-seconds;
+            animation-name: ticker-seconds;
+    -webkit-animation-duration: 1s;
+       -moz-animation-duration: 1s;
+         -o-animation-duration: 1s;
+            animation-duration: 1s;
+}
+
+.clock .arrows .arrow.seconds .inner {
+    -webkit-transform-origin: 20px 50%;
+       -moz-transform-origin: 20px 50%;
+         -o-transform-origin: 20px 50%;
+            transform-origin: 20px 50%;
+    width: 130px;
+    height: 5px;
+    top: -2.5px;
+    left: -20px;
+    border-radius: 5px;
+    -webkit-animation-duration: 60s;
+       -moz-animation-duration: 60s;
+         -o-animation-duration: 60s;
+            animation-duration: 60s;
+}
+
+.clock .arrows .arrow.seconds .inner .buble {
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    position: absolute;
+    top: -1px;
+    right: 0px;
+}
+
+.clock.paused .frame  * { -webkit-animation-play-state: paused; -moz-animation-play-state: paused; -o-animation-play-state: paused; animation-play-state: paused; }
+.clock.paused .arrows * { -webkit-animation-play-state: paused; -moz-animation-play-state: paused; -o-animation-play-state: paused; animation-play-state: paused; }
+
+@-webkit-keyframes rotate {
+    0%   { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes rotate {
+    0%   { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes rotate {
+    0%   { -o-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@keyframes rotate {
+    0%   { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes ticker-seconds {
+    /* 0.8 second: no transform */
+    80%  { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 0.9 second: push arrow farther */
+    90%  { -webkit-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 1.0 second: retract arrow */
+    100% { -webkit-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@-moz-keyframes ticker-seconds {
+    /* 0.8 second: no transform */
+    80%  { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 0.9 second: push arrow farther */
+    90%  { -moz-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 1.0 second: retract arrow */
+    100% { -moz-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@-o-keyframes ticker-seconds {
+    /* 0.8 second: no transform */
+    80%  { -o-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 0.9 second: push arrow farther */
+    90%  { -o-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 1.0 second: retract arrow */
+    100% { -o-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@keyframes ticker-seconds {
+    /* 0.8 second: no transform */
+    80%  { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 0.9 second: push arrow farther */
+    90%  { -webkit-transform: rotate(8deg); -moz-transform: rotate(8deg); -o-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 1.0 second: retract arrow */
+    100% { -webkit-transform: rotate(5deg); -moz-transform: rotate(5deg); -o-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@-webkit-keyframes ticker-minutes {
+    /* 59.8 second: no transform */
+    99.666666666% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 59.9 second: push arrow farther */
+    99.833333333% { -webkit-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 60.0 second: retract arrow */
+    100%          { -webkit-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@-moz-keyframes ticker-minutes {
+    /* 59.8 second: no transform */
+    99.666666666% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 59.9 second: push arrow farther */
+    99.833333333% { -moz-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 60.0 second: retract arrow */
+    100%          { -moz-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@-o-keyframes ticker-minutes {
+    /* 59.8 second: no transform */
+    99.666666666% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 59.9 second: push arrow farther */
+    99.833333333% { -o-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 60.0 second: retract arrow */
+    100%          { -o-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+@keyframes ticker-minutes {
+    /* 59.8 second: no transform */
+    99.666666666% { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+    /* 59.9 second: push arrow farther */
+    99.833333333% { -webkit-transform: rotate(8deg); -moz-transform: rotate(8deg); -o-transform: rotate(8deg); transform: rotate(8deg); }
+    /* 60.0 second: retract arrow */
+    100%          { -webkit-transform: rotate(5deg); -moz-transform: rotate(5deg); -o-transform: rotate(5deg); transform: rotate(5deg); }
+}
+
+/* 
+ * ------------------------------------
+ *            EXPLODED VIEW
+ * ------------------------------------
+ * 
+ */
+
+.clock.build {
+    -webkit-transform: rotate3d(1, 1, 0, 45deg);
+       -moz-transform: rotate3d(1, 1, 0, 45deg);
+         -o-transform: rotate3d(1, 1, 0, 45deg);
+            transform: rotate3d(1, 1, 0, 45deg);
+}
+
+.clock.build * {
+    -webkit-transition-delay: 0.65s;
+       -moz-transition-delay: 0.65s;
+         -o-transition-delay: 0.65s;
+            transition-delay: 0.65s;
+}
+
+/*
+ * VIEW BOTTOM : the clock is pushed in the background
+ */
+
+.clock.build.view-bottom  .border,
+.clock.build.view-bottom  .shadow            { -webkit-transform: translateZ(-300px); -moz-transform: translateZ(-300px); -o-transform: translateZ(-300px); transform: translateZ(-300px); }
+.clock.build.view-bottom  .level-1           { -webkit-transform: translateZ(-201px); -moz-transform: translateZ(-201px); -o-transform: translateZ(-201px); transform: translateZ(-201px); }
+.clock.build.view-bottom  .level-2           { -webkit-transform: translateZ(-101px); -moz-transform: translateZ(-101px); -o-transform: translateZ(-101px); transform: translateZ(-101px); }
+
+.clock.build.view-bottom  .gear-1            { -webkit-transform: translateZ(-300px); -moz-transform: translateZ(-300px); -o-transform: translateZ(-300px); transform: translateZ(-300px); }
+.clock.build.view-bottom  .gear-2            { -webkit-transform: translateZ(-200px); -moz-transform: translateZ(-200px); -o-transform: translateZ(-200px); transform: translateZ(-200px); }
+.clock.build.view-bottom  .gear-3            { -webkit-transform: translateZ(-200px); -moz-transform: translateZ(-200px); -o-transform: translateZ(-200px); transform: translateZ(-200px); }
+.clock.build.view-bottom  .gear-4            { -webkit-transform: translateZ(-100px); -moz-transform: translateZ(-100px); -o-transform: translateZ(-100px); transform: translateZ(-100px); }
+
+.clock.build.view-bottom  .container.hours   { -webkit-transform: translateZ(100px);  -moz-transform: translateZ(100px);  -o-transform: translateZ(100px); transform: translateZ(100px); }
+.clock.build.view-bottom  .container.minutes { -webkit-transform: translateZ(150px);  -moz-transform: translateZ(150px);  -o-transform: translateZ(150px); transform: translateZ(150px); }
+.clock.build.view-bottom  .container.seconds { -webkit-transform: translateZ(200px);  -moz-transform: translateZ(200px);  -o-transform: translateZ(200px); transform: translateZ(200px); }
+
+/*
+ * VIEW MID : the clock expending is adjusted 
+ */
+
+.clock.build.view-middle  .border,
+.clock.build.view-middle  .shadow            { -webkit-transform: translateZ(-200px); -moz-transform: translateZ(-200px); -o-transform: translateZ(-200px); transform: translateZ(-200px); }
+.clock.build.view-middle  .level-1           { -webkit-transform: translateZ(-101px); -moz-transform: translateZ(-101px); -o-transform: translateZ(-101px); transform: translateZ(-101px); }
+.clock.build.view-middle  .level-2           { -webkit-transform: translateZ(-1px);   -moz-transform: translateZ(-1px);   -o-transform: translateZ(-1px);   transform: translateZ(-1px); }
+
+.clock.build.view-middle  .background,
+.clock.build.view-middle  .small-shadow,
+.clock.build.view-middle  .rotor-border,
+.clock.build.view-middle  .rotor-top         { -webkit-transform: translateZ(100px);  -moz-transform: translateZ(100px);  -o-transform: translateZ(100px); transform: translateZ(100px); }
+
+.clock.build.view-middle  .gear-1            { -webkit-transform: translateZ(-200px); -moz-transform: translateZ(-200px); -o-transform: translateZ(-200px); transform: translateZ(-200px); }
+.clock.build.view-middle  .gear-2            { -webkit-transform: translateZ(-100px); -moz-transform: translateZ(-100px); -o-transform: translateZ(-100px); transform: translateZ(-100px); }
+.clock.build.view-middle  .gear-3            { -webkit-transform: translateZ(-100px); -moz-transform: translateZ(-100px); -o-transform: translateZ(-100px); transform: translateZ(-100px); }
+.clock.build.view-middle  .gear-4            { -webkit-transform: translateZ(0px);    -moz-transform: translateZ(0px);    -o-transform: translateZ(0px);    transform: translateZ(0px); }
+
+.clock.build.view-middle  .container.hours   { -webkit-transform: translateZ(200px);  -moz-transform: translateZ(200px); -o-transform: translateZ(200px); transform: translateZ(200px); }
+.clock.build.view-middle  .container.minutes { -webkit-transform: translateZ(250px);  -moz-transform: translateZ(250px); -o-transform: translateZ(250px); transform: translateZ(250px); }
+.clock.build.view-middle  .container.seconds { -webkit-transform: translateZ(300px);  -moz-transform: translateZ(300px); -o-transform: translateZ(300px); transform: translateZ(300px); }
+
+/*
+ * VIEW TOP : the clock is pushed in the foreground
+ */
+
+.clock.build.view-top     .border,
+.clock.build.view-top     .shadow            { -webkit-transform: translateZ(0px);   -moz-transform: translateZ(0px);   -o-transform: translateZ(0px);   transform: translateZ(0px); }
+.clock.build.view-top     .level-1           { -webkit-transform: translateZ(101px); -moz-transform: translateZ(101px); -o-transform: translateZ(101px); transform: translateZ(101px); }
+.clock.build.view-top     .level-2           { -webkit-transform: translateZ(201px); -moz-transform: translateZ(201px); -o-transform: translateZ(201px); transform: translateZ(201px); }
+
+.clock.build.view-top     .background,
+.clock.build.view-top     .small-shadow,
+.clock.build.view-top     .rotor-border,
+.clock.build.view-top     .rotor-top         { -webkit-transform: translateZ(300px);  -moz-transform: translateZ(300px); -o-transform: translateZ(300px); transform: translateZ(300px); }
+
+.clock.build.view-top     .gear-1            { -webkit-transform: translateZ(0px);    -moz-transform: translateZ(0px);   -o-transform: translateZ(0px);   transform: translateZ(0px); }
+.clock.build.view-top     .gear-2            { -webkit-transform: translateZ(100px);  -moz-transform: translateZ(100px); -o-transform: translateZ(100px); transform: translateZ(100px); }
+.clock.build.view-top     .gear-3            { -webkit-transform: translateZ(100px);  -moz-transform: translateZ(100px); -o-transform: translateZ(100px); transform: translateZ(100px); }
+.clock.build.view-top     .gear-4            { -webkit-transform: translateZ(200px);  -moz-transform: translateZ(200px); -o-transform: translateZ(200px); transform: translateZ(200px); }
+
+.clock.build.view-top      .container.hours   { -webkit-transform: translateZ(400px); -moz-transform: translateZ(400px); -o-transform: translateZ(400px); transform: translateZ(400px); }
+.clock.build.view-top      .container.minutes { -webkit-transform: translateZ(450px); -moz-transform: translateZ(450px); -o-transform: translateZ(450px); transform: translateZ(450px); }
+.clock.build.view-top      .container.seconds { -webkit-transform: translateZ(500px); -moz-transform: translateZ(500px); -o-transform: translateZ(500px); transform: translateZ(500px); }
+
+/* 
+ * ------------------------------------
+ *               BUTTONS
+ * ------------------------------------
+ * 
+ */
+
+.buttons {
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.buttons .button {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: left;
+    margin: 0 15px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    background: #AB3737;
+    -webkit-transition: all .15s;
+       -moz-transition: all .15s;
+         -o-transition: all .15s;
+            transition: all .15s;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+       -moz-transform: translateZ(0);
+         -o-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.buttons .button:hover {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.buttons .button:hover .mask {
+    opacity: 0.07;
+}
+
+.buttons .button:active {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.buttons .button:active .mask {
+    opacity: 0.15;
+}
+
+.buttons .button .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.1;
+    -webkit-transform: rotate(45deg) translateX(25px);
+       -moz-transform: rotate(45deg) translateX(25px);
+         -o-transform: rotate(45deg) translateX(25px);
+            transform: rotate(45deg) translateX(25px);
+}
+
+.buttons .button .mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.0;
+    -webkit-transition: all .15s;
+       -moz-transition: all .15s;
+         -o-transition: all .15s;
+            transition: all .15s;
+}
+
+/* Button: Pause */
+
+.buttons .button-pause .pause {
+    opacity: 1;
+    -webkit-transition: all .5s;
+       -moz-transition: all .5s;
+         -o-transition: all .5s;
+            transition: all .5s;
+    -webkit-transform-origin: 25px 25px;
+       -moz-transform-origin: 25px 25px;
+         -o-transform-origin: 25px 25px;
+            transform-origin: 25px 25px;
+    -webkit-transform: scale(1, 1) rotate(0);
+       -moz-transform: scale(1, 1) rotate(0);
+         -o-transform: scale(1, 1) rotate(0);
+            transform: scale(1, 1) rotate(0);
+}
+
+.buttons .button-pause .bar {
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    top: 15px;
+    background: #FAFAFA;
+}
+
+.buttons .button-pause .bar-1 {
+    left: 15px;
+}
+
+.buttons .button-pause .bar-2 {
+    right: 15px;
+}
+
+.buttons .button-pause .play {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 18px solid #FAFAFA;
+    opacity: 0;
+    -webkit-transition: all .5s;
+       -moz-transition: all .5s;
+         -o-transition: all .5s;
+            transition: all .5s;
+    -webkit-transform: scale(0.5, 0.5) rotate(180deg);
+       -moz-transform: scale(0.5, 0.5) rotate(180deg);
+         -o-transform: scale(0.5, 0.5) rotate(180deg);
+            transform: scale(0.5, 0.5) rotate(180deg);
+}
+
+.buttons .button-pause.clicked .pause {
+    opacity: 0;
+    -webkit-transform: scale(0.5, 0.5) rotate(-180deg);
+       -moz-transform: scale(0.5, 0.5) rotate(-180deg);
+         -o-transform: scale(0.5, 0.5) rotate(-180deg);
+            transform: scale(0.5, 0.5) rotate(-180deg);
+}
+
+.buttons .button-pause.clicked .play {
+    opacity: 1;
+    -webkit-transform: scale(1, 1) rotate(0);
+       -moz-transform: scale(1, 1) rotate(0);
+         -o-transform: scale(1, 1) rotate(0);
+            transform: scale(1, 1) rotate(0);
+}
+
+/* Button: Time */
+
+.buttons .button.button-time {
+    text-decoration: none;
+}
+
+.buttons .button.button-time .text {
+    position: absolute;
+    width: 50px;
+    top: 12px;
+    text-align: center;
+    color: #FAFAFA;
+    font-size: 22px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* Button: Build */
+
+.buttons .button.button-build .gear {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    -webkit-animation: rotate 3s linear infinite;
+       -moz-animation: rotate 3s linear infinite;
+         -o-animation: rotate 3s linear infinite;
+            animation: rotate 3s linear infinite;
+    -webkit-animation-play-state: paused;
+       -moz-animation-play-state: paused;
+         -o-animation-play-state: paused;
+            animation-play-state: paused;
+}
+
+.buttons .button.button-build .gear * {
+    position: absolute;
+    background: #FAFAFA;
+}
+
+.buttons .button.button-build .big-circle {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    border-radius: 50%;
+}
+
+.buttons .button.button-build .circle {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    border-radius: 50%;
+    background: #AB3737;
+}
+
+.buttons .button.button-build .bar {
+    width: 100%;
+    height: 22%;
+    top: 39%;
+}
+
+.buttons .button.button-build .bar-1 { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+.buttons .button.button-build .bar-2 { -webkit-transform: rotate(60deg); -moz-transform: rotate(60deg); -o-transform: rotate(60deg); transform: rotate(60deg); }
+.buttons .button.button-build .bar-3 { -webkit-transform: rotate(120deg); -moz-transform: rotate(120deg); -o-transform: rotate(120deg); transform: rotate(120deg); }
+
+.buttons .button.button-build.clicked .gear {
+    -webkit-animation-play-state: running;
+       -moz-animation-play-state: running;
+         -o-animation-play-state: running;
+            animation-play-state: running;
+}

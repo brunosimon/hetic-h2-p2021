@@ -1,0 +1,651 @@
+body {
+	font-family:Helvetica,Arial;
+	font-size: 12px;
+	background: #eee;
+}
+
+.phone {
+	width: 170px;
+	height: 320px;
+	margin: auto;
+	padding-top:150px;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+	-webkit-transform: perspective(600px) rotateY(20deg);
+	   -moz-transform: perspective(600px) rotateY(20deg);
+	     -o-transform: perspective(600px) rotateY(20deg);
+	        transform: perspective(600px) rotateY(20deg);
+	-webkit-backface-visibility:visible;
+	   -moz-backface-visibility:visible;
+	     -o-backface-visibility:visible;
+	        backface-visibility:visible;
+}
+
+/* Make the phone turn after the page is loaded*/
+.phone.animation {
+	-webkit-animation:phone-rotation 2.5s linear 1;
+	   -moz-animation:phone-rotation 2.5s linear 1;
+	     -o-animation:phone-rotation 2.5s linear 1;
+	        animation:phone-rotation 2.5s linear 1;
+}
+
+@keyframes phone-rotation {
+	0%   {-webkit-transform: perspective(600px) rotateY(0deg);
+		     -moz-transform: perspective(600px) rotateY(0deg);
+		       -o-transform: perspective(600px) rotateY(0deg);
+		          transform: perspective(600px) rotateY(0deg);}
+	20%  {-webkit-transform: perspective(600px) rotateY(180deg);
+		     -moz-transform: perspective(600px) rotateY(180deg);
+		       -o-transform: perspective(600px) rotateY(180deg);
+		          transform: perspective(600px) rotateY(180deg);}
+	40%  {-webkit-transform: perspective(600px) rotateY(360deg);
+		     -moz-transform: perspective(600px) rotateY(360deg);
+		       -o-transform: perspective(600px) rotateY(360deg);
+		          transform: perspective(600px) rotateY(360deg);}
+	60%  {-webkit-transform: perspective(600px) rotateY(540deg);
+		     -moz-transform: perspective(600px) rotateY(540deg);
+		       -o-transform: perspective(600px) rotateY(540deg);
+		          transform: perspective(600px) rotateY(540deg);}
+	80%  {-webkit-transform: perspective(600px) rotateY(720deg);
+		     -moz-transform: perspective(600px) rotateY(720deg);
+		       -o-transform: perspective(600px) rotateY(720deg);
+		          transform: perspective(600px) rotateY(720deg);}
+	90%  {-webkit-transform: perspective(600px) rotateY(760deg);
+		     -moz-transform: perspective(600px) rotateY(760deg);
+		       -o-transform: perspective(600px) rotateY(760deg);
+		          transform: perspective(600px) rotateY(760deg);}
+	100% {-webkit-transform: perspective(600px) rotateY(740deg);
+		     -moz-transform: perspective(600px) rotateY(740deg);
+		       -o-transform: perspective(600px) rotateY(740deg);
+		          transform: perspective(600px) rotateY(740deg);}
+}
+
+@-webkit-keyframes phone-rotation {
+	0%   {-webkit-transform: perspective(600px) rotateY(0deg);
+		     -moz-transform: perspective(600px) rotateY(0deg);
+		       -o-transform: perspective(600px) rotateY(0deg);
+		          transform: perspective(600px) rotateY(0deg);}
+	20%  {-webkit-transform: perspective(600px) rotateY(180deg);
+		     -moz-transform: perspective(600px) rotateY(180deg);
+		       -o-transform: perspective(600px) rotateY(180deg);
+		          transform: perspective(600px) rotateY(180deg);}
+	40%  {-webkit-transform: perspective(600px) rotateY(360deg);
+		     -moz-transform: perspective(600px) rotateY(360deg);
+		       -o-transform: perspective(600px) rotateY(360deg);
+		          transform: perspective(600px) rotateY(360deg);}
+	60%  {-webkit-transform: perspective(600px) rotateY(540deg);
+		     -moz-transform: perspective(600px) rotateY(540deg);
+		       -o-transform: perspective(600px) rotateY(540deg);
+		          transform: perspective(600px) rotateY(540deg);}
+	80%  {-webkit-transform: perspective(600px) rotateY(720deg);
+		     -moz-transform: perspective(600px) rotateY(720deg);
+		       -o-transform: perspective(600px) rotateY(720deg);
+		          transform: perspective(600px) rotateY(720deg);}
+	90%  {-webkit-transform: perspective(600px) rotateY(760deg);
+		     -moz-transform: perspective(600px) rotateY(760deg);
+		       -o-transform: perspective(600px) rotateY(760deg);
+		          transform: perspective(600px) rotateY(760deg);}
+	100% {-webkit-transform: perspective(600px) rotateY(740deg);
+		     -moz-transform: perspective(600px) rotateY(740deg);
+		       -o-transform: perspective(600px) rotateY(740deg);
+		          transform: perspective(600px) rotateY(740deg);}
+}
+@-moz-keyframes phone-rotation {
+	0%   {-webkit-transform: perspective(600px) rotateY(0deg);
+		     -moz-transform: perspective(600px) rotateY(0deg);
+		       -o-transform: perspective(600px) rotateY(0deg);
+		          transform: perspective(600px) rotateY(0deg);}
+	20%  {-webkit-transform: perspective(600px) rotateY(180deg);
+		     -moz-transform: perspective(600px) rotateY(180deg);
+		       -o-transform: perspective(600px) rotateY(180deg);
+		          transform: perspective(600px) rotateY(180deg);}
+	40%  {-webkit-transform: perspective(600px) rotateY(360deg);
+		     -moz-transform: perspective(600px) rotateY(360deg);
+		       -o-transform: perspective(600px) rotateY(360deg);
+		          transform: perspective(600px) rotateY(360deg);}
+	60%  {-webkit-transform: perspective(600px) rotateY(540deg);
+		     -moz-transform: perspective(600px) rotateY(540deg);
+		       -o-transform: perspective(600px) rotateY(540deg);
+		          transform: perspective(600px) rotateY(540deg);}
+	80%  {-webkit-transform: perspective(600px) rotateY(720deg);
+		     -moz-transform: perspective(600px) rotateY(720deg);
+		       -o-transform: perspective(600px) rotateY(720deg);
+		          transform: perspective(600px) rotateY(720deg);}
+	90%  {-webkit-transform: perspective(600px) rotateY(760deg);
+		     -moz-transform: perspective(600px) rotateY(760deg);
+		       -o-transform: perspective(600px) rotateY(760deg);
+		          transform: perspective(600px) rotateY(760deg);}
+	100% {-webkit-transform: perspective(600px) rotateY(740deg);
+		     -moz-transform: perspective(600px) rotateY(740deg);
+		       -o-transform: perspective(600px) rotateY(740deg);
+		          transform: perspective(600px) rotateY(740deg);}
+}
+
+@-o-keyframes phone-rotation {
+	0%   {-webkit-transform: perspective(600px) rotateY(0deg);
+		     -moz-transform: perspective(600px) rotateY(0deg);
+		       -o-transform: perspective(600px) rotateY(0deg);
+		          transform: perspective(600px) rotateY(0deg);}
+	20%  {-webkit-transform: perspective(600px) rotateY(180deg);
+		     -moz-transform: perspective(600px) rotateY(180deg);
+		       -o-transform: perspective(600px) rotateY(180deg);
+		          transform: perspective(600px) rotateY(180deg);}
+	40%  {-webkit-transform: perspective(600px) rotateY(360deg);
+		     -moz-transform: perspective(600px) rotateY(360deg);
+		       -o-transform: perspective(600px) rotateY(360deg);
+		          transform: perspective(600px) rotateY(360deg);}
+	60%  {-webkit-transform: perspective(600px) rotateY(540deg);
+		     -moz-transform: perspective(600px) rotateY(540deg);
+		       -o-transform: perspective(600px) rotateY(540deg);
+		          transform: perspective(600px) rotateY(540deg);}
+	80%  {-webkit-transform: perspective(600px) rotateY(720deg);
+		     -moz-transform: perspective(600px) rotateY(720deg);
+		       -o-transform: perspective(600px) rotateY(720deg);
+		          transform: perspective(600px) rotateY(720deg);}
+	90%  {-webkit-transform: perspective(600px) rotateY(760deg);
+		     -moz-transform: perspective(600px) rotateY(760deg);
+		       -o-transform: perspective(600px) rotateY(760deg);
+		          transform: perspective(600px) rotateY(760deg);}
+	100% {-webkit-transform: perspective(600px) rotateY(740deg);
+		     -moz-transform: perspective(600px) rotateY(740deg);
+		       -o-transform: perspective(600px) rotateY(740deg);
+		          transform: perspective(600px) rotateY(740deg);}
+}
+
+/* Elements of the phone */
+.device {
+	background: black;
+	position: absolute;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+
+/* Every part of the 3D phone */
+.phone .element-1 {
+	width: 170px;
+	height: 300px;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+
+.phone .element-2 {
+	width: 30px;
+	height: 300px;
+	background: #2E2E2E;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+	-webkit-transform: rotateY(90deg) translateZ(155px) translateX(15px);
+	   -moz-transform: rotateY(90deg) translateZ(155px) translateX(15px);
+	     -o-transform: rotateY(90deg) translateZ(155px) translateX(15px);
+	        transform: rotateY(90deg) translateZ(155px) translateX(15px);
+}
+
+.phone .element-3 {
+	width: 170px;
+	height: 300px;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+	-webkit-transform: rotateY(180deg) translateZ(30px);
+	   -moz-transform: rotateY(180deg) translateZ(30px);
+	     -o-transform: rotateY(180deg) translateZ(30px);
+	        transform: rotateY(180deg) translateZ(30px);
+}
+
+.phone .element-4 {
+	width: 30px;
+	height: 300px;
+	background: #2E2E2E;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+	-webkit-transform: rotateY(270deg) translateZ(15px)  translateX(-15px);
+	   -moz-transform: rotateY(270deg) translateZ(15px)  translateX(-15px);
+	     -o-transform: rotateY(270deg) translateZ(15px)  translateX(-15px);
+	        transform: rotateY(270deg) translateZ(15px)  translateX(-15px);
+}
+
+
+/* -------------------- SCREEN ------------- */
+
+.screen {
+	width: 150px;
+	height: 260px;
+	border-radius: 10%;
+	margin: 20px 10px;
+	background: #FAFAFA;
+}
+
+/* The play pause button */
+.playpause {
+	background: #e74c3c;
+	width: 50px;	
+	height: 50px;
+	border-radius: 100%;
+	position: relative;
+	top: 45px;
+	left: 50px;
+}
+
+.playpause .play {
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-left: 22px solid #ddd;
+	border-bottom: 15px solid transparent;
+	position: relative;
+	top: 10px;
+	left: 18px;
+}
+
+.playpause .pause {
+	position: absolute;
+	top: 13px;
+	left: 15px;
+	background-color: #ddd;
+	width: 7px;
+	height: 25px;
+	content: "";
+}
+
+.playpause .pause:after{
+	position: absolute;
+	left: 13px;
+	background-color: #ddd;
+	width: 7px;
+	height: 25px;
+	content: "";
+}
+
+/* --------------PHONE SHAKE-----------*/ 
+
+/* When music starts, the animations starts, the phone shakes */
+.phone.onplay {
+	-webkit-animation: shake 0.2s linear infinite;
+	   -moz-animation: shake 0.2s linear infinite;
+	     -o-animation: shake 0.2s linear infinite;
+	        animation: shake 0.2s linear infinite;
+
+}
+
+@-webkit-keyframes shake {
+	0%   {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+	50%  {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(7px);}
+	100% {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+}
+
+@-moz-keyframes shake {
+	0%   {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+	50%  {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(7px);}
+	100% {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+}
+
+@-o-keyframes shake {
+	0%   {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+	50%  {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(7px);}
+	100% {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+}
+
+@keyframes shake {
+	0%   {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+	50%  {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(7px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(7px);}
+	100% {-webkit-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+		     -moz-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+	           -o-transform: perspective(600px) rotateY(20deg) translateZ(0px);
+                  transform: perspective(600px) rotateY(20deg) translateZ(0px);}
+}
+
+/*----------------MUSIC NOTES-------------------*/
+
+.note img {
+	height:40px;
+	width:40px;
+}
+
+.note2 img {
+	height:35px;
+	width:35px;
+}
+
+.note {
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	z-index: 2;
+	visibility: hidden;
+}
+
+.note2 {
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	z-index: 2;
+	visibility: hidden;
+}
+
+/* When music starts, the animations starts, the notes move */
+
+.note.onplay {
+	-webkit-animation: note-dance 2s linear infinite;
+	   -moz-animation: note-dance 2s linear infinite;
+	     -o-animation: note-dance 2s linear infinite;
+	        animation: note-dance 2s linear infinite;
+}
+
+.note2.onplay {
+	-webkit-animation: notetwo-dance 3s linear infinite;
+	   -moz-animation: notetwo-dance 3s linear infinite;
+	     -o-animation: notetwo-dance 3s linear infinite;
+	        animation: notetwo-dance 3s linear infinite;
+}
+
+@-webkit-keyframes note-dance {
+	0% {visibility: visible;top:250px; left:45%;}
+	50% {top:200px; left:30%;}
+	75% {top:150px; left:35%;opacity:1;}
+	100% {top:100px; left:30%;opacity:0;}
+}
+
+@-moz-keyframes note-dance {
+	0% {visibility: visible;top:250px; left:45%;}
+	50% {top:200px; left:30%;}
+	75% {top:150px; left:35%;opacity:1;}
+	100% {top:100px; left:30%;opacity:0;}
+}
+
+@-o-keyframes note-dance {
+	0% {visibility: visible;top:250px; left:45%;}
+	50% {top:200px; left:30%;}
+	75% {top:150px; left:35%;opacity:1;}
+	100% {top:100px; left:30%;opacity:0;}
+}
+
+@keyframes note-dance {
+	0% {visibility: visible;top:250px; left:45%;}
+	50% {top:200px; left:30%;}
+	75% {top:150px; left:35%;opacity:1;}
+	100% {top:100px; left:30%;opacity:0;}
+}
+
+
+@-webkit-keyframes notetwo-dance {
+	0% {visibility: visible;top:200px; left:50%;}
+	15% {top:150px; left:44%;}
+	25% {top:100px; left:47%;opacity:1;}
+	50% {visibility: hidden;top:70px; left:43%;opacity:0;}
+	51% {visibility: visible;top:200px; left:50%;}
+	65% {top:150px; left:45%;}
+	75% {top:100px; left:51%;opacity:1;}
+	100% {top:70px; left:49%;opacity:0;}
+}
+
+@-moz-keyframes notetwo-dance {
+	0% {visibility: visible;top:200px; left:50%;}
+	15% {top:150px; left:44%;}
+	25% {top:100px; left:47%;opacity:1;}
+	50% {visibility: hidden;top:70px; left:43%;opacity:0;}
+	51% {visibility: visible;top:200px; left:50%;}
+	65% {top:150px; left:45%;}
+	75% {top:100px; left:51%;opacity:1;}
+	100% {top:70px; left:49%;opacity:0;}
+}
+
+@-o-keyframes notetwo-dance {
+	0% {visibility: visible;top:200px; left:50%;}
+	15% {top:150px; left:44%;}
+	25% {top:100px; left:47%;opacity:1;}
+	50% {visibility: hidden;top:70px; left:43%;opacity:0;}
+	51% {visibility: visible;top:200px; left:50%;}
+	65% {top:150px; left:45%;}
+	75% {top:100px; left:51%;opacity:1;}
+	100% {top:70px; left:49%;opacity:0;}
+}
+
+@keyframes notetwo-dance {
+	0% {visibility: visible;top:200px; left:50%;}
+	15% {top:150px; left:44%;}
+	25% {top:100px; left:47%;opacity:1;}
+	50% {visibility: hidden;top:70px; left:43%;opacity:0;}
+	51% {visibility: visible;top:200px; left:50%;}
+	65% {top:150px; left:45%;}
+	75% {top:100px; left:51%;opacity:1;}
+	100% {top:70px; left:49%;opacity:0;}
+}
+
+
+
+/* --------------------- EQUALIZER ---------------------- */
+
+.screen .equalizer {
+	width: 110px;
+	height: 130px;
+	position: relative;
+	top: 20px;
+	left: 17px;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	padding: 5px;
+}
+
+.equalizer .rectangle {
+	width: 10px;
+	background: #e74c3c;
+	margin: 0 2px;
+	display: inline-block;
+	position: absolute;
+	bottom: 0%;
+	-webkit-transform-origin: 100% 100%;
+	   -moz-transform-origin: 100% 100%;
+	     -o-transform-origin: 100% 100%;
+	        transform-origin: 100% 100%;
+	
+}
+
+.equalizer .item-1 {height: 10px; left:4%; }
+.equalizer .item-2 {height: 10px;left:20%; }
+.equalizer .item-3 {height: 10px;left:36%; }
+.equalizer .item-4 {height: 10px;left:52%; }
+.equalizer .item-5 {height: 10px;left:68%; }
+.equalizer .item-6 {height: 10px;left:84%; }
+
+
+/* When music starts, the animations starts, every rectangle of the equalizer move */
+
+.item-1.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+} 
+.item-2.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+	-webkit-animation-delay: -4.5s;
+	   -moz-animation-delay: -4.5s;
+	     -o-animation-delay: -4.5s;
+	        animation-delay: -4.5s;
+} 
+.item-3.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+	-webkit-animation-delay: -2s;
+	   -moz-animation-delay: -2s;
+	     -o-animation-delay: -2s;
+	        animation-delay: -2s;
+} 
+.item-4.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+	-webkit-animation-delay: -3.5s;
+	   -moz-animation-delay: -3.5s;
+	     -o-animation-delay: -3.5s;
+	        animation-delay: -3.5s;
+} 
+.item-5.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+	-webkit-animation-delay: -1.5s;
+	   -moz-animation-delay: -1.5s;
+	     -o-animation-delay: -1.5s;
+	        animation-delay: -1.5s;
+} 
+.item-6.onplay {
+	-webkit-animation:equalizer-dance 7s ease infinite;
+	   -moz-animation:equalizer-dance 7s ease infinite;
+	     -o-animation:equalizer-dance 7s ease infinite;
+	        animation:equalizer-dance 7s ease infinite;
+	-webkit-animation-delay: -6s;
+	   -moz-animation-delay: -6s;
+	     -o-animation-delay: -6s;
+	        animation-delay: -6s;
+} 
+
+@-webkit-keyframes equalizer-dance {
+	0%   {height: 25px;}
+	5%   {height: 18px;}
+	10%  {height: 50px;}
+	15%  {height: 36px;}
+	20%  {height: 45px;}
+	25%  {height: 63px;}
+	30%  {height: 27px;}
+	35%  {height: 70px;}
+	40%  {height: 58px;}
+	45%  {height: 86px;}
+	50%  {height: 54px;}
+	55%  {height: 24px;}
+	60%  {height: 32px;}
+	65%  {height: 17px;}
+	70%  {height: 37px;}
+	75%  {height: 26px;} 
+	80%  {height: 49px;}
+	85%  {height: 51px;}
+	90%  {height: 39px;}
+	95%  {height: 12px;}
+	100% {height: 20px;}
+}
+
+@-moz-keyframes equalizer-dance {
+	0%   {height: 25px;}
+	5%   {height: 18px;}
+	10%  {height: 50px;}
+	15%  {height: 36px;}
+	20%  {height: 45px;}
+	25%  {height: 63px;}
+	30%  {height: 27px;}
+	35%  {height: 70px;}
+	40%  {height: 58px;}
+	45%  {height: 86px;}
+	50%  {height: 54px;}
+	55%  {height: 24px;}
+	60%  {height: 32px;}
+	65%  {height: 17px;}
+	70%  {height: 37px;}
+	75%  {height: 26px;} 
+	80%  {height: 49px;}
+	85%  {height: 51px;}
+	90%  {height: 39px;}
+	95%  {height: 12px;}
+	100% {height: 20px;}
+}
+
+
+@-o-keyframes equalizer-dance {
+	0%   {height: 25px;}
+	5%   {height: 18px;}
+	10%  {height: 50px;}
+	15%  {height: 36px;}
+	20%  {height: 45px;}
+	25%  {height: 63px;}
+	30%  {height: 27px;}
+	35%  {height: 70px;}
+	40%  {height: 58px;}
+	45%  {height: 86px;}
+	50%  {height: 54px;}
+	55%  {height: 24px;}
+	60%  {height: 32px;}
+	65%  {height: 17px;}
+	70%  {height: 37px;}
+	75%  {height: 26px;} 
+	80%  {height: 49px;}
+	85%  {height: 51px;}
+	90%  {height: 39px;}
+	95%  {height: 12px;}
+	100% {height: 20px;}
+}
+
+
+@keyframes equalizer-dance {
+	0%   {height: 25px;}
+	5%   {height: 18px;}
+	10%  {height: 50px;}
+	15%  {height: 36px;}
+	20%  {height: 45px;}
+	25%  {height: 63px;}
+	30%  {height: 27px;}
+	35%  {height: 70px;}
+	40%  {height: 58px;}
+	45%  {height: 86px;}
+	50%  {height: 54px;}
+	55%  {height: 24px;}
+	60%  {height: 32px;}
+	65%  {height: 17px;}
+	70%  {height: 37px;}
+	75%  {height: 26px;} 
+	80%  {height: 49px;}
+	85%  {height: 51px;}
+	90%  {height: 39px;}
+	95%  {height: 12px;}
+	100% {height: 20px;}
+}
+

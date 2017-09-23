@@ -1,0 +1,202 @@
+body {
+	background: #faceb0;
+	font-family: Helvetica, Arial;
+	font-size: 14px;
+}
+/************
+
+	VINYLE
+
+*************/
+.container {
+	width: 602px;
+	height: 366px;
+	left: 130px;
+	margin-top: 80px;
+	position: relative;
+	background: url(vinylelab1.png);
+	background-size: cover;
+}
+
+.vinyle {
+	position: absolute;
+	width: 225px;
+	height: 225px;
+	background: url(vinyle.png);
+	background-size: cover;
+	top: 51px;
+    left: 47px;
+}
+
+.vinyle.playing {
+	animation: rotate-vinyle 3s linear infinite;
+}
+
+
+.arm {
+	position: absolute;
+	transform-origin:100% 0%;
+	z-index: 1;
+	width: 144px;
+	height: 157px;
+	background: url(arm.png);
+	background-size: cover;
+	transform: rotate(-18deg);
+	top: 84px;
+    left: 177px;
+    cursor: pointer;
+    transition: transform 1s ease;
+}
+
+.arm.playing {
+	transform: rotate(2deg);
+	transition: transform 1s ease;
+}
+
+.table {
+	position: absolute;
+	width: 158px;
+	height: 206px;
+	background: url(table.png);
+	background-size: cover;
+	top: 60px;
+    left: 287px;
+}
+
+.smoke {
+	position: absolute;
+	right: 93px;
+	top: 200px;
+}
+
+.smoke > div {
+	border-radius: 50%;
+	border: 2px solid #FEF;
+	position: absolute;
+	background: white;
+	width: 10px;
+	height: 10px;
+}
+
+.smoke .s1 {
+	animation: smoke 3s linear;
+	animation-iteration-count: infinite;
+}
+
+.smoke .s2{
+	opacity: 0;
+	animation: smoke 3s linear;
+	animation-iteration-count: infinite;
+	animation-delay: 1s;
+}
+
+.smoke .s3 {
+	opacity: 0;
+	animation: smoke 3s linear;
+	animation-iteration-count: infinite;
+	animation-delay: 2s;
+}
+/************
+
+	ANIMATIONS - CONTAINER
+
+*****************/
+
+@keyframes smoke {
+	from {transform: scaleX(0) scaleY(0) translateY(0px);opacity: .9;}
+	to {transform: scaleX(4) scaleY(4) translateY(-10px);opacity: 0;}
+}
+
+@keyframes rotate-vinyle {
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(360deg);}
+}
+
+@keyframes rotate-arm {
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(60deg);}
+}	
+
+
+
+
+/************
+
+	COVERS
+
+*************/
+
+
+.covers {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+
+}
+
+.cover_1 {
+	position: absolute;
+	width: 242px;
+	height: 242px;
+	z-index: 1000;
+	background: url(cover1.png);
+	background-size: cover;
+}
+
+.cd_1 {
+	position: absolute;
+	width: 242px;
+	height: 242px;
+	background: url(vinyle2.png);
+	background-size: cover;
+}
+
+.cd_1.playing {
+	animation: rotate-vinyle 3s linear infinite;
+}
+
+.cd_1.selected {
+	animation: cd_1_play 3s ease forwards;
+	animation-iteration-count: 1;
+	transform-origin: 50% 50%;
+}
+
+.vinyle.off {
+	animation: vinyle_off 3s ease forwards;
+	animation-iteration-count: 1;
+}
+
+.cover_2 {
+	position: absolute;
+	width: 242px;
+	height: 242px;
+	z-index: 1;
+	background: url(cover1.png);
+	background-size: cover;
+	left: 270px;
+}
+
+.cd_2 {
+	position: absolute;
+	width: 242px;
+	height: 242px;
+	background: url(vinyle2.png);
+	background-size: cover;
+	left: 270px;
+}
+
+
+@keyframes cd_1_play {
+	0% {left:0;}
+	10% {transform: scaleY(1) scaleX(1) translateY(-400px);}
+	50% {transform: scaleY(1.3) scaleX(1.3) translateY(-290px);}
+	100% {transform: translateX(170px) translateY(-340px) scaleX(1) scaleY(1)};
+}
+
+@keyframes vinyle_off {
+	0% {transform: scaleY(1) scaleX(1)}
+	10% {transform: scaleY(1.3) scaleX(1.3);}
+	100% {transform: translateY(-4000px) ;}
+}
+
+

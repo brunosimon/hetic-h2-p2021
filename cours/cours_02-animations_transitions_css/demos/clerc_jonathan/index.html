@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Clock</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="app-center">
+
+            <div class="clock view-bottom" id="clock">
+
+                <div class="frame dark">
+                    <div class="border color"></div>
+                    <div class="shadow">
+                        <div class="inner"></div>
+                    </div>
+                    <div class="gear gear-1">
+                        <div class="inner">
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                    <div class="level level-1 light"></div>
+                    <div class="gear gear-2">
+                        <div class="inner">
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                    <div class="gear gear-3">
+                        <div class="inner">
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                    <div class="level level-2 light"></div>
+                    <div class="gear gear-4">
+                        <div class="inner">
+                            <div class="bar bar-1"></div>
+                            <div class="bar bar-2"></div>
+                            <div class="bar bar-3"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                    <div class="background light"></div>
+                    <div class="small-shadow">
+                        <div class="inner"></div>
+                    </div>
+                    <div class="rotor-border dark"></div>
+                </div>
+
+                <div class="arrows">
+                    <div class="container hours">
+                        <div class="arrow hours">
+                            <div class="inner dark" id="hours"></div>
+                        </div>
+                    </div>
+                    <div class="container minutes">
+                        <div class="arrow minutes" id="ticker-minutes">
+                            <div class="inner dark" id="minutes"></div>
+                        </div>
+                    </div>
+                    <div class="container seconds">
+                        <div class="arrow seconds">
+                            <div class="inner color" id="seconds">
+                                <div class="buble color"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="frame">
+                    <div class="rotor-top light"></div>
+                </div>
+
+            </div><!-- .clock -->
+
+            <div class="buttons">
+                <!-- 
+                    Links are used to catch click, to avoid selecting blank space.
+                    <div> inside <a> are allowed in HTML5:
+                    http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element
+                -->
+                <a href="#" class="button button-pause" id="button-pause">
+                    <div class="shadow"></div>
+                    <div class="pause">
+                        <div class="bar bar-1"></div>
+                        <div class="bar bar-2"></div>
+                    </div>
+                    <div class="play"></div>
+                    <div class="mask"></div>
+                </a>
+                <a href="#" class="button button-time" id="button-time">
+                    <div class="shadow"></div>
+                    <div class="text">
+                        +15′
+                    </div>
+                    <div class="mask"></div>
+                </a>
+                <a href="#" class="button button-build" id="button-build">
+                    <div class="shadow"></div>
+                    <div class="gear">
+                        <div class="big-circle"></div>
+                        <div class="bar bar-1"></div>
+                        <div class="bar bar-2"></div>
+                        <div class="bar bar-3"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <div class="mask"></div>
+                </a>
+            </div><!-- .buttons -->
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
