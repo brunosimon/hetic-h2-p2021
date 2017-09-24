@@ -805,11 +805,11 @@
 
                 <section>
                     <h2>scale3d</h2>
-                    <p>scale3d(x,y,z) où <span class="highlight">x</span>, <span class="highlight">y</span> et <span class="highlight">z</span> sont des multiplicateurs</p>
+                    <p>scale3d(x, y, z) où <span class="highlight">x</span>, <span class="highlight">y</span> et <span class="highlight">z</span> sont des multiplicateurs</p>
                     <pre><code  data-trim contenteditable class="css">
 .block
 {
-    transform: scale3d(2,1.7,1.5);
+    transform: scale3d(2, 1.7, 1.5);
 }
                     </code></pre>
                     <div class="container">
@@ -853,12 +853,12 @@
 
                 <section>
                     <h2>Perspective</h2>
-                    <p>Il est possible de propager la perspective de manière à obtenir un environnement 3D homogène avec une perspective commune avec <span class="hl">transform-style:preserve-3d</span></p>
-                    <p>Cette modification doit être appliquée sur chaque élément concerné</p>
+                    <p>Il est possible de propager la perspective de manière à obtenir un espace 3D homogène avec une perspective commune avec <span class="hl">transform-style: preserve-3d</span></p>
+                    <p>Cette modification doit être appliquée sur le parent dont les enfants doivent partager le même espace 3D</p>
                     <pre><code  data-trim contenteditable class="css">
 .block
 {
-    transform-style:preserve-3d;
+    transform-style: preserve-3d;
 }
                     </code></pre>
                 </section>
