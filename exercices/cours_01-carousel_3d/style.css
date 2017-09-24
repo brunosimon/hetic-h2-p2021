@@ -1,0 +1,69 @@
+.carousel
+{
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background: #eee;
+    margin: 50px auto;
+    perspective: 800px;
+}
+
+.carousel .items
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: rotateY(60deg);
+}
+
+.carousel .item
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -100px;
+    margin-left: -100px;
+    transform-style: preserve-3d;
+}
+
+.carousel .item.index-1
+{
+    transform: rotateY(0deg) translateZ(250px);
+    transform-style: preserve-3d;
+}
+
+.carousel .item.index-2
+{
+    transform: rotateY(45deg) translateZ(250px);
+}
+
+.carousel .item.index-3
+{
+    transform: rotateY(90deg) translateZ(250px);
+}
+
+.carousel .item.index-4
+{
+    transform: rotateY(135deg) translateZ(250px);
+}
+
+.carousel .item.index-5
+{
+    transform: rotateY(180deg) translateZ(250px);
+}
+
+.carousel .item.index-6
+{
+    transform: rotateY(225deg) translateZ(250px);
+}
+
+.carousel .item.index-7
+{
+    transform: rotateY(270deg) translateZ(250px);
+}
+
+.carousel .item.index-8
+{
+    transform: rotateY(315deg) translateZ(250px);
+}

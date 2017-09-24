@@ -1,0 +1,73 @@
+.block
+{
+    margin: 50px auto;
+    width: 200px;
+    height: 200px;
+    background: orange;
+}
+
+.block.index-1
+{
+    transform: scaleX(2) scaleY(1.3);
+}
+
+.block.index-2
+{
+    transform: translateX(100%) translateY(50px);
+}
+
+.block.index-3
+{
+    transform: rotate(15deg);
+}
+
+.block.index-4
+{
+    transform: rotate(45deg) translateX(100px);
+}
+
+.block.index-5
+{
+    transform: skewY(20deg) skewX(20deg);
+}
+
+.block.index-6
+{
+    transform-origin: 0px 0px;
+    transform: rotate(45deg);
+}
+
+.container
+{
+    perspective: 800px;
+}
+
+.block.index-7
+{
+    transform: rotateX(45deg);
+}
+
+.block.index-8
+{
+    transform: rotateY(45deg) translateZ(100px);
+}
+
+.block.index-9
+{
+    transform: rotateY(135deg);
+    backface-visibility: hidden;
+}
+
+.block.index-10
+{
+    transform: rotateY(45deg);
+    transform-style: preserve-3d;
+}
+
+.block.index-10 .inner
+{
+    width: 100px;
+    height: 100px;
+    background: #f00;
+    transform: translateZ(20px) rotateY(-95deg);
+}
