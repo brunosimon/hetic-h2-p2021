@@ -15,6 +15,16 @@
     left: 50%;
     transform-style: preserve-3d;
     transform: rotateY(60deg);
+    animation-name: carousel-rotation;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes carousel-rotation
+{
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
 }
 
 .carousel .item

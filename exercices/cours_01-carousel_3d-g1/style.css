@@ -1,0 +1,33 @@
+.carousel
+{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background: #ccc;
+    margin: 50px auto;
+    perspective: 800px;
+}
+
+.carousel .items
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+}
+
+.carousel .item
+{
+    position: absolute;
+    top: -100px;
+    left: -100px;
+}
+
+.carousel .item.index-1 { transform: rotateY(calc(360deg / 8 * 0)) translateZ(250px); }
+.carousel .item.index-2 { transform: rotateY(calc(360deg / 8 * 1)) translateZ(250px); }
+.carousel .item.index-3 { transform: rotateY(calc(360deg / 8 * 2)) translateZ(250px); }
+.carousel .item.index-4 { transform: rotateY(calc(360deg / 8 * 3)) translateZ(250px); }
+.carousel .item.index-5 { transform: rotateY(calc(360deg / 8 * 4)) translateZ(250px); }
+.carousel .item.index-6 { transform: rotateY(calc(360deg / 8 * 5)) translateZ(250px); }
+.carousel .item.index-7 { transform: rotateY(calc(360deg / 8 * 6)) translateZ(250px); }
+.carousel .item.index-8 { transform: rotateY(calc(360deg / 8 * 7)) translateZ(250px); }
