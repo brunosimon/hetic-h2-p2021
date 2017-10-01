@@ -195,7 +195,7 @@
                 <section>
                     <h2>Différence entre transition et animation</h2>
                     <p class="fragment">La transition se fait entre un état A et un état B</p>
-                    <p class="fragment">L'animation peut passer par plus de deux états appelés keypoints</p>
+                    <p class="fragment">L'animation peut passer par plus de deux états (appelés keypoints)</p>
                 </section>
 
                 <section>
@@ -389,42 +389,7 @@
                 </section>
 
                 <section>
-                    <ul>
-                        <li>
-                            <span class="u">animation-timing-function</span>
-                            <span class="fragment"><br />Type de transition (ease, linear, ease-in, ease-out, ease-in-out, personnalisée)<br />(similaire aux transitions)</span>
-                        </li>
-                        <li>
-                            <span class="u">animation-delay</span>
-                            <span class="fragment"><br />Retard avant le départ (s/ms)<br />(similaire aux transitions)</span>
-                        </li>
-                        <li>
-                            <span class="u">animation-iteration-count</span>
-                            <span class="fragment"><br />Combien de fois jouer l'animation (1 par défaut)</span>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <ul>
-                        <li>
-                            <span class="u">animation-direction</span>
-                            <span class="fragment"><br />Direction de l'animation (normal, reverse, alternate, alternate-reverse)</span>
-                        </li>
-                        <li>
-                            <span class="u">animation-play-state</span>
-                            <span class="fragment"><br />État par défaut de l'animation (running, paused)</span>
-                        </li>
-                        </li>
-                        <li>
-                            <span class="u">animation-fill-mode</span>
-                            <span class="fragment"><br />État lorsque l'animation ne joue pas (forwards, backwards, both)</span>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <p>Une fois les propriétés en place, il faut définir la timeline avec la syntaxe CSS <span class="highlight">@keyframes</span> suivie du nom de l'animation</p>
+                    <p>Il faut ensuite définir la timeline n'importe où dans le CSS avec <span class="highlight">@keyframes</span> suivie du même nom d'animation</p>
                     <p>Chaque keyframe est définie par le pourcentage de l'animation (ex: 50% = moitié de la durée) et les propriétés à appliquer</p>
                 </section>
 
@@ -436,10 +401,6 @@
                         <li>Underscores</li>
                         <li>Chiffres (sauf en premier caractère)</li>
                     </ul>
-                </section>
-
-                <section class="example-5">
-                    <h2>Exemples</h2>
                 </section>
 
                 <section class="example-5">
@@ -494,6 +455,41 @@
                     </code></pre>
                     <small>Actualiser pour voir l'animation</small>
                     <p class="transition-container"><span></span></p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            <span class="u">animation-timing-function</span>
+                            <span class="fragment"><br />Type de transition (ease, linear, ease-in, ease-out, ease-in-out, personnalisée)<br />(similaire aux transitions)</span>
+                        </li>
+                        <li>
+                            <span class="u">animation-delay</span>
+                            <span class="fragment"><br />Retard avant le départ (s/ms)<br />(similaire aux transitions)</span>
+                        </li>
+                        <li>
+                            <span class="u">animation-iteration-count</span>
+                            <span class="fragment"><br />Combien de fois jouer l'animation (1 par défaut)</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            <span class="u">animation-direction</span>
+                            <span class="fragment"><br />Direction de l'animation (normal, reverse, alternate, alternate-reverse)</span>
+                        </li>
+                        <li>
+                            <span class="u">animation-play-state</span>
+                            <span class="fragment"><br />État par défaut de l'animation (running, paused)</span>
+                        </li>
+                        </li>
+                        <li>
+                            <span class="u">animation-fill-mode</span>
+                            <span class="fragment"><br />État lorsque l'animation ne joue pas (forwards, backwards, both)</span>
+                        </li>
+                    </ul>
                 </section>
 
                 <section class="example-7">
@@ -620,7 +616,8 @@
                     </p>
                 </section>
 
-                <section>ù
+                <section>
+                    <p>Avec les prefixes</p>
                     <pre><code data-trim contenteditable class="css">
 
 .animation
@@ -679,7 +676,7 @@
                 </section>
 
                 <section>
-                    <p>Chacune de ces étapes prend du temps et le déclenchement de l'une provoquera le délenchement des suivantes dans l'ordre</p>
+                    <p>Chacune de ces étapes prend du temps et le déclenchement de l'une provoquera celui des suivantes dans l'ordre</p>
                     <p>L'étape <span class="u">Composite</span> est rapide pour deux raisons</p>
                     <ul>
                         <li>C'est la dernière donc elle ne déclenchera pas d'autres étapes.</li>
@@ -705,7 +702,7 @@
                 </section>
 
                 <section>
-                    <p>Un autre bon outil de monitoring du dev tools est la Timeline (un peu plus difficile à utiliser)</p>
+                    <p>Un autre bon outil de monitoring du dev tools est l'onglet <span class="u">Performance</span> (un peu plus difficile à utiliser)</p>
                     <ul>
                         <li>Clique droit n'importe où suivi de <span class="hl">Inspecter</span></li>
                         <li>Ouvrir l'onglet <span class="hl">Timeline</span></li>
@@ -713,8 +710,8 @@
                 </section>
 
                 <section>
-                    <p>Lorsqu'une transformation ou l'opacité d'un élément s'apprête à changer, le navigateur crée un calque pour cet élément. Comme dans photoshop, cela permet de le traiter indépendamment du reste et cela permet d'améliorer les performances.</p>
-                    <p>La création d'un calque demande un peu de ressources.</p>
+                    <p>Lorsque la propriété transform ou opacity d'un élément s'apprête à changer, le navigateur crée un calque pour cet élément. Comme dans photoshop, cela permet de le traiter indépendamment du reste et cela permet d'améliorer les performances.</p>
+                    <p>La création d'un calque demande un peu de ressources et va déclencher un paint unique au début.</p>
                 </section>
 
                 <section>
@@ -732,10 +729,11 @@
                 <section>
                     <p>Quelques articles</p>
                     <ul>
-                        <li><a href="https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108" target="_blank">https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108</a></li>
-                        <li><a href="https://csstriggers.com/" target="_blank">https://csstriggers.com/</a></li>
-                        <li><a href="https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/" target="_blank">https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/</a></li>
-                        <li><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/" target="_blank">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a></li>
+                        <li><a href="https://blog.algolia.com/performant-web-animations/" target="_blank">blog.algolia.com/performant-web-animations</a></li>
+                        <li><a href="https://medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108" target="_blank">medium.com/outsystems-experts/how-to-achieve-60-fps-animations-with-css3-db7b98610108</a></li>
+                        <li><a href="https://csstriggers.com/" target="_blank">csstriggers.com/</a></li>
+                        <li><a href="https://www.sitepoint.com/10-ways-minimize-reflows-improve-performance/" target="_blank">www.sitepoint.com/10-ways-minimize-reflows-improve-performance/</a></li>
+                        <li><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/" target="_blank">www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a></li>
                     </ul>
                 </section>
 
@@ -766,9 +764,7 @@
                         <li><a href="http://codepen.io/kowlor/full/ZYYQoy/" target="_blank">http://codepen.io/kowlor/full/ZYYQoy/</a></li>
                         <li><a href="http://codepen.io/Michiel/full/EBtga/" target="_blank">http://codepen.io/Michiel/full/EBtga/</a></li>
                         <li><a href="http://codepen.io/balapa/full/gbQbXR" target="_blank">http://codepen.io/balapa/full/gbQbXR</a></li>
-                        <li><a href="http://bruno-simon.com/lab/css3-boxes/" target="_blank">http://bruno-simon.com/lab/css3-boxes/</a></li>
                         <li><a href="http://tympanus.net/Development/HoverEffectIdeas/" target="_blank">http://tympanus.net/Development/HoverEffectIdeas/</a></li>
-                        <li><a href="http://miketricking.github.io/dist/" target="_blank">http://miketricking.github.io/dist/</a></li>
                         <li><a href="http://tympanus.net/Tutorials/CaptionHoverEffects/index.html" target="_blank">http://tympanus.net/Tutorials/CaptionHoverEffects/index.html</a></li>
                     </ul>
                 </section>
