@@ -149,3 +149,147 @@ body
     transform: scale(1);
 }
 
+.share
+{
+    position: relative;
+    margin: 150px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.share .button
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.4s cubic-bezier(0.85, 0, 0.58, 1);
+}
+
+.share .button .icon
+{
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: #eee;
+    background-size: cover;
+    transition: transform 0.3s;
+}
+
+.share .button:hover .icon
+{
+    transform: rotate(30deg);
+}
+
+.share .button.trigger .icon
+{
+    top: 4px;
+    left: 4px;
+    width: 42px;
+    height: 42px;
+    line-height: 32px;
+}
+.share .button.facebook .icon { background-image: url(images/facebook.png); }
+.share .button.instagram .icon { background-image: url(images/instagram.png); }
+.share .button.twitter .icon { background-image: url(images/twitter.png); }
+
+.share .button.facebook { transition-delay: 0.0s; }
+.share .button.instagram { transition-delay: 0.05s; }
+.share .button.twitter { transition-delay: 0.1s; }
+
+.share:hover .button.facebook { transform: translateY(100%); }
+.share:hover .button.instagram { transform: translateY(200%); }
+.share:hover .button.twitter { transform: translateY(300%); }
+
+/* .share .center
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: #eee;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: #aaa;
+    line-height: 30px;
+}
+
+.share .buttons
+{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.share .button
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.share .button
+{
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    width: 50px;
+    height: 50px;
+}
+
+.share .button .icon
+{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+}
+
+.share .button.facebook .icon
+{
+    background-image: url(images/facebook.png);
+}
+
+.share .button.instagram .icon
+{
+    background-image: url(images/instagram.png);
+}
+
+.share .button.pinterest .icon
+{
+    background-image: url(images/pinterest.png);
+}
+
+.share .button.twitter .icon
+{
+    background-image: url(images/twitter.png);
+}
+
+.share:hover .button.facebook
+{
+    transform: translateY(100%);
+}
+
+.share:hover .button.instagram
+{
+    transform: translateY(200%);
+}
+
+.share:hover .button.pinterest
+{
+    transform: translateY(300%);
+}
+
+.share:hover .button.twitter
+{
+    transform: translateY(400%);
+} */

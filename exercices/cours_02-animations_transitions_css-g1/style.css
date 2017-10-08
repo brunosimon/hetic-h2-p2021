@@ -1,0 +1,61 @@
+/* .block
+{
+    width: 100px;
+    height: 200px;
+    margin: 20px;
+    background: orange;
+}
+
+.block.transition
+{
+    transition: width 1s cubic-bezier(0.63,-0.65, 1, 0.31) 0.5s;
+}
+
+.block.transition:hover
+{
+    width: 600px;
+}
+
+.block.animation
+{
+    animation-name: first-animation;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.block.animation:hover
+{
+    animation-play-state: paused;
+}
+
+@keyframes first-animation
+{
+    0%   { width: 200px; }
+    50%  { width: 600px; background: red; }
+    100% { width: 400px; }
+} */
+
+body
+{
+    text-align: center;
+}
+
+.menu
+{
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: #ccc;
+    left: -300px;
+    transition: left 0.6s cubic-bezier(0.42, 0, 0.15, 1);
+}
+
+.menu.active
+{
+    left: 0px;
+}

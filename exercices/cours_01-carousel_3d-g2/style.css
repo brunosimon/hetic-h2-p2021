@@ -14,6 +14,21 @@
     top: 50%;
     left: 50%;
     transform-style: preserve-3d;
+    animation-name: carousel-rotation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.carousel:hover .items
+{
+    animation-play-state: paused;
+}
+
+@keyframes carousel-rotation
+{
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
 }
 
 .carousel .item
@@ -21,6 +36,17 @@
     position: absolute;
     top: -100px;
     left: -100px;
+    transform-style: preserve-3d;
+}
+
+.carousel .item img
+{
+    transition: transform 0.3s;
+}
+
+.carousel .item:hover img
+{
+    transform: translateZ(30px);
 }
 
 .carousel .item.index-1 { transform: rotateY(calc(360deg / 8 * 0)) translateZ(250px); }

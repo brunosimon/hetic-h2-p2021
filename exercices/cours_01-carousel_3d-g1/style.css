@@ -14,6 +14,22 @@
     top: 50%;
     left: 50%;
     transform-style: preserve-3d;
+    /* animation-name: carousel-rotation;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; */
+    animation: carousel-rotation 8s infinite linear; 
+}
+
+.carousel:hover .items
+{
+    animation-play-state: paused;
+}
+
+@keyframes carousel-rotation
+{
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
 }
 
 .carousel .item
@@ -21,6 +37,7 @@
     position: absolute;
     top: -100px;
     left: -100px;
+    transform-style: preserve-3d;
 }
 
 .carousel .item.index-1 { transform: rotateY(calc(360deg / 8 * 0)) translateZ(250px); }
@@ -31,3 +48,13 @@
 .carousel .item.index-6 { transform: rotateY(calc(360deg / 8 * 5)) translateZ(250px); }
 .carousel .item.index-7 { transform: rotateY(calc(360deg / 8 * 6)) translateZ(250px); }
 .carousel .item.index-8 { transform: rotateY(calc(360deg / 8 * 7)) translateZ(250px); }
+
+.carousel .item img
+{
+    transform: translateZ(0px);
+    transition: transform 0.3s;
+}
+.carousel .item:hover img
+{
+    transform: translateZ(30px);
+}
