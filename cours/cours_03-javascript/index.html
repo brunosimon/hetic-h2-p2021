@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 1 - Cours 03 - JS</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 03</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>JavaScript</h1>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><a href="#intro">Intro</a></li>
+                        <li><a href="#add-javascript">Ajouter du javascript</a></li>
+                        <li><a href="#variables">Variables</a></li>
+                        <li><a href="#operations">Opérations</a></li>
+                        <li><a href="#conditions">Conditions</a></li>
+                        <li><a href="#loops">Boucles</a></li>
+                        <li><a href="#functions">Fonctions</a></li>
+                        <li><a href="#scope">Scope</a></li>
+                        <li><a href="#dom-element">DOM Element</a></li>
+                        <li><a href="#interval-timeout">Interval / Timeout</a></li>
+                        <li><a href="#wtf-js">WTF JS</a></li>
+                    </ul>
+                </section>
+
+                <!-- INTRO -->
+                <section id="intro">
+                    <p>À quoi sert javascript</p>
+                    <ul>
+                        <li class="fragment">Modifier la page (le DOM)</li>
+                        <li class="fragment">Créer des intéractions impossible en CSS</li>
+                        <li class="fragment">Empêcher l'utilisateur d'accomplir certaines actions</li>
+                        <li class="fragment">Animer des éléments</li>
+                        <li class="fragment">Envoyer des données analytics</li>
+                        <li class="fragment">Charger des contenus extérieurs et les rajouter dans la page</li>
+                        <li class="fragment">Intéragir avec les API HTML telles que audio, video, geolocalisation, canvas, websocket, ...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <span class="u">Java</span> is to <span class="u">Javascript</span> what <span class="u">car</span> is to <span class="u">carpet</span>
+                </section>
+
+                <!-- SCRIPT -->
+                <section id="add-javascript">
+                    <h2>Ajouter du javascript</h2>
+                </section>
+
+                <section>
+                    <p>Le javascript se rajoute en HTML avec la balise <span class="hl">script</span></p>
+                    <p>Il n'est aujourd'hui plus nécessaire de préciser le type, mais ça ne fait pas de mal</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;script type="text/javascript">&lt;/script&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Ce code peut être placé dans l'entête, mais il est conseillé de le placer en bas de page juste avant la fermeture du <span class="hl">body</span></p>
+                    <p>De cette manière, nous sommes certain que le DOM est chargé et le chargement du script n'a pas bloqué le chargement du reste</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Mon super site&lt;/h1&gt;
+
+    &lt;script&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>La balise <span class="hl">script</span> peut contenir du JS</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;script type="text/javascript"&gt;
+    console.log('coucou');
+&lt;/script&gt;
+                    </code></pre>
+                    <p>Elle peut aussi charger un fichier <span class="hl">.js</span><br>L'attribut <span class="hl">src</span> peut-être absolu ou relatif</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;script type="text/javascript" src="http://monsite.com/src/js/script.js"&gt;&lt;/script&gt;
+                    </code></pre>
+                </section>
+
+                <!-- VARIABLES -->
+                <section id="variables">
+                    <h2>Variables</h2>
+                </section>
+
+                <section>
+                    <p>Dans les exemples suivant, nous allons utiliser les termes <span class="u">foo</span> et <span class="u">bar</span></p>
+                    <p>Ces termes ne designent rien.<br>On peut les comparer à <span class="u">truc</span> et <span class="u">bidule</span></p>
+                    <p><a href="https://en.wikipedia.org/wiki/Foobar" target="_blank">Wiki 1</a></p>
+                    <p><a href="https://fr.wikipedia.org/wiki/Variable_m%C3%A9tasyntaxique" target="_blank">Wiki 2</a></p>
+                </section>
+
+                <section>
+                    <h2>Déclarer une variable</h2>
+                    <p>Une variable se compose d'un nom et d'une valeur (nombre, texte, booléen, etc.)</p>
+                    <p>Initialement, on utilisait le terme <span class="hl">var</span> pour créer une variable</p>
+                    <pre><code data-trim contenteditable class="js">
+// Pas bien
+foo = 'bar'
+
+// Bien 
+var foo = 'bar'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Depuis l'ES6, on utilise les termes <span class="hl">const</span> et <span class="hl">let</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 'bar'
+let toto = 'tata'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="hl">const</span> permet de créer une variable qui ne changeront pas (une erreur se produit si on tente de modifier la variable) ce qui permet au navigateur d'optimiser la gestion de la mémoire</li>
+                        <li><span class="hl">let</span> permet de créer une variable qui peut changer</li>
+                    </ul>
+                    <p>Il est donc préférable d'utiliser <span class="hl">const</span> sauf la variable est amenée à changer</p>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=const">http://caniuse.com/#feat=const</a></p>
+                    <p class="ciu_embed" data-feature="const" data-periods="future_1,current,past_1,past_2,past_3,past_4">
+                        <a href="http://caniuse.com/#feat=const">CanIUse</a>
+                    </p>
+                </section>
+
+                <section>
+                    <p>La différence entre <span class="hl">var</span> et <span class="hl">let</span> se situe au niveau du scope dont nous parlerons plus tard</p>
+                    <p>Il n'est aujourd'hui plus nécessaire d'utiliser <span class="hl">var</span></p>
+                </section>
+
+                <section>
+                    <p>Le choix du nom de variable et la façon de l'écrire s'appelle <span class="hl">naming convention</span> (convention de nommage)</p>
+                    <p>On parle aussi de nomenclature ou de casse (inexact)</p>
+                </section>
+
+                <section>
+                    <p>Si une variable se compose de plusieurs mots (ex: <span class="u">foo</span> et <span class="u">bar</span>) il existe plusieurs façons de séparer ces mots</p>
+                    <p>Les plus connues en JS sont :</p>
+                    <table class="visible">
+                        <tr>
+                            <td>camel</td>
+                            <td>loremIpsumDolores</td>
+                            <td>pour les variables</td>
+                        </tr>
+                        <tr>
+                            <td>pascal</td>
+                            <td>LoremIpsumDolores</td>
+                            <td>pour les classes</td>
+                        </tr>
+                        <tr>
+                            <td>snake ou underscore</td>
+                            <td>lorem_ipsum_dolores</td>
+                            <td>pour les variables</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+// Bien 
+const foo_bar = 'lorem ipsum' //Underscore (underscore entre chaque mot, aucune majuscule)
+const fooBar  = 'lorem ipsum' //CamelCase ou LowerCamelCase (tout à la suite, majuscule à chaque mot sauf premier)
+const FooBar  = 'lorem ipsum' //PascalCase ou UpperCamelCase (tout à la suite, majuscule à chaque mot)
+
+// Éviter
+const foobar  = 'lorem ipsum'
+const FOOBAR  = 'lorem ipsum' //Utilisé pour les variables globales tout de même
+
+// Pas bien
+const foo-bar = 'lorem ipsum' // Ne fonctionne pas
+const fO_bAR  = 'lorem ipsum'
+const foo bar = 'lorem ipsum' // Ne fonctionne pas
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Quelques autres naming conventions :</p>
+                    <ul>
+                    <table class="visible">
+                        <tr>
+                            <td>titlesnake</td>
+                            <td>Lorem_Ipsum_Dolors</td>
+                        </tr>
+                        <tr>
+                            <td>screamingsnake</td>
+                            <td>LOREM_IPSUM_DOLORS</td>
+                        </tr>
+                        <tr>
+                            <td>dash</td>
+                            <td>lorem-ipsum-dolors</td>
+                        </tr>
+                        <tr>
+                            <td>train</td>
+                            <td>Lorem-Ipsum-Dolors</td>
+                        </tr>
+                        <tr>
+                            <td>space</td>
+                            <td>lorem ipsum dolors</td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>Lorem Ipsum Dolors</td>
+                        </tr>
+                        <tr>
+                            <td>dot</td>
+                            <td>lorem.ipsum.dolors</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Quelques autres naming conventions :</p>
+                    <ul>
+                    <table class="visible">
+                        <tr>
+                            <td>slash</td>
+                            <td>lorem/ipsum/dolors</td>
+                        </tr>
+                        <tr>
+                            <td>backslash</td>
+                            <td>lorem\ipsum\dolors</td>
+                        </tr>
+                        <tr>
+                            <td>lower</td>
+                            <td>loremipsumdolors</td>
+                        </tr>
+                        <tr>
+                            <td>upper</td>
+                            <td>LOREMIPSUMDOLORS</td>
+                        </tr>
+                        <tr>
+                            <td>studlycaps</td>
+                            <td>LOremIPsUmDolORs</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Choisissez bien le nom de votre variable</li>
+                        <li class="fragment">Il doit en dire suffisamment sans être trop long</li>
+                        <li class="fragment">Préférez l'anglais</li>
+                        <li class="fragment">Évitez les mots clés réservés :<br />class, default, if, do, for, function, ...</li>
+                        <li class="fragment">Soyez constant</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Pour afficher le contenu d'une variable nous pouvons utiliser <span class="hl">console.log()</span></p>
+                    <pre><code data-trim contenteditable class="js">
+console.log(foo_bar)
+                    </code></pre>
+                    <p class="fragment">console.log() est utilisé pour aider le développeur. Il convient de les supprimer du code une fois le développement terminé.</p>
+                </section>
+
+                <section>
+                    <p>Pour afficher les résultats de la console de Chrome, il suffit d'aller dans <span class="u">Outils de développement</span></p>
+                    <p><img src="src/img/console-1.png" alt="" width="500"></p>
+                    <p>Puis dans l'onglet <span class="u">console</span></p>
+                    <p><img src="src/img/inspecteur-console.png" alt=""></p>
+                </section>
+
+                <!-- MULTIPLE VARIABLES -->
+                <section>
+                    <p>Il est possible de déclarer plusieurs variable en même temps en séparant les assignations par des <span class="hl">,</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 'foo'
+const bar = 'bar'
+
+// Devient
+const foo = 'foo', bar = 'bar'
+
+// Devient
+const foo = 'foo',
+      bar = 'bar'
+                    </code></pre>
+                </section>
+
+                <!-- SEMICOLON -->
+                <section>
+                    <h2>Point virgule</h2>
+                </section>
+
+                <section>
+                    <p>Jusqu'à présent, nous utilisions <span class="hl">;</span> pour indiquer la fin d'une instruction</p>
+                    <p>Depuis plusieurs années, le <span class="hl">;</span> ne sert plus à rien et le navigateur n'aura aucune difficulté à interpréter le code sans</p>
+                </section>
+
+                <!-- VARIABLES TYPES -->
+                <section>
+                    <h2>Les types de variables</h2>
+                </section>
+
+                <section>
+                    <p>Il existe plusieurs types de variables</p>
+                </section>
+
+                <section>
+                    <p><span class="hl">number</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 1337
+const bar = 0.5
+
+console.log(foo)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p><span class="hl">string</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 'coucou'
+
+console.log(foo)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p><span class="hl">boolean</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = true
+const bar = false
+
+console.log(foo)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p><span class="hl">array</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = ['toto', 1337, true]
+
+foo.push('hey')
+
+console.log(foo)
+console.log(foo[1])
+console.log(foo.length)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p><span class="hl">object</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = {
+    lorem : 'ipsum',
+    toto  : 1337,
+    test  : true
+}
+
+foo.hoy = 'hey'
+
+console.log(foo)
+console.log(foo.toto)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il existe d'autres types de variables plus complexe que nous aborderons plus tard</p>
+                    <ul>
+                        <li>function</li>
+                        <li>null</li>
+                        <li>undefined</li>
+                        <li>date</li>
+                        <li>DOMElement</li>
+                        <li>regex</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p><span class="hl">typeof</span> permet de connaître le type d'une variable</p>
+                    <pre><code data-trim contenteditable class="js">
+const fooBar = 'lorem ipsum'
+
+console.log(typeof(fooBar)) // "string"
+console.log(typeof fooBar)  // "string"
+                    </code></pre>
+                </section>
+                
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+typeof 1337          // "number"
+typeof 0.5           // "number"
+typeof 'lorem ipsum' // "string"
+typeof function(){}  // "function"
+typeof true          // "boolean"
+
+typeof {}            // "object"
+typeof []            // "object"
+typeof null          // "object"
+typeof /abcd/        // "object"
+typeof document.createElement('div') // 'object'
+                    </code></pre>
+                    <p class="fragment">typeof ne renvoie pas toujours la valeur attendue</p>
+                </section>
+                
+                <section>
+                    <p>Une autre méthode est <span class="hl">instanceof</span></p>
+                    <pre><code data-trim contenteditable class="js">
+{} instanceof Object       // true
+[] instanceof Array        // true
+new Date() instanceof Date // true
+/abcd/ instanceof RegExp   // true
+                    </code></pre>
+                    <p class="fragment">Pas mal mais pas très pratique</p>
+                </section>
+
+                <section id="operations">
+                    <h2>Opérations</h2>
+                </section>
+
+                <section>
+                    <p>Javascript permet de faire des opérations simples</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 1
+const bar = 2
+const result = foo + bar
+
+console.log(result)
+                    </code></pre>
+                    <p>qu'il est possible d'écrire plus simplement</p>
+                    <pre><code data-trim contenteditable class="js">
+console.log(1 + 2)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Mais aussi de faire des opération plus complexe</p>
+                    <pre><code data-trim contenteditable class="js">
+console.log(1 + '1')
+console.log(1 - '1')
+console.log(1 + 'a')
+console.log('hel' + 'lo')
+console.log(1 + true)
+console.log(1 + false)
+console.log(12 % 10)
+console.log(1 * 'a')
+console.log(1 / 0)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Rassembler plusieurs variable en une chaîne de caractères s'appelle <span class="hl">concaténer</span></p>
+                    <p>Il est possible de le faire en utilisant le <span class="hl">+</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const a = 'he'
+const b = 'llo'
+const c = a + b
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il est aussi possible d'utiliser la méthode <span class="hl">template literal</span> aussi appelée <span class="hl">back quote</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const a = 'he'
+const b = 'llo'
+const c = `${a}${b}`
+                    </code></pre>
+                    <p>Cette méthode permet aussi d'écrire la chaine de caractères sur plusieurs lignes</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = `
+    Lorem
+    Ipsum
+    Dolores
+`
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il est possible d'incrémenter (+1) ou décrémenter (-1) une variable</p>
+                    <pre><code data-trim contenteditable class="js">
+let i = 0
+i++
+console.log(i)
+i++
+console.log(i)
+i--
+console.log(i)
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour les opérations mathématiques plus complexe, javascript fourni une variable de type objet nommée <span class="hl">Math</span> contenant des méthodes (fonctions) et des propriétés (variables)</p>
+                    <pre><code data-trim contenteditable class="js">
+console.log(Math.sin(2)) // Méthode sinus
+console.log(Math.PI)     // Propriété π
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Méthodes de l'objet Math</p>
+                    <ul>
+                        <li><span class="hl">Math.random()</span> nombre aléatoire entre 0 et 1</li>
+                        <li><span class="hl">Math.min()</span> minimum</li>
+                        <li><span class="hl">Math.max()</span> maximum</li>
+                        <li><span class="hl">Math.round()</span> arrondi</li>
+                        <li><span class="hl">Math.ceil()</span> arrondi au dessus</li>
+                        <li><span class="hl">Math.floor()</span> arrondi en dessous</li>
+                        <li><span class="hl">Math.abs()</span> valeur absolue</li>
+                        <li><span class="hl">Math.log()</span> logarithme</li>
+                        <li><span class="hl">Math.pow()</span> au carré</li>
+                        <li><span class="hl">Math.sqrt()</span> racine carré</li>
+                        <li><span class="hl">Math.sin()</span> sinus</li>
+                        <li><span class="hl">Math.asin()</span> sinus inverse</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Propriétés de l'objet Math</p>
+                    <ul>
+                        <li><span class="hl">Math.PI</span> π</li>
+                        <li><span class="hl">Math.E</span> nombre d'euler</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <!-- CONDITIONS -->
+                <section id="conditions">
+                    <h2>Conditions</h2>
+                </section>
+
+                <section>
+                    <p>Les conditions permettent d'accomplir une action seulement si la condition spécifiée est vrai</p>
+                    <p>On utilise <span class="hl">if</span> et <span class="hl">else</span></p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+const foo = true
+
+if(foo == true)
+{
+    console.log('vrai !')
+}
+else
+{
+    console.log('faux !')
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>S'il n'y a qu'une seule action dans le <span class="hl">if</span> ou dans le <span class="hl">else</span>, on peut retirer les accolades</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = true
+
+if(foo == true)
+    console.log('vrai !')
+else
+    console.log('faux !')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Si on teste qu'une valeur est vraie, il est inutile de préciser <span class="hl">== true</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = true
+
+if(foo)
+    console.log('vrai !')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour tester qu'une valeur est fausse, il suffit de l'inverser en la précédent par un <span class="hl">!</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = true
+
+if(!foo)
+    console.log('faux !')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il est possible de tester des nombres</p>
+                    <pre><code data-trim contenteditable class="js">
+const age = 20
+
+if(age > 18)
+    console.log('Vous êtes majeur')
+else
+    console.log('Vous êtes mineur')
+                    </code></pre>
+                    <ul>
+                        <li><span class="hl">&gt;</span> supérieur</li>
+                        <li><span class="hl">&lt;</span> inférieur</li>
+                        <li><span class="hl">&gt;=</span> supérieur ou égal</li>
+                        <li><span class="hl">&lt;=</span> inférieur ou égal</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Il est possible de combiner plusieurs tests avec <span class="hl">&amp;&amp;</span>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 12
+const bar = false
+
+if(foo >= 12 &amp;&amp; bar)
+    console.log('Yep')
+else
+    console.log('Nop')
+                    </code></pre>
+                    <p>Ici, foo doit être supérieur ou égal à 12 <span class="u">ET</span> bar doit être vrai</p>
+                </section>
+
+                <section>
+                    <p>Mais aussi avec <span class="hl">||</span> (double pipe)
+                    <pre><code data-trim contenteditable class="js">
+const foo = 12
+const bar = false
+
+if(foo >= 12 || bar)
+    console.log('Yep')
+else
+    console.log('Nop')
+                    </code></pre>
+                    <p>Ici, foo doit être supérieur ou égal à 12 <span class="u">OU</span> bar doit être vrai</p>
+                </section>
+
+                <!-- BOUCLES -->
+                <section id="loops">
+                    <h2>Boucles</h2>
+                </section>
+
+                <section>
+                    <p>Les boucles permettent par exemple d'accomplir une action un certain nombre de fois ou alors de parcourir un tableau en accomplissant une action pour chacun des éléments</p>
+                    <p>La plus utilisée en JS est le <span class="hl">for</span></p>
+                    <p>(<span class="hl">while</span> et <span class="hl">do while</span> sont des boucles que nous ne verrons pas dans ce cours)</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+for(let i = 0; i &lt; 10; i++)
+{
+    console.log(i)
+}
+                    </code></pre>
+                    <ul>
+                        <li><span class="hl">let i = 0</span> correspond à l'initialisation</li>
+                        <li><span class="hl">i &lt; 10</span> correspond à la condition</li>
+                        <li><span class="hl">i++</span> est executé à chaque boucle</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Comme pour le <span class="hl">if</span> les accolades sont inutiles s'il n'y a qu'une seule action</p>
+                    <pre><code data-trim contenteditable class="js">
+for(let i = 0; i &lt; 10; i++)
+    console.log(i)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>En sens inverse</p>
+                    <pre><code data-trim contenteditable class="js">
+for(let i = 9; i &gt;= 0; i--)
+    console.log(i)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Deux par deux</p>
+                    <pre><code data-trim contenteditable class="js">
+for(let i = 0; i &lt; 10; i += 2)
+    console.log(i)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il existe plusieurs façons de boucler sur un tableau</p>
+
+                    <p>Avec un <span class="hl">for</span> classique en utilisant sa longueur (fonctionne sur tous les navigateurs)</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = ['toto', 'tata', 'titi', 'tutu']
+
+for(let i = 0; i &lt; foo.length; i++)
+{
+    const bar = foo[i]
+    console.log(bar)
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Avec un <span class="hl">for ... in ...</span> qui renvoie les clés du tableau (fonctionne sur tous les navigateurs)</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = ['toto', 'tata', 'titi', 'tutu']
+
+for(const key in foo)
+{
+    const bar = foo[key]
+    console.log(bar)
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Avec un <span class="hl">for ... of ...</span> qui renvoie directement les valeurs du tableau (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Browser_compatibility" target="_blank">ne fonctionne pas sur tous les navigateurs</a>)</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = ['toto', 'tata', 'titi', 'tutu']
+
+for(const bar of foo)
+{
+    console.log(bar)
+}
+                    </code></pre>
+                </section>
+
+                <!-- FUNCTIONS -->
+                <section id="functions">
+                    <h2>Fonctions</h2>
+                </section>
+
+                <section>
+                    <p>Une fonction peut être déclarée de plusieurs façons</p>
+                    <pre><code data-trim contenteditable class="js">
+// Named function
+function my_function()
+{
+}
+                    </code></pre>
+                    <pre><code data-trim contenteditable class="js">
+// Anonymous function
+const my_function = function()
+{
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Une fonction peut renvoyer un résultat avec <span class="hl">return</span></p>
+                    <p>Tout ce qui se trouve après <span class="hl">return</span>, dans la fonction, sera ignoré</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+function addition(a, b)
+{
+    return a + b
+}
+
+const sum = addition(1, 2)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Une fonction n'est pas obligée de renvoyer un résultat. Elle peut directement modifier les variables.</p>
+                    <pre><code data-trim contenteditable class="js">
+let sum = 0
+
+function addition(a, b)
+{
+    sum = a + b
+}
+
+addition(1, 2)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>La fonction peut être déclarée après son utilisation</p>
+                    <p>Javascript considérera les fonctions avant le reste</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+function addition(a, b)
+{
+    return a + b
+}
+
+addition(1, 2)
+                    </code></pre>
+                    <pre><code data-trim contenteditable class="js">
+addition(1, 2)
+
+function addition(a, b)
+{
+    sum = a + b
+}
+
+                    </code></pre>
+                    <p class="fragment">Les deux fonctions ont le même effet</p>
+                </section>
+
+                <section>
+                    <p>Depuis l'ES6, il existe des fonctions appelées <span class="hl">fat arrow</span></p>
+                    <p>Prenons comme exemple une fonction qui rajoute une valeur aléatoire à la variable envoyée et renvoie le résultat</p>
+                    <pre><code data-trim contenteditable class="js">
+const addRandom = (a) =>
+{
+    return a + Math.random()
+}
+
+// S'il n'y a qu'un paramètre, peut s'écrire sans les parenthèse
+const addRandom = a =>
+{
+    return a + Math.random()
+}
+
+// Si ne contient qu'une instruction `return`
+const addRandom = a => a + Math.random()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>L'avantage d'une fonction <span class="hl">fat arrow</span> n'est pas que syntaxique</p>
+                    <p>Elle permet aussi de conserver le context (this) dans le cadre du développement orienté objet (class)</p>
+                    <p class="fragment">Mais ce sera un autre cours</p>
+                </section>
+
+                <section id="scope">
+                    <h2>Le scope</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Une variable déclarée en dehors du fonction pourra être utilisée dans la fonction</li>
+                        <li>Une variable déclarée dans la fonction ne pourra pas être utilisée en dehors de la fonction</li>
+                    </ul>
+                    <img src="src/img/jackie-chan-meme.jpg" alt="" width="400">
+                    <p>On appelle ça le <span class="hl">scope</span></p>
+                </section>
+
+                <section>
+                    <p><span class="hl">Le scope correspond à la portée d'une variable</span></p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 1
+
+function my_function()
+{
+    const bar = 2
+
+    console.log('in')
+    console.log(foo)
+    console.log(bar)
+}
+
+my_function()
+
+console.log('out')
+console.log(foo)
+console.log(bar)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Le résultat</p>
+                    <img src="src/img/screen-1.png" alt="" width="400">
+                    <p>Le scope est donc déterminé par l'endroit où la variable a été déclarée (que ce soit avec <span class="hl">var</span>, <span class="hl">const</span> ou <span class="hl">let</span>)</p>
+                    <p>Le scope ne dépasse pas la fonction où la variable a été déclarée</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+const foobar = 'coucou'
+console.log(foobar)
+
+                    </code></pre>
+                    <p>Si une variable est déclarée en dehors de toute fonction, elle est qualifiée de <hl>globale</hl></p>
+                </section>
+
+                <section>
+                    <p>Si une variable a le même nom qu'un des paramètres d'une fonction, le paramètre aura la priorité au sein de la fonction, mais la première variable ne sera pas modifiée</p>
+                    <pre><code data-trim contenteditable class="js">
+const foobar = 1
+
+function my_function(foobar)
+{
+    console.log(foobar)
+}
+
+my_function(2)
+
+console.log(foobar)
+                    </code></pre>
+                    <p class="fragment">Le résultat sera <span class="hl">2</span> suivi de <span class="hl">1</span></p>
+                </section>
+
+                <section>
+                    <p>La différence entre var, const et let est que le scope de <span class="hl">var</span> se limite aux fonctions alors que le scope de <span class="hl">let</span> et <span class="hl">const</span> se limite aux blocks</p>
+                    <p>Sont appelé <span class="hl">block</span> les sections normalement entourées d'accolades (if, for, while, etc.)</p>
+                </section>
+
+                <section>
+                    <p>Le code suivant va afficher "b" puis "a"</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = 'a'
+
+if(true)
+{
+    const foo = 'b'
+    console.log(foo)
+}
+
+console.log(foo)
+                    </code></pre>
+                    <p>Le premier foo n'a pas été modifié par le deuxième puisque le deuxième était scopé dans le block if</p>
+                </section>
+
+                <!-- DOM Element -->
+                <section id="dom-element">
+                    <h2>DOM Element</h2>
+                </section>
+
+                <section>
+                    <p>
+                        En JS, il est possible de manipuler le DOM.
+                        <br>Celui-ci se compose d'éléments appelés <span class="hl">DOM Element</span> ou <span class="hl">Node</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Récupérer ces éléments</h2>
+                    <p>
+                        Nous allons voir dans un premier temps comment récupérer ces éléments pour les stocker dans des variables et ensuite comment les modifier
+                    </p>
+                    <p>
+                        La page entière est considérée comme un DOM Element. On y accède en JS avec la variable <span class="hl">document</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">getElementById</h2>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.getElementById('hey')
+
+console.log(foo)
+                    </code></pre>
+                    <ul>
+                        <li>Renvoie un élément ayant l'ID <span class="u">hey</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">getElementsByClassName</h2>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.getElementsByClassName('hey')
+
+console.log(foo)
+                    </code></pre>
+                    <ul>
+                        <li>Renvoie un tableau d'éléments ayant la classe <span class="u">hey</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">getElementsByTagName</h2>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.getElementsByTagName('section')
+
+console.log(foo)
+                    </code></pre>
+                    <ul>
+                        <li>Renvoie un tableau d'éléments dont le tag est <span class="u">section</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">querySelector</h2>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelector('.toto')
+
+console.log(foo)
+                    </code></pre>
+                    <ul>
+                        <li>Renvoie le premier élément ayant la classe <span class="u">toto</span></li>
+                        <li>Fonctionne avec un sélecteur comme en CSS</li>
+                        <li>IE8+</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">querySelectorAll</h2>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelectorAll('.toto')
+
+for(const _key in foo)
+{
+    const bar = foo[_key]
+    console.log(bar)
+}
+                    </code></pre>
+                    <ul>
+                        <li>Similaire à <span class="hl">querySelector</span></li>
+                        <li>Renvoie un tableau de tous les éléments ayant la classe <span class="u">toto</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Manipuler l'élément</h2>
+                    <p>Une fois l'élément récupéré, il est possible de le modifier</p>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">Attributs</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Modifie l'attribut test (le créé s'il n'existe pas)
+foo.setAttribute('test','coucou')
+
+// Récupère l'attribut "test"
+console.log(foo.getAttribute('test'))
+
+// Supprime l'attribut "class"
+foo.removeAttribute('class')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">Style</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Modifie le style
+foo.style.backgroundColor = 'green'
+foo.style.width = '200px'
+foo.style.height = '200px'
+foo.style.height = '200px'
+foo.style.webkitBorderRadius = '100px'
+foo.style.mozBorderRadius = '100px'
+foo.style.borderRadius = '100px'
+                    </code></pre>
+                    <ul>
+                        <li>Les propriétés sont en <span class="hl">camelCase</span></li>
+                        <li>Bien préciser les unités</li>
+                        <li>Spécifier les préfixes si nécessaire</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">Classes</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Rajoute une classe
+foo.classList.add('toto')
+
+// Rajoute plusieurs classes
+foo.classList.add('lorem', 'ipsum')
+
+// Supprime une classe
+foo.classList.remove('lorem')
+
+// Demande si contient la classe
+console.log(foo.classList.contains('ipsum'))
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">innerText</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Remplace le contenu par "hey"
+foo.innerText = 'hey'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">innerHTML</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Remplace le contenu par du HTML
+foo.innerHTML = '&lt;span&gt;hey&lt;/span&gt;'
+                    </code></pre>
+                    <p>La différence avec <span class="hl">innerText</span> est la possibilité d'écrire du HTML</p>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">remove</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Supprime du DOM
+foo.remove()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3 class="no-text-transform">appendChild</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Place bar à la fin de l'élément foo
+foo.appendChild(bar)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Créer un élément</h3>
+                    <pre><code data-trim contenteditable class="js">
+// Créé un span et stock dans la variable "toto"
+const toto = document.createElement('span')
+
+// Lui ajoute la class "toto"
+toto.classList.add('toto')
+
+// Lui ajoute du texte
+toto.innerText = 'Coucou, je suis toto'
+
+// Le rajoute au DOM dans l'élément foo
+foo.appendChild(toto)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Événements</h2>
+                </section>
+
+                <section>
+                    <p>En JS, il est possible d'accomplir des actions quand un événement survient<br>Exemple : Le visiteur clique sur un bouton et un texte apparait</p>
+                    <p>On appelle cela <span class="u">écouter un événément</span></p>
+                </section>
+
+                <section>
+                    <p>Il existe des dizaines d'événements et ceux-ci dépendent de l'élément concerné</p>
+                    <p>On peut écouter l'événement <span class="u">click</span> sur une <span class="u">div</span>, mais on ne peut pas écouter l'événement <span class="u">play</span> dessus car <span class="u">play</span> est reservé à un élément de type <span class="u">audio ou video</span></p>
+                </section>
+
+                <section>
+                    <p>Pour déclencher une action lors d'un événement, il faut utiliser une <span class="hl">fonction</span>. Dans cette situation, cette fonction est qualifiée de <span class="hl">callback</span>.</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelector('.foo')
+
+foo.onclick = () =>
+{
+    console.log('click !')
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>On peut écouter plusieurs événements différents sur un même élément</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelector('.foo')
+
+foo.onclick = () =>
+{
+    console.log('click !')
+}
+
+foo.onmouseover = () =>
+{
+    console.log('Mouse over !')
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Liste d'événements de souris</p>
+                    <ul>
+                        <li>onclick</li>
+                        <li>onmousedown</li>
+                        <li>onmouseup</li>
+                        <li>onmouseenter</li>
+                        <li>onmouseleave</li>
+                        <li>onmouseover</li>
+                        <li>onmouseout</li>
+                        <li>onmousemove</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Liste d'événements de clavier</p>
+                    <ul>
+                        <li>onkeydown</li>
+                        <li>onkeyup</li>
+                        <li>onkeypress</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Liste d'événements de formulaire</p>
+                    <ul>
+                        <li>onchange</li>
+                        <li>onfocusin</li>
+                        <li>onfocusout</li>
+                        <li>onsubmit</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p><a href="http://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">Liste exhaustive des événements</a></p>
+                </section>
+
+                <section>
+                    <p>Un paramètre est envoyé au callback et permet d'obtenir des informations sur l'événement.</p>
+                    <p>Il suffit de rajouter un paramètre à la fonction dont on choisit le nom. On utilise en général <span class="hl">e</span> ou <span class="hl">event</span></p>
+                    <p>Ce paramètre est un objet possédant plusieurs propriétés et méthodes</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelector('.foo')
+
+foo.onclick = (event) =>
+{
+    console.log(event.clientX)
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>L'une des ces méthodes est <span class="hl">preventDefault()</span> et permet d'annuler le comportement de base</p>
+                    <pre><code data-trim contenteditable class="js">
+const foo = document.querySelector('.foo')
+
+foo.onkeydown = (event) =>
+{
+    event.preventDefault()
+    console.log('ok')
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Le problème de cette écriture et l'impossibilité d'écouter plusieurs fois un événements.</p>
+                    <pre><code data-trim contenteditable class="js">
+foo.onclick = () =>
+{
+    console.log('click 1')
+}
+foo.onclick = () =>
+{
+    console.log('click 2')
+}
+                    </code></pre>
+                    <p class="fragment">La solution est d'utiliser la méthode <span class="hl">addEventListener()</span></p>
+                    <pre class="fragment"><code data-trim contenteditable class="js">
+foo.addEventListener('click', () =>
+{
+    console.log('click 1')
+})
+foo.addEventListener('click', () =>
+{
+    console.log('click 2')
+})
+                    </code></pre>
+                </section>
+
+                <!-- INTERVAL/TIMEOUT -->
+                <section id="interval-timeout">
+                    <h2>Interval / Timeout</h2>
+                </section>
+
+                <section>
+                    <p>Il peut arriver qu'on ait besoin d'attendre un certain temps avant d'éxecuter une instruction</p>
+                    <p>La méthode <span class="hl">window.setTimeout()</span> permet de faire cela</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Le premier paramètre est le callback. C'est une fonction qui sera déclenchée à la fin du temps</li>
+                        <li>Le deuxième paramètre est le temps à attendre en millisecondes</li>
+                    </ul>
+                    <pre><code data-trim contenteditable class="javascript">
+window.setTimeout(() =>
+{
+    console.log('Ding !')
+}, 1000)
+                    </code></pre>
+                    <p class="fragment"><span class="hl">window</span> est un objet global possédant tout un tas de propriétés et méthodes</p>
+                </section>
+
+                <section>
+                    <p>Il peut arriver qu'on ait besoin de déclencher une même action plusieurs fois à intervalle régulier</p>
+                    <p>La méthode <span class="hl">window.setInterval()</span> permet de faire cela</p>
+                </section>
+
+                <section>
+                    <p>Les paramètres sont les mêmes que pour le setTimeout</p>
+                    <pre><code data-trim contenteditable class="javascript">
+window.setInterval(() =>
+{
+    console.log('Tick')
+}, 1000)
+                    </code></pre>
+                </section>
+
+                <!-- WTF JS -->
+                <section id="wtf-js">
+                    <h2>WTF JS</h2>
+                </section>
+
+                <section>
+                    <p>Javascript est loin d'être parfait</p>
+                    <pre><code data-trim contenteditable class="javascript">
+console.log(9999999999999999)
+                    </code></pre>
+                    <pre><code data-trim contenteditable class="javascript">
+console.log(0.1 + 0.2)
+                    </code></pre>
+                    <pre><code data-trim contenteditable class="javascript">
+console.log([2, 4, 7, 1, 3].sort())
+console.log([40, 100, 1, 5, 25].sort())
+                    </code></pre>
+                    <pre><code data-trim contenteditable class="javascript">
+console.log(10 / 'coucou')
+console.log(typeof NaN)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p><a href="http://wtfjs.com/" target="_blank">WtfJS.com</a></p>
+                </section>
+ 
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

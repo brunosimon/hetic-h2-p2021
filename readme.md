@@ -6,7 +6,7 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 
 ### Trimestre 1
 
-- [ ] CSS3 Transformations
+- [x] CSS3 Transformations
 - [ ] CSS3 Animations/transitions
 - [ ] JS
 - [ ] HTML5 Audio/video API
