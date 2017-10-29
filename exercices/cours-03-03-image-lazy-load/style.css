@@ -1,0 +1,17 @@
+.lazy-load
+{
+    display: inline-block;
+    background: #cccccc;
+}
+
+.lazy-load img
+{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.lazy-load.loaded img
+{
+    opacity: 1;
+}
+

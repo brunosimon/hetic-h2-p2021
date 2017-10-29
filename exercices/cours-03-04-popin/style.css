@@ -1,0 +1,64 @@
+body
+{
+    font-family: Helvetica;
+}
+
+.popin-trigger
+{
+    display: inline-block;
+    padding: 10px;
+    background: #cccccc;
+    text-decoration: none;
+    color: #fff;
+}
+
+.popin
+{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.popin.active
+{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popin .mask
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+}
+
+.popin .content
+{
+    position: relative;
+    padding: 40px;
+    border-radius: 4px;
+    background: #ffffff;
+    max-width: 60%;
+}
+
+.popin .close
+{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+}

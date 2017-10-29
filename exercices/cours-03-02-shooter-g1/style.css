@@ -1,0 +1,82 @@
+.shooter
+{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #fff 0%, #897a78 100%);
+    overflow: hidden;
+}
+
+.shooter .score
+{
+    font-family: Helvetica, Arial;
+    font-weight: bold;
+    opacity: 0.2;
+}
+
+.shooter .score .value
+{
+    font-size: 140px;
+}
+
+.shooter .score .unit
+{
+    font-size: 50px;
+}
+
+.shooter .targets
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.shooter .targets .target
+{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 12vw;
+    height: 12vw;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.shooter .targets .target::before
+{
+    display: block;
+    content: '';
+    position: absolute;
+    top: calc(100% / 6 * 1);
+    left: calc(100% / 6 * 1);
+    width: calc(100% / 6 * 4);
+    height: calc(100% / 6 * 4);
+    background: #ec0808;
+    border-radius: 50%;
+}
+
+.shooter .targets .target::after
+{
+    display: block;
+    content: '';
+    position: absolute;
+    top: calc(100% / 6 * 2);
+    left: calc(100% / 6 * 2);
+    width: calc(100% / 6 * 2);
+    height: calc(100% / 6 * 2);
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.shooter .targets .target::after
+{
+    content: '';
+}

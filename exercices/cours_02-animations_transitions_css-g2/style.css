@@ -40,7 +40,7 @@
 }
  */
 
-body
+/* body
 {
     text-align: center;
 }
@@ -49,14 +49,124 @@ body
 {
     position: absolute;
     top: 0;
-    left: -300px;
+    left: 0;
     width: 300px;
     height: 100%;
     background: #ccc;
-    transition: left 0.6s;
+    transform: translateX(-100%) translateZ(0);
+    transition: transform 0.6s;
+    will-change: width;
 }
 
 .menu.active
 {
-    left: 0;
+    transform: translateX(0%) translateZ(0);
+} */
+
+/* .equalizer
+{
+    margin: 100px auto;
+    width: 500px;
+    height: 300px;
+    background: #eeeeee;
+    font-size: 0;
 }
+
+.equalizer .bar
+{
+    display: inline-block;
+    width: 18%;
+    height: 100%;
+    margin: 0 1%;
+    background: #aaa;
+    animation: equalizer-bar-boom 1s infinite backwards;
+    will-change: transform;
+}
+
+.equalizer .bar-1 { animation-delay: 0.2s; }
+.equalizer .bar-2 { animation-delay: 0.7s; }
+.equalizer .bar-3 { animation-delay: 0.4s; }
+.equalizer .bar-4 { animation-delay: 0.5s; }
+.equalizer .bar-5 { animation-delay: 0.9s; }
+
+.equalizer:hover .bar
+{
+    animation-play-state: paused;
+}
+
+@keyframes equalizer-bar-boom
+{
+    0% { transform: scaleY(0.1); }
+    10% { transform: scaleY(1); }
+    100% { transform: scaleY(0.1); }
+} */
+
+.share
+{
+    position: relative;
+    margin: 150px;
+    width: 50px;
+    height: 50px;
+}
+
+.share .button
+{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.5s cubic-bezier(0.8, 0, 0.58, 1),
+                opacity 0.5s cubic-bezier(0.8, 0, 0.58, 1);
+    will-change: transform, opacity;
+}
+
+.share .icon
+{
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease-in-out;
+    will-change: transform;
+}
+
+.share .button:not(.trigger):hover .icon
+{
+    transform: translateX(5px);
+}
+
+.share .button.trigger
+{
+    z-index: 1;
+    cursor: pointer;
+}
+
+.share .button.trigger .icon
+{
+    top: 4px;
+    left: 4px;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(to top, #ebe8e6 0%, #fff 100%);
+    text-align: center;
+    color: #aaa;
+    line-height: 34px;
+}
+
+.share .button.facebook .icon { background: #3b5998; }
+.share .button.twitter .icon { background: #33ccff; }
+.share .button.instagram .icon { background: #125688; }
+
+.share:hover .button.facebook { opacity: 1; transform: translateY(100%); }
+.share:hover .button.twitter { opacity: 1; transform: translateY(200%); }
+.share:hover .button.instagram { opacity: 1; transform: translateY(300%); }
+
+.share .button.facebook { opacity: 0; transition-delay: 0.00s; }
+.share .button.twitter { opacity: 0; transition-delay: 0.05s; }
+.share .button.instagram { opacity: 0; transition-delay: 0.10s; }

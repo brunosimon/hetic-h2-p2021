@@ -1,0 +1,64 @@
+.shooter
+{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #fff 0%, #897a78 100%);
+}
+
+.shooter .score
+{
+    font-family: Helvetica, Arial;
+    opacity: 0.15;
+    font-weight: bold;
+}
+
+.shooter .score .value
+{
+    font-size: 140px;
+}
+
+.shooter .score .unit
+{
+    font-size: 40px;
+}
+
+.shooter .targets
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.shooter .target
+{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 8vw;
+    height: 8vw;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.shooter .target::before
+{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 16.666%;
+    left: 16.666%;
+    width: 33.333%;
+    height: 33.333%;
+    border: 1.333vw solid #c00;
+    border-radius: 50%;
+}
