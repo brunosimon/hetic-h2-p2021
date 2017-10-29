@@ -7,17 +7,26 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 ### Trimestre 1
 
 - [x] CSS3 Transformations
-- [ ] CSS3 Animations/transitions
-- [ ] JS
+- [x] CSS3 Animations/transitions
+- [x] JS
+    - [x] Menu toggle
+    - [x] Clock
+    - [x] Targets shooter
+    - [x] ! Image lazy loading
+    - [ ] Cursor
+    - [ ] Popin
+    - [ ] Carousel
+    - [ ] ! Drumkit
+    - [ ] ! Async navigation
+    - [ ] ! Search instagram with speech API
 - [ ] HTML5 Audio/video API
+- [ ] Versionning avec git
 - [ ] Responsive
-- [ ] Newsletter
 - [ ] Canvas
 - [ ] Clean code
 - [ ] Fonts
 - [ ] Task runners
 - [ ] Preprocessing CSS
-- [ ] Versionning avec git
 - [ ] WebGL avec Three.js
 
 ### Trimestre 2
