@@ -1,0 +1,29 @@
+body
+{
+    background: #33212b;
+}
+
+.drumkit .button
+{
+    display: inline-block;
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background-image: radial-gradient(circle at center, orange 0%, #ff5000 100%);
+    border-radius: 5px;
+    margin: 15px;
+    border: 1px solid #ff8f00;
+    cursor: pointer;
+}
+
+.drumkit .button .title
+{
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    color: #fff888;
+    font-family: Helvetica, Arial;
+    font-size: 11px;
+    text-transform: uppercase;
+    opacity: 0.65;
+}
