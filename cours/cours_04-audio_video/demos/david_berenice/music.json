@@ -1,0 +1,26 @@
+var music_data = [
+	{
+    "artist": "MØME",
+    "song_name": "EDELWEISS",
+		"music": "ressources/songs/mome_edelweiss.mp3",
+    "song_cover": "ressources/covers/mome_edelweiss.jpg"
+  },
+  {
+    "artist": "TYCHO",
+    "song_name": "AWAKE",
+		"music": "ressources/songs/awake.mp3",
+    "song_cover": "ressources/covers/tycho_awake.jpg"
+  },
+  {
+    "artist": "ODESZA",
+    "song_name": "HOW DID I GET HERE",
+		"music": "ressources/songs/how_did_i_get_here.mp3",
+    "song_cover": "ressources/covers/odesza_hdigh.jpg"
+  },
+  {
+    "artist": "SIA",
+    "song_name": "THE GREATEST",
+		"music": "ressources/songs/sia_the_greatest.mp3",
+    "song_cover": "ressources/covers/sia_the_greatest.png"
+  }
+]

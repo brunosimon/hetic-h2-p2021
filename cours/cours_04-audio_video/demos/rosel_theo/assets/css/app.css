@@ -1,0 +1,409 @@
+/*
+********** $Imports
+*/
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,800");
+/*
+********** $Variables
+*/
+/*
+********** $base
+*/
+body,
+html {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  font-family: 'Helvetica','Arial', sans-serif;
+  -webkit-user-select: none; }
+
+body {
+  background: #f9f9f9; }
+
+/*
+********** $Player
+*/
+.player {
+  width: 850px;
+  height: 478px;
+  margin: 50px auto;
+  background: black;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  /*
+  ********** $Canvas
+  */
+  /*
+  ********** $Title
+  */
+  /*
+  ********** $Ambilight
+  */
+  /*
+  ********** $Controls
+  */ }
+  .player canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    transform: scale(1.2);
+    -webkit-filter: blur(25px);
+    opacity: 0;
+    z-index: -1; }
+  .player .title {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    color: #fefefe;
+    text-shadow: 1px 1px 2px rgba(51, 51, 51, 0.8);
+    font-family: 'Open sans', arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 1;
+    transform: translateX(0%);
+    will-change: transform;
+    transition: all 0.3s ease-in-out; }
+  .player .toggle-ambilight {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    opacity: 1;
+    transform: translateY(0%);
+    will-change: transform;
+    transition: all 0.3s ease-in-out; }
+    .player .toggle-ambilight svg {
+      fill: #fefefe;
+      width: 20px;
+      height: auto;
+      transition: all 0.3s ease-in-out; }
+    .player .toggle-ambilight:hover svg {
+      fill: #1da1f2; }
+  .player .controls-linear-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.26) 38%, rgba(0, 0, 0, 0.6) 94%, rgba(0, 0, 0, 0.8) 100%);
+    /* Chrome10-25,Safari5.1-6 */ }
+  .player video {
+    width: 100%;
+    height: auto;
+    cursor: pointer; }
+  .player .controls {
+    position: absolute;
+    transform: translateY(0%);
+    opacity: 1;
+    bottom: 20px;
+    height: 40px;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    z-index: 2147483647; }
+    .player .controls .controls-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      /*
+      ********** $toggle-play
+      */
+      /*
+      ********** $timer / timer-total
+      */
+      /*
+      ********** $timeline
+      */
+      /*
+      ********** $volume
+      */
+      /*
+      ********** $volume bar
+      */
+      /*
+      ********** $fullscreen
+      */ }
+      .player .controls .controls-container .toggle-play {
+        display: inline-block;
+        width: 40px;
+        height: 100%;
+        margin-left: 20px;
+        position: relative;
+        cursor: pointer;
+        /*
+        ********** $play button
+        */
+        /*
+        ********** $pause button
+        */ }
+        .player .controls .controls-container .toggle-play .play {
+          position: absolute;
+          opacity: 1;
+          top: 50%;
+          left: 50%;
+          transform: translate(-10px, -10px);
+          transition: all 0.3s ease-in-out; }
+          .player .controls .controls-container .toggle-play .play svg {
+            height: 20px;
+            width: auto;
+            fill: #fefefe; }
+          .player .controls .controls-container .toggle-play .play:hover svg {
+            fill: #1da1f2;
+            transition: all 0.3s ease-in-out; }
+        .player .controls .controls-container .toggle-play .pause {
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-10px, 12px);
+          transition: all 0.3s ease-in-out; }
+          .player .controls .controls-container .toggle-play .pause svg {
+            height: 20px;
+            width: auto;
+            fill: #fefefe; }
+          .player .controls .controls-container .toggle-play .pause:hover svg {
+            fill: #1da1f2;
+            transition: all 0.3s ease-in-out; }
+      .player .controls .controls-container .timer {
+        display: inline-block;
+        width: 60px;
+        height: 100%;
+        margin-left: 15px;
+        font-size: 12px;
+        position: relative;
+        /*
+        ********** $timer container
+        */ }
+        .player .controls .controls-container .timer .timer-container {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-6px); }
+          .player .controls .controls-container .timer .timer-container span {
+            color: rgba(255, 255, 255, 0.55); }
+          .player .controls .controls-container .timer .timer-container .time-progress {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.9); }
+          .player .controls .controls-container .timer .timer-container .time-total {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.55); }
+      .player .controls .controls-container .timeline {
+        display: inline-block;
+        width: 480px;
+        height: 100%;
+        margin-left: 10px;
+        position: relative;
+        cursor: pointer;
+        /*
+        ********** $timeline container
+        */ }
+        .player .controls .controls-container .timeline .timeline-container {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 4px;
+          width: 480px;
+          background-color: rgba(255, 255, 255, 0.4);
+          -webkit-box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.8);
+          -webkit-border-radius: 3px;
+          /*
+          ********** $thumbnails
+          */
+          /*
+          ***** $timeline-progress
+          */ }
+          .player .controls .controls-container .timeline .timeline-container .thumbnails-timer {
+            position: relative;
+            top: -20px;
+            font-size: 20px; }
+          .player .controls .controls-container .timeline .timeline-container .thumbnails {
+            display: none;
+            width: 109px;
+            height: 62px;
+            position: absolute;
+            bottom: 20px;
+            left: -58px;
+            transform-origin: bottom center;
+            will-change: transform;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+            /*
+            ********** $thumbnails timer
+            */ }
+            .player .controls .controls-container .timeline .timeline-container .thumbnails:after {
+              content: "";
+              width: 0;
+              height: 0;
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-top: 10px solid rgba(255, 255, 255, 0.4);
+              position: absolute;
+              bottom: -12px;
+              left: 50%;
+              transform: translateX(-10px); }
+            .player .controls .controls-container .timeline .timeline-container .thumbnails .thumbnails-timer {
+              position: absolute;
+              bottom: 5px;
+              font-size: 14px;
+              color: rgba(255, 255, 255, 0.9); }
+          .player .controls .controls-container .timeline .timeline-container .timeline-progress {
+            height: 100%;
+            background: #1da1f2;
+            -webkit-box-shadow: inset 0px 1px 2px 0px #1b8dd1;
+            -webkit-border-radius: 3px;
+            transform: scaleX(0.5);
+            transform-origin: 0 0;
+            will-change: transform; }
+        .player .controls .controls-container .timeline:hover .thumbnails {
+          display: block; }
+      .player .controls .controls-container .volume {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 100%;
+        margin-left: 20px;
+        cursor: pointer; }
+        .player .controls .controls-container .volume .volume-button {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-9px); }
+          .player .controls .controls-container .volume .volume-button svg {
+            height: 20px;
+            width: auto;
+            fill: #fefefe; }
+          .player .controls .controls-container .volume .volume-button:hover svg {
+            fill: #1da1f2; }
+          .player .controls .controls-container .volume .volume-button .volume-mute {
+            display: none; }
+          .player .controls .controls-container .volume .volume-button .volume-high {
+            display: block; }
+      .player .controls .controls-container .volume-bar {
+        display: inline-block;
+        position: relative;
+        bottom: 17px;
+        height: 4px;
+        width: 60px;
+        background-color: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 3px;
+        cursor: pointer; }
+        .player .controls .controls-container .volume-bar .volume-progress {
+          height: 100%;
+          background: #1da1f2;
+          -webkit-box-shadow: inset 0px 1px 2px 0px #1b8dd1;
+          transform: scaleX(0);
+          transform-origin: 0 0;
+          will-change: transform;
+          -webkit-border-radius: 3px; }
+      .player .controls .controls-container .toggle-fullscreen {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 100%;
+        margin-left: 10px;
+        /*
+        ********** $extend button
+        */
+        /*
+        ********** $reduce button
+        */ }
+        .player .controls .controls-container .toggle-fullscreen .extend {
+          position: absolute;
+          opacity: 1;
+          top: 50%;
+          left: 50%;
+          cursor: pointer;
+          transform: translate(-10px, -10px);
+          transition: all 0.3s ease-in-out; }
+          .player .controls .controls-container .toggle-fullscreen .extend svg {
+            height: 20px;
+            width: auto;
+            fill: #fefefe; }
+          .player .controls .controls-container .toggle-fullscreen .extend:hover svg {
+            fill: #1da1f2;
+            transition: all 0.3s ease-in-out; }
+        .player .controls .controls-container .toggle-fullscreen .reduce {
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          cursor: pointer;
+          transform: translate(-10px, 12px);
+          transition: all 0.3s ease-in-out; }
+          .player .controls .controls-container .toggle-fullscreen .reduce svg {
+            height: 20px;
+            width: auto;
+            fill: #fefefe; }
+          .player .controls .controls-container .toggle-fullscreen .reduce:hover svg {
+            fill: #1da1f2;
+            transition: all 0.3s ease-in-out; }
+
+/*
+********** $mouse-moving class
+*/
+.player.mouse-moving .controls {
+  transform: translateY(120%);
+  opacity: 0; }
+.player.mouse-moving .toggle-ambilight {
+  transform: translateY(-120%);
+  opacity: 0; }
+.player.mouse-moving .title {
+  transform: translateX(-130%);
+  opacity: 0; }
+
+/*
+***** $is-playing class
+*/
+.player.is-playing .controls .controls-container .toggle-play .play {
+  opacity: 0;
+  transform: translate(-10px, -40px);
+  transition: all 0.3s ease-in-out; }
+.player.is-playing .controls .controls-container .toggle-play .pause {
+  opacity: 1;
+  transform: translate(-10px, -10px);
+  transition: all 0.3s ease-in-out; }
+
+/*
+********** $full-screen
+*/
+.player.full-screen .controls .controls-container .toggle-fullscreen .extend {
+  opacity: 0;
+  transform: translate(-10px, -40px);
+  transition: all 0.3s ease-in-out; }
+.player.full-screen .controls .controls-container .toggle-fullscreen .reduce {
+  opacity: 1;
+  transform: translate(-10px, -10px);
+  transition: all 0.3s ease-in-out; }
+
+/*
+********** $mute player
+*/
+.player.mute .controls .controls-container .volume .volume-button .volume-mute {
+  display: block; }
+.player.mute .controls .controls-container .volume .volume-button .volume-high {
+  display: none; }
+
+/*
+********** $ambilight mode
+*/
+.player.ambilight-mode {
+  overflow: visible; }
+  .player.ambilight-mode canvas {
+    opacity: 0.65; }
+  .player.ambilight-mode .toggle-ambilight svg {
+    fill: #1da1f2; }
+  .player.ambilight-mode .toggle-ambilight:hover svg {
+    fill: #fefefe; }
+
+/*
+********** $native controls remove
+*/
+*::-webkit-media-controls {
+  display: none !Important; }

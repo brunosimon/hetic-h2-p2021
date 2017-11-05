@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+@import "tools/variables";
+
+@import "vendors/reset";
+@import "vendors/responsive";
+@import "base/base";
+
+@import "layout/header";
+@import "layout/content";
+@import "layout/footer";
+@import "components/player";

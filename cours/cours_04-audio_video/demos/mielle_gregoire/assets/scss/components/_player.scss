@@ -1,0 +1,706 @@
+.gg-player
+{
+    position: relative;
+    margin: 0 auto;
+    margin: 50px 0px;
+    font-size: 0;
+
+    video
+    {
+        width: 100%;
+        height: auto;
+    }
+
+    .gg-player-overlay
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: calc(100% - 62px);
+    }
+
+    .gg-player-controls
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+
+        .gg-player-controls-top
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 62px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+            padding: 30px;
+
+            .gg-player-controls-top-infos
+            {
+                color: $white;
+
+                .gg-player-controls-top-infos-title
+                {
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    margin-bottom: 10px;
+                    color: $white;
+                }
+
+                .gg-player-controls-top-infos-description
+                {
+                    font-size: 0.9rem;
+                    font-weight: 400;
+                    line-height: 1.4;
+                    max-width: 60%;
+                    color: $white;
+                }
+            }
+
+            .gg-player-controls-top-share
+            {
+                position: absolute;
+                top: 22px;
+                right: 35px;
+                z-index: 99;
+
+                button
+                {
+                    position: relative;
+                    display: block;
+
+                    svg
+                    {
+                        position: absolute;
+                        height: auto;
+
+                        path, polygon
+                        {
+                            fill: $white;
+                            transition: fill 0.2s ease-in-out;
+                        }
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+
+                        svg
+                        {
+                            path, polygon
+                            {
+                                fill: $main-color;
+                            }
+                        }
+                    }
+                }
+
+                .gg-player-controls-top-share-facebook
+                {
+                    width: 18px;
+                    height: 30px;
+                }
+
+                .gg-player-controls-top-share-twitter
+                {
+                    width: 16px;
+                    height: 30px;
+                    transform: translateX(2px);
+                }
+
+                .gg-player-controls-top-share-googleplus
+                {
+                    width: 20px;
+                    height: 30px;
+                    transform: translateX(1px) translateY(-4px);
+                }
+            }
+        }
+
+        .gg-player-controls-bottom
+        {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 62px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+
+            .gg-player-controls-bottom-state
+            {
+                position: absolute;
+                bottom: 24px;
+                left: 30px;
+                width: 16px;
+                height: 16px;
+
+                .gg-player-controls-bottom-state-button
+                {
+                    .play-state
+                    {
+                        display: block;
+                    }
+
+                    .pause-state
+                    {
+                        display: none;
+                    }
+
+                    svg
+                    {
+                        width: 100%;
+                        height: auto;
+
+                        path
+                        {
+                            position: absolute;
+                            fill: $white;
+                            transition: fill 0.2s ease-in-out;
+                        }
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+
+                        svg
+                        {
+                            path
+                            {
+                                fill: $main-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gg-player-controls-bottom-volume
+            {
+                position: absolute;
+                bottom: 44px;
+                left: 180px;
+
+                .gg-player-controls-bottom-volume-button
+                {
+                    position: relative;
+
+                    svg
+                    {
+                        position: absolute;
+                        height: auto;
+
+                        path
+                        {
+                            fill: $white;
+                            transition: fill 0.2s ease-in-out;
+                        }
+                    }
+
+                    .no-volume
+                    {
+                        top: 0;
+                        left: 0;
+                        width: 27px;
+                        display: none;
+                    }
+
+                    .zero-volume
+                    {
+                        top: 2px;
+                        left: -4px;
+                        width: 23px;
+                        display: none;
+                    }
+
+                    .one-volume
+                    {
+                        top: 2px;
+                        left: -1px;
+                        width: 23px;
+                        display: none;
+                    }
+
+                    .two-volume
+                    {
+                        top: 1px;
+                        left: 0px;
+                        width: 25px;
+                        display: none;
+                    }
+
+                    .three-volume
+                    {
+                        top: -1px;
+                        left: 0px;
+                        width: 28px;
+                        display: none;
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+
+                        svg
+                        {
+                            path
+                            {
+                                fill: $main-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gg-player-controls-bottom-fullscreen
+            {
+                position: absolute;
+                bottom: 20px;
+                right: 30px;
+                width: 20px;
+                height: 20px;
+
+                .gg-player-controls-bottom-fullscreen-button
+                {
+                    svg
+                    {
+                        width: 100%;
+                        height: auto;
+
+                        path
+                        {
+                            position: absolute;
+                            fill: $white;
+                            transition: fill 0.2s ease-in-out;
+                        }
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+
+                        svg
+                        {
+                            path
+                            {
+                                fill: $main-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gg-player-controls-bottom-cinema
+            {
+                position: absolute;
+                bottom: 23px;
+                right: 66px;
+                width: 26px;
+                height: 20px;
+
+                .gg-player-controls-bottom-cinema-button
+                {
+                    svg
+                    {
+                        width: 100%;
+                        height: auto;
+
+                        path
+                        {
+                            position: absolute;
+                            fill: $white;
+                            transition: fill 0.2s ease-in-out;
+                        }
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+
+                        svg
+                        {
+                            path
+                            {
+                                fill: $main-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gg-player-controls-bottom-thumb
+            {
+                position: absolute;
+                width: 642px;
+                height: 362px;
+                transform: scale(0.34);
+                transform-origin: bottom;
+                display: none;
+            }
+
+            .gg-player-controls-bottom-time
+            {
+                position: absolute;
+                bottom: 24px;
+                left: 70px;
+                color: rgba(255, 255, 255, 0.35);
+                font-weight: 300;
+                font-size: 0.85rem;
+
+                .current-time
+                {
+                    color: rgba(255, 255, 255, 0.9);
+                }
+            }
+
+            .gg-player-controls-bottom-bar
+            {
+                position: relative;
+                width: 100%;
+                height: 3px;
+                transform: scaleY(1);
+                will-change: transform;
+                background: rgba(255, 255, 255, 0.2);
+                transition: transform 0.3s ease-in-out;
+
+                .gg-player-controls-bottom-bar-progression
+                {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $main-color;
+                    transform-origin: left;
+                    transform: scaleX(0);
+                    will-change: transform;
+                }
+
+                &:hover
+                {
+                    cursor: pointer;
+                    transform: scaleY(2.2);
+                }
+
+                &:before
+                {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    top: 1px;
+                    width: 100%;
+                    height: 20px;
+                    background: transparent;
+                    padding: 4px 0px;
+                    transform: translateY(-50%);
+                }
+            }
+
+            .gg-player-controls-bottom-volumebar
+            {
+                position: relative;
+                bottom: -28px;
+                left: 220px;
+                width: 100px;
+                height: 3px;
+                transform: scaleY(1);
+                will-change: transform;
+                background: rgba(255, 255, 255, 0.2);
+                transition: transform 0.3s ease-in-out;
+
+                .gg-player-controls-bottom-volumebar-progression
+                {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $main-color;
+                    transform-origin: left;
+                    transform: scaleX(0.3);
+                    will-change: transform;
+                }
+
+                &:hover
+                {
+                    cursor: pointer;
+                    transform: scaleY(2.2);
+                }
+
+                &:before
+                {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    top: -1px;
+                    width: 100%;
+                    height: 15px;
+                    background: transparent;
+                    padding: 4px 0px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+
+    &:hover
+    {
+        .gg-player-controls
+        {
+            opacity: 1;
+        }
+    }
+}
+
+.gg-player.playing
+{
+    .gg-player-controls
+    {
+        .gg-player-controls-bottom
+        {
+            .gg-player-controls-bottom-state
+            {
+                .play-state
+                {
+                    display: none;
+                }
+
+                .pause-state
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player.paused
+{
+    .gg-player-controls
+    {
+        opacity: 1;
+    }
+}
+
+.gg-player.fullscreen
+{
+    width: 100%;
+    height: 100%;
+}
+
+.gg-player.cinema
+{
+    position: fixed;
+    z-index: $zindex-4;
+    margin: 0 auto;
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.gg-player.volume-no
+{
+    .gg-player-controls-bottom
+    {
+        .gg-player-controls-bottom-volume
+        {
+            .gg-player-controls-bottom-volume-button
+            {
+                .no-volume
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player.volume-zero
+{
+    .gg-player-controls-bottom
+    {
+        .gg-player-controls-bottom-volume
+        {
+            .gg-player-controls-bottom-volume-button
+            {
+                .zero-volume
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player.volume-one
+{
+    .gg-player-controls-bottom
+    {
+        .gg-player-controls-bottom-volume
+        {
+            .gg-player-controls-bottom-volume-button
+            {
+                .one-volume
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player.volume-two
+{
+    .gg-player-controls-bottom
+    {
+        .gg-player-controls-bottom-volume
+        {
+            .gg-player-controls-bottom-volume-button
+            {
+                .two-volume
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player.volume-three
+{
+    .gg-player-controls-bottom
+    {
+        .gg-player-controls-bottom-volume
+        {
+            .gg-player-controls-bottom-volume-button
+            {
+                .three-volume
+                {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.gg-player-background
+{
+    position: fixed;
+    z-index: $zindex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.94);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.gg-player-background.visible
+{
+    z-index: $zindex-3;
+    opacity: 1;
+}
+
+
+@media screen and (max-width: 850px)
+{
+    .gg-player-controls-bottom-cinema
+    {
+        display: none;
+    }
+
+    .gg-player-controls-top-infos-description
+    {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 750px)
+{
+    .gg-player
+    {
+        .gg-player-controls
+        {
+            .gg-player-controls-top
+            {
+                .gg-player-controls-top-infos
+                {
+                    .gg-player-controls-top-infos-title
+                    {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .gg-player-controls-top-share
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 550px)
+{
+    .gg-player
+    {
+        .gg-player-controls
+        {
+            .gg-player-controls-top
+            {
+                .gg-player-controls-top-infos
+                {
+                    .gg-player-controls-top-infos-title
+                    {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+
+            .gg-player-controls-bottom
+            {
+                .gg-player-controls-bottom-volume, .gg-player-controls-bottom-volumebar
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px)
+{
+    .gg-player
+    {
+        .gg-player-controls
+        {
+            .gg-player-controls-top
+            {
+                .gg-player-controls-top-infos
+                {
+                    .gg-player-controls-top-infos-title
+                    {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

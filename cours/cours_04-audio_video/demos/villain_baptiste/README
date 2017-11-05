@@ -1,0 +1,58 @@
+/*************************************************
+
+    README - Baptiste VILLAIN H2 G1 - Projet 2
+    
+*************************************************/
+
+
+/***********
+  FEATURES
+************/
+
+- Video player
+- Play/Pause
+- Drag&Drop Circular Volume button
+- Drag&Drop Horizontal seekbar
+- Toggle Mute
+- Time display
+- Toggle fullscreen
+- Thumbnail
+- Refresh the page but keep your informations with localStorage
+
+- Playlist
+- Generate playlist from JSON
+- Next button / Prev button
+- Toggle loop/next track
+
+- Keyboard commands:
+- left/right arrow: backward/forward currentTime
+- up/down arrow: up/down volume
+- m: toggle mute
+- f: toggle fullscreen
+- j/l: next/previous track
+
+tips: hold shift to increase incrementation.
+
+should do: 
+- set volume on click.
+
+
+/***********
+   TECHNO
+************/
+
+- HTML/CSS
+- JS
+- JSON
+- LocalStorage
+
+
+/***********
+   THANKS
+************/
+
+- DRIBBBLE
+- STACKOVERFLOW
+- MDN
+
+bugs: if you have any troubles with drag&drop or thumbnail position, refresh the page without the inspector mode.

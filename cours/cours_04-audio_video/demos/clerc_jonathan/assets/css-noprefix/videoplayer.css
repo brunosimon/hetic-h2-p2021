@@ -1,0 +1,872 @@
+
+/* 
+ * ------------------------------------
+ *               PLAYER
+ * ------------------------------------
+ * 
+ */
+
+.player {
+    position: relative;
+    width: 100%;
+    /* Ratio of 1280/720 */
+    padding-bottom: 56.25%;
+    transition: all .3s;
+    background: black;
+    outline: none;
+    color: #222;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    animation: popup 0.85s;
+}
+
+@keyframes popup {
+    0%   { opacity: 0; transform: translateY(30px) scale(0.95, 0.95); }
+    33%  { opacity: 0; }
+    100% { opacity: 1; transform: translateY(0px)  scale(1, 1); }
+}
+
+.player .color {
+    background: #333;
+}
+
+.player.red .color {
+    background: #F0153A;
+}
+
+.player.blue .color {
+    background: #35A3D5;
+}
+
+.player.green .color {
+    background: #80CA10;
+}
+
+/* 
+ * ------------------------------------
+ *               AMBIENT
+ * ------------------------------------
+ * 
+ */
+
+.player.failed .ambient,
+.player.paused .ambient {
+    opacity: 0;
+    transition: opacity 0.5s, z-index 0s ease 0.5s;
+    z-index: -1000;
+}
+
+.player .ambient {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s, z-index 0s;
+    z-index: 0;
+}
+
+.player .light {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.0);
+    z-index: 5;
+}
+
+.player .light .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.player .light.mask {
+    background: radial-gradient(ellipse at center -600px, transparent 33%, rgba(0, 0, 0, 0.5) 100%);
+    opacity: 0;
+}
+
+.player .light.active {
+    opacity: 1;
+    z-index: 10;
+    animation: appear 1s linear;
+}
+
+@keyframes appear {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* 
+ * ------------------------------------
+ *               VIDEO
+ * ------------------------------------
+ * 
+ */
+
+.player .content {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.player .video-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.player .video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.player .loading-preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+}
+
+.player .loading-preview.active {
+    display: block;
+}
+
+/* 
+ * ------------------------------------
+ *             INDICATORS
+ * ------------------------------------
+ * 
+ */
+
+.player .indicators {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+.player.loading .indicator-loading {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.player.failed .indicator-loading,
+.player.loading.paused:not(.seeking) .indicator-loading,
+.player .indicator-loading {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+    transition: all 0.3s .25s;
+}
+
+.player .indicator-loading .icon {
+    position: absolute;
+    animation: rotate 1s infinite linear;
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: -30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-bottom-color: white;
+}
+
+@keyframes rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.player.paused .indicator-play {
+    opacity: 0.9;
+    transform: scale(1, 1) rotate(0);
+}
+
+.player.seeking .indicator-play,
+.player.failed .indicator-play,
+.player .indicator-play {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+    transition: all 0.3s;
+}
+
+.player .indicator-play .icon {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -16px;
+    left: -10px;
+    border-top: 16px solid transparent;
+    border-left: 28px solid rgba(255, 255, 255, 0.95);
+    border-bottom: 16px solid transparent;
+    transition: border .3s;
+}
+
+.player .indicator-play:hover .icon {
+    border-left: 28px solid white;
+}
+
+.player .indicator-error {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+    transition: all 0.3s;
+}
+
+.player.failed .indicator-error {
+    opacity: 1;
+    transform: scale(1, 1) rotate(0);
+}
+
+.player .indicator-error {
+    position: absolute;
+    top: -26px;
+    left: -26px;
+}
+
+.player .indicator-error .label {
+    position: absolute;
+    width: 51px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.player .indicator-error .icon {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 26px solid transparent;
+    border-bottom: 46px solid white;
+    border-right: 26px solid transparent;
+}
+
+.player .indicator-error .text {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+/* 
+ * ------------------------------------
+ *               PANEL
+ * ------------------------------------
+ * 
+ */
+
+.player .panel {
+    position: absolute;
+    left: 0; 
+    height: 40px;
+    width: 100%;
+    bottom: 0;
+    opacity: 1;
+    transition: all .3s ease-out;
+    transition-timing-function: cubic-bezier(.55,0,.1,1);
+}
+
+.player.fullscreen .panel {
+    position: fixed;
+}
+
+.player.fullscreen .content {
+    overflow: visible;
+}
+
+.player.fullscreen .ambient {
+    display: none;
+}
+
+.player.failed .panel,
+.player .panel.hide {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.player .panel .wrapper {
+    padding: 0 15px;
+}
+
+.player .panel .inner {
+    position: relative;
+}
+
+/* 
+ * ------------------------------------
+ *           SEEKING PREVIEW
+ * ------------------------------------
+ * 
+ */
+
+.player .panel .seeking-preview {
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all .1s;
+}
+
+.player.seeking .panel .seeking-preview.loaded {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all .15s .15s;
+}
+
+.player .panel .seeking-preview .video-source {
+    display: none;
+}
+
+.player .panel .seeking-preview .frame-preview {
+    position: absolute;
+    width: 160px;
+    height: 90px;
+    top: -45px;
+    left: -80px;
+    text-align: center;
+}
+
+.player .panel .seeking-preview .frame-canvas {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.player .panel .seeking-preview .frame-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 6px;
+}
+
+.player .panel .seeking-preview .frame-label .center-label {
+    padding: 4px 6px;
+    color: white;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.player .panel .seeking-preview .thumbnails {
+    white-space: nowrap;
+    transform: translateX(0);
+    height: 45px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.player .panel .seeking-preview .thumbnails .thumbnail {
+    width: 80px;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.player .panel .seeking-preview .thumbnails .thumbnail:last-of-type {
+    border-right: 0;
+}
+
+/* 
+ * ------------------------------------
+ *              CONTROLS
+ * ------------------------------------
+ * 
+ */
+
+.player .panel .controls {
+    height: 36px;
+    position: absolute;
+    top: 4px;
+    width: 100%;
+}
+
+.player .panel-shadow {
+    width: 120%;
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    box-shadow: 0 0 60px 15px black;
+}
+
+/* 
+ * ------------------------------------
+ *            PROGRESS BAR
+ * ------------------------------------
+ * 
+ */
+
+.player .progress-bar {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    padding: 10px 0 3px 0;
+    top: -10px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.player .progress-bar .inner {
+    background: rgba(130, 130, 130, 0.7);
+    height: 100%;
+    overflow: hidden;
+}
+
+.player .progress-bar .progress {
+    height: 100%;
+    position: absolute;
+}
+
+.player .progress-bar .progress-loaded {
+    background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    transform: translateX(-100%) translateZ(0);
+    transition: transform 50ms linear;
+}
+
+.player .progress-bar .progress-viewed {
+    width: 100%;
+    transform: translateX(-100%) translateZ(0);
+    transition: transform 100ms linear;
+}
+
+.player.seeking .progress-bar .progress-viewed {
+    transition: none;
+}
+
+.player .progress-bar .bubble-bar {
+    position: absolute;
+    width: 100%;
+    top: 9px;
+    left: -3px;
+    transition: transform 100ms linear;
+    transform: translateX(0);
+}
+
+.player.seeking .progress-bar .bubble-bar {
+    transition: none;
+}
+
+.player .progress-bar .bubble-bar .bubble {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* 
+ * ------------------------------------
+ *              BUTTONS
+ * ------------------------------------
+ * 
+ */
+
+.player .buttons {
+    height: 100%;
+    top: 4px;
+}
+
+.player .buttons > *, .buttons .button {
+    display: inline-block;
+    float: left;
+    position: relative;
+    width: 40px;
+    height: 100%;
+}
+
+.player .buttons.buttons-left {
+    float: left;
+}
+
+.player .buttons.buttons-right {
+    float: right;
+}
+
+/* Play/pause */
+.player .buttons .button.play-state .play {
+    position: absolute;
+    top: 9px;
+    left: 14px;
+    width: 0;
+    height: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 16px solid #E5E5E5;
+    transform: scale(1, 1) rotate(0deg);
+    transition: all .4s;
+    transform-origin: 7px 50%;
+}
+
+.player .buttons .button.play-state.clicked .play {
+    opacity: 0;
+    transform: scale(0.5, 0.5) rotate(180deg);
+}
+
+.player .buttons .button.play-state .pause {
+    transform: scale(0.5, 0.5) rotate(-180deg);
+    transition: all .4s;
+    transform-origin: 20px 18px;
+    opacity: 0;
+}
+
+.player .buttons .button.play-state.clicked .pause {
+    transform: scale(1, 1) rotate(0deg);
+    opacity: 1;
+}
+
+.player .buttons .button.play-state .pause .bar {
+    position: absolute;
+    width: 6px;
+    height: 15px;
+    top: 10px;
+    transition: all .3s;
+    background: #FAFAFA;
+}
+
+.player .buttons .button.play-state:hover .pause .bar {
+    background: #FFFFFF;
+}
+
+.player .buttons .button.play-state .pause .bar-1 {
+    left: 12px;
+}
+
+.player .buttons .button.play-state .pause .bar-2 {
+    right: 12px;
+}
+
+.player .buttons .button.play-state:hover .play {
+    border-left: 16px solid #FFFFFF;
+}
+
+/* Volume */
+.player .buttons .button.volume-toggle .icon {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+}
+
+.player .buttons .button.volume-toggle .square {
+    position: absolute;
+    top: 5px;
+    width: 5px;
+    height: 5px;
+    background: #E5E5E5;
+    transition: all .3s;
+}
+
+.player .buttons .button.volume-toggle:hover .square {
+    background: #FFFFFF;
+}
+
+.player .buttons .button.volume-toggle .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #E5E5E5;
+    transition: all .3s;
+}
+
+.player .buttons .button.volume-toggle:hover .triangle {
+    border-right: 8px solid #FFFFFF;
+}
+
+.player .buttons .button.volume-toggle .sound-min {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    width: 2px;
+    height: 7px;
+    border-radius: 0 4px 4px 0;
+    background: #E5E5E5;
+    transition: all .5s;
+    transition-delay: .35s;
+}
+
+.player .buttons .button.volume-toggle.clicked .sound-min {
+    opacity: 0;
+    transition-delay: .15s;
+}
+
+.player .buttons .button.volume-toggle:hover .sound-min {
+    background: #FFFFFF;
+}
+
+.player .buttons .button.volume-toggle .sound-max {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+    width: 4px;
+    height: 11px;
+    border-radius: 0 14px 14px 0;
+    border: 1px solid #E5E5E5;
+    border-left: none;
+    transition: all .3s;
+    transition-delay: .5s;
+}
+
+.player .buttons .button.volume-toggle:hover .sound-max {
+    border-color: #FFFFFF;
+    border-left: none;
+}
+
+.player .buttons .button.volume-toggle.clicked .sound-max {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.player .buttons .button.volume-toggle .sound-muted {
+    position: absolute;
+    left: 8px;
+    font-size: 12px;
+    font-family: sans-serif;
+    line-height: 1.2;
+    color: #E5E5E5;
+    margin: 0;
+    padding: 0;
+    transition: all .3s;
+    transition-delay: 0s;
+    opacity: 0;
+}
+
+.player .buttons .button.volume-toggle:hover .sound-muted {
+    color: #FFFFFF;
+}
+
+.player .buttons .button.volume-toggle.clicked .sound-muted {
+    opacity: 1;
+    transform: translateX(2px);
+    transition-delay: .5s;
+}
+
+.player .buttons .volume {
+    width: auto;
+}
+
+.player .buttons .volume .volume-slider {
+    width: 0;
+    overflow: hidden;
+    transition: all .3s;
+    transition-delay: .5s;
+}
+
+.player .buttons .volume.dragging .volume-slider,
+.player .buttons .volume:hover .volume-slider {
+    width: 60px;
+    transition-delay: 0s;
+}
+
+.player .buttons .volume .volume-slider .bar-slider {
+    position: absolute;
+    top: 10px;
+    height: 4px;
+    padding: 6px 0;
+    width: 50px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.player .buttons .volume .volume-slider .bar-slider .bar {
+    position: absolute;
+    height: 4px;
+}
+
+.player .buttons .volume .volume-slider .bar-slider .bar-off {
+    width: 100%;
+    background: rgba(130, 130, 130, 0.7);
+}
+
+.player .buttons .volume .volume-slider .bar-slider .bar-on {
+    width: 100%;
+    border-right: 4px solid #FAFAFA;
+    box-sizing: border-box;
+    transition: transform .1s;
+    transform: translateX(0) translateZ(0);
+}
+
+.player .buttons .volume.dragging .volume-slider .bar-slider .bar-on {
+    transition: none;
+}
+
+/* Timer */
+.player .buttons .timer {
+    width: auto;
+    color: #DDD;
+    padding: 10px 0 0 6px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.player .buttons .timer .current {
+    width: auto; 
+    color: #FAFAFA;
+}
+
+/* Sharing */
+/* The icon is too complex to be rendered at 1:1, so it is made bigger then reduced */
+.player .buttons .button.share .icon {
+    position: absolute;
+    top: 11px;
+    left: 13px;
+    transform-origin: 0 0;
+    transform: translateZ(0) scale(0.08, 0.08);
+    transition: all .3s;
+}
+
+.player .buttons .button.share .circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.player .buttons .button.share .bar {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    transform-origin: 0 50%;
+}
+
+.player .buttons .button.share .circle-1 { transform: translate(0px, 50px); }
+.player .buttons .button.share .circle-2 { transform: translate(100px, 00px); }
+.player .buttons .button.share .circle-3 { transform: translate(100px, 100px); }
+
+.player .buttons .button.share .bar-1 { transform: translate(40px, 65px) rotate(-30deg); }
+.player .buttons .button.share .bar-2 { transform: translate(40px, 65px) rotate(30deg); }
+
+.player .buttons .button.share .circle,
+.player .buttons .button.share .bar {
+    background: #E5E5E5;
+    transition: background .3s;
+}
+
+.player .buttons .button.share:hover .circle,
+.player .buttons .button.share:hover .bar {
+    background: #FFFFFF;
+}
+
+.player .share-link {
+    position: absolute;
+    bottom: 52px;
+    right: 17px;    
+}
+
+.player .share-link .link {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    padding: 4px;
+    background: #FAFAFA;
+    border: 1px solid #CCC;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #444;
+    border-radius: 2px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.player .share-link .link:active,
+.player .share-link .link:focus {
+    outline: none;
+    color: #000;
+}
+
+.player .buttons .button.share .triangle::before {
+    content: ' ';
+    position: absolute;
+    left: 11px;
+    top: -17px;
+    border-top: 9px solid #CCC;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+}
+
+.player .buttons .button.share .triangle::after {
+    content: ' ';
+    position: absolute;
+    left: 12px;
+    top: -17px;
+    border-top: 8px solid #FAFAFA;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+.player .share-link,
+.player .buttons .button.share .triangle {
+    transition: transform .2s, opacity .2s, z-index 0s ease .2s;
+    transform: translateY(-10px);
+    opacity: 0;
+    z-index: -1;
+}
+
+.player .buttons .button.share .triangle.active,
+.player .share-link.active {
+    transition: transform .2s, opacity .2s, z-index 0s 0s;
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 0;
+}
+
+/* Quality */
+.player .buttons .button.hd {
+    overflow: hidden;
+}
+
+.player .buttons .button.hd .text,
+.player .buttons .button.hd:focus .text,
+.player .buttons .button.hd:active .text,
+.player .buttons .button.hd:visited .text {
+    text-decoration: none;
+}
+
+.player .buttons .button.hd .text {
+    position: absolute;
+    color: #E5E5E5;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    transition: transform .3s;
+}
+
+.player .buttons .button.hd:hover .text {
+    color: #FFFFFF;
+}
+
+.player .buttons .button.hd .text-top            { transform: scale(1.0, 1.0) translateY(0px); }
+.player .buttons .button.hd.clicked .text-top    { transform: scale(0.0, 0.0) translateY(-50px); }
+.player .buttons .button.hd .text-bottom         { transform: scale(0.0, 0.0) translateY(50px); }
+.player .buttons .button.hd.clicked .text-bottom { transform: scale(1.0, 1.0) translateY(0px); }
+
+/* Fullscreen */
+.player .buttons .button.fullscreen .icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 12px;
+    height: 5px;
+    border: 3px solid #E5E5E5;
+    transition: all .3s;
+}
+
+.player .buttons .button.fullscreen:hover .icon {
+    border: 3px solid #FFFFFF;
+    transform: scale(1.1, 1.1);
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote - player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/remote.css">
+</head>
+<body>
+    <div class="container">
+        <div class="remote">
+            <!-- ALL the buttons -->
+            <div class="line playbar">
+                <a href="#" class="toggle-play"><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-pause" aria-hidden="true"></i></a>
+                <a href="#" class="autoMode active"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+            </div>
+            <div class="line next-prev-bar">
+                <a href="#" class="go-prev"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                <a href="#" class="go-next"><i class="fa fa-forward" aria-hidden="true"></i></a>
+            </div>
+            <div class="line change-video-bar">
+                <a href="#" class="step-backward"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                <a href="#" class="step-forward"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+            </div>
+            <div class="line sound-bar">
+                <a href="#" class="sound-up"><i class="fa fa-volume-up" aria-hidden="true"></i></a>
+                <a href="#" class="sound-down"><i class="fa fa-volume-down" aria-hidden="true"></i></a>
+            </div>
+            <div class="line mute-playlist-bar">
+                <a href="#" class="mute"><i class="fa fa-volume-off" aria-hidden="true"></i></a>
+                <a href="#" class="playlist"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <!-- Playlist -->
+        <div class="menu">
+            <div class="menu-playlist">
+                <div class="playlist-el " index-tab=0>
+                    <div class="playlist-el-pic pic-index-1"></div>
+                    <div class="playlist-el-info">
+                        <!--- Dynamic content-->
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="playlist-el" index-tab=1>
+                    <div class="playlist-el-pic pic-index-2"></div>
+                    <div class="playlist-el-info">
+                        <!--- Dynamic content-->
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="playlist-el" index-tab=2>
+                    <div class="playlist-el-pic pic-index-3"></div>
+                    <div class="playlist-el-info">
+                        <!--- Dynamic content-->
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="playlist-el" index-tab=3>
+                    <div class="playlist-el-pic pic-index-4"></div>
+                    <div class="playlist-el-info">
+                        <!--- Dynamic content-->
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="scripts/socket.io.js" charset="utf-8"></script>
+<script src="scripts/remote.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+var videos = {
+  "video_1": {
+    "title": "The Simpsons Opening",
+    "duration": "00:33",
+    "poster_src": "resources/posters/poster-1.jpg",
+    "video_src": "resources/video-1.mp4"
+  },
+  "video_2": {
+    "title": "Futurama Opening",
+    "duration": "00:16",
+    "poster_src": "resources/posters/poster-2.jpg",
+    "video_src": "resources/video-2.mp4"
+  },
+  "video_3":{
+    "title": "Futurama Couch Gag",
+    "duration": "00:36",
+    "poster_src": "resources/posters/poster-3.jpg",
+    "video_src": "resources/video-3.mp4"
+  }
+}

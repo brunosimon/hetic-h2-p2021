@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player with UI Background</title>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="style/reset.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Google Font Link Roboto -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,400,100' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <!-- Background Video blured for harmony color with the player -->
+    <!-- this is the SD version because i made a blur on -->
+    <video class="bg" src="src/video/DrakeSD.mp4"></video>
+
+    <!-- Global Player -->
+    <div class="player">
+
+        <!-- Information of the video -->
+        <div class="information">
+            <div class="content">
+                <h1>Drake</h1>
+                <h2>Hotline Bling</h2>
+                <p>Music Clip</p>
+            </div>
+        </div>
+
+        <!-- Source of the video, for my example : Drake  -->
+        <video src="src/video/DrakeSD.mp4" height="400"></video>
+
+        <!-- All the controlers -->
+        <div class="controls">
+
+            <!-- Seek-Bar & Time display -->
+            <div class="timer">
+                <input type="range" value="0" step="any" class="seekbar range">
+                <div class="time">
+                    <span class="current_time">00'00''</span>
+                    <span class="total_time">00'00''</span>
+                </div>
+            </div>
+
+            <!-- All the button -->
+            <div class="buttoncontrol">
+                <!-- Sound Seek-bar Controler -->
+                <div class="sound">
+                    <button class="mute"><img src="src/img/sound_2.svg"></button>
+                    <input class="volume" type="range" value="0.8" max="1" min="0" step="any">
+                </div>
+
+                <!-- Back, Play & Pause Buttons -->
+                <div class="principalcontrol">
+                    <button class="fast-back"><img src="src/img/retour.svg"></button>
+                    <button class="etat"><img src="src/img/play.svg"></button>
+                    <button class="fast-forward"><img src="src/img/avance.svg"></button>
+                </div>
+
+                <!-- Extra control, replay, fullscreen & Quality -->
+                <div class="extracontrol">
+                    <button class="reload"><img src="src/img/replay.svg"></button>
+                    <button class="fullscreen"><img src="src/img/fullscreen.svg"></button>
+                    <button class="quality"><img src="src/img/HD.svg"></button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

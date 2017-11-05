@@ -1,0 +1,20 @@
+{
+  "name": "player_w_remote",
+  "version": "1.0.0",
+  "description": "add remote to player",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm install && npm start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/"
+  },
+  "author": "Joseph Q.",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socketio": "^1.0.0"
+  }
+}

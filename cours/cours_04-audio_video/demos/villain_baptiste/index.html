@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Vintage TV</title>
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="resources/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="resources/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="resources/favicon/manifest.json">
+    <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="resources/favicon/favicon.ico">
+    <meta name="msapplication-config" content="resources/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+  <body>
+    <div class="tv-container">
+      <div class="tv-top">
+        <div class="antenne antenne-1"></div>
+        <div class="antenne antenne-2"></div>
+        <div class="top"></div>
+      </div>
+      <div class="tv">
+        <div class="player-container">
+          <div class="player">
+            <div class="poster">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+            <video src="resources/video-1.mp4"></video>
+          </div>
+        </div>
+        <div class="controls-container">
+          <div class="controls-buttons">
+            <div class="controls-title-volume">
+              <span>volume</span>
+              <div class="light volume-light">
+                <div class="diode diode-mid"></div>
+              </div>
+            </div>
+            <div class="controls-volume">
+              <div class="units">
+                <div class="unit top">0</div>
+                <div class="unit left">25</div>
+                <div class="unit bottom">50</div>
+                <div class="unit right">75</div>
+                <div class="mark top"></div>
+                <div class="mark left"></div>
+                <div class="mark bottom"></div>
+                <div class="mark right"></div>
+              </div>
+              <a href="#" class="button-volume"></a>
+            </div>
+            <div class="controls-list">
+              <div class="control">
+                <div class="title">mute</div>
+                <div class="button button-mute">
+                  <div class="side left">
+                    <div class="light"></div>
+                  </div>
+                  <div class="side right"></div>
+                </div>
+              </div>
+              <div class="control">
+                <div class="title">full screen</div>
+                <div class="button button-fullscreen">
+                  <div class="side left">
+                    <div class="light"></div>
+                  </div>
+                  <div class="side right"></div>
+                </div>
+              </div>
+              <div class="control">
+                <a href="#" class="button-playlist">
+                  select vhs
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="controls-speaker">
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+            <div class="speaker"></div>
+          </div>
+          <div class="playlist-container">
+            <div class="video-list">
+              <!-- generate playlist here -->
+            </div>
+            <a href="#" class="button-close-playlist">
+              back
+            </a>
+          </div>
+        </div>
+        <div class="controls-bottom-seek-bar">
+          <div class="thumbnail-container">
+            <video src="resources/video-1.mp4" muted autoplay></video>
+            <div class="thumbnail-time">
+              <span class="thumbnail-minute"></span>
+              <span class="thumbnail-second"></span>
+            </div>
+          </div>
+          <div class="seek-bar">
+            <div class="fill"></div>
+          </div>
+          <a href="#" class="button-seek-bar"></a>
+        </div>
+        <div class="controls-bottom-displaytime">
+          <span class="minute">00</span>
+          :
+          <span class="second">00</span>
+        </div>
+        <a href="#" class="toggle-transition">
+          <span class="repeat">
+            <i class="material-icons">repeat</i>
+          </span>
+          <span class="normal">
+            <i class="material-icons">shuffle</i>
+          </span>
+        </a>
+        <a href="#" class="playlist-controls control-prev">
+          <i class="material-icons">fast_rewind</i>
+        </a>
+        <a href="#" class="controls-bottom-toggleplay">
+          <span><i class="material-icons">pause</i></span>
+          <span><i class="material-icons">play_arrow</i></span>
+        </a>
+        <a href="#" class="playlist-controls control-next">
+          <i class="material-icons">fast_forward</i>
+        </a>
+      </div>
+      <div class="tv-bottom"></div>
+    </div>
+    <script src="resources/data.json"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

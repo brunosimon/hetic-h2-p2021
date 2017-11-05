@@ -1,0 +1,27 @@
+This project was realised for the purposes of learning and deepen how to use audio or video HTML5 API in javascript.
+
+FEATURES
+
+- background :
+	- day or night theme mode on automatic or manual : on automatic night theme between 19h and 7h. Otherwise day theme. For manual theme : it's launch when click on moon or sun icons, and change color of different elements.
+	- Display time like HH:MM:SS
+	- toggle icons sun or moon
+	- On change of music, change of background : depend of the theme, night : one color, day : pick a color randomly from an array of light colors.
+
+- player : 
+	- on charged page, on next, previous : load a song (name, artist, cover, duration) using a json file
+	- when music is done lauch the next
+	- display currentTime of the audio and audio duration
+	- volume control (toggle volume 0/1 on the first line)
+	- timeline : filling with the currentTime and clickable to avance the music
+	- key that have an action : 
+		- pressbar == play/pause
+		- arrow right/left == +1s/-1s
+		- a/d == previous/next
+
+
+INSPIRATIONS
+
+I found inspiration on the website behance.
+
+Bérénice DAVID, H2G1.

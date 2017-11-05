@@ -1,0 +1,19 @@
+.header
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 0px;
+    background: $main-color;
+    color: $white;
+    text-align: center;
+    z-index: $zindex-2;
+
+    .header-title
+    {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}

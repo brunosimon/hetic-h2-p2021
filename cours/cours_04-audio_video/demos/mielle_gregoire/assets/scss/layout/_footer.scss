@@ -1,0 +1,31 @@
+.footer
+{
+    width: 100%;
+    padding: 90px 15px;
+    background: $light-grey;
+    text-align: center;
+
+    p
+    {
+        margin-bottom: 18px;
+        font-size: 1.3rem;
+    }
+
+    .footer-links
+    {
+        ul
+        {
+            li
+            {
+                display: inline-block;
+                padding: 0px 5px;
+
+                a
+                {
+                    color: $grey;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="player">
+
+            <div class="player-data player-overlay">
+                <!--- Dynamic content-->
+                <h1></h1>
+                <p></p>
+            </div>
+
+            <video src="videos/interstellar.mp4"></video>
+
+            <div class="player-bar player-overlay">
+
+                <div class="controls">
+                    <a href="#" class="go-prev"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                    <a href="#" class="toggle-play"><i class="fa fa-play" aria-hidden="true"></i><i class="fa fa-pause" aria-hidden="true"></i></a>
+                    <a href="#" class="go-next"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="seek-bar bar">
+
+                    <div class="thumbmail">
+                        <div class="thumbmail-container">
+                            <video class="thumbmail-video" src="videos/interstellar.mp4" mute></video>
+                            <div class="thumbmail-time-container">
+                                <div class="thumbmail-video-time-content">
+                                    <span>1:78</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="seek-bar-full">
+                        <div class="seek-bar-progress">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="controls-plus">
+                    <a href="#" class="sound">
+                        <!-- icons -->
+                        <span class="contain-icons"><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i></span>
+                        <!-- bar -->
+                        <div class="sound-bar bar">
+                            <div class="sound-bar-full">
+                                <div class="sound-bar-progress"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="fullscreen"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
+                </div>
+
+            </div>
+
+            <div class="controls-top player-overlay">
+                <a href="#" class="remote"><i class="fa fa-mobile" aria-hidden="true"></i></a>
+                <a href="#" class="autoMode active"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                <a href="readme.md" target="_blank" class="help"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                <a href="#" class="playlist"><i class="fa fa-bars" aria-hidden="true"></i><i class="fa fa-times" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu">
+                <div class="menu-content menu-playlist">
+
+                    <div class="playlist-el active" index-tab=0>
+                        <div class="playlist-el-pic pic-index-1"></div>
+                        <div class="playlist-el-info">
+                            <!--- Dynamic content-->
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="playlist-el" index-tab=1>
+                        <div class="playlist-el-pic pic-index-2"></div>
+                        <div class="playlist-el-info">
+                            <!--- Dynamic content-->
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="playlist-el" index-tab=2>
+                        <div class="playlist-el-pic pic-index-3"></div>
+                        <div class="playlist-el-info">
+                            <!--- Dynamic content-->
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="playlist-el" index-tab=3>
+                        <div class="playlist-el-pic pic-index-4"></div>
+                        <div class="playlist-el-info">
+                            <!--- Dynamic content-->
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="menu-content menu-remote">
+                    <h3>Scannez ce code avec votre mobile</h3>
+                    <div id="qrcode"></div>
+                    <h3 class="connectionStatut">Non connecté</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<script src="scripts/qrcode.min.js" charset="utf-8"></script>
+    <script src="scripts/socket.io.js" charset="utf-8"></script>
+    <script src="scripts/desktop.js" charset="utf-8"></script>
+
+</body>
+
+</html>

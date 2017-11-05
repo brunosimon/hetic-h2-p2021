@@ -1,0 +1,41 @@
+
+html, body {
+    background: radial-gradient(ellipse at center -600px, #A6AAB5 0%, #1E232D 100%);
+    transition: background 500ms;
+    color: #222;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+table.center {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table.center > tr {
+    height: 100%;    
+}
+
+table.center > tr > td {
+    height: 100%;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.player-center {
+    margin: auto;
+    text-align: left;
+    width: 600px;
+}
+
+@media (max-width: 600px) {
+    .player-center {
+        width: 100%;
+        height: auto;
+    }    
+}

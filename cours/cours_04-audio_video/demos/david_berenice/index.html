@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listen</title>
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/db84e84968.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="background">
+			<div class="frame"></div>
+			<div class="background_fill"></div>
+		</div>
+		
+		<a href="#" class="toggle_theme sun">
+			<i class="fa fa-sun-o day" aria-hidden="true"></i>
+			<i class="fa fa-moon-o night" aria-hidden="true"></i>
+		</a>
+		
+		<div class="time_display"></div>
+		
+		<div class="player">
+			<div class="cover">
+				<img src="" alt="album_cover">
+			</div>
+			<div class="song_infos">
+				<div class="song">SONG NAME</div>
+				<div class="artist">ARTIST</div>
+			</div>
+			<div class="timeline">
+				<div class="audio_current"></div>
+				<div class="timeline_current"></div>
+				<div class="audio_full_time"></div>
+			</div>
+			
+			<div class="controls">
+				<a href="#" class="previous">
+					<i class="fa fa-step-backward" aria-hidden="true"></i>
+				</a>
+				<a href="#" class="toggle_play">
+					<i class="fa fa-play play" aria-hidden="true"></i>
+					<i class="fa fa-pause pause" aria-hidden="true"></i>
+				</a>
+				<a href="#" class="next">
+					<i class="fa fa-step-forward" aria-hidden="true"></i>
+				</a>
+				<a href="#" class="sound_container">
+					<div class="sound sound_1"></div>
+					<div class="sound sound_2"></div>
+					<div class="sound sound_3"></div>
+					<div class="sound sound_4"></div>
+					<div class="sound sound_5"></div>
+				</a>
+			</div>
+			
+			<audio
+				src=""
+			></audio> 
+		</div>
+	</div>
+	
+	<script src="music.json"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>

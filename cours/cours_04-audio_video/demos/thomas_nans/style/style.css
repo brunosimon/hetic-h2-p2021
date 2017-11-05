@@ -1,0 +1,374 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: #998DD2;
+
+    font-family: Helvetica,Arial;
+    font-size: 14px;
+}
+
+/* ======================== */
+/* === VIDEO BACKGROUND === */
+/* ======================== */
+
+.bg{
+     position:absolute;
+
+     height: 100%;
+
+     filter:                         blur(500px);
+            -webkit-filter:          blur(500px);
+                -moz-filter:         blur(500px);
+                    -o-filter:       blur(500px);
+                        -ms-filter:  blur(500px);
+}
+
+/* ======================== */
+/* ======== PLAYER ======== */
+/* ======================== */
+
+.player{
+    position: relative;
+    top: 130px;
+
+    width: 711px;
+    margin: auto;
+}
+
+.player video{
+    border-radius: 5px;
+}
+
+/* ======== INFOS ======== */
+
+.information{
+    position: absolute;
+    z-index: 1;
+
+    width: 711px;
+    height: 400px;
+
+    -webkit-transition:          opacity .3s ease-in-out;
+        -moz-transition:         opacity .3s ease-in-out;
+            -ms-transition:      opacity .3s ease-in-out;
+                -o-transition:   opacity .3s ease-in-out;
+                    transition:  opacity .3s ease-in-out;
+
+    opacity: 1;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0.00) 30%, #000000 100%);
+    background-image: -o-linear-gradient(rgba(0,0,0,0.00) 30%, #000000 100%);
+    background-image: linear-gradient(rgba(0,0,0,0.00) 30%, #000000 100%);
+}
+
+.information .content{
+    margin-top: 230px;
+    margin-left: 10px;
+
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 6px #000000;
+}
+
+.information .content h1{
+    color: white;
+    font-size: 40px;
+}
+
+.information .content h2{
+    color: white;
+     font-size: 30px;
+}
+
+.information .content p{
+    margin-top: 5px;
+
+    text-transform: uppercase;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* ======== CONTROLS ======== */
+
+.controls{
+    position: absolute;
+    z-index: 2147483647; /*(For the fullscreen)*/
+    opacity: 1; /* For a first view */
+
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    -webkit-transition:           opacity .4s ease-in-out;
+        -moz-transition:          opacity .4s ease-in-out;
+            -ms-transition:       opacity .4s ease-in-out;
+                -o-transition:    opacity .4s ease-in-out;
+                    transition:   opacity .4s ease-in-out;
+}
+
+/* SEEK BAR & TIME */
+
+.timer{
+    position: absolute;right: 8px;
+    bottom: 40px;
+    left: 8px;
+}
+
+/* SEEKBAR */
+
+.timer .seekbar {
+    width: 100%;
+    -webkit-appearance: none; /* Delete Style of the normal input range */
+}
+
+/* Custom input Range with Browser compatibility */
+/* THUMB */
+
+.seekbar::-webkit-slider-thumb {width: 8px;height: 8px;margin-top: -3.4px;cursor: pointer;border-radius: 40px;background: #AD17FF;-webkit-appearance: none;}
+
+.seekbar::-moz-range-thumb {width: 8px;height: 8px;margin-top: -3.4px;cursor: pointer;border-radius: 40px;background: #AD17FF;}
+
+.seekbar::-ms-thumb {width: 8px;height: 8px;margin-top: -3.4px;cursor: pointer;border-radius: 40px;background: #AD17FF;}
+
+/* SLIDER - BUG WITH THE OPACTIY (RGBA), read the readme for more informations*/
+
+.seekbar::-webkit-slider-runnable-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.seekbar::-moz-range-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.seekbar::-ms-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.seekbar:focus {
+    outline: none;
+    background: none;
+}
+
+/* TIME */
+
+.timer .time{
+    width: 100%;
+    margin: auto;
+    padding-top:5px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    opacity: 0.7;
+}
+
+.time .current_time{
+    float: left;
+}
+
+.time .total_time{
+    float: right;
+}
+
+/* SOUND CONTROL */
+
+.sound{
+    position: relative;
+    z-index: 4;
+    bottom: 5px;
+    left: 5px;
+
+    display: inline-block;
+    float: left;
+}
+
+/* The name is not very good but if you click on, the video sound is mute */
+.sound .mute{
+    width: 30px;
+
+    cursor: pointer;
+
+    opacity: 0.4;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.sound .mute:hover{
+    opacity: 1;
+}
+
+/*SOUND BAR*/
+
+.sound .volume {
+    position: relative;
+    bottom: 9px;
+    left: 5px;
+
+    width: 60px;
+
+    opacity : 0.4; /* The RGBA of the Slider Volume bug, so i choose to fix this with a opacity */
+
+    -webkit-appearance:  none;
+        -moz-appearance: none;
+            appearance:  none;
+}
+
+/*It's again the modification of the input range apparence*/
+
+/* THUMB */
+
+.sound .volume::-webkit-slider-thumb {width: 3px;height: 10px;margin-top: -4px;cursor: pointer;background: #fefefe;-webkit-appearance: none;}
+
+.sound .volume::-moz-range-thumb {width: 8px;height: 15px;margin-top: -4px;cursor: pointer;background: #fefefe;}
+
+.sound .volume::-ms-thumb {width: 8px;height: 15px;margin-top: -4px;cursor: pointer;background: #fefefe;}
+
+/* SLIDER */
+
+.sound .volume::-webkit-slider-runnable-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.sound .volume::-moz-range-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.sound .volume::-ms-track {width: 100%;height: 2px;cursor: pointer;border-radius: 40px;background: rgba(255, 255, 255, 0.4);}
+
+.sound .volume:focus {
+    outline: none;
+    background: none;
+}
+
+/* BASIC CONTROL (PLAY, PAUSE, BACK & FORWARD) */
+
+.principalcontrol{
+    position: absolute;
+    z-index: 2;
+
+    right:0;
+    bottom: 6px;
+    left:0;
+
+    text-align:center;
+}
+
+/*FAST BACK*/
+
+.principalcontrol .fast-back{
+    position: relative;
+    bottom: 12px;
+
+    cursor: pointer;
+
+    opacity: 0.6;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.principalcontrol .fast-back:hover{
+     opacity: 1;
+}
+
+
+/*BOUTTON PLAY / PAUSE*/
+
+.principalcontrol .etat{
+    cursor: pointer;
+
+    opacity: 0.6;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.principalcontrol .etat:hover{
+     opacity: 1;
+}
+
+
+/*FORWARD*/
+
+.principalcontrol .fast-forward{
+    position: relative;
+    bottom: 12px;
+
+    cursor: pointer;
+
+    opacity: 0.6;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.fast-forward:hover{
+    opacity: 1;
+}
+
+
+/*EXTRA CONTROL*/
+
+.extracontrol{
+    position:absolute;
+    z-index: 4;
+    right: 5px;
+    bottom:10px;
+
+    float:right;
+}
+
+/* REPLAY THE VIDEO */
+
+.extracontrol .reload{
+    position: relative;
+    top: 2px;
+
+    cursor: pointer;
+
+    opacity: 0.4;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.extracontrol .reload:hover{
+    opacity: 1;
+}
+
+/* FULL SCREEN */
+
+.extracontrol .fullscreen{
+    cursor: pointer;
+
+    opacity: 0.4;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.extracontrol .fullscreen:hover{
+    opacity: 1;
+}
+
+/* CHANGE THE QUALITY HD OR SD */
+
+.extracontrol .quality{
+    cursor: pointer;
+
+    opacity: 0.4;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.extracontrol .quality:hover{
+    opacity: 1;
+}
+
+/*DON'T SHOW THE DEFUALT CONTROLE OF FULL SCREEN*/
+
+video::-webkit-media-controls {
+  display:none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}

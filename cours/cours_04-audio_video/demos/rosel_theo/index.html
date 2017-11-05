@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> player | ROSEL </title>
+        <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    </head>
+    <body>
+        <div class="player">
+            <span class="title"> The Martian </span>
+            <span class="toggle-ambilight">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="533.333px" height="533.333px" viewBox="0 0 533.333 533.333" style="enable-background:new 0 0 533.333 533.333;"
+                	 xml:space="preserve">
+                <g>
+                	<path d="M165.494,533.333c-35.545-73.962-16.616-116.343,10.703-156.272c29.917-43.728,37.627-87.013,37.627-87.013
+                		s23.518,30.573,14.11,78.39c41.548-46.25,49.389-119.938,43.115-148.159c93.914,65.63,134.051,207.737,79.96,313.054
+                		c287.695-162.776,71.562-406.339,33.934-433.775c12.543,27.435,14.922,73.88-10.416,96.42C331.635,33.333,225.583,0,225.583,0
+                		c12.543,83.877-45.466,175.596-101.404,244.13c-1.965-33.446-4.053-56.525-21.641-88.531
+                		C98.59,216.357,52.157,265.884,39.583,326.76C22.551,409.2,52.341,469.562,165.494,533.333z"/>
+                </g>
+                </svg>
+            </span>
+            <div class="controls-linear-overlay"></div>
+
+            <!-- $video -->
+            <video poster="assets/img/poster.jpg" controls="none">
+                <source src="assets/img/themartian.mp4">
+            </video>
+
+            <!-- $controls -->
+            <div class="controls">
+                <div class="controls-container">
+
+                    <!-- $play/pause-->
+                    <div class="toggle-play">
+                        <div class="play">
+                            <svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.35 36.59">
+                                <title>play</title>
+                                <path class="cls-1" d="M29.41,16.82,3.44.55C1.56-.7,0,.24,0,2.74V34c0,2.19,1.56,3.13,3.44,2.19L29.41,20a2.16,2.16,0,0,0,.94-1.56A2.16,2.16,0,0,0,29.41,16.82Z"/>
+                            </svg>
+                        </div>
+                        <div class="pause">
+                            <svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.93 37.84">
+                                <title>pause</title>
+                                <path class="cls-1" d="M31,0H25.12a2.92,2.92,0,0,0-2.94,2.94v32a2.92,2.92,0,0,0,2.94,2.94H31a2.92,2.92,0,0,0,2.94-2.94v-32A2.92,2.92,0,0,0,31,0Z"/>
+                                <path class="cls-1" d="M8.81,0H2.94A2.92,2.92,0,0,0,0,2.94v32a2.92,2.92,0,0,0,2.94,2.94H8.81a2.92,2.92,0,0,0,2.94-2.94v-32A2.92,2.92,0,0,0,8.81,0Z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- $timer -->
+                    <div class="timer">
+                        <div class="timer-container">
+                            <div class="time-progress">0:00</div><span> / </span><div class="time-total">0:00</div>
+                        </div>
+                    </div>
+
+                    <!-- $timeline -->
+                    <div class="timeline">
+                        <div class="timeline-container">
+                            <span class="thumbnails">
+                                <span class="thumbnails-timer">0:00</span>
+                                <video  controls="none">
+                                    <source src="assets/img/themartian.mp4">
+                                </video>
+                            </span>
+                            <div class="timeline-progress"></div>
+                        </div>
+                    </div>
+
+                    <!-- $volume -->
+                    <div class="volume">
+                        <div class="volume-button">
+                            <svg class="volume-mute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.09 59.49">
+                                <title>volume-mute</title>
+                                <path class="cls-1" d="M8.14,22.64a2.09,2.09,0,0,0,0-4.17c-4.49,0-8.14,3.14-8.14,7V43.26c0,3.87,3.65,7,8.14,7a2.09,2.09,0,0,0,0-4.18c-2.14,0-4-1.3-4-2.83V25.47C4.18,23.94,6,22.64,8.14,22.64Z" transform="translate(0 -4.17)"/>
+                                <path class="cls-1" d="M33.4,63.67a2.09,2.09,0,0,0,2.09-2.09V6.26A2.09,2.09,0,0,0,32.28,4.5l-20.33,13a2.09,2.09,0,0,0-1,1.76V49a2.08,2.08,0,0,0,1,1.78L32.31,63.36A2.1,2.1,0,0,0,33.4,63.67Zm-2.09-5.83-16.16-10V20.41L31.31,10.07Z" transform="translate(0 -4.17)"/><path class="cls-1" d="M51.38,26.61,47,31l-4.37-4.37a1.06,1.06,0,0,0-1.53,0l-1.86,1.86a1.06,1.06,0,0,0,0,1.53l4.37,4.37-4.37,4.37a1.06,1.06,0,0,0,0,1.53l1.86,1.86a1.06,1.06,0,0,0,1.53,0L47,37.76l4.37,4.37a1.06,1.06,0,0,0,1.53,0l1.86-1.86a1.06,1.06,0,0,0,0-1.53L50.4,34.37,54.77,30a1.06,1.06,0,0,0,0-1.53l-1.86-1.86A1.16,1.16,0,0,0,51.38,26.61Z" transform="translate(0 -4.17)"/>
+                            </svg>
+                            <svg class="volume-high" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.97 59.49">
+                                <title>volume-high</title>
+                                <path class="cls-1" d="M8.14,22.64a2.09,2.09,0,0,0,0-4.17c-4.49,0-8.14,3.14-8.14,7V43.26c0,3.87,3.65,7,8.14,7a2.09,2.09,0,0,0,0-4.18c-2.14,0-4-1.3-4-2.83V25.47C4.18,23.94,6,22.64,8.14,22.64Z" transform="translate(0 -4.17)"/>
+                                <path class="cls-1" d="M33.4,63.67a2.09,2.09,0,0,0,2.09-2.09V6.26A2.09,2.09,0,0,0,32.28,4.5l-20.33,13a2.09,2.09,0,0,0-1,1.76V49a2.08,2.08,0,0,0,1,1.78L32.31,63.36A2.1,2.1,0,0,0,33.4,63.67Zm-2.09-5.83-16.16-10V20.41L31.31,10.07Z" transform="translate(0 -4.17)"/>
+                                <path class="cls-1" d="M56,7.18a2.09,2.09,0,0,0-.94,2.8A59.55,59.55,0,0,1,55,56.24a2.09,2.09,0,1,0,3.85,1.63C70.13,31.24,59.29,9,58.82,8.11A2.09,2.09,0,0,0,56,7.18Z" transform="translate(0 -4.17)"/><path class="cls-1" d="M49.42,52.46a2.09,2.09,0,0,0,2.68-1.24,49.8,49.8,0,0,0,0-34.71,2.09,2.09,0,0,0-3.83,1.66,46.4,46.4,0,0,1,0,31.61A2.09,2.09,0,0,0,49.42,52.46Z" transform="translate(0 -4.17)"/>
+                                <path class="cls-1" d="M43.2,43.21a2.15,2.15,0,0,0,.43,0,2.09,2.09,0,0,0,2-1.65,37.46,37.46,0,0,0,0-15.44,2.09,2.09,0,0,0-4,1,33.78,33.78,0,0,1,0,13.56A2.09,2.09,0,0,0,43.2,43.21Z" transform="translate(0 -4.17)"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- $Volume bar -->
+                    <div class="volume-bar">
+                        <div class="volume-progress"></div>
+                    </div>
+
+                    <!-- $fullscreen -->
+                    <div class="toggle-fullscreen">
+                        <div class="extend">
+                            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242.13 242.13"><title>expand</title>
+                                <g id="_Groupe_" data-name="&lt;Groupe&gt;">
+                                    <path id="_Tracé_" data-name="&lt;Tracé&gt;" d="M89.25,131.67,41.52,179.4,25.61,163.49A15,15,0,0,0,0,174.1v53a15,15,0,0,0,15,15H68.05a15,15,0,0,0,10.14-26.06L62.73,200.62l47.73-47.73a15,15,0,0,0-21.21-21.21Z" transform="translate(0 0)"/>
+                                    <path id="_Tracé_2" data-name="&lt;Tracé&gt;" d="M227.13,0h-53a15,15,0,0,0-10.61,25.61L179.4,41.52,131.68,89.25a15,15,0,1,0,21.21,21.21l47.73-47.73,15.91,15.91A15,15,0,0,0,242.13,68V15A15,15,0,0,0,227.13,0Z" transform="translate(0 0)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="reduce">
+                            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242.13 242.13">
+                                <title>reduce</title>
+                                <path id="_Tracé_" data-name="&lt;Tracé&gt;" d="M25.61,237.74,73.34,190l15.91,15.91a15,15,0,0,0,25.61-10.61v-53a15,15,0,0,0-15-15H46.8a15,15,0,0,0-10.14,26.06L52.12,168.8,4.39,216.53a15,15,0,0,0,21.21,21.21Z" transform="translate(0 0)"/>
+                                <path id="_Tracé_2" data-name="&lt;Tracé&gt;" d="M142.28,114.85h53a15,15,0,0,0,10.61-25.61L190,73.34l47.73-47.73A15,15,0,1,0,216.53,4.39L168.8,52.12,152.89,36.21a15,15,0,0,0-25.61,10.61v53A15,15,0,0,0,142.28,114.85Z" transform="translate(0 0)"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- $canvas -->
+            <canvas></canvas>
+        </div>
+
+        <script type="text/javascript" src="assets/js/app.js"></script>
+
+    </body>
+</html>
