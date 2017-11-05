@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 1 - Cours 05 - Responsive</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 05</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <!-- INTRO -->
+                <section>
+                    <h1>Responsive</h1>
+                </section>
+
+                <section>
+                    <p>Capacité d'un site web à s'adapter à son environnement de visualisation</p>
+                    <p class="fragment">Le responsive ne concerne pas que la résolution</p>
+                </section>
+
+                <section>
+                    <p>En opposition avec l'ancienne pratique qui consistait à faire plusieurs sites et à rediriger l'utilisateur selon le device détecté</p>
+                </section>
+
+                <!-- META VIEWPORT -->
+                <section>
+                    <h2>META VIEWPORT</h2>
+                </section>
+
+                <section>
+                    <p>Par défaut, les navigateurs mobile et certains navigateurs tablette vont tenter d'adapter le design du site en dézoomant</p>
+                    <p>Ce comportement va nous gêner car nous souhaitons adapter nous même le design</p>
+                </section>
+
+                <section>
+                    <p>Introduite par Apple avec l'arrivée de l'iPhone, la balise <span class="hl">meta viewport</span> permet de faire cela</p>
+                    <pre><code contenteditable class="html">
+<meta name="viewport" content="">
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Elle met à disposition plusieurs propriétés à mettre dans l'attribut <span class="hl">content</span> séparées par des virgules</p>
+                    <ul>
+                        <li class="fragment"><span class="hl">width</span><br>largeur de fenêtre viewport (300 | device-width)</li>
+                        <li class="fragment"><span class="hl">height</span><br>hauteur de fenêtre viewport (400 | device-height)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment"><span class="hl">initial-scale</span><br>zoom initial (1 | 0.3)</li>
+                        <li class="fragment"><span class="hl">minimum-scale</span><br>zoom minimum (1 | 0.3)</li>
+                        <li class="fragment"><span class="hl">maximum-scale</span><br>zoom maximum (1 | 0.3)</li>
+                        <li class="fragment"><span class="hl">user-scalable</span><br>autoriser ou non l'utilisateur à zoomer (yes | no)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Empêcher le zoom initial du navigateur</p>
+                    <pre><code contenteditable class="html">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+                    </code></pre>
+                    <p>et empêcher l'utilisateur de zoomer</p>
+                    <pre><code contenteditable class="html">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour tester le site en conditions, nous pouvons utiliser le devtools de Chrome<br>(<span class="hl">CMD + ALT + I</span> ou <span class="hl">CTRL + SHIFT + I</span>)</p>
+                    <p>Et cliquer sur cet icon<br><img src="src/img/chrome-icon-responsive.png" alt=""></p>
+                </section>
+
+                <section>
+                    <p>Rajouter <span class="hl">width=device-width</span> permet aussi de supprimer le délais de 300ms</p>
+                    <p>Ce délais permettait au navigateurs de s'assurer que l'utilisateur n'était pas en train de faire un double tap pour zoomer</p>
+                </section>
+
+                <section>
+                    <p>Cette meta n'ayant jamais été proposée au <a href="https://fr.wikipedia.org/wiki/World_Wide_Web_Consortium" target="_blank">W3C</a> ce dernier à proposé <a href="http://www.w3.org/TR/css-device-adapt/#the-viewport-rule" target="_blank">sa propre version</a> fonctionnant en CSS avec des propriétés similaires</p>
+                    <pre><code contenteditable class="css">
+@-ms-viewport {
+   width:device-width;
+   zoom:1;
+   user-zoom:fixed;
+}
+@viewport {
+   width:device-width;
+   zoom:1;
+   user-zoom:fixed;
+}
+                    </code></pre>
+                    <p>N'est pratiquement <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport#Browser_compatibility" target="_blank">supportée que par IE</a></p>
+                </section>
+
+                <!-- RESET -->
+                <section>
+                    <h2>Reset</h2>
+                </section>
+
+                <section>
+                    <p>Par défaut, les navigateurs proposent une feuille de style de base (padding sur le body, marge sous un paragraphe, font par défaut, etc.)</p>
+                    <p>Cette feuille de style initial varie selon le navigateur</p>
+                    <p>Il faudrait pouvoir la réinitialiser pour avoir le même résultat quelque soit le navigateur</p>
+                </section>
+
+                <section>
+                    <p>Il existe plusieurs CSS dont c'est le but</p>
+                    <ul>
+                        <li><a href="https://github.com/yui/yui3/blob/master/src/cssreset/css/cssreset.css" target="_blank">YUI 3</a></li>
+                        <li><a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank">Reset de Eric Meyer</a></li>
+                        <li><a href="https://github.com/brunosimon/reset-css/blob/master/reset.css" target="_blank">Reset de Eric Meyer (amélioré)</a></li>
+                    </ul>
+                    <p>Le reset choisi doit être ajouté avant tout autre CSS et dès le début de l'intégration</p>
+                </section>
+
+                <!-- DETECTION -->
+                <section>
+                    <h2>Détection</h2>
+                </section>
+
+                <section>
+                    <p>Il peut arriver qu'on ait besoin de détecter quelles sont les capacités du device</p>
+                    <ul>
+                        <li>Est-ce que c'est un écran tactile</li>
+                        <li>Est-ce que le navigateur supporte le WebGL</li>
+                        <li>Est-ce que le navigateur supporte les transitions</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Détecter ces features manuellement prendrait beaucoup de temps et on risquerait de faire des erreurs</p>
+                    <p>La librairie <a href="https://modernizr.com/" target="_blank">Modernizr</a> permet de le faire facilement</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Aller sur la <a href="https://modernizr.com/download" target="_blank">page de téléchargement</a></li>
+                        <li>Choisir les features que l'on souhaite détecter</li>
+                        <li>Cliquer sur <span class="hl">BUILD</span></li>
+                        <li>Cliquer sur <span class="hl">Download</span> de la ligne <span class="u">Build</span></li>
+                        <li>Rajouter le JS dans la page, à l'intérieur du <span class="hl">&lt;head&gt;</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        Modernizr va rajouter des classes dans la balise <span class="hl">&lt;html&gt;</span>
+                        <br><img width="450" src="src/img/modernizr-html.png" alt="">
+                    </p>
+                    <p>
+                        Ces données seront aussi accessible en JS
+                        <br><img width="300" src="src/img/modernizr-js.png" alt="">
+                    </p>
+                </section>
+
+                <!-- ICONS -->
+                <section>
+                    <h2>Icons</h2>
+                </section>
+
+                <section>
+                    <p>Chaque site à besoin d'icônes (et pas que le favicon)</p>
+                    <p>Les icônes peuvent apparaître dans les favoris, sur la home du smartphone, dans l'onglet, etc.</p>
+                    <p>Le site <a href="http://realfavicongenerator.net/" target="_blank">Real Favicon Generator</a> permet de les générer facilement</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Uploader une image 260x260</li>
+                        <li>Définir les différentes options mises à disposition</li>
+                        <li>Générer</li>
+                        <li>Télécharger le <span class="hl">Favicon package</span> et le placer avec les ressources du site</li>
+                        <li>Récupérer le code HTML et l'ajouter dans la balise <span class="hl">&lt;head&gt;</span></li>
+                    </ul>
+                </section>
+
+                <!-- MEDIA QUERIES -->
+                <section>
+                    <h2>Media queries</h2>
+                </section>
+
+                <section>
+                    <p>Technique permettant d'adapter la feuille de style en fonction du périphérique et de ses différents critères</p>
+                    <p>Peut-être appliquée de 3 façons différentes :</p>
+                </section>
+
+                <section>
+                    <p>En HTML</p>
+                    <pre><code contenteditable>
+&lt;link rel="stylesheet" href="smallscreen.css" media="condition"/&gt;
+                    </code></pre>
+                    
+                    <p>En CSS</p>
+                    <pre><code data-trim contenteditable>
+@media condition
+{
+    /* Mon CSS */
+}
+                    </code></pre>
+                    <p>En Javascript</p>
+                    <pre><code data-trim contenteditable>
+&lt;script&gt;
+    if(window.matchMedia( 'condition' ).matches)
+    {
+        /* Mon JS */
+    }
+&lt;/script&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>En général, on utilise la solution CSS</p>
+                </section>
+
+                <section>
+                    <h3>Anciens critères (CSS2)</h3>
+                    <ul>
+                        <li>print</li>
+                        <li>screen</li>
+                        <li>tv</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Nouveaux critères</h3>
+                    <ul>
+                        <li>aspect-ratio</li>
+                        <li>width</li>
+                        <li>height</li>
+                        <li>orientation</li>
+                        <li>pixel-ratio</li>
+                        <li>device-*</li>
+                        <li>min-*</li>
+                        <li>max-*</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Exemples simples</h3>
+                    <pre><code data-trim contenteditable class="css">@media (width: 700px)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media (min-width: 700px)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media (min-device-width: 700px)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media (min-width: 700px) and (max-width: 1000px)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media (min-device-pixel-ratio: 1.5)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media tv and (orientation: portrait)</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media screen</code></pre>
+                    <pre><code data-trim contenteditable class="css">@media print</code></pre>
+                </section>
+
+                <section>
+                    <h3>Exemple avec préfixe</h3>
+                    <pre><code data-trim contenteditable class="css">@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5)</code></pre>
+                </section>
+
+                <section>
+                    <p>Compatibilité</p>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=css-mediaqueries">http://caniuse.com/#feat=css-mediaqueries</a></p>
+                    <p class="ciu_embed" data-feature="css-mediaqueries" data-periods="future_1,current,past_1,past_2,past_3,past_4"></p>
+                </section>
+
+                <section>
+                    <h3>Exemples</h3>
+                    <p>Treehouse : <a target="_blank" href="http://teamtreehouse.com/">http://teamtreehouse.com</a></p>
+                    <p>Orion : <a target="_blank" href="http://orion-groupecera.com">http://orion-groupecera.com</a></p>
+                    <p>JR &amp; associée : <a target="_blank" href="http://www.jr-associee.com/">http://www.jr-associee.com</a></p>
+                </section>
+
+                <!-- EVENEMENTS -->
+                <section>
+                    <h3>Événements</h3>
+                    <p>Si vous avez développé le site pour du desktop, vous avez probablement écouté des événements tels que <span class="u">click</span>, <span class="u">mousemove</span>, <span class="u">keydown</span>, etc.</p>
+                    <p>Malheureusement, beaucoup d'événements ne fonctionneront pas de la même manière sur des devices touch</p>
+                    <p>Il faudra donc utiliser des événements similaires mais compatibles : <span class="u">touchstart</span>, <span class="u">touchmove</span>, <span class="u">touchend</span>, <span class="u">deviceorientation</span>, etc.</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+if(Modernizr.touchevents)
+{
+    window.addEventListener('touchmove', (event) =>
+    {
+        console.log(event.touches[0].clientX, event.touches[0].clientY)
+    })
+}
+else
+{
+    window.addEventListener('mousemove', (event) =>
+    {
+        console.log(event.clientX, event.clientY)
+    })
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Lorsque vous simulez un device touch avec le dev tools de Chrome, celui-ci va aussi simuler les événements de touch à la place des événements de souris</p>
+                    <p>Il est aussi possible de simuler l'orientation du device en faisant <span class="hl">ESC</span>, en allant dans l'onglet <span class="hl">Sensors</span> et en activant l'orientation</p>
+                </section>
+
+                <section>
+                    <pre><code data-trim contenteditable class="js">
+window.addEventListener('deviceorientation', (event) =>
+{
+    console.log(event.alpha)
+    console.log(event.beta)
+    console.log(event.gamma)
+})
+                    </code></pre>
+                </section>
+
+                <!-- PROCESSUS -->
+                <section>
+                    <h3>procéssus</h3>
+                    <p>Faire un site responsive concerne à la fois la créa et le développement</p>
+                    <ul>
+                        <li>Soit le créa s'y connait bien en front et prépare des maquettes responsive</li>
+                        <li>Soit le dev est bon en créa et improvise le responsive</li>
+                    </ul>
+                </section>
+
+                <!-- MOBILE FIRST -->
+                <section>
+                    <h3>Et le mobile first ?</h3>
+                </section>
+
+                <section>
+                    <p>Le mobile first implique de faire les créas et le développement en commençant par les versions mobiles puis en s'occupant des autres devices par la suite</p>
+                    <p>Cette pratique permet de s'assurer d'avoir une expérience optimisée pour le device le plus contraignant pour ensuite s'occuper des devices plus flexibles et moins limités</p>
+                </section>
+
+                <section>
+                    <p>Cette tendance vient des problèmes de performance et d'ergonomie des smartphones, mais aussi des statistiques d'utilisation</p>
+                    <ul>
+                        <li><a href="http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide" target="_blank">Mondial</a></li>
+                        <li><a href="http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/france" target="_blank">France</a></li>
+                        <li><a href="http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/japan" target="_blank">Japon</a></li>
+                        <li><a href="http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/saudi-arabia" target="_blank">Arabie Saoudite</a></li>
+                        <li><a href="http://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/china" target="_blank">Chine</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Le mobile first présente aussi comme désavantage une dégradation de la version desktop</p>
+                    <p>Bien qu'optimisé, le site aura tendance à être inutilement simple, vide et sans immersion sur desktop</p>
+                </section>
+
+                <section>
+                    <p>Doit-on faire du mobile first ?</p>
+                    <p class="fragment">Cela dépend</p>
+                    <ul>
+                        <li class="fragment">Quelle est la région ciblée ?</li>
+                        <li class="fragment">Quel est l'utilisateur ciblé ?</li>
+                        <li class="fragment">Dans quel cadre le site Va-t-il être utilisé ?</li>
+                        <li class="fragment">Est-ce que c'est un site de contenu ou expérienciel ?</li>
+                    </ul>
+                </section>
+
+                <!-- <section>
+                    <h3>Exercice</h3>
+                    <ul>
+                        <li>Background <span style="color:#f00">rouge</span> si largeur du navigateur inférieure à <span class="hl">500px</span></li>
+                        <li>Background <span style="color:#00e0ff">bleu</span> si largeur du navigateur entre <span class="hl">500 et 700px</span></li>
+                        <li>Background <span style="color:#0f0">vert</span> si largeur supérieure ou égale à <span class="hl">700px</span></li>
+                        <li>Taille de police à <span class="hl">25px</span> si hauteur inférieure à <span class="hl">500px</span></li>
+                        <li>Taille de police à <span class="hl">50px</span> si hauteur supérieure ou égale à <span class="hl">500px</span></li>
+                        <li>Police <span style="color:#fff">blanche</span> si <span class="hl">écran retina</span></li>
+                    </ul>
+                </section> -->
+
+                <!-- GO FURTHER -->
+                <section>
+                    <p>Aller plus loin</p>
+                    <ul>
+                        <li><a href="http://simplecss.eu/" target="_blank">Liste de Media Queries spécifiques</a></li>
+                        <li><a href="https://developers.google.com/web/fundamentals/design-and-ui/responsive/" target="_blank">Article complet sur le responsive</a></li>
+                        <li><a href="https://uxdesign.cc/i-totally-forgot-about-print-style-sheets-f1e6604cfd6#.o95r5peok" target="_blank">Article sur le responsive print</a></li>
+                    </ul>
+                </section>
+
+                <!-- IMAGES -->
+                <section>
+                    <h2>Images</h2>
+                </section>
+
+                <section>
+                    <p>Grâce au responsive, on peut avoir une même page qui fonctionne sur mobile et desktop sauf que les images chargées sont les mêmes</p>
+                    <p>Il serait dommage de charger une énorme image prévue pour le desktop sur du mobile</p>
+                </section>
+
+                <section>
+                    <h3>srcset</h3>
+                    <p>L'attribut <span class="hl">srcset</span> d'une balise <span class="hl">&lt;img&gt;</span> permet de définir plusieurs sources accompagnées de leurs critères</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;img
+    width="100%"
+    src="image-test-1280.png"
+    srcset="image-test-320.png 320w,
+            image-test-640.png 640w,
+            image-test-1280.png 1280w"
+&gt;
+                    </code></pre>
+                    <p>Le navigateur ne chargera que l'image la plus adaptée</p>
+                </section>
+
+                <section>
+                    <p>Compatibilité</p>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=srcset">http://caniuse.com/#feat=srcset</a></p>
+                    <p class="ciu_embed" data-feature="srcset" data-periods="future_1,current,past_1,past_2,past_3,past_4"></p>
+                </section>
+
+                <section>
+                    <h3>picture</h3>
+                    <p>La balise &lt;picture&gt; est une autre solution similaire</p>
+                    <pre><code data-trim contenteditable class="html">
+&lt;picture&gt;
+    &lt;source srcset="image-test-320.png" media="(max-width:320px)"&gt;
+    &lt;source srcset="image-test-640.png" media="(max-width:640px)"&gt;
+    &lt;source srcset="image-test-1280.png" media="(min-width:641px)"&gt;
+    &lt;img src="image-test-320.png" width="100%"&gt;
+&lt;/picture&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Compatibilité</p>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=picture">http://caniuse.com/#feat=picture</a></p>
+                    <p class="ciu_embed" data-feature="picture" data-periods="future_1,current,past_1,past_2,past_3,past_4"></p>
+                </section>
+
+                <section>
+                    <p>Aller plus loin</p>
+                    <ul>
+                        <li><a href="https://developers.google.com/web/fundamentals/design-and-ui/media/images" target="_blank">Article complet sur les images</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Conclusion</h2>
+                    <p>Rendre votre site responsive est une priorité</p>
+                    <p>Prévoyez-le en amont et dans le budget</p>
+                    <p>Testez sur plein de devices différents</p>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

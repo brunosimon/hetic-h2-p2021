@@ -1,0 +1,26 @@
+body
+{
+    height: 100vh;
+    perspective: 800px;
+}
+
+.orientation-square
+{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    background: orange;
+}
+
+@media (min-device-pixel-ratio: 1.5)
+{
+    body
+    {
+        background: red;
+    }
+}
