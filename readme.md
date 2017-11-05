@@ -19,9 +19,9 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
     - [ ] ! Drumkit
     - [ ] ! Async navigation
     - [ ] ! Search instagram with speech API
-- [ ] HTML5 Audio/video API
-- [ ] Versionning avec git
+- [x] HTML5 Audio/video API
 - [ ] Responsive
+- [ ] Versionning avec git
 - [ ] Canvas
 - [ ] Clean code
 - [ ] Fonts
