@@ -1,0 +1,28 @@
+Bonsoir, je tiens tout d'abord à m'excuser pour ce rendu car je conçois que la musique et le thème va surement vous donner la nausée mais je trouvais que c'était quelque chose de sympa à réaliser avec le canvas.
+
+Donc au niveau de mon code, j'ai démarré assez simplement en créant le nyan cat à base de rectangle puisque c'est du pixel art et je me suis ensuite rendu compte que pour l'animer il fallait avoir un point de réference, donc que j'allais devoir revoir toutes mes coordonnées. Ce que j'ai fait avec un peu de tristesse.
+
+Mon nyan cat suit donc les mouvements de la souris (mousemove) et le canvas est effacé à chaque mouvement de la souris pour être redessiné. 
+
+Ensuite pour la queue, j'ai opéré de la même façon sauf que j'ai fait une génération sur l'axe des x en négatif afin que la queue suivent le nyan cat. J'ai en fait fait deux génération décalé de x et y afin de créer ce décalage sur la queue pour coller à l'original.
+
+Je n'ai en revanche pas fait les animations des pattes et de la queue.
+
+Puis, j'ai mis un texte auquel j'ai attribué la couleur "multicolore" que nous avions vu en classe afin de coller au nyan cat. Je lui ai aussi mis un contour noir dans le même but.
+
+Après ça, j'ai ajouté la musique de nyan cat grâce à la balise audio que nous avions vu précédement dans le cours pour augmenter l'immersion de l'utilisateur.
+
+J'ai aussi enlevé la flèche de la souris avec un cursor:none sur le canvas dans le css.
+
+Enfin, pour donner un effet de vitesse à mon nyan cat, j'ai fait une génération de particules (de croix/étoiles) sur l'axe des x (à partir de 1400px) en négatif comme pour la queue mais sur tout l'axe des y (de façon aléatoire afin de ne pas retrouver de schéma identique).
+
+Pour conclure j'ai essayé de corriger toutes mes fautes et mes répétitions afin de vous rendre un code propre et performant.
+
+J'espère avoir rempli les critères de notations et que vous apprécierez mon travail.
+
+Dorian Delorme H2G2
+
+
+
+
+

@@ -1,0 +1,30 @@
+Langages : HTML, Javascript
+*************************
+
+-----------------------
+    Projet: Réalisation d'un canvas
+
+-----------------------
+Je suis:
+ - FERHAOUI Jasmine
+ - H2 P2019
+-----------------------
+Navigateur  :
+ Fonctionnel  sur les principaux navigateurs :  Internet Explorer, Firefox Chrome , Safari
+
+
+Fonctionnalités JS :
+ - Il s'agit d'un simple dessin réalisé en canvas et animé en Javascript.
+
+
+Problèmes rencontrés:
+ - J'avais du mal à dessiner au début et j'ai finalement pensé a mettre en image de fond le dessin que je voulais ainsi qu'une fonction qui récupère les coordonnées du point sur lequel je clique de façon à calquer, ce qui m'a facilité le travail je l'avoue. 
+
+Notes:
+ - Canvas rend fou au début. J'ai recommencé plusieurs dessins tout au long de la semaine que j'arrivais pas a animer à la fin (les maths, c'est pas mon fort), du coup je me suis lancée sur un dessin très simple à animer par manque de temps et surtout sans courbes de Bézier.
+
+
+
+Inspirations:
+
+ https://dribbble.com/shots/2350625-Shit-Happens

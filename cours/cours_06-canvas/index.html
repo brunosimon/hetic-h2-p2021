@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 1 - Cours 06 - Canvas</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 06</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Canvas</h1>
+                </section>
+
+                <section>
+                    <p>Espace de pixels permettant de dessiner à l'aide d'une multitude de méthodes javascript</p>
+                </section>
+
+                <section>
+                    <h2>Compatibilité</h2>
+                    <p><a target="_blank" href="http://caniuse.com/#feat=canvas">http://caniuse.com/#feat=canvas</a></p>
+                    <p class="ciu_embed" data-feature="canvas" data-periods="future_1,current,past_1,past_2,past_3,past_4"></p>
+                </section>
+
+                <section>
+                    <h2>Démonstrations</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><a target="_blank" href="http://codepen.io/suffick/full/KrAwx/">codepen.io/suffick/full/KrAwx/</a></li>
+                        <li><a target="_blank" href="http://codepen.io/jackrugile/pen/Gving">codepen.io/jackrugile/pen/Gving</a></li>
+                        <li><a target="_blank" href="http://wxs.ca/iso/">wxs.ca/iso/</a></li>
+                        <li><a target="_blank" href="http://paperjs.org/examples/">paperjs.org/examples/</a></li>
+                        <li><a target="_blank" href="http://soulwire.github.io/Muscular-Hydrostats/">soulwire.github.io/Muscular-Hydrostats/</a></li>
+                        <li><a target="_blank" href="http://soulwire.github.io/sketch.js/examples/particles.html">soulwire.github.io/sketch.js/examples/particles.html</a></li>
+                        <li><a target="_blank" href="https://bruno-simon.com/lab/experiments/trail-particles/">bruno-simon.com/lab/experiments/trail-particles/</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Mise en place</h2>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="html">
+<canvas width="800" height="600"></canvas>
+                    </code></pre>
+                    <pre><code  data-trim contenteditable class="js">
+const canvas = document.querySelector('canvas')
+const context = canvas.getContext('2d')
+                    </code></pre>
+                    <ul>
+                        <li><span class="hl">canvas</span> correspond à l'élément dans le DOM</li>
+                        <li><span class="hl">context</span> sera utilisé pour dessiner</li>
+                    </ul>
+                    <p class="fragment">Ce code ne sera pas répété dans les exemples qui suivent</p>
+                </section>
+
+                <section>
+                    <h2>Lignes et remplissages</h2>
+                </section>
+
+                <section>
+                    <p>Pour dessiner, la méthode classique consiste à</p>
+                    <ul>
+                        <li>Indiquer qu'on commence un tracé</li>
+                        <li>Définir le tracé (un trait ici, un cercle là, etc.)</li>
+                        <li>Définir le style (trait orange large de 20px)</li>
+                        <li>Faire apparaitre le tracé sur le canvas</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Lignes</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()      // Commencer un tracé
+
+context.moveTo(50, 50)   // Placer le tracé
+context.lineTo(200, 200) // Tracer une ligne
+context.lineTo(50, 200)  // Tracer autre une ligne
+context.closePath()      // Tracer une dernière ligne qui ferme la forme (pas obligatoire)
+
+context.stroke()         // Faire apparaitre les lignes tracées
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Lignes</p>
+                    <canvas id="canvas-1" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Remplissages</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()      // Commencer un tracé
+
+context.moveTo(50, 50)   // Placer le tracé
+context.lineTo(200, 200) // Tracer une ligne
+context.lineTo(50, 200)  // Tracer autre une ligne
+
+context.fill()           // Faire apparaitre la forme dessinée
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Remplissages</p>
+                    <canvas id="canvas-2" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">Style</h2>
+                </section>
+
+                <section>
+                    <p>Il existe de nombreuses propriétés pour changer le style du dessin</p>
+                    <p>Cela peut concerner les lignes ou le remplissage</p>
+                    <p>Le style s'appliquera sur tous les dessins suivant le changement de propriété</p>
+                </section>
+
+                <section>
+                    <p>Modifier le style de la ligne</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+
+context.moveTo(50, 50)
+context.lineTo(200, 200)
+context.lineTo(50, 200)
+
+context.lineWidth   = 20       // Largeur de la ligne
+context.lineCap     = 'round'  // Fin de ligne (round | butt | square)
+context.lineJoin    = 'bevel'  // Jointure des lignes (bevel | round | mitter)
+context.strokeStyle = 'orange' // Couleur de la ligne
+
+context.stroke()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Modifier le style de la ligne</p>
+                    <canvas id="canvas-3" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Modifier le style de remplissage</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+
+context.moveTo(50, 50)
+context.lineTo(200, 200)
+context.lineTo(50, 200)
+
+context.fillStyle = 'rgba(255, 0, 0, 0.5)' //Couleur du remplissage
+context.fill()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Modifier le style de remplissage</p>
+                    <canvas id="canvas-4" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Ombres</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+
+context.moveTo(50, 50)
+context.lineTo(200, 200)
+context.lineTo(50, 200)
+
+context.fillStyle     = 'rgba(255, 0, 0, 1)'
+context.shadowColor   = 'blue'   // Couleur de l'ombre
+context.shadowBlur    = 50       // Largeur du flou
+context.shadowOffsetX = 5        // Décalage en X
+context.shadowOffsetY = 10       // Décalage en Y
+
+context.fill()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Ombres</p>
+                    <canvas id="canvas-5" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">rect() et arc()</h2>
+                </section>
+
+                <section>
+                    <p>Certaines méthodes permettent de définir des tracés autre que des lignes</p>
+                    <p><span class="highlight">rect()</span> permet de tracer un rectangle</p>
+                    <p><span class="highlight">arc()</span> permet de tracer un arc de cercle</p>
+                </section>
+
+                <section>
+                    <p>La variable globale Math possède plusieurs propriétés et méthodes mathématiques</p>
+                    <p>Celle que nous allons utilisé est <span class="highlight">Math.PI</span> et permet d'obtenir le nombre <span class="highlight">π</span> utile pour dessiner des arcs de cercle</p>
+                    <p><img src="src/img/math-pi.png" width="350" alt=""></p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Style
+context.fillStyle   = 'orange'
+context.strokeStyle = 'orange'
+
+// Remplissage d'un rectangle
+context.beginPath()
+context.rect(50, 50, 200, 100)
+context.fill()
+
+// Remplissage d'un demi cercle
+context.beginPath()
+context.arc(400, 50, 100, 0, Math.PI, false)
+context.fill()
+
+// Countour d'un recangle
+context.beginPath()
+context.fillStyle = 'orange'
+context.rect(50, 200, 200, 100)
+context.stroke()
+
+// Contour d'un demi cercle
+context.beginPath()
+context.arc(400, 200, 100, 0, Math.PI, false)
+context.stroke()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-6" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">fillRect() et clearRect()</h2>
+                </section>
+
+                <section>
+                    <p><span class="highlight">fillRect()</span> permet de remplir un rectangle sans passer par <span class="highlight">beginPath()</span> et <span class="highlight">fill()</span></p>
+                    <p><span class="highlight">clearRect()</span> permet d'effacer un rectangle</p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.fillStyle = 'orange'
+
+context.fillRect(50, 50, 300, 160)
+context.clearRect(50, 50, 100, 80)
+
+context.fillStyle = 'cyan'
+context.fillRect(160, 60, 20, 70)
+
+context.beginPath()
+context.fillStyle = 'black'
+context.arc(280, 210, 50, 0, Math.PI, false)
+context.arc(120, 210, 50, 0, Math.PI, false)
+context.fill()
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-7" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2>Textes</h2>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+const text = 'Lorem ipsum dolor sit amet'
+
+context.font = '40px Arial'  // Font
+context.textAlign = 'center' // Alignement horizontal (left | center | right)
+context.textBaseline = 'top' // Alignement vertical (top | bottom | middle | alphabetic | hanging)
+
+console.log(context.measureText(text).width) // Affiche la largeur du texte dans la console (sans le dessiner)
+
+context.fillText(text, 300, 100)   // Faire apparaitre le texte
+context.strokeText(text, 300, 160) // Faire apparaitre le contour du texte
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-8" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2>Images</h2>
+                </section>
+
+                <section>
+                    <p>Pour dessiner une image, il est nécessaire de l'avoir chargé</p>
+                    <p>Il faut donc créer, en javascript, un objet <span class="highlight">Image</span> et écouter son événement <span class="highlight">load</span></p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Créé la variable image
+const image = document.createElement('img')
+
+// Écoute l'événement load
+image.addEventListener('load', () =>
+{
+    // Dessine l'image
+    context.drawImage(image, 0, 0, image.width / 6, image.height / 6)
+})
+
+// Ajoute le chemin de l'image
+image.src = 'image-1.jpg'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-9" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2>Dégradés</h2>
+                </section>
+
+                <section>
+                    <p>Dégradé linéaire</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+const gradient = context.createLinearGradient(50,50,250,250) // x1, y1, x2, y2
+
+gradient.addColorStop(0,  'rgb(255, 80, 0)')    // Départ
+gradient.addColorStop(0.5,'rgb(255, 191, 0)')   // Milieu
+gradient.addColorStop(1,  'rgb(255, 246, 155)') // Arrivée
+
+context.fillStyle = gradient  // Le dégradé devient le style de remplissage
+
+context.fillRect(
+    0,   // X du premier point
+    0,   // Y du premier point
+    400, // X du second point
+    400  // Y du second point
+)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Dégradé linéaire</p>
+                    <canvas id="canvas-10" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Dégradé Radial</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+const gradient = context.createRadialGradient(
+    0,   // X du premier cercle
+    0,   // Y du premier cercle
+    50,  // Rayon du premier cercle
+    0,   // X du second cercle
+    250, // Y du second cercle
+    350  // Rayon du second cercle
+)
+
+gradient.addColorStop(0,  'rgb(255, 80, 0)')    // Couleur de départ
+gradient.addColorStop(0.5,'rgb(255, 191, 0)')   // Couleur de milieu
+gradient.addColorStop(1,  'rgb(255, 246, 155)') // Couleur de arrivée
+
+context.fillStyle = gradient  // Le dégradé devient le style de remplissage
+
+context.fillRect(0, 0, 400, 400) // Faire apparaître
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Dégradé Radial</p>
+                    <canvas id="canvas-11" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">save() et restore()</h2>
+                </section>
+
+                <section>
+                    <p>Les fonctions save() et restore() permettent de sauvegarder l'état du style et de le restaurer</p>
+                    <p>Cela équivaut à un historique de pinceau</p>
+                    <p>Ces méthodes ne permettent pas de sauvegarder ou restaurer l'état du canvas !</p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+context.moveTo(50, 50)
+context.lineTo(300, 50)
+context.save()              // Sauvegarde les propriétés du context
+context.lineWidth = 20      // Changement d'une des propriétés
+context.stroke()            // Dessin du trait
+
+context.beginPath()
+context.moveTo(50, 100)
+context.lineTo(300, 100)
+context.save()              // Nouvelle sauvegarde des propriétés du context
+context.strokeStyle = 'red' // Changement d'une autre propriété
+context.stroke()            // Dessin du trait
+
+context.beginPath()
+context.moveTo(50, 150)
+context.lineTo(300, 150)
+context.restore()           // Restauration des propriétés à la derniène sauvegarde
+context.restore()           // Restauration des propriétés à la sauvegarde encore avant
+context.stroke()            // Dessin du trait
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-12" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2>Courbes</h2>
+                </section>
+
+                <section>
+                    <p>Les méthodes <span class="highlight">bezierCurveTo()</span> et <span class="highlight">quadraticCurveTo()</span> permettent de dessiner des courbes de bézier en spécifiant chacun des points</p>
+                </section>
+
+                <section>
+                    <iframe src="https://player.vimeo.com/video/106757336?title=0&amp;byline=0&amp;portrait=0&amp;color=7d90ff" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </section>
+
+                <section>
+                    <p>Courbe de bézier</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+context.moveTo(50, 50) // X et Y du point de départ
+context.bezierCurveTo(
+    300, // X du premier point de tension
+    100, // Y du premier point de tension
+    100, // X du second point de tension
+    300, // Y du second point de tension
+    300, // X du point d'arrivée
+    300  // Y du point d'arrivée
+)
+context.stroke()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Courbe de bézier</p>
+                    <canvas id="canvas-13" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Courbe de quadratique (de bézier)</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.beginPath()
+context.moveTo(50, 50) // X et Y du point de départ
+context.quadraticCurveTo(
+    300, // X du seul point de tension
+    100, // Y du seul point de tension
+    300, // X du point d'arrivée
+    300  // Y du point d'arrivée
+)
+context.stroke()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Courbe de quadratique (de bézier)</p>
+                    <canvas id="canvas-14" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">globalAlpha</h2>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.globalAlpha = 0.3 /* Réduction de l'opacité */
+
+context.fillStyle = '#ff0000'
+context.fillRect(50, 50, 200, 200)
+
+context.fillStyle = '#00ff00'
+context.fillRect(100, 100, 200, 200)
+
+context.fillStyle = '#0000ff'
+context.fillRect(150, 150, 200, 200)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-15" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">globalCompositeOperation</h2>
+                </section>
+
+                <section>
+                    <p>La propriété globalCompositeOperation permet de spécifier comment doivent se comporter les tracés en cours (source) par rapport aux tracés initiaux (destination)</p>
+                    <p>Équivalent au pathfinder d'illustrator</p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.globalCompositeOperation = 'lighter'
+
+context.fillStyle = '#ff0000'
+context.fillRect(50, 50, 200, 200)
+
+context.fillStyle = '#00ff00'
+context.fillRect(100, 100, 200, 200)
+
+context.fillStyle = '#0000ff'
+context.fillRect(150, 150, 200, 200)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-16" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+context.fillStyle = 'red'
+context.fillRect(200, 200, 200, 200)
+
+context.globalCompositeOperation = 'destination-out' /* source-over | source-in | source-out | source-atop | destination-over | destination-in | destination-out | desination-atop | lighter | copy | xor */
+
+context.beginPath()
+context.fillStyle = 'blue'
+context.arc(200, 250, 100, 0, Math.PI, false)
+context.fill()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <canvas id="canvas-17" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p><img src="src/img/global-composite-operation.png" alt="" /></p>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">ImageData</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="hl">getImageData()</span> permet de récupérer les pixels d'une zone du canvas</li>
+                        <li>Ces pixels sont stockés dans la propriétés data de l'objet renvoyé</li>
+                        <li>Il s'agit d'un tableau</li>
+                        <li>Les valeurs <span class="hl">R, G, B et A</span> de chaque pixel sont les unes à la suite des autres</li>
+                        <li>Il faut donc parcourir ce tableau 4 par 4</li>
+                    </ul>
+                    <p><img width="300" src="src/img/jackie-chan-meme.jpg" alt="" /></p>
+                </section>
+
+                <section>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Si vous utilisez une image dans le canvas, lancez MAMP/WAMP pour éviter les proplème de cross-domain
+const image = document.createElement('img')
+
+// Attend que l'image soit chargé
+image.addEventListener('load', () =>
+{
+    // Dessiner l'image chargée dans le canvas
+    context.drawImage(image, 0, 0, image.width / 6, image.height / 6)
+
+    // Récupérer les pixels dans imageData
+    const imageData = context.getImageData(0, 0, image.width / 6, image.height / 6)
+
+    // Parcourir les pixels 4 par 4
+    for(var i = 0; i < imageData.data.length; i += 4)
+    {
+        // Traiter ces pixels couleur par couleur
+        // Ici, on rend l'image noir et blanc en calculant une valeur de gris et en mettant cette valeur pour chaque couleur primaire
+        var b = 0.4 * imageData.data[i] + 0.4 * imageData.data[i + 1] + 0.4 * imageData.data[i + 2]
+        imageData.data[i]     = b
+        imageData.data[i + 1] = b
+        imageData.data[i + 2] = b
+        // On ne touche pas à l'apha
+    }
+
+    // Dessiner la nouvelle image par dessus
+    context.putImageData(imageData, 0, 0)
+})
+
+image.src = 'image-1.jpg'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Ne fonctionne pas en local !</p>
+                    <canvas id="canvas-18" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p><a target="_blank" href="http://cheatsheetworld.com/programming/html5-canvas-cheat-sheet/">Canvas cheat sheet</a></p>
+                    <p><a target="_blank" href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">Canvas cheat sheet (plus visuel)</a></p>
+                </section>
+
+                <section>
+                    <h2>Animer</h2>
+                </section>
+
+                <section>
+                    <p>Pour animer un canvas, on l'efface complètement et on le redessine à chaque frame (jusqu'à 60 fois par seconde)</p>
+                    <p>Il nous faut donc un fonction qui se déclenche à interval régulier : <span class="highlight fragment">requestAnimationFrame</span></p>
+                </section>
+
+                <section>
+                    <p>Request Animation Frame</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+    console.log('loop')
+}
+window.requestAnimationFrame(loop)
+                    </code></pre>
+                    <p>La fonction loop sera appelée dès que possible</p>
+                    <p>Plus l'ordinateur est performant, plus la fréquence sera rapide</p>
+                    <p>La fonction ne sera pas appelée tant que l'ordinateur n'est pas prêt</p>
+                </section>
+
+                <section>
+                    <section>
+                        <p><a target="_blank" href="http://caniuse.com/#feat=requestanimationframe">http://caniuse.com/#feat=requestanimationframe</a></p>
+                        <p class="ciu_embed" data-feature="requestanimationframe" data-periods="future_1,current,past_1,past_2,past_3,past_4"></p>
+                    </section>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle rebondissante</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Coordonnées de base
+const coords = { x: 200, y: 200 }
+
+// Fonction déclenchée à chaque frame
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+
+    // Mise à jour des coordonnées
+    coords.x += 4
+    coords.y = 200 - Math.abs(Math.cos(+ new Date() / 300)) * 100
+
+    // Limite
+    if(coords.x > canvas.width + 50)
+    {
+        coords.x = -50
+    }
+
+    // Dessin de la balle
+    context.fillStyle = 'rgba(238, 238, 238, 0.2)'
+    context.fillRect( 0, 0, canvas.width, canvas.height )
+    context.beginPath()
+    context.arc( coords.x, coords.y, 50, 0, Math.PI * 2 )
+    context.fillStyle = 'orange'
+    context.fill()
+}
+
+loop()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle rebondissante</p>
+                    <canvas id="canvas-19" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle qui suit la souris</p>
+                    <pre><code  data-trim contenteditable class="javascript">
+// Coordonnées de base
+const coords = { x: 200, y: 200 }
+const mouse = { x: 0, y: 0 }
+
+// Fonction déclenchée à chaque frame
+const loop = () =>
+{
+    window.requestAnimationFrame(loop)
+
+    // Mise à jour des coordonnées avec easing
+    coords.x += (mouse.x - coords.x) * 0.01
+    coords.y += (mouse.y - coords.y) * 0.01
+
+    // Dessin de la balle
+    context.fillStyle = 'rgba(238, 238, 238, 0.2)'
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.beginPath()
+    context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.fillStyle = 'orange'
+    context.fill()
+}
+
+loop()
+
+// Écoute de l'événement mousemove
+document.addEventListener('mousemove', (event) =>
+{
+    // Mise à jour des coordonnées
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+})
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Exemple : Balle qui suit la souris</p>
+                    <canvas id="canvas-20" width="600" height="400"></canvas>
+                </section>
+
+                <section>
+                    <p>Aller plus loin</p>
+                    <ul>
+                        <li><a href="http://perfectionkills.com/exploring-canvas-drawing-techniques/" target="_blank">Drawing techniques</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Les années précédentes :</p>
+                    <ul>
+                        <li><a href="demos/delorme_dorian/index.html" target="_blank">Delorme Dorian</a></li>
+                        <li><a href="demos/ferhaoui_jasmine/index.html" target="_blank">Ferhaoui Jasmine</a></li>
+                        <li><a href="demos/ficheux_aude/index.html" target="_blank">Ficheux Aude</a></li>
+                        <li><a href="demos/le_bras_leo/index.html" target="_blank">Le Bras Leo</a></li>
+                        <li><a href="demos/michay_robin/index.html" target="_blank">Michay Robin</a></li>
+                        <li><a href="demos/morgaut_louis_victor/index.html" target="_blank">Morgaut Louis Victor</a></li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+        <script src="src/js/script.js"></script>
+    </body>
+</html>

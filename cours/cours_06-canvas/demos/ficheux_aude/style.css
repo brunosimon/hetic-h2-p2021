@@ -1,0 +1,20 @@
+html {
+	height: 100%;
+}
+
+body {
+	font-family:Helvetica,Arial;
+	font-size: 14px;
+	min-height: 600px;
+	-webkit-background-image: linear-gradient(white,#f5f2d7);
+	   -moz-background-image: linear-gradient(white,#f5f2d7);
+	    -ms-background-image: linear-gradient(white,#f5f2d7);
+	     -o-background-image: linear-gradient(white,#f5f2d7);
+	        background-image: linear-gradient(white,#f5f2d7);
+}
+
+div{
+	margin: auto;
+	width: 600px;
+	height: 450px;
+}

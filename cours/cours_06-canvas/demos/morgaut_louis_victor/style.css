@@ -1,0 +1,81 @@
+body{ background-color: #000518;
+	font-family: Helvetica,Arial;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+header{
+	position: absolute;
+	width: 15%;
+	height: 100%;
+	float: left;
+	margin: 20px;
+}
+
+header .name{
+	position: relative;
+	width: 100%;
+	height: 200px;
+	color: #E6E6E6;
+	background: #3E3E3E;
+	text-align: center;
+	opacity: 0.9;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+
+header .name .logo{
+	width: 60%;
+	height: 100px;
+	margin: auto;
+
+}
+
+header .name .text {
+	padding: 25px;
+}
+
+header .name img{
+ width: 100%;
+}
+
+header .explain {
+	margin-top: 10%; 
+	position: relative;
+	width: 100%;
+	height: 90px;
+	color: #E6E6E6;
+	background: #3E3E3E;
+	text-align: center;
+	opacity: 0.9;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+header .explain .arrow{
+	width: 20%;
+	margin: auto;
+	padding: 10px;
+}
+header .explain img{
+ width: 100%;
+}
+
+
+header .name a{
+	text-decoration: none;
+	color: #FFFFFF; 
+}
+
+canvas {
+	width: 100%;
+
+}
+
+
+@media only screen and (max-width:900px){
+	body{
+		font-size: 10px;
+	}
+}
+
+
+
+

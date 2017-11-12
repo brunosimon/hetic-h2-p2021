@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
+	<title>Final Race</title>
+	<link rel="stylesheet" href="css/jeu.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class='divCanvas' id='divCanvas'>
+		<canvas class='canvas' id='canvas' width='774' height='1520'>
+			<p>Votre navigateur ne supporte pas la balise Canvas.</p>
+		</canvas>
+		<img id='pause' src="img/pause_button.png" alt="Pause Button" onclick="pauseGame();" />
+		<img id='play' src="img/play_button.png" alt="Pause Button" onclick="startGame();" />
+		<div id='score'></div>
+	</div>
+	<div class='images'>
+    		<img id='PlayerCar1' src="img/PlayerCar1.png" alt="Car Uber Face">
+    		<img id='PlayerCar2' src="img/PlayerCar2.png" alt="Car Uber Mid">
+    		<img id='PlayerCar3' src="img/PlayerCar3.png" alt="Car Uber Butt">
+    		<img id='CarBlue1' src="img/CarBlue1.png" alt="Car Blue Face">
+    		<img id='CarBlue2' src="img/CarBlue2.png" alt="Car Blue Mid">
+    		<img id='CarBlue3' src="img/CarBlue3.png" alt="Car Blue Butt">
+    		<img id='CarGreen1' src="img/CarGreen1.png" alt="Car Green Face">
+    		<img id='CarGreen2' src="img/CarGreen2.png" alt="Car Green Mid">
+    		<img id='CarGreen3' src="img/CarGreen3.png" alt="Car Green Butt">
+    		<img id='CarOrange1' src="img/CarOrange1.png" alt="Car Orange Face">
+    		<img id='CarOrange2' src="img/CarOrange2.png" alt="Car Orange Mid">
+    		<img id='CarOrange3' src="img/CarOrange3.png" alt="Car Orange Butt">
+    		<img id='CarPink1' src="img/CarPink1.png" alt="Car Pink Face">
+    		<img id='CarPink2' src="img/CarPink2.png" alt="Car Pink Mid">
+    		<img id='CarPink3' src="img/CarPink3.png" alt="Car Pink Butt">
+    		<img id='CarPurple1' src="img/CarPurple1.png" alt="Car Purple Face">
+    		<img id='CarPurple2' src="img/CarPurple2.png" alt="Car Purple Mid">
+    		<img id='CarPurple3' src="img/CarPurple3.png" alt="Car Purple Butt">
+    		<img id='CarRed1' src="img/CarRed1.png" alt="Car Red Face">
+    		<img id='CarRed2' src="img/CarRed2.png" alt="Car Red Mid">
+    		<img id='CarRed3' src="img/CarRed3.png" alt="Car Red Butt">
+    	</div>
+	<div class="divEnd" id="divEnd">
+
+		<section class="view">
+			<section class="panel">
+
+				<img id="thumbsup" src="img/thumbsup.png" alt="Image d'un Thumbs Up">
+
+				<h1 id="win">Bien joué !</h1>
+				<h2 id="credit">Vous avez eu <span id="prix">0</span> points !</h2>
+			</section>
+		</section>
+		<nav class="nav">
+			<button class="play" type="button"><a href="jeu.html">Rejouer</a></button>
+		</nav>
+	</div>
+	<script type="text/javascript" src="js/playercar.js"></script>
+	<script type="text/javascript" src="js/obstacle.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

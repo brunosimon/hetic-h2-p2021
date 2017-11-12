@@ -1,0 +1,36 @@
+ROCKET Canvas
+
+. Mon canvas a plusieurs étapes:
+	
+	1. Le dessin de la fusée: ça m'a prit la moitier du temps nottament avec les courbes de beziers
+	
+	2. La fumée: Je me suis basé sur les particules faites en cours:
+		. Elles sont stockées dans un tableaux et sont appelé dans un "loop" puit effacé juste aprés 
+		. Leurs vitesse est parametrable et peut etre changer grace à l'utilisation de la fleche du haut des fleches directionels
+		. Elles partent de façon aléatoire de droite à gauche
+		. Elles ont une taille aléatoire
+		. Elles sont crées à partir de 2 origines
+		. Elles baisses d'opacité automatiquement
+		. Une fois leurs opacité < 0.1 elles s'effacent
+		. Elles sont en nuance de gris aléatoire
+
+    3. Les étoiles: Je me suis basé sur les particules de fumés
+    	. Elles sont stockées dans un tableaux et sont appelé dans un "loop" puit effacé juste aprés 
+		. Leurs vitesse est parametrable et peut etre changer grace à l'utilisation de la fleche du haut des fleches directionels
+		. Elles ont une taille aléatoire
+		. La vitesse de chaque étoile est differente et lié à la vitesse de la fusée 
+		. Elles sont crée à partir d'origines aléatoires
+
+	4. Le loop
+		. Permet de faire grandir la vitesse lors de la detection de l'enfoncement de la touche directionel "haute"
+		. Permet de faire baisser la vitesse lorsque la detection de l'enfoncement de la touche directionel "haute" n'es pas detecté 
+		. Permet d'afficher certaints elements selon la vitesse
+		. Permet d'eviter des valeurs negatives ou absurde de la vitesse 
+		. Permet de changer l'opacité du degradé fire
+		. Permet de limiter la vitesse 
+		. Permet lors du changement dans le JS du modulo (réglé à 1) de diminué le nombres de particules pour aléger l'animation
+		. Permet d'afficher la vitesse dans la console
+
+
+	+ J'aurais aimé recuperer l'element de click sur l'image representant une fléche pour pouvoir augmenter la vitesse de la fusé également sur mobile et device tactile. Pour qu'il soit entierement responsive 
+

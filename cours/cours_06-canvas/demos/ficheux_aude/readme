@@ -1,0 +1,34 @@
+Canvas Compass Animation - 29/11/2015
+
+
+
+#DESCRIPTION
+This is a design I found on dribble and I decided to animate it. The compass doesn't move but on the city background, the clouds move from left to right. The animation plays automatically and endlessly.
+This was written in HTML5 and JavaScript.
+
+
+#FEATURES
+The JavaScript allows to draw the entire canvas and animate the clouds with a change on evry frame of the loop. 
+
+
+#RESOURCES
+
+
+
+#INSPIRATION
+I was inspired by this design from Dibble made by Aldo Crusher https://dribbble.com/shots/1966149-Compass
+
+
+#PROBLEMS
+The clouds seem to lag sometimes and I can find the origin of the problem. Maybe it's because it's too fast, or it has something to do with the opacity of my clouds.
+
+
+#INSTALATION
+No instalation needed.
+
+
+#AUTHOR
+Aude Ficheux
+H2G1 P2019
+aude.ficheux@hetic.net
+

@@ -381,7 +381,7 @@ window.addEventListener('deviceorientation', (event) =>
                     <ul>
                         <li class="fragment">Quelle est la région ciblée ?</li>
                         <li class="fragment">Quel est l'utilisateur ciblé ?</li>
-                        <li class="fragment">Dans quel cadre le site Va-t-il être utilisé ?</li>
+                        <li class="fragment">Dans quel cadre le site va-t-il être utilisé ?</li>
                         <li class="fragment">Est-ce que c'est un site de contenu ou expérienciel ?</li>
                     </ul>
                 </section>
@@ -420,7 +420,7 @@ window.addEventListener('deviceorientation', (event) =>
 
                 <section>
                     <h3>srcset</h3>
-                    <p>L'attribut <span class="hl">srcset</span> d'une balise <span class="hl">&lt;img&gt;</span> permet de définir plusieurs sources accompagnées de leurs critères</p>
+                    <p>L'attribut <span class="hl">srcset</span> d'une balise <span class="hl">&lt;img&gt;</span> permet de définir plusieurs sources et de laisser choisir le navigateur</p>
                     <pre><code data-trim contenteditable class="html">
 &lt;img
     width="100%"
@@ -430,7 +430,7 @@ window.addEventListener('deviceorientation', (event) =>
             image-test-1280.png 1280w"
 &gt;
                     </code></pre>
-                    <p>Le navigateur ne chargera que l'image la plus adaptée</p>
+                    <p>Chaque source est accompagnée de critères tels que sa largeur afin de donner des informations au navigateur sans qu'il ait à la télécharger</p>
                 </section>
 
                 <section>
@@ -441,7 +441,7 @@ window.addEventListener('deviceorientation', (event) =>
 
                 <section>
                     <h3>picture</h3>
-                    <p>La balise &lt;picture&gt; est une autre solution similaire</p>
+                    <p>La balise &lt;picture&gt; est une autre solution similaire sauf qu'il est nécessaire de spécifier soi-même les conditions</p>
                     <pre><code data-trim contenteditable class="html">
 &lt;picture&gt;
     &lt;source srcset="image-test-320.png" media="(max-width:320px)"&gt;
