@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#9dc400">
+    <meta name="theme-color" content="#ffffff">
+
     <title>Responsive</title>
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/modernizr-custom.js"></script>
 </head>
 <body>
     <h1>Mon super site</h1>
@@ -15,6 +24,15 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi maxime est aperiam iusto architecto doloremque ratione dolore eveniet voluptas quae dignissimos obcaecati neque, id voluptate vitae voluptatum praesentium laboriosam debitis.</p>
     <a href="#">Un lien</a>
     <a href="#">Un autre lien</a>
+
+    <!-- <div class="orientation-square"></div> -->
+
+    <picture>
+        <source srcset="images/image-test-320.png" media="(max-width:320px)">
+        <source srcset="images/image-test-640.png" media="(max-width:640px)">
+        <source srcset="images/image-test-1280.png" media="(min-width:641px)">
+        <img src="images/image-test-320.png" width="100%">
+    </picture>
 
     <script src="js/script.js"></script>
 </body>
