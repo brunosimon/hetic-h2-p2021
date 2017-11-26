@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <!-- Viewport devices -->
+    <title>Cubic battle</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Css import -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+    <!-- Google fonts -->
+</head>
+
+<body>
+    <div class="container-rules">
+        <div class="rules">
+            <!-- Rules -->
+            <div class="mouse">
+                <p>Use your mouse or your finger to move.</p>
+            </div>
+            <div class="targets">
+                <div class="target target1"></div>
+                <div class="target target2"></div>
+                <div class="target target3"></div>
+                <p>Shoot the targets to destroy them but don't get touch !
+                    <p>
+            </div>
+            <div class="life-container">
+                <div class="lifes"></div>
+                <p>Don't forget to catch the lives !</p>
+            </div>
+            <button>Play !</button>
+            <!-- Play button -->
+        </div>
+    </div>
+    <div class="container-game-over">
+        <div class="game-over">
+            <!-- Game over -->
+            <p>Game Over</br>
+                Score : <span class="final-score"></span></br>
+                <!-- Final Score -->
+                Best score : <span class="best-score"></span></p>
+            <!-- Best score -->
+            <button>Play again !</button>
+        </div>
+    </div>
+    <p class="life">Life : <span class="life-var">3</span></p>
+    <!-- Life count -->
+    <p class="score">Score : </p>
+    <!-- Live score -->
+    <canvas width="600" height="600"></canvas>
+    <!-- Canvas -->
+
+    <script src="script.js"></script>
+    <!-- Script import -->
+</body>
+
+</html>

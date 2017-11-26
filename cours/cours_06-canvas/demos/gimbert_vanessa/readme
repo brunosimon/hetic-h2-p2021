@@ -1,0 +1,50 @@
+Devoir : Canvas 
+
+Ma réalisation : un paint
+
+Les features :
+- dessiner
+- changer de couleur au clique de la palette
+- changer la taille du pinceau (petit, moyen, grand, très grand)
+- changer de brush  
+	- crayon
+	- feutre
+	- bombe (spray)
+- gommer
+- effacer le dessin entièrement (bouton clear)
+- sauvegarder le dessin (bouton save)
+
+Mes difficultés : 
+- faire fonctionner correctement la fonction dessin
+- Mon canvas s'affichait correctement sur safari (étonnant), mais pas sur chrome. j'ai dû rajouter un setTimeout sur chaque fonction pour laisser charger chrome pour que tout s'affiche correctement.
+- le positionnement des dessins (moveTo, LineTo, x et y)
+- l'ajout des brushs
+- la gomme 
+- recadrer le screen du canvas à la sauvegarde
+
+Les problèmes qui se posent :
+- Il faut d'abord cliquer sur la couleur puis le brush souhaité pour avoir la couleur appliqué sur le brush (je m'excuse pour la
+répétition)
+- L'outil gomme fonctionne, seulement, si l'on veut par la suite prendre l'outil crayon, la gomme continue d'être active et l'outil crayon ne fonctionne pas. À l'inverse, si l'on utilise l'outil gomme, et que l'on souhaite prendre l'outil bombe, par contre, celui ci va fonctionner.
+- Au clique du bouton save, le dessin apparaît bien, mais je n'ai pas réussi à redimenssionner le screen du canvas pour n'avoir que le dessin réalisé.
+- au redimenssionnement de la page le bouton save et clear se chevauche.
+
+To do : 
+- réaliser une fonction qui permettrait de dessiner des carrés, ronds, etc.
+- recadrer l'image au moment de la sauvegarde
+- améliorer l'outil gomme
+- rajouter différents brushs, dont animés
+- rajouter des couleurs
+- mettre en place une fonction sous forme de bouton pouvant revenir en arrière (supprimer l'action qui vient d'être faite)
+- que le curseur soit sous forme de pinceau au clique du brush utilisé
+
+Mes inspirations & ressources :
+- codepen
+- openclassroom
+- w3school
+- dribbble
+- stackoverflow
+
+
+
+

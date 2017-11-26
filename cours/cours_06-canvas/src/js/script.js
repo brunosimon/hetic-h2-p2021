@@ -121,7 +121,7 @@ contexts[9].fillStyle = gradient;                  // Le gradient devient le sty
 contexts[9].fillRect(0,0,400,400);                 // Faire apparaître
 
 /* Dégradé radial */
-gradient = contexts[10].createRadialGradient(0,0,50,0,250,350); // cx1, cy1, cr1, cx2, cy2, cr2
+gradient = contexts[10].createRadialGradient(100, 100, 50, 100, 250, 250); // cx1, cy1, cr1, cx2, cy2, cr2
 gradient.addColorStop(0,  'rgb(255,80,0)');    // Départ
 gradient.addColorStop(0.5,'rgb(255,191,0)');   // Milieu
 gradient.addColorStop(1,  'rgb(255,246,155)'); // Arrivée
@@ -254,8 +254,8 @@ image.src = 'src/img/image-1.jpg';
         window.requestAnimationFrame( loop );
 
         // Mise à jour des coordonnées avec easing
-        coords.x += (mouse.x - coords.x) * 0.01;
-        coords.y += (mouse.y - coords.y) * 0.01;
+        coords.x += (mouse.x - coords.x) * 0.1;
+        coords.y += (mouse.y - coords.y) * 0.1;
 
         // Dessin de la balle
         contexts[19].fillStyle = 'rgba(238, 238, 238, 0.2)';

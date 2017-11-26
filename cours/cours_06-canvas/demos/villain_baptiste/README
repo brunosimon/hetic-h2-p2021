@@ -1,0 +1,37 @@
+/*************************************************
+
+    README - Baptiste VILLAIN H2 G1 - Projet 3
+    
+*************************************************/
+
+
+/***********
+  FEATURES
+************/
+
+- Canvas game
+- Move with up, left, right arrows
+- Shoot with space
+- Destroy asteroid
+- Stay alive
+
+todo: Powerup in asteroids
+
+
+/***********
+   TECHNO
+************/
+
+- HTML/CSS
+- JS
+- Canvas 
+
+
+/***********
+   THANKS
+************/
+
+- CODEPEN
+- STACKOVERFLOW
+- MDN
+- Thibaut Renard, HETIC H2 Student 

@@ -1,0 +1,24 @@
+Présentation d'un petit shoot'em up en 2D par Johann Desobry
+
+On contrôle un vaisseau et on doit survivre le plus longtemps possible aux vagues d'ennemis qui arrivent de toute part. Il y a un système de vie et de score. Enjoy ! :) 
+
+Nous : 
+
+ - Un simple vaisseau qui a la forme d'un triangle.
+
+Bonus : 
+
+ - Un bouclier
+ - Une Vie
+
+Ennemis : 
+
+ - Un vaisseau rapide (jaune), il faut lui tirer au moins trois fois dessus pour qu'il disparaisse. À chaque tirs reçu, il recule. 
+ - Un vaisseau basique (rouge), un tir et il disparait, vitesse de croisière normale. 
+ - Un vaiseau tank (orange), 5 tirs avant de disparaître, vitesse très lente.
+
+Futur : 
+
+ - J'aurais aimé avoir eu le temps d'ajouter des effets lors de la destructions des vaisseaux ennemies. 
+ - Ajouter plus de bonus ainsi que certains malus.
+ - Et faire en sorte que la difficulté du jeu s'endurice au fur et à mesure que l'on progrèsse dans le score. 

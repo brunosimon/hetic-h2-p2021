@@ -1,0 +1,24 @@
+body
+{
+    background: #292929;
+    font-family:Helvetica,Arial;
+    font-size: 27px;
+}
+canvas
+{
+    border: 1px solid #000;
+    margin: 40px 0px 0px 130px;
+    background: #000;
+    cursor: none;
+}
+.lost
+{
+    background: white;
+    padding: 1em 2em;
+    color: #ff4a80;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    display: none;
+    font-weight: bold;
+}

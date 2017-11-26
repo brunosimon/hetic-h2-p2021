@@ -1,0 +1,29 @@
+README
+
+This website presents a canvas game called Cubic Battle.
+Just play with your cursor or your finger.
+
+Rules :
+- Targets : 
+	- Blue target need 1 shot to be destroyed.
+	- Purple target need 4 shots to be destroyed.
+	- Yellow target need 8 shots to be destroyed.
+	- The first boss appear when you reach 900 points and need 80 shots to be destroyed.
+	- The second boss appear when you reach 2200 points and need 120 shots to be destroyed.
+	- Pink target is a LIFE ! GO GET IT !
+	- Green target is the bonus ! Take it and enjoy the DOUBLE FIRE !
+
+- More target you destroy more you gain points. 
+- More point you more targets spawn and more their speed increase.
+- CARE ! Don't get touch by the targets or you will lose a life.
+- If a target escape from the playable area you will lose points (-2).
+
+Features :
+- The game is responsive and playable on mobile, tablet, desktop.
+- High score is saved in local storage.
+
+Link :
+For an easiest test on mobile and tablet go on : www.arthurbalossini.com/cubicbattle
+
+
+Arthur BALOSSINI H2 P2020

@@ -1,0 +1,19 @@
+- Create a canvas
+
+- Features :
+   - Creation of particles who randomly appears and move vertically
+   - A particle who follow the user's mouse
+   - A level counter
+
+- Futures features :
+   - Save the score in a local storage
+   - Add play/pause functions
+   - Add musics and various themes for background
+   - Add more speed when the level gets higher
+   - Create a trail of particles for the mouse
+
+- Installation :
+   -
+
+- Thanks :
+   -

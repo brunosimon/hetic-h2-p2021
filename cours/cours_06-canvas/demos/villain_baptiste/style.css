@@ -1,0 +1,16 @@
+body
+{
+  background:#eee;
+  font-family:Helvetica,Arial;
+  font-size:14px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas{
+  background-color: rgb(10, 37, 62);
+  background: radial-gradient(ellipse at center, rgb(16, 61, 101) 0%, rgb(7, 25, 42) 100%);
+  margin: 0;
+  padding: 0;
+}

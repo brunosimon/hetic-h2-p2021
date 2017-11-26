@@ -1,0 +1,15 @@
+canvas {
+    position: relative;
+    left: 52%;
+    transform: translate(-48%);
+ 
+}
+body
+{
+    height: 100%;
+    background:#eee;
+}
+
+html {
+    height: 100%;
+}

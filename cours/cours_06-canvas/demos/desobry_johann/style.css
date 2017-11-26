@@ -1,0 +1,214 @@
+*
+{
+	padding: 0;
+	margin: 0;
+}
+
+body
+{
+    background:#111;
+    font-family:Helvetica,Arial;
+    font-size:14px;
+}
+
+canvas
+{
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+}
+
+// Home page
+
+.home
+{
+	position: absolute;
+	width: 100vw;
+	background-color: black;
+	height: 100vh;
+	z-index: 100;
+	display: none;
+}
+
+.home h1
+{
+	color: #fefefe;
+	font-size: 35px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.orange, .yellow, .blue, .green, .red
+{
+	color: #fefefe;
+	position: relative;
+	font-size: 20px;
+	left: 45%;
+	transform: translateX(-50%);
+
+}
+
+.home .key, .home .space
+{
+	color: #fefefe;
+	position: absolute;
+	font-size: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.home .space 
+
+{
+	bottom: 200px;
+}
+
+.circle_red
+{
+	background-color: red;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: -55px;
+	top: -7px;
+}
+
+
+.circle_yellow
+{
+	background-color: yellow;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: -49px;
+	top: -3px;
+}
+
+.circle_orange
+{
+	background-color: orange;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: -60px;
+	top: -10px;
+}
+
+.circle_blue
+{
+	background-color: blue;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: -47px;
+	top: 0px;
+}
+
+.circle_green
+{
+	background-color: green;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: -47px;
+	top: 0px;
+}
+
+.home a
+{
+	padding: 14px 54px;
+	color: #010101;
+	text-transform: uppercase;
+	font-size: 20px;
+	text-decoration: none;
+	background-color: #fefefe;
+	box-shadow: 0px -5px 0px #B6B6B6 inset;
+	cursor: pointer;
+	transition: 0.3s;
+	position: absolute;
+	left: 50%;
+	bottom: 130px;
+	transform: translateX(-50%);
+}
+
+.home a:hover
+{
+	box-shadow: 0px -5px 0px red inset;
+}
+
+// game over page
+
+.lose_page
+{
+	position: relative;
+	width: 100vw;
+	background-color: black;
+	height: 100vh;
+	z-index: 100;
+	display: none;
+}
+
+.lose_page h1
+{
+	color: #fefefe;
+	font-size: 35px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.lose_page a
+{
+	padding: 14px 54px;
+	color: #010101;
+	text-transform: uppercase;
+	font-size: 20px;
+	text-decoration: none;
+	background-color: #fefefe;
+	box-shadow: 0px -5px 0px #B6B6B6 inset;
+	cursor: pointer;
+	transition: 0.3s;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%);
+}
+
+.lose_page a:hover
+{
+	box-shadow: 0px -5px 0px red inset;
+}
+
+/* Stats IG */
+
+.score
+{
+	position: fixed; 
+	top: 50px;
+	left: 50px;
+	color: #fefefe;
+	font-size: 30px;
+	letter-spacing: 1px;
+	z-index: 100;
+}
+
+.lives
+{
+	position: fixed; 
+	top: 50px;
+	right: 50px;
+	color: green;
+	font-size: 30px;
+	letter-spacing: 1px;
+	z-index: 100;
+}

@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+/* Canvas */
+canvas {
+    border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: none;
+}
+
+/* In game */ 
+p.score {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px;
+    color: deeppink;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+p.life {
+    position: absolute;
+    margin-top: 10px;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    font-size: 40px;
+    color: #dbfbff;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* Game over */
+
+.container-game-over {
+    display: none;
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    cursor: normal;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s all ease;
+}
+
+.game-over {
+    margin-top: 50vh;
+    transform: translateY(-50%);
+}
+
+.game-over p {
+    font-size: 50px;
+    color: #dbfbff;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.game-over button {
+    background: deeppink;
+    width: 200px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #dbfbff;
+    transition: 0.3s all ease-out;
+    border-bottom: #dbfbff solid 5px;
+    outline: none;
+}
+
+.game-over button:hover {
+    background-color: #dbfbff;
+    color: deeppink;
+    border-bottom: deeppink solid 5px;
+}
+
+/* Rules */
+
+.container-rules {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    cursor: normal;
+    text-align: center;
+    opacity: 1;
+    transition: 0.5s all ease;
+}
+
+.rules {
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    cursor: default;
+}
+
+.targets {
+    line-height: 100px;
+    margin: 50px;
+}
+
+.target {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.target.target1 {
+    width: 30px;
+    height: 30px;
+    background: #00d9ff;
+}
+
+.target.target2 {
+    width: 90px;
+    height: 30px;
+    background: #8a08ff;
+}
+
+.target.target3 {
+    width: 100px;
+    height: 100px;
+    background: #f3ff19;
+}
+
+.life-container {
+    margin-bottom: 100px;
+    margin-top: 20px;
+}
+
+.lifes {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: deeppink;
+    margin-bottom: 10px;
+}
+
+.rules p {
+    line-height: normal;
+    font-size: 20px;
+    font-weight: 600;
+    color: #dbfbff;
+}
+
+.rules button {
+    background: deeppink;
+    width: 150px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #dbfbff;
+    transition: 0.3s all ease-out;
+    border-bottom: #dbfbff solid 5px;
+    outline: none;
+}
+
+.rules button:hover {
+    background-color: #dbfbff;
+    color: deeppink;
+    border-bottom: deeppink solid 5px;
+}
+
+/* Responsive */
+
+@media (max-width: 413px) {
+    .targets {
+        margin: 0 50px;
+    }
+    .life-container {
+        margin-bottom: 30px;
+    }
+}
+

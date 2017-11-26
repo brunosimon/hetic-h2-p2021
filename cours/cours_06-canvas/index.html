@@ -332,11 +332,17 @@ const image = document.createElement('img')
 image.addEventListener('load', () =>
 {
     // Dessine l'image
-    context.drawImage(image, 0, 0, image.width / 6, image.height / 6)
+    context.drawImage(image, 0, 0)
+
+    // Dessine et redimensionne l'image
+    // context.drawImage(image, 0, 0, image.width * 0.5, image.height * 0.5)
+
+    // Dessine, coupe et redimensionne l'image
+    // context.drawImage(image, 100, 100, 200, 200, 0, 0, image.width * 0.5, image.height * 0.5)
 })
 
 // Ajoute le chemin de l'image
-image.src = 'image-1.jpg'
+image.src = 'image.jpg'
                     </code></pre>
                 </section>
 
@@ -351,20 +357,15 @@ image.src = 'image-1.jpg'
                 <section>
                     <p>Dégradé linéaire</p>
                     <pre><code  data-trim contenteditable class="javascript">
-const gradient = context.createLinearGradient(50,50,250,250) // x1, y1, x2, y2
+const gradient = context.createLinearGradient(50, 50, 250, 250) // x1, y1, x2, y2
 
-gradient.addColorStop(0,  'rgb(255, 80, 0)')    // Départ
-gradient.addColorStop(0.5,'rgb(255, 191, 0)')   // Milieu
-gradient.addColorStop(1,  'rgb(255, 246, 155)') // Arrivée
+gradient.addColorStop(0, 'rgb(255, 80, 0)')    // Couleur de départ
+gradient.addColorStop(0.5, 'rgb(255, 191, 0)') // Couleur de milieu
+gradient.addColorStop(1, 'rgb(255, 246, 155)') // Couleur de arrivée
 
 context.fillStyle = gradient  // Le dégradé devient le style de remplissage
 
-context.fillRect(
-    0,   // X du premier point
-    0,   // Y du premier point
-    400, // X du second point
-    400  // Y du second point
-)
+context.fillRect(0, 0, 400, 400) // On dessine un carré
                     </code></pre>
                 </section>
 
@@ -377,21 +378,17 @@ context.fillRect(
                     <p>Dégradé Radial</p>
                     <pre><code  data-trim contenteditable class="javascript">
 const gradient = context.createRadialGradient(
-    0,   // X du premier cercle
-    0,   // Y du premier cercle
-    50,  // Rayon du premier cercle
-    0,   // X du second cercle
-    250, // Y du second cercle
-    350  // Rayon du second cercle
+    100, 100, 50, // Coordonnées et rayon du premier cercle
+    100, 250, 250 // Coordonnées et rayon du deuxième cercle
 )
 
-gradient.addColorStop(0,  'rgb(255, 80, 0)')    // Couleur de départ
-gradient.addColorStop(0.5,'rgb(255, 191, 0)')   // Couleur de milieu
-gradient.addColorStop(1,  'rgb(255, 246, 155)') // Couleur de arrivée
+gradient.addColorStop(0, 'rgb(255, 80, 0)')    // Couleur de départ
+gradient.addColorStop(0.5, 'rgb(255, 191, 0)') // Couleur de milieu
+gradient.addColorStop(1, 'rgb(255, 246, 155)') // Couleur de arrivée
 
 context.fillStyle = gradient  // Le dégradé devient le style de remplissage
 
-context.fillRect(0, 0, 400, 400) // Faire apparaître
+context.fillRect(0, 0, 400, 400) // On dessine un carré
                     </code></pre>
                 </section>
 
@@ -455,14 +452,11 @@ context.stroke()            // Dessin du trait
                     <p>Courbe de bézier</p>
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath()
-context.moveTo(50, 50) // X et Y du point de départ
+context.moveTo(50, 50) // Coordonnées du point de départ
 context.bezierCurveTo(
-    300, // X du premier point de tension
-    100, // Y du premier point de tension
-    100, // X du second point de tension
-    300, // Y du second point de tension
-    300, // X du point d'arrivée
-    300  // Y du point d'arrivée
+    300, 100, // Coordonnées du premier points de tension
+    100, 300, // Coordonnées du deuxième points de tension
+    300, 300  // Coordonnées du troisième points de tension
 )
 context.stroke()
                     </code></pre>
@@ -477,12 +471,10 @@ context.stroke()
                     <p>Courbe de quadratique (de bézier)</p>
                     <pre><code  data-trim contenteditable class="javascript">
 context.beginPath()
-context.moveTo(50, 50) // X et Y du point de départ
+context.moveTo(50, 50) // Coordonnées du point de départ
 context.quadraticCurveTo(
-    300, // X du seul point de tension
-    100, // Y du seul point de tension
-    300, // X du point d'arrivée
-    300  // Y du point d'arrivée
+    300, 100, // Coordonnées du premier points de tension
+    300, 300  // Coordonnées du premier points de tension
 )
 context.stroke()
                     </code></pre>
@@ -590,20 +582,20 @@ const image = document.createElement('img')
 image.addEventListener('load', () =>
 {
     // Dessiner l'image chargée dans le canvas
-    context.drawImage(image, 0, 0, image.width / 6, image.height / 6)
+    context.drawImage(image, 0, 0)
 
     // Récupérer les pixels dans imageData
-    const imageData = context.getImageData(0, 0, image.width / 6, image.height / 6)
+    const imageData = context.getImageData(0, 0, image.width, image.height)
 
     // Parcourir les pixels 4 par 4
-    for(var i = 0; i < imageData.data.length; i += 4)
+    for(let i = 0; i < imageData.data.length; i += 4)
     {
         // Traiter ces pixels couleur par couleur
         // Ici, on rend l'image noir et blanc en calculant une valeur de gris et en mettant cette valeur pour chaque couleur primaire
-        var b = 0.4 * imageData.data[i] + 0.4 * imageData.data[i + 1] + 0.4 * imageData.data[i + 2]
-        imageData.data[i]     = b
-        imageData.data[i + 1] = b
-        imageData.data[i + 2] = b
+        const gray = (imageData.data[i + 0] + imageData.data[i + 1] + imageData.data[i + 2]) / 3
+        imageData.data[i + 0] = gray
+        imageData.data[i + 1] = gray
+        imageData.data[i + 2] = gray
         // On ne touche pas à l'apha
     }
 
@@ -611,7 +603,7 @@ image.addEventListener('load', () =>
     context.putImageData(imageData, 0, 0)
 })
 
-image.src = 'image-1.jpg'
+image.src = 'image.jpg'
                     </code></pre>
                 </section>
 
@@ -644,9 +636,8 @@ const loop = () =>
 }
 window.requestAnimationFrame(loop)
                     </code></pre>
-                    <p>La fonction loop sera appelée dès que possible</p>
-                    <p>Plus l'ordinateur est performant, plus la fréquence sera rapide</p>
-                    <p>La fonction ne sera pas appelée tant que l'ordinateur n'est pas prêt</p>
+                    <p>La fonction loop sera appelée dès la prochaine frame</p>
+                    <p>Plus l'ordinateur est performant, plus la fréquence sera rapide avec une limite à 60 fps</p>
                 </section>
 
                 <section>
@@ -669,7 +660,7 @@ const loop = () =>
 
     // Mise à jour des coordonnées
     coords.x += 4
-    coords.y = 200 - Math.abs(Math.cos(+ new Date() / 300)) * 100
+    coords.y = 200 - Math.abs(Math.sin(Date.now() * 0.005)) * 100
 
     // Limite
     if(coords.x > canvas.width + 50)
@@ -677,11 +668,15 @@ const loop = () =>
         coords.x = -50
     }
 
-    // Dessin de la balle
-    context.fillStyle = 'rgba(238, 238, 238, 0.2)'
-    context.fillRect( 0, 0, canvas.width, canvas.height )
+    // Efface le canvas
+    context.globalAlpha = 0.2
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, $canvas.width, $canvas.height)
+
+    // Dessine la balle
     context.beginPath()
-    context.arc( coords.x, coords.y, 50, 0, Math.PI * 2 )
+    context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.globalAlpha = 1
     context.fillStyle = 'orange'
     context.fill()
 }
@@ -698,37 +693,41 @@ loop()
                 <section>
                     <p>Exemple : Balle qui suit la souris</p>
                     <pre><code  data-trim contenteditable class="javascript">
-// Coordonnées de base
-const coords = { x: 200, y: 200 }
+// Coordonnées de la souris
 const mouse = { x: 0, y: 0 }
+
+window.addEventListener('mousemove', (event) =>
+{
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+})
+
+// Coordonnées de la la balle
+const coords = { x: 0, y: 0 }
 
 // Fonction déclenchée à chaque frame
 const loop = () =>
 {
     window.requestAnimationFrame(loop)
 
-    // Mise à jour des coordonnées avec easing
-    coords.x += (mouse.x - coords.x) * 0.01
-    coords.y += (mouse.y - coords.y) * 0.01
+    // Met à jour les coordonnées de la balle en appliquant un easing
+    coords.x += (mouse.x - coords.x) * 0.1
+    coords.y += (mouse.y - coords.y) * 0.1
 
-    // Dessin de la balle
-    context.fillStyle = 'rgba(238, 238, 238, 0.2)'
-    context.fillRect(0, 0, canvas.width, canvas.height)
+    // Efface le canvas
+    context.globalAlpha = 0.2
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, $canvas.width, $canvas.height)
+
+    // Dessine la balle
     context.beginPath()
     context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.globalAlpha = 1
     context.fillStyle = 'orange'
     context.fill()
 }
 
 loop()
-
-// Écoute de l'événement mousemove
-document.addEventListener('mousemove', (event) =>
-{
-    // Mise à jour des coordonnées
-    mouse.x = event.clientX
-    mouse.y = event.clientY
-})
                     </code></pre>
                 </section>
 
@@ -748,11 +747,14 @@ document.addEventListener('mousemove', (event) =>
                     <p>Les années précédentes :</p>
                     <ul>
                         <li><a href="demos/delorme_dorian/index.html" target="_blank">Delorme Dorian</a></li>
-                        <li><a href="demos/ferhaoui_jasmine/index.html" target="_blank">Ferhaoui Jasmine</a></li>
                         <li><a href="demos/ficheux_aude/index.html" target="_blank">Ficheux Aude</a></li>
                         <li><a href="demos/le_bras_leo/index.html" target="_blank">Le Bras Leo</a></li>
-                        <li><a href="demos/michay_robin/index.html" target="_blank">Michay Robin</a></li>
-                        <li><a href="demos/morgaut_louis_victor/index.html" target="_blank">Morgaut Louis Victor</a></li>
+                        <li><a href="demos/balossini_arthur/index.html" target="_blank">Balossini Arthur</a></li>
+                        <li><a href="demos/desobry_johann/index.html" target="_blank">Desobry Johann</a></li>
+                        <li><a href="demos/gimbert_vanessa/index.html" target="_blank">Gimbert Vanessa</a></li>
+                        <li><a href="demos/laurent_adrien/index.html" target="_blank">Laurent Adrien</a></li>
+                        <li><a href="demos/phan_kelly/index.html" target="_blank">Phan Kelly</a></li>
+                        <li><a href="demos/villain_baptiste/index.html" target="_blank">Villain Baptiste</a></li>
                     </ul>
                 </section>
 

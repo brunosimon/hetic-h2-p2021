@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body
+{
+	font-family: Helvetica, Arial;
+	font-size: 14px;
+  overflow: hidden;
+}
+
+canvas
+{
+	position:absolute;
+	background-color: white;
+	display: block;
+}
+
+#clear
+{
+  position: absolute;
+  bottom: 20px;
+  right: 40%;
+  height: auto;
+  width: 100px;
+  background-color: #e74c3c;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+#save
+{
+  position: absolute;
+  bottom: 20px;
+  left: 40%;
+  height: auto;
+  width: 100px;
+  background-color: #69c792;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+  
