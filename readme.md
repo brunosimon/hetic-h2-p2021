@@ -20,9 +20,9 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
     - [ ] ! Async navigation
     - [ ] ! Search instagram with speech API
 - [x] HTML5 Audio/video API
-- [ ] Responsive
-- [ ] Versionning avec git
+- [x] Responsive
 - [ ] Canvas
+- [ ] Versionning avec git
 - [ ] Clean code
 - [ ] Fonts
 - [ ] Task runners
