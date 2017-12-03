@@ -31,6 +31,7 @@ const create = () =>
 // Clear function
 const clear = () =>
 {
+    context.globalCompositeOperation = 'source-over'
     context.fillStyle = '#000000'
     context.fillRect(0, 0, $canvas.width, $canvas.height)
 }
@@ -60,6 +61,8 @@ const update = () =>
 // Draw function
 const draw = () =>
 {
+    context.globalCompositeOperation = 'lighten'
+
     // Each particle
     for(const particle of particles)
     {

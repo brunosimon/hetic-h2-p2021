@@ -117,26 +117,53 @@ const context = $canvas.getContext('2d')
 // context.fillStyle = '#0000ff'
 // context.fillRect(150, 150, 200, 200)
 
-const coords = { x: 300, y: 300 }
+// const ballCoords = { x: 300, y: 300 }
+// const radius = 50
+
+// const loop = () =>
+// {
+//     window.requestAnimationFrame(loop)
+
+//     ballCoords.x += 4
+//     ballCoords.y = 300 - Math.abs(Math.sin(Date.now() / 200)) * 100
+
+//     if(ballCoords.x >= $canvas.width + radius)
+//     {
+//         ballCoords.x = - radius
+//     }
+
+//     context.clearRect(0, 0, $canvas.width, $canvas.height)
+
+//     context.beginPath()
+//     context.arc(ballCoords.x, ballCoords.y, radius, 0, Math.PI * 2)
+//     context.fillStyle = 'orange'
+//     context.fill()
+// }
+// loop()
+
+const mouse = { x: 0, y: 0 }
+
+document.addEventListener('mousemove', (event) =>
+{
+    mouse.x = event.clientX
+    mouse.y = event.clientY
+})
+
+const ballCoords = { x: 0, y: 0 }
 
 const loop = () =>
 {
     window.requestAnimationFrame(loop)
 
-    coords.x += 4
+    ballCoords.x += (mouse.x - ballCoords.x) / 10
+    ballCoords.y += (mouse.y - ballCoords.y) / 10
 
-    if(coords.x > $canvas.width)
-    {
-        coords.x = 0
-    }
-
-    context.clearRect(0, 0, $canvas.width, $canvas.height)
+    context.fillStyle = 'rgba(255, 255, 255, 0.2)'
+    context.fillRect(0, 0, $canvas.width, $canvas.height)
 
     context.beginPath()
-    context.arc(coords.x, coords.y, 50, 0, Math.PI * 2)
+    context.arc(ballCoords.x, ballCoords.y, 50, 0, Math.PI * 2)
     context.fillStyle = 'orange'
     context.fill()
 }
-
 loop()
-

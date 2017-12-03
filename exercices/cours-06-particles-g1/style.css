@@ -1,0 +1,17 @@
+body,
+html
+{
+    overflow: hidden;
+}
+
+body
+{
+    background: #000000;
+}
+
+canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
