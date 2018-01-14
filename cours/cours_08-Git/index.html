@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 1 - Cours 08 - Git</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 08</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Git</h1>
+                </section>
+
+                <!-- SUMMARY -->
+                <section>
+                    <p>Sommaire</p>
+                    <ul>
+                        <li><a href="#what-it-is">Qu'est-ce que c'est ?</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#github">GitHub</a></li>
+                        <li><a href="#create-and-fetch-repository">Créer et récupérer un repository</a></li>
+                        <li><a href="#make-a-commit">Faire un commit</a></li>
+                        <li><a href="#work-together">Travailler à plusieurs</a></li>
+                        <li><a href="#resolve-conflicts">Résoudre des conflits</a></li>
+                        <li><a href="#tips-bonuses">Astuces / Bonus</a></li>
+                        <li><a href="#commands">Commandes</a></li>
+                        <li><a href="#tips">Conseils</a></li>
+                        <li><a href="#tutorials">Tutoriels</a></li>
+                        <li><a href="#applications">Applications</a></li>
+                    </ul>
+                </section>
+
+                <!-- WHAT IT IS -->
+                <section id="what-it-is">
+                    <h2>Qu'est-ce que c'est ?</h2>
+                </section>
+
+                <section>
+                    <p>Git est un outil de versionning</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Créé par <a href="https://fr.wikipedia.org/wiki/Linus_Torvalds" target="_blank">Linus Torvalds</a></li>
+                        <li class="fragment">Permet de sauvegarder les différentes <span class="u">versions</span> d'un projet</li>
+                        <li class="fragment">Historique</li>
+                        <li class="fragment">Idéal pour travailler à plusieurs</li>
+                        <li class="fragment">Difficile au début</li>
+                        <li class="fragment">Indispensable ensuite</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Chaque modification équivaut à une nouvelle version du projet</p>
+                    <p>Une modification est appelée <span class="u">commit</span></p>
+                    <ul>
+                        <li><span class="u">Quoi ?</span><br>Modification (création, modification, suppression)</li>
+                        <li><span class="u">Par qui ?</span><br>Auteur du commit</li>
+                        <li><span class="u">Quand ?</span><br>Date de la modification</li>
+                        <li><span class="u">Pourquoi ?</span><br>Description de la modification</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Il existe des logiciels permettant d'utiliser Git, mais nous allons apprendre à l'utiliser en lignes de commande</p>
+                </section>
+
+                <!-- INSTALLATION -->
+                <section id="installation">
+                    <h2>Installation</h2>
+                </section>
+
+                <section>
+                    <p>Git fonctionne depuis le terminal</p>
+                    <p>Pour savoir si git est déjà installé, ouvrez le terminal et tapez <span class="hl">git --version</span></p>
+                    <p>Si la version s'affiche, passez l'étape d'installation</p>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/terminal-git-version.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Mac</h3>
+                    <ul>
+                        <li>Télécharger le fichier à partir de l'adresse suivante<br><a href="https://git-scm.com/download/mac" target="_blank">git-scm.com/download/mac</a></li>
+                        <li>Lancez le <span class="hl">.dmg</span></li>
+                        <li>Lancez le <span class="hl">.pkg</span></li>
+                        <li>Suivez l'installation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Windows</h3>
+                    <ul>
+                        <li>Télécharger le fichier à partir de l'adresse suivante<br><a href="https://git-scm.com/download/win" target="_blank">git-for-windows.github.io</a></li>
+                        <li>Lancez le <span class="hl">.exe</span></li>
+                        <li>Suivez l'installation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/2.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/3.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/4.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/5.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/6.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/7.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/8.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/9.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/10.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Git Bash devrait se lancer</p>
+                    <p>
+                        <img class="no-style" width="600" src="src/img/windows/11.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Vous pouvez utiliser <span class="u">Git Bash</span> pour la suite du cours</p>
+                    <p>Celui-ci supporte les commandes UNIX de base (cd, ls, mkdir, etc.)</p>
+                    <p>Il existe des alternatives</p>
+                    <ul>
+                        <li><a href="http://cmder.net/" target="_blank">cmder</a></li>
+                    </ul>
+                </section>
+
+                <!-- TERMINAL -->
+                <section>
+                    <h2>Terminal</h2>
+                </section>
+
+                <section>
+                    <p>Pour pouvoir utiliser les fonctionnalités de la suite du cours, nous allons utiliser le Terminal</p>
+                    <p>Sur Mac, recherchez simplement l'application <span class="hl">Terminal</span></p>
+                    <p>
+                        <img src="src/img/search-terminal.png" alt="" width="550">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Voici votre terminal</p>
+                    <p>
+                        <img class="no-style" src="src/img/terminal.png" alt="" width="600">
+                        <br>Celui-ci fonctionne avec les commandes unix que nous allons voir plus tard
+                    </p>
+                </section>
+
+                <section>
+                    <p>Alternatives :</p>
+                    <ul>
+                        <li><a href="https://www.iterm2.com/" target="_blank">iTerm2</a></li>
+                        <li><a href="https://hyper.is/" target="_blank">Hyper</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Sur PC, vous pouvez utiliser Git Bash (installé avec Git) ou <a href="http://cmder.net" target="_blank">cmder</a></p>
+                    <p>Alternativement, vous pouvez faire fonctionner les commandes unix directement dans l'<span class="hl">Invite de commandes</span> Windows en installant <a href="https://github.com/bmatzelle/gow/releases" target="_blank">Gow</a></p>
+                </section>
+
+                <section>
+                    <p>Nous n'allons voir qu'une petite partie des commandes unix séparées en 3 groupes</p>
+                    <ul>
+                        <li>Primordiales</li>
+                        <li>Pratiques</li>
+                        <li>Bonus</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Commandes primodiales</h3>
+
+                    <ul>
+                        <li>
+                            <span class="hl">pwd</span> : afficher le chemin du dossier courant
+                            <pre><code data-trim contenteditable class="cpp">
+pwd
+                            </code></pre>
+                        </li>
+                        <li>
+                            <span class="hl">ls</span> : afficher les fichiers et dossiers dans le dossier courant
+                            <pre><code data-trim contenteditable class="cpp">
+ls
+                            </code></pre>
+                        </li>
+                        <li>
+                            <span class="hl">cd</span> : se déplacer dans un dossier
+                            <pre><code data-trim contenteditable class="cpp">
+cd dossier-1/dossier-2
+cd ../..
+                            </code></pre>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h3>Commandes pratiques</h3>
+
+                    <ul>
+                        <li>
+                            <span class="hl">clear</span> : effacer le contenu du terminal
+                            <pre><code data-trim contenteditable class="cpp">
+clear
+                            </code></pre>
+                        </li>
+                        <li>
+                            <span class="hl">man</span> : afficher le manuel d'une commande (<span class="hl">Q</span> pour quitter)
+                            <pre><code data-trim contenteditable class="cpp">
+man clear
+                            </code></pre>
+                        </li>
+                        <li>
+                            <span class="hl">open</span> : ouvrir un dossier dans le finder
+                            <pre><code data-trim contenteditable class="cpp">
+open ./
+open dossier-1
+                            </code></pre>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h3>Commandes pratiques</h3>
+
+                    <ul>
+                        <li><span class="hl">touch</span> : créer un fichier</li>
+                        <li><span class="hl">cp</span> : copier un fichier ou dossier</li>
+                        <li><span class="hl">mv</span> : déplacer un fichier ou dossier</li>
+                        <li><span class="hl">mkdir</span> : créer un dossier</li>
+                        <li><span class="hl">rm</span> : supprimer un fichier</li>
+                        <li><span class="hl">rmdir</span> : supprimer un dossier</li>
+                        <li><span class="hl">vim</span> : éditer un fichier avec Vim</li>
+                        <li>
+                            <span class="hl">say</span> : faire parler votre ordinateur
+                            <pre><code data-trim contenteditable class="cpp">
+say -v Thomas "Coucou la famille"
+                            </code></pre>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h3>Astuces</h3>
+
+                    <ul>
+                        <li>Sur Mac, vous pouvez créer des onglets avec <span class="hl">CMD + T</span></li>
+                        <li>Pour ne pas avoir à écrire un chemin entier, glissez/déposez le dossier depuis le finder dans le terminal</li>
+                        <li>Quand vous écrivez le nom d'un fichier ou dossier, tapez la touche <span class="hl">TAB</span> pour auto-compléter</li>
+                        <li>Utilisez les flèches haut et bas pour naviguer dans l'historique des commandes</li>
+                    </ul>
+                </section>
+
+                <!-- GITHUB -->
+                <section id="github">
+                    <h2>GitHub</h2>
+                    <p>
+                        <img width="300" src="src/img/octocat.png" alt="" style="border:none;">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Un projet git est appelé <span class="u">repository</span> ou juste <span class="u">repo</span></p>
+                    <p>Il est possible d'avoir un repo uniquement sur son ordinateur, mais on perd l'intérêt de Git qui est aussi de sauvegarder nos données et de travailler à plusieurs</p>
+                    <p>Il nous faut donc un hébergeur Git en ligne</p>
+                    <p>Nous allons utiliser <a href="https://github.com/" target="_blank">GitHub</a></p>
+                </section>
+
+                <section>
+                    <p>GitHub est plus qu'un hébergeur Git</p>
+                    <ul>
+                        <li>Réseau social</li>
+                        <li>Bug tracker</li>
+                        <li>Project manager</li>
+                        <li>Team manager</li>
+                        <li>Hébergeur de sites</li>
+                        <li>Support de documentation</li>
+                        <li>Critère de recrutement</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Les repositories peuvent être publics ou privés</p>
+                    <p>Vous serez limités dans le nombre de repo privés sauf si vous <a href="https://github.com/pricing">payez</a> ($7/mois)</p>
+                    <p class="fragment">Sauf si vous êtes étudiants 🎉<br /><a href="https://education.github.com/pack">github.com/pricing</a></p>
+                </section>
+
+                <section>
+                    <p>Alternatives</p>
+                    <ul>
+                        <li><a href="https://bitbucket.org/" target="_blank">BitBucket</a></li>
+                        <li><a href="https://about.gitlab.com/" target="_blank">GitLab</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Allez sur <a href="https://github.com" target="_blank">github.com</a> et créez-vous un compte</p>
+                    <p>
+                        <a href="https://github.com/brunosimon" target="_blank"><img class="no-style" width="600" src="src/img/github-account.png" alt=""></a>
+                    </p>
+                </section>
+
+                <section>
+                    <p>Pour connecter Git à votre compte github</p>
+                    <ul>
+                        <li>Récupérez votre pseudo GitHub et l'email que vous avez utilisé</li>
+                        <li>Ouvrez le terminal n'importe où</li>
+                        <li>Tapez <span class="hl">git config --global user.name "votrepseudo"</span></li>
+                        <li>Tapez <span class="hl">git config --global user.email "votre@email"</span></li>
+                    </ul>
+                    <p>Cette configuration sera valable pour tous vos repo sur l'ordinateur</p>
+                </section>
+
+                <!-- CREATE AND GET A REPO -->
+                <section id="create-and-fetch-repository">
+                    <h2>Créer et récupérer un repository</h2>
+                </section>
+
+                <section>
+                    <h3>Créer un repo sur GitHub</h3>
+                    <ul>
+                        <li>Allez sur votre profile</li>
+                        <li>Allez dans l'onglet <span class="hl">Repositories</span></li>
+                        <li>Cliquez sur <span class="hl">New</span></li>
+                        <li>
+                            Choisissez un nom de repo
+                            <br>(minuscules, majuscules, tirets, underscore, chiffres)
+                            <br>(ex: test-2021)
+                        </li>
+                        <li>Cliquez sur <span class="hl">Create repository</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Récupérer en local</h3>
+                    <ul>
+                        <li>Ouvrez le terminal</li>
+                        <li>
+                            Allez dans le dossier contenant vos projets
+                            <br>(cd, pwd, ls)
+                        </li>
+                        <li>
+                            Tapez <span class="hl">git clone https://url-de-votre-repo</span>
+                            <br>l'URL de votre repo est disponible sur la page du repo
+                            <br>(ex: <span class="u">https://github.com/brunosimon/test-2021.git</span>)
+                        </li>
+                        <li>
+                            Allez dans le dossier nouvellement créé
+                            <br>(ex: <span class="hl">cd test-2021</span>)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Le dossier nouvellement créé contient un dossier <span class="u">.git</span> (invisible sur mac)</p>
+                    <p>Sur mac, dans le terminal, tapez <span class="hl">defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder</span> pour faire apparaître les fichiers/dossiers cachés</p>
+                    <p>Ce dossier contient tout l'historique, toutes les versions, de votre projet (actuellement pas grand chose)</p>
+                    <p><span class="u">Ne touchez jamais au contenu de ce dossier</span></p>
+                </section>
+
+                <!-- DO A COMMIT -->
+                <section id="make-a-commit">
+                    <h2>Faire un commit</h2>
+                </section>
+
+                <section>
+                    <p>Maintenant que nous avons le repo en local, nous voulons commencer à travailler dessus</p>
+                </section>
+
+                <section>
+                    <h3>Faire une modification</h3>
+                    <p>Comme première modification, nous allons simplement créer un fichier index.html</p>
+                    <ul>
+                        <li>Créez un fichier <span class="hl">index.html</span></li>
+                        <li>Rajoutez n'importe quoi dedans</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Astuce</p>
+                    <p>La commande <span class="hl">git status</span> permet de lister le(s) fichier(s) modifié(s)</p>
+                    <p>La commande <span class="hl">git diff index.html</span> permet de lister les modifications dans le(s) fichier(s)</p>
+                </section>
+
+                <section>
+                    <h3>Indiquer quels fichiers sont modifiés</h3>
+                    <p>Lorsque nous avons créé le fichier index.html, celui-ci était <span class="u">untracked</span>. Il ne fait pas encore parti du repo.</p>
+                    <p>La commande <span class="hl">git add index.html</span> permet d'indiquer que le fichier est maintenant <span class="u">staged</span></p>
+                    <p>Ce fichier sera enregistré dans git au prochain <span class="u">commit</span></p>
+                    <p>Il est possible d'envoyer plusieurs fichiers en même temps</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="hl">git add index.html</span> stage uniquement un fichier</li>
+                        <li><span class="hl">git add mon-dossier/</span> stage un dossier entier et tout son contenu</li>
+                        <li><span class="hl">git add --all</span> stage tous les fichiers modifiés</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Créer le commit</h3>
+                    <p>La commande <span class="hl">git commit ...</span> permet de créer le commit</p>
+                    <p>Tous les fichiers stagés vont faire parti de ce commit</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="u">Quoi ?</span><br>Fichiers stagés</li>
+                        <li><span class="u">Par qui ?</span><br>Git config</li>
+                        <li><span class="u">Quand ?</span><br>Date actuelle</li>
+                        <li><span class="u">Pourquoi ?</span><br>???</li>
+                    </ul>
+                    <p>Il faut donc rajouter une description à notre commit pour expliquer ce qu'il apporte</p>
+                </section>
+
+                <section>
+                    <p>Tapez <span class="hl">git commit -m "Create index file"</span></p>
+                    <p><span class="hl">-m</span> permet de renseigner directement le message associé au commit</p>
+                </section>
+
+                <section>
+                    <p>Nous pouvons désormais envoyer notre commit sur le serveur</p>
+                    <p>Tapez <span class="hl">git push</span></p>
+                    <p>
+                        À cette étape, le terminal devrait vous demander de rentrer votre pseudo et mot de passe GitHub
+                        <br><img width="600" src="src/img/terminal-github-login.jpg" alt="">
+                    </p>
+                    <p>Ces accès ne vous seront pas demandés par la suite</p>
+                </section>
+
+                <section>
+                    <p>
+                        Rendez-vous sur le repo pour découvrir votre commit avec le fichier index.html
+                        <br><img width="400" src="src/img/github-first-commit.jpg" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Ceci était un workflow classique lorsqu'on travaille <span class="u">seul</span> sur le projet</p>
+                    <ul>
+                        <li>Faire la modification</li>
+                        <li>Stager les fichiers avec <span class="hl">git add</span></li>
+                        <li>Commiter avec <span class="hl">git commit</span></li>
+                        <li>Pusher avec <span class="hl">git push</span></li>
+                    </ul>
+                </section>
+
+                <!-- WORK TOGETHER -->
+                <section id="work-together">
+                    <h2>Travailler à plusieurs</h2>
+                </section>
+
+                <section>
+                    <p>Même si votre repo est publique, d'autres développeurs ne peuvent le modifier sans votre accord</p>
+                    <p>Pour autoriser un autre développeur à faire des modifications, il faut le rajouter dans les collaborateurs</p>
+                    <ul>
+                        <li>Aller sur la page de votre repo</li>
+                        <li>Aller dans l'onglet <span class="hl">Settings</span></li>
+                        <li>Aller dans la partie <span class="hl">Collaborators</span></li>
+                        <li>Recherchez le pseudo de l'utilisateur Github et cliquez sur <span class="hl">Add collaborator</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Le développeur doit accepter l'invitation</p>
+                    <p>Il peut maintenant récupérer le projet <span class="hl">git clone https://github.com/brunosimon/test-2021.git</a></p>
+                    <p>Et faire des commits</p>
+                </section>
+
+                <section>
+                    <p>Pour récupérer les modifications faites par les autres développeurs, taper <span class="hl">git pull</span></p>
+                </section>
+
+                <!-- RESOLVE CONFLICTS -->
+                <section id="resolve-conflicts">
+                    <h2>Résoudre des conflits</h2>
+                </section>
+
+                <section>
+                    <p>
+                        Avant de pusher notre commit, si un autre développeur a déjà envoyé un commit, git rejettera notre push
+                        <br><img class="no-style" width="800" src="src/img/terminal-git-push-rejected.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Nous allons commencer par récupérer les modifications avec <span class="hl">git pull</span></p>
+                    <p>⚠️ Il ne doit pas y avoir de modifications non commités</p>
+                </section>
+
+                <section>
+                    <p>Deux cas peuvent se produire</p>
+                    <ul>
+                        <li>Les fichiers modifiés ne sont pas les mêmes</li>
+                        <li>Les fichiers modifiés sont les mêmes</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Les fichiers modifiés ne sont pas les mêmes</h3>
+                    <p>Si d'autres fichiers ont été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur <span class="hl">vi</span> va apparaître avec un contenu pré rempli</p>
+                    <p>
+                        <img class="no-style" width="800" src="src/img/terminal-vi-commit-1.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Tapez simple <span class="hl">:wq</span> et faites <span class="hl">ENTRER</span></p>
+                    <ul>
+                        <li><span class="hl">:</span> permet d'écrire une commande VI</li>
+                        <li><span class="hl">w</span> indique de sauvegarder</li>
+                        <li><span class="hl">q</span> indique de quitter</li>
+                    </ul>
+                    <p>
+                        <img class="no-style" width="800" src="src/img/terminal-vi-commit-2.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Un nouveau commit qu'on appelle <span class="u">merge</span> vient d'être créé automatiquement</p>
+                    <p>Vous pouvez envoyer les commits serainement avec <span class="hl">git push</span></p>
+                </section>
+
+                <section>
+                    <h3>Les fichiers modifiés sont les mêmes</h3>
+                    <p>Si un développeur a modifié le même fichier que vous, il va falloir choisir quelle modification conserver</p>
+                    <p>
+                        <img class="no-style" width="800" src="src/img/terminal-conflit-same-file.png" alt="">
+                    </p>
+                    <p>Git ne peut décider à votre place quel commit choisir. Vous allez devoir le résoudre vous même</p>
+                </section>
+
+                <section>
+                    <p>Dans l'exemple qui suit, nous avons décidé de rajouter une liste de nombres, mais un autre développeur a décidé de rajouter une liste de lettres</p>
+                </section>
+
+                <section>
+                    <p>Lorsque nous avons fait le <span class="hl">git pull</span>, git a modifié le code afin de faire apparaître les deux commits</p>
+                    <p>
+                        <img class="no-style" width="800" src="src/img/sublime-index-conflict.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>La partie <span class="hl"><<<<<<< HEAD</span> correspond à notre code</p>
+                    <p>L'autre partie correspond à l'autre code</p>
+                    <ul>
+                        <li>Corrigez le conflit manuellement</li>
+                        <li>Testez que le projet fonctionne</li>
+                        <li>Stagez le(s) fichier(s) concerné(s) avec <span class="hl">git add index.html</span></li>
+                        <li>Créez un commit en tapant simplement <span class="hl">git commit</span></li>
+                        <li>Sauvegardez et quittez l'éditeur VI avec <span class="hl">:wq</span></li>
+                        <li>Envoyer avec <span class="hl">git push</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>La résolution de conflits et la partie la plus difficile à maîtriser</p>
+                    <p>Il faut faire preuve de rigueur et d'organisation dans la team</p>
+                </section>
+
+                <section>
+                    <p>Astuce</p>
+                    <p>Faites un <span class="hl">git pull</span> avant de commencer à travailler pour vous assurer d'avoir la dernière version du projet</p>
+                </section>
+
+                <section>
+                    <p>Vous avez compris l'essentiel du workflow git</p>
+                </section>
+
+                <!-- TIPS / BONUS -->
+                <section id="tips-bonuses">
+                    <h2>Astuces / Bonus</h2>
+                </section>
+
+                <section>
+                    <h3>README</h3>
+                    <p>Un readme est un fichier descriptif accompagnant un projet</p>
+                    <p>On peut le retrouver dans des sous-dossier, mais il est en général à la racine</p>
+                    <p>Son contenu apparaît directement sur le repo</p>
+                    <p>Soignez vos readme</p>
+                </section>
+
+                <section>
+                    <p>Plusieurs noms possibles</p>
+                    <ul>
+                        <li><span class="hl">readme.md</span></li>
+                        <li>README.md</li>
+                        <li>README</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Informations qu'on peut retrouver dans un readme</p>
+                    <ul>
+                        <li>Description</li>
+                        <li>Exemples d'utilisation</li>
+                        <li>Installation</li>
+                        <li>Auteurs</li>
+                        <li>Contributeurs</li>
+                        <li>Remerciements</li>
+                        <li>License</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Le readme peut être écrit en markdown</p>
+                    <p>Markdown est un language de formatage</p>
+                    <p>Nous allons pouvoir créer des titres de différentes tailles, des tableaux, des images, du code, des listes, etc.</p>
+                    <ul>
+                        <li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></li>
+                        <li><a href="http://blog.wax-o.com/2014/04/tutoriel-un-guide-pour-bien-commencer-avec-markdown/" target="_blank">blog.wax-o.com/2014/04/tutoriel-un-guide-pour-bien-commencer-avec-markdown/</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Licenses</h3>
+                    <p>Lorsque vous mettez à disposition des autres un projet, vous souhaitez probablement garder un certain contrôle sur son utilisation ou au moins sur sa paternité</p>
+                    <p>Cela est possible grâce aux licenses</p>
+                    <p>Le site <a href="http://choosealicense.com/" target="_blank">choosealicense.com</a>, créé par GitHub, vous permet de choisir une license et vous accompagnera dans sa mise en place</p>
+                    <p>Une des plus répandues est la license <span class="u">MIT</span> dont voici une <a href="https://writing.kemitchell.com/2016/09/21/MIT-License-Line-by-Line.html" target="_blank">explication ligne par ligne</a></p>
+                </section>
+
+                <section>
+                    <h3>Repo privé</h3>
+                    <p>Vous pouvez à tout moment décider de passer votre repository en privé pour ensuite rajouter des collaborateurs qui auront le droit de travailler dessus</p>
+                    <p>
+                        <img class="no-style" width="160" src="src/img/github-repo-settings.jpg" alt="">
+                        <br><img class="no-style" width="700" src="src/img/github-repo-private.jpg" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Ignorer des fichiers</h3>
+                    <p>Il est possible d'indiquer à git d'ignorer certains fichiers afin qu'ils ne soient pas commités</p>
+                    <ul>
+                        <li>.DS_Store</li>
+                        <li>node_modules</li>
+                        <li>vendors</li>
+                        <li>fichiers sensibles (Accès)</li>
+                        <li>builds</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Pour cela, créez simplement un fichier <span class="hl">.gitignore</span> à la racine du projet</p>
+                    <p>Chaque ligne de se fichier correspond à une règle</p>
+                </section>
+
+                <section>
+                    <table>
+                        <tr>
+                            <td><span class="hl">fichier.txt</span></td>
+                            <td>fichier.txt partout dans le projet</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">/fichier.txt</span></td>
+                            <td>fichier.txt à la racine</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">/toto/fichier.txt</span></td>
+                            <td>fichier.txt dans le dossier toto</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">toto</span></td>
+                            <td>dossier toto partout dans le projet</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">/toto</span></td>
+                            <td>dossier toto à la racine</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">/toto/**</span></td>
+                            <td>tous les fichiers dans le dossier toto</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">*.txt</span></td>
+                            <td>tous les fichiers .txt</td>
+                        </tr>
+                        <tr>
+                            <td><span class="hl">/toto/**.txt</span></td>
+                            <td>tous les fichiers .txt dans le dossier toto</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Le site <a href="https://www.gitignore.io/" target="_blank">gitignore.io</a> permet de générer facilement ces fichiers</p>
+                </section>
+
+                <section>
+                    <h3>Reset</h3>
+                    <p>Si vous venez de stagé des fichiers, mais que vous souhaitez annuler, tapez simplement <span class="hl">git reset</span></p>
+                    <p>Cela ne va pas annuler vos modifications</p>
+                </section>
+
+                <section>
+                    <h3>Amend</h3>
+                    <p>Si vous venez de faire un commit (sans le push), mais que vous souhaitez le modifier, vous pouvez utiliser amend</p>
+                    <p>Exemple: <span class="hl">git commit --amend -m "Pwet"</span> va réécrire le message de commit</p>
+                </section>
+
+                <section>
+                    <h3>Log</h3>
+                    <p>Pour afficher les commits, tapez <span class="hl">git log</span></p>
+                    <p>Pour les afficher en version plus simple, tapez <span class="hl">git log --oneline</span></p>
+                </section>
+
+                <section>
+                    <h3>Checkout</h3>
+                    <p>Si vous avez apporté des modifications que vous souhaitez annuler, vous pouvez utiliser checkout</p>
+                    <p>Exemple: <span class="hl">git checkout index.html</span></p>
+                    <p>Vous perdrez vos modifications</p>
+                </section>
+
+                <section>
+                    <p>Checkout permet aussi de revenir à un ancien commit (une ancienne version du projet)</p>
+                    <p>Nous allons avoir besoin de connaître le <span class="u">hash</span> correspondant au commit</p>
+                    <p>Nous pouvons récupérer les hash dans les commits sur Github ou alors grâce à <span class="hl">git log</span></p>
+                    <p>Il suffit ensuite de taper <span class="hl">git checkout XXXXXXX</span></p>
+                </section>
+
+                <section>
+                    <p>Pour revenir à la dernière version, taper <span class="hl">git checkout master</span></p>
+                    <p><span class="u">master</span> correspondant à la branche (???)</p>
+                </section>
+
+                <section>
+                    <h3>Branches</h3>
+                    <p>Il peut arriver d'avoir une modification complexe à apporter qui risquerait de créer trop de conflits avec les autres développeurs</p>
+                    <p>Git permet de créer des branches</p>
+                    <p>Cela revient à créer une copie du projet à un instant T et de pouvoir faire des modifications sur chacune des deux branches sans rentrer en conflit</p>
+                    <p>Une fois la modification terminée, on peut merger les branches en résolvant les éventuels conflits</p>
+                </section>
+
+                <section>
+                    <p>Créer une branche et passer dessus</p>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git branch</span></td>
+                            <td>lister les branches</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git branch toto</span></td>
+                            <td>créer une branche <span class="u">toto</span></td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git checkout toto</span></td>
+                            <td>passer sur cette branche</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Faire un commit</p>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"></td>
+                            <td>modifier un fichier</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push -u origin toto</span></td>
+                            <td>pusher sur la branche <span class="u">toto</span><br>(-u permet d'en faire la branche par défaut)</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Merger les modification</p>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git checkout master</span></td>
+                            <td>retourner sur la branche <span class="u">master</span></td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git merge toto</span></td>
+                            <td>fusionner la branche <span class="u">toto</span> sur la branche <span class="u">master</span></td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push</span></td>
+                            <td>pusher sur la branch <span class="u">master</span></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Supprimer la branche</p>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git branch -d toto</span></td>
+                            <td>supprimer la branche en local</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push origin --delete toto</span></td>
+                            <td>supprimer la branche en remote (sur GitHub)</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <p>Pour récupérer les branches créées par d'autres développeurs, tapez <span class="hl">git fetch</span></p>
+                </section>
+
+                <section id="commands">
+                    <h2>Commandes</h2>
+                </section>
+
+                <section>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">cd ./dossier</span></td>
+                            <td>Navigue dans les dossiers</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">ls</span></td>
+                            <td>Liste les fichiers/dossiers</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">pwd</span></td>
+                            <td>Affiche la position actuelle</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git clone http://...</span></td>
+                            <td>Récupère un repo en local</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git pull</span></td>
+                            <td>Récupère les derniers commits</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git add ...</span></td>
+                            <td>Stage les fichiers modifiés en vue de faire un commit</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git status</span></td>
+                            <td>Liste le(s) fichier(s) modifié(s)</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git diff ...</span></td>
+                            <td>Liste les lignes modifiées dans le(s) fichier(s) modifié(s)</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <table>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git reset</span></td>
+                            <td>Annule le staging</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git commit -m "..."</span></td>
+                            <td>Crée un commit</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git push</span></td>
+                            <td>Envoie le commit</td>
+                        </tr>
+                        <tr>
+                            <td class="no-wrap"><span class="hl">git checkout ...</span></td>
+                            <td>Annule les modifications</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section id="tips">
+                    <h2>Conseils</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment">Une feature = un commit</li>
+                        <li class="fragment">Suivez des guidelines de commits (ex: <a href="https://github.com/immersive-garden/guidelines/tree/master/git" target="_blank">Immersive Garden</a>)</li>
+                        <li class="fragment">Évitez de modifier les fichiers des autres</li>
+                        <li class="fragment">Mettez-vous d'accord sur la structure et la syntaxe</li>
+                        <li class="fragment">Évitez les plugins qui modifient automatiquement le code</li>
+                        <li class="fragment">Renseignez le .gitignore dès le début du projet</li>
+                        <li class="fragment">Vérifiez bien les modifications avant chaque commit</li>
+                        <li class="fragment">Évitez de versionner les gros fichiers</li>
+                        <li class="fragment">Faites de beaux readme</li>
+                    </ul>
+                </section>
+
+                <section id="tutorials">
+                    <h2>Tutoriels</h2>
+                    <ul>
+                        <li><a href="https://www.git-tower.com/learn/git/videos/" target="_blank">www.git-tower.com/learn/git/videos/</a></li>
+                        <li><a href="https://try.github.io/levels/1/challenges/1" target="_blank">try.github.io/levels/1/challenges/1</a></li>
+                        <li><a href="http://ohshitgit.com/" target="_blank">ohshitgit.com/</a></li>
+                    </ul>
+                </section>
+
+                <section id="applications">
+                    <h2>Applications</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            <a href="https://www.sourcetreeapp.com/" target="_blank">SourceTree</a>
+                            <br>Mac et Windows
+                            <br>Gratuite
+                        </li>
+                        <li>
+                            <a href="https://desktop.github.com/" target="_blank">GitHub</a>
+                            <br>Mac et Windows
+                            <br>Gratuite
+                        </li>
+                        <li>
+                            <a href="https://www.git-tower.com/mac/" target="_blank">Tower</a>
+                            <br>Mac et Windows
+                            <br>Payante ($79)(-50% pour étudiants)
+                        </li>
+                        <li>
+                            <a href="https://www.gitkraken.com/" target="_blank">GitKraken</a>
+                            <br>Mac et Windows
+                            <br>Payante ($60/an)(gratuit pendant 1 and pour étudiants)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>
+                            <a href="https://code.visualstudio.com/Download" target="_blank">VS Code</a>
+                            <br>Mac et Windows
+                            <br>Gratuit
+                            <br><a href="https://code.visualstudio.com/docs/editor/versioncontrol" target="_blank">Intègre directement Git</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Git est indispensable pour la pérennité de vos projets</p>
+                    <p>Faites-en bon usage</p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/caniuse-embed.min.js"></script>
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
