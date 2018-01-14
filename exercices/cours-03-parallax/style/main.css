@@ -1,0 +1,73 @@
+html
+{
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+    background: #555555;
+}
+
+.title
+{
+    position: relative;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.js-parallax
+{
+    will-change: transform;
+}
+
+.image
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -250px;
+}
+
+.image.index-1
+{
+    top: 10%;
+    left: 30%;
+    background-image: url('../images/1.jpg');
+}
+
+.image.index-2
+{
+    top: 40%;
+    left: 60%;
+    background-image: url('../images/2.jpg');
+}
+
+.image.index-3
+{
+    top: 30%;
+    left: 100%;
+    background-image: url('../images/3.jpg');
+}
+
+.image.index-4
+{
+    top: 70%;
+    left: 20%;
+    background-image: url('../images/4.jpg');
+}
+
+.image.index-5
+{
+    top: 90%;
+    left: 80%;
+    background-image: url('../images/5.jpg');
+}
