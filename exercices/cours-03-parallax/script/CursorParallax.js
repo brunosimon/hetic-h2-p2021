@@ -62,8 +62,8 @@ class CursorParallax
                 const parallaxTargetX = - this.mouse.x * 100 * item.multiplier
                 const parallaxTargetY = - this.mouse.y * 100 * item.multiplier
 
-                item.parallaxX += (parallaxTargetX - item.parallaxX) * 0.1
-                item.parallaxY += (parallaxTargetY - item.parallaxY) * 0.1
+                item.parallaxX += (parallaxTargetX - item.parallaxX) * 0.2
+                item.parallaxY += (parallaxTargetY - item.parallaxY) * 0.2
 
                 item.parallaxX = Math.round(item.parallaxX * 100) / 100
                 item.parallaxY = Math.round(item.parallaxY * 100) / 100
