@@ -13,24 +13,23 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
     - [x] Clock
     - [x] Targets shooter
     - [x] ! Image lazy loading
-    - [ ] Cursor
+    - [x] ! Drumkit
+    - [ ] Parallax
     - [ ] Popin
     - [ ] Carousel
-    - [ ] ! Drumkit
     - [ ] ! Async navigation
     - [ ] ! Search instagram with speech API
 - [x] HTML5 Audio/video API
 - [x] Responsive
-- [ ] Canvas
+- [x] Canvas
+
+### Trimestre 2
+
 - [ ] Versionning avec git
-- [ ] Clean code
 - [ ] Fonts
 - [ ] Task runners
 - [ ] Preprocessing CSS
 - [ ] WebGL avec Three.js
-
-### Trimestre 2
-
 - [ ] PHP les bases
 - [ ] PHP variables
 - [ ] PHP boucles
