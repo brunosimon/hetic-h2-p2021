@@ -1,0 +1,3 @@
+const cursorParallax = new CursorParallax()
+
+

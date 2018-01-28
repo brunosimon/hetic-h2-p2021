@@ -119,7 +119,7 @@
                 <section>
                     <h3>Windows</h3>
                     <ul>
-                        <li>Télécharger le fichier à partir de l'adresse suivante<br><a href="https://git-scm.com/download/win" target="_blank">git-for-windows.github.io</a></li>
+                        <li>Télécharger le fichier à partir de l'adresse suivante<br><a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a></li>
                         <li>Lancez le <span class="hl">.exe</span></li>
                         <li>Suivez l'installation</li>
                     </ul>
@@ -204,7 +204,7 @@
                     <p>Pour pouvoir utiliser les fonctionnalités de la suite du cours, nous allons utiliser le Terminal</p>
                     <p>Sur Mac, recherchez simplement l'application <span class="hl">Terminal</span></p>
                     <p>
-                        <img src="src/img/search-terminal.png" alt="" width="550">
+                        <img src="src/img/search-terminal.jpg" alt="" width="550">
                     </p>
                 </section>
 
@@ -369,7 +369,7 @@ say -v Thomas "Coucou la famille"
                 <section>
                     <p>Allez sur <a href="https://github.com" target="_blank">github.com</a> et créez-vous un compte</p>
                     <p>
-                        <a href="https://github.com/brunosimon" target="_blank"><img class="no-style" width="600" src="src/img/github-account.png" alt=""></a>
+                        <a href="https://github.com/brunosimon" target="_blank"><img class="no-style" width="600" src="src/img/github-account.jpg" alt=""></a>
                     </p>
                 </section>
 
@@ -398,7 +398,7 @@ say -v Thomas "Coucou la famille"
                         <li>
                             Choisissez un nom de repo
                             <br>(minuscules, majuscules, tirets, underscore, chiffres)
-                            <br>(ex: test-2021)
+                            <br>(ex: hetic-p2021)
                         </li>
                         <li>Cliquez sur <span class="hl">Create repository</span></li>
                     </ul>
@@ -415,11 +415,11 @@ say -v Thomas "Coucou la famille"
                         <li>
                             Tapez <span class="hl">git clone https://url-de-votre-repo</span>
                             <br>l'URL de votre repo est disponible sur la page du repo
-                            <br>(ex: <span class="u">https://github.com/brunosimon/test-2021.git</span>)
+                            <br>(ex: <span class="u">https://github.com/brunosimon/hetic-p2021.git</span>)
                         </li>
                         <li>
                             Allez dans le dossier nouvellement créé
-                            <br>(ex: <span class="hl">cd test-2021</span>)
+                            <br>(ex: <span class="hl">cd hetic-p2021</span>)
                         </li>
                     </ul>
                 </section>
@@ -537,7 +537,7 @@ say -v Thomas "Coucou la famille"
 
                 <section>
                     <p>Le développeur doit accepter l'invitation</p>
-                    <p>Il peut maintenant récupérer le projet <span class="hl">git clone https://github.com/brunosimon/test-2021.git</a></p>
+                    <p>Il peut maintenant récupérer le projet <span class="hl">git clone https://github.com/brunosimon/hetic-p2021.git</a></p>
                     <p>Et faire des commits</p>
                 </section>
 
@@ -573,13 +573,12 @@ say -v Thomas "Coucou la famille"
                 <section>
                     <h3>Les fichiers modifiés ne sont pas les mêmes</h3>
                     <p>Si d'autres fichiers ont été modifié entre-temps et qu'il n'y a pas de conflit, l'éditeur <span class="hl">vi</span> va apparaître avec un contenu pré rempli</p>
-                    <p>
-                        <img class="no-style" width="800" src="src/img/terminal-vi-commit-1.png" alt="">
-                    </p>
+                    <img class="no-style" width="800" src="src/img/terminal-vi-commit-1.png" alt="">
+                    <p>La première ligne correspond à la description du commit</p>
                 </section>
 
                 <section>
-                    <p>Tapez simple <span class="hl">:wq</span> et faites <span class="hl">ENTRER</span></p>
+                    <p>Tapez simplement <span class="hl">:wq</span> et faites <span class="hl">ENTRER</span></p>
                     <ul>
                         <li><span class="hl">:</span> permet d'écrire une commande VI</li>
                         <li><span class="hl">w</span> indique de sauvegarder</li>
@@ -601,7 +600,7 @@ say -v Thomas "Coucou la famille"
                     <p>
                         <img class="no-style" width="800" src="src/img/terminal-conflit-same-file.png" alt="">
                     </p>
-                    <p>Git ne peut décider à votre place quel commit choisir. Vous allez devoir le résoudre vous même</p>
+                    <p>Git ne peut décider à votre place quel commit choisir. Vous allez devoir le résoudre vous-même</p>
                 </section>
 
                 <section>
@@ -956,7 +955,7 @@ say -v Thomas "Coucou la famille"
                         <li class="fragment">Évitez de modifier les fichiers des autres</li>
                         <li class="fragment">Mettez-vous d'accord sur la structure et la syntaxe</li>
                         <li class="fragment">Évitez les plugins qui modifient automatiquement le code</li>
-                        <li class="fragment">Renseignez le .gitignore dès le début du projet</li>
+                        <li class="fragment">Renseignez le .gitignore dès le début du projet (<a href="https://www.gitignore.io/" target="_blank">gitignore.io</a>)</li>
                         <li class="fragment">Vérifiez bien les modifications avant chaque commit</li>
                         <li class="fragment">Évitez de versionner les gros fichiers</li>
                         <li class="fragment">Faites de beaux readme</li>

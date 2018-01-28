@@ -14,7 +14,7 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
     - [x] Targets shooter
     - [x] ! Image lazy loading
     - [x] ! Drumkit
-    - [ ] Parallax
+    - [x] Parallax
     - [ ] Popin
     - [ ] Carousel
     - [ ] ! Async navigation
@@ -25,7 +25,7 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 
 ### Trimestre 2
 
-- [ ] Versionning avec git
+- [x] Versionning avec git
 - [ ] Fonts
 - [ ] Task runners
 - [ ] Preprocessing CSS
