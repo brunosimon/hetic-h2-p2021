@@ -61,7 +61,7 @@
 
                 <section>
                     <h3>IF</h3>
-                    <p>Comme en JS, lorsqu'il n'y a qu'une seule instruction, il n'est pas nécessaire d'écrire les accolades <span class="hl">{ }</span></p>
+                    <p>Lorsqu'il n'y a qu'une seule instruction, il n'est pas nécessaire d'écrire les accolades <span class="hl">{ }</span></p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
     $foo = true;
@@ -104,6 +104,7 @@
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
     $foo = 1;
+
     if($foo == '1')
         echo 'Vraie !';
 
@@ -116,6 +117,7 @@
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
     $foo = 1;
+
     if($foo === true)
         echo 'Vraie !';
                     </code></pre>
@@ -174,12 +176,12 @@
                     <p>Nous souhaitons tester si l'utilisateur peut acheter de l'alcool en fonction de son âge et si le magasin est ouvert</p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
-    $age        = 18;
-    $store_open = true;
+    $age = 18;
+    $storeOpen = true;
 
     if($age >= 18)
     {
-        if($store_open)
+        if($storeOpen)
         {
             echo 'Can buy alcool !';
         }
@@ -192,14 +194,14 @@
                     <h3>AND</h3>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
-    if($age >= 18 AND $store_open)
+    if($age >= 18 AND $storeOpen)
     {
         echo 'Can buy alcool !';
     }
                     </code></pre>
                     <p class="fragment">En PHP, le <span class="hl">AND</span> s'écrit en général <span class="hl">&&</span></p>
                     <pre class="fragment"><code  data-trim contenteditable class="php">
-    if($age >= 18 && $store_open)
+    if($age >= 18 && $storeOpen)
                     </code></pre>
                 </section>
 
@@ -220,7 +222,7 @@
         echo 'Fonce !';
     }
                     </code></pre>
-                    <p>Cette syntaxe fonctionne, mais nous aimerions le faire en une seul <span class="hl">if</span></p>
+                    <p>Cette syntaxe fonctionne, mais nous aimerions le faire en un seul <span class="hl">if</span></p>
                 </section>
 
                 <section>
@@ -245,11 +247,11 @@
                     <p>Le <span class="hl">AND</span> et le <span class="hl">OR</span> peuvent être combinés</p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
-    $country    = 'france';
-    $age        = 20;
-    $store_open = true;
+    $country = 'france';
+    $age = 20;
+    $storeOpen = true;
 
-    if((($country == 'france' && $age >= 18) || ($country == 'usa' && $age >= 21)) && $store_open)
+    if((($country == 'france' && $age >= 18) || ($country == 'usa' && $age >= 21)) && $storeOpen)
     {
         echo 'Can buy alcool !';
     }
@@ -279,14 +281,14 @@
 
                 <section>
                     <h3>ELSE</h3>
-                    <p>On peut les enchaîner avec des <span class="hl">else if</span></p>
+                    <p>On peut rajouter une condition au else avec <span class="hl">else if</span></p>
                     <pre><code  data-trim contenteditable class="php">
 &lt;?
     $age = 2;
 
     if($age < 3)
     {
-        echo 'Areuh';
+        echo 'Bébé';
     }
     else if($age < 10)
     {

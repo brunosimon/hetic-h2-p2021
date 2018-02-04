@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
         <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
-        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
-        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/hl/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/hl/github.css"> -->
         <link rel="stylesheet" href="../src/custom/style.css">
         <script>
             document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -57,26 +57,26 @@
                 </section>
 
                 <section>
-                    <h3>MAMP - Mac</h3>
+                    <h3>MAMP (Mac et Windows)</h3>
                     <ul>
                         <li>Lancer MAMP</li>
                         <li>Aller dans <span class="hl">Préférences</span></li>
                         <li>Noter la version de PHP</li>
-                        <li>Aller dans le dossier <span class="hl">Applications/MAMP/bin/php/phpX.X.X/conf</span> (remplacer X.X.X par version de PHP)</li>
-                        <li>Trouver la ligne <span class="hl">display_errors</span> et mettre <span class="hl">On</span></li>
-                        <li>Trouver la ligne <span class="hl">error_reporting</span> et mettre <span class="hl">E_ALL</span></li>
+                        <li>
+                            Ouvrez le fichier suivant dans votre éditeur
+                            <br>Mac : <span class="hl">Applications/MAMP/bin/php/phpX.X.X/conf/php.ini</span>
+                            <br>Windows : <span class="hl">C:/MAMP/conf/phpX.X.X/php.ini</span>
+                            <br>(remplacer X.X.X par version de PHP)
+                        </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h3>MAMP - Windows</h3>
+                    <h3>MAMP (Mac et Windows)</h3>
                     <ul>
-                        <li>Lancer MAMP</li>
-                        <li>Aller dans <span class="hl">Préférences</span></li>
-                        <li>Noter la version de PHP</li>
-                        <li>Aller dans le dossier <span class="hl">C:/MAMP/conf/phpX.X.X/php.ini</span> (remplacer X.X.X par version de PHP)</li>
-                        <li>Trouver la ligne <span class="hl">display_errors</span> et mettre <span class="hl">On</span></li>
-                        <li>Trouver la ligne <span class="hl">error_reporting</span> et mettre <span class="hl">E_ALL</span></li>
+                        <li>Trouver la ligne commençant par <span class="hl">display_errors</span> et mettre <span class="hl">On</span></li>
+                        <li>Trouver la ligne commençant par <span class="hl">error_reporting</span> et mettre <span class="hl">E_ALL</span></li>
+                        <li>Redémarrer MAMP</li>
                     </ul>
                 </section>
 
@@ -106,9 +106,12 @@
 
                 <!-- AFFICHER LES ERREURS (Coté script) -->
                 <section>
-                    <p>Les paramètres d'affichage des erreurs peuvent être surchargés directement en PHP</p>
-                    <p>On utilise la méthode <span class="highlight">error_reporting()</span> pour choisir quels messages afficher</p>
-                    <p>Et la méthode <span class="highlight">init_set('display_errors', 1)</span> pour afficher ou non les erreurs</p>
+                    <p><span class="hl">display_errors</span> indique à PHP d'afficher les erreurs dans la page</p>
+                    <p><span class="hl">error_reporting E_ALL</span> indique à PHP d'afficher tous les types d'erreurs (même ceux qui n'auraient pas empêché le fonctionnement)</p>
+                </section>
+
+                <section>
+                    <p>Il est possible de définir ces paramètres directement dans le script PHP</p>
                     <pre><code contenteditable class="php">
 //Peut &ecirc;tre remplac&eacute; par E_WARNING, E_PARSE, E_NOTICE, E_ERROR
 error_reporting(E_ALL); 
@@ -125,10 +128,10 @@ ini_set('display_errors', 1);
                 <section>
                     <p>Il existe 4 principaux types d'erreurs en PHP</p>
                     <ul>
-                        <li><span class="highlight">Notice</span></li>
-                        <li><span class="highlight">Warning</span></li>
-                        <li><span class="highlight">Fatal Error</span></li>
-                        <li><span class="highlight">Parse Error</span></li>
+                        <li><span class="hl">Notice</span></li>
+                        <li><span class="hl">Warning</span></li>
+                        <li><span class="hl">Fatal Error</span></li>
+                        <li><span class="hl">Parse Error</span></li>
                     </ul>
                     <p>Il est important de toutes les corriger</p>
                 </section>
@@ -184,7 +187,7 @@ try
     $dbh = new PDO('mysql:dbname=testdb;host=127.0.0.1','user','password');
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
-catch(PDOException $e)
+catch(PDOException $error)
 {
     die('Impossible de se connecter à la base de données');
 }
@@ -192,12 +195,12 @@ catch(PDOException $e)
                 </section>
 
                 <section>
-                    <p><span class="highlight">$e</span> contient plusieurs méthodes permettant d'identifier l'Exception</p>
+                    <p><span class="hl">$error</span> contiendra plusieurs méthodes permettant d'identifier l'Exception</p>
                     <ul>
-                        <li><span class="highlight">getMessage</span> récupère le message de l'exception</li>
-                        <li><span class="highlight">getFile</span> récupère le fichier dans lequel l'exception est survenue</li>
-                        <li><span class="highlight">getLine</span> récupère la ligne dans laquelle l'exception est survenue</li>
-                        <li><span class="highlight">getCode</span> récupère le code de l'exception</li>
+                        <li><span class="hl">getMessage</span> récupère le message de l'exception</li>
+                        <li><span class="hl">getFile</span> récupère le fichier dans lequel l'exception est survenue</li>
+                        <li><span class="hl">getLine</span> récupère la ligne dans laquelle l'exception est survenue</li>
+                        <li><span class="hl">getCode</span> récupère le code de l'exception</li>
                     </ul>
                 </section>
 
@@ -210,7 +213,7 @@ catch(PDOException $e)
                 <section>
                     <p>Les logs correspondent à des fichiers sur le serveur qui enregistre des messages</p>
                     <p>Les erreurs peuvent être ajoutées aux logs</p>
-                    <p>Sur Mac, il est possible de les visualiser avec l'application <span class="highlight">Console</span></p>
+                    <p>Sur Mac, il est possible de les visualiser avec l'application <span class="hl">Console</span></p>
                     <p>La fonction <a target="_blank" href="http://php.net/manual/fr/function.error-log.php">error_log</a> permet de rajouter ses propres messages</p>
                 </section>
 
@@ -282,34 +285,47 @@ echo &#039;&lt;/pre&gt;&#039;;
                 </section>
 
                 <section>
-                    <p>Le code étant long à écrire et difficile à retenir, il est conseillé de créer un <span class="highlight">snippet</span></p>
-                    <p>Pour Sublime, aller dans <span class="highlight">outils > New Snippet</span></p>
-                    <img src="src/img/sublime-snippet-1.png" alt="">
+                    <p>Le code étant long à écrire et difficile à retenir, il est conseillé de créer un <span class="hl">snippet</span></p>
                 </section>
 
                 <section>
-                    <p>Insérez le code suivant</p>
-                    <pre><code  contenteditable class="xml">
-&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-echo '&lt;pre&gt;';
-print_r(${1:$this});
-echo '&lt;/pre&gt;';
-]]&gt;&lt;/content&gt;
-    &lt;tabTrigger&gt;printr&lt;/tabTrigger&gt;
-    &lt;scope&gt;source.php&lt;/scope&gt;
-&lt;/snippet&gt;
+                    <p>Dans VS Code</p>
+                    <ul>
+                        <li>Pressez <span class="hl">CMD/CTRL</span> + <span class="hl">SHIFT</span> + <span class="hl">P</span></li>
+                        <li>Tapez <span class="hl">snippet</span> et choisissez <span class="hl">Open User Snippets</span></li>
+                        <li>Tapez et choisissez <span class="hl">PHP</span></li>
+                        <li>Dans le json qui s'ouvre, remplacez par</li>
+                    </ul>
+                    <pre><code  contenteditable class="json">
+{
+    "printr":
+    {
+        "prefix": "printr",
+        "body":
+        [
+            "echo '<pre>';",
+            "print_r($1);",
+            "echo '</pre>';"
+        ],
+        "description": "Log output to console"
+    },
+    "vardump":
+    {
+        "prefix": "vardump",
+        "body":
+        [
+            "echo '<pre>';",
+            "var_dump($1);",
+            "echo '</pre>';"
+        ],
+        "description": "Log output to console"
+    }
+}
                     </code></pre>
                 </section>
 
                 <section>
-                    <p>Sauvegardez-le dans le dossier <span class="highlight">User</span> de Sublime Text et appelez-le <span class="highlight">printr.sublime-snippet</span></p>
-                    <p>Pour trouver ce dossier allez dans <span class="highlight">Sublime Text > Preferences > Browse Packages...</span></p>
-                    <img src="src/img/sublime-snippet-2.png" alt="">
-                </section>
-
-                <section>
-                    <p>Lorsque vous faites du php, écriez <span class="highlight">printr</span> puis appuyez sur <span class="highlight">TAB</span></p>
+                    <p>Lorsque vous faites du php, écrivez <span class="hl">printr</span> ou <span class="hl">vardump</span> puis appuyez sur <span class="hl">TAB</span> ou <span class="hl">ENTER</span></p>
                 </section>
 
                 <section>
@@ -328,10 +344,9 @@ phpinfo();
                 </section>
 
                 <section>
-                    <p>Ne l'utilisez que dans le cadre de développement pour savoir, par exemple, quelle est la configuration du serveur qui vous a été fourni</p>
+                    <p>Ne l'utilisez que dans le cadre de développement, par exemple pour savoir quelle est la configuration du serveur qui vous a été fourni</p>
                     <p>Pensez bien la supprimer une fois terminé pour éviter de donner trop d'informations à des personnes mal intentionnées</p>
                 </section>
-
 
             </div>
         </div>
