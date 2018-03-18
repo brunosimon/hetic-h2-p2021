@@ -30,13 +30,13 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 - [ ] Task runners
 - [ ] Preprocessing CSS
 - [ ] WebGL avec Three.js
-- [ ] PHP les bases
-- [ ] PHP variables
-- [ ] PHP boucles
-- [ ] PHP conditions
-- [ ] PHP fonctions
-- [ ] PHP includes
-- [ ] PHP debug
+- [x] PHP les bases
+- [x] PHP variables
+- [x] PHP boucles
+- [x] PHP conditions
+- [x] PHP fonctions
+- [x] PHP includes
+- [x] PHP debug
 - [ ] HTML/PHP formulaire
 - [ ] PHP/SQL Base de données MySQL
 - [ ] PHP routing

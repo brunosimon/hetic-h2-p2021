@@ -1,9 +1,10 @@
 <?php
+    $title = 'Toto';
+    require 'includes/header.php';
+?>
 
-    $foo = [
-        'a' => 'Toto',
-        'b' => 'Tata',
-        'c' => 'Tutu',
-    ];
+Toto
 
-    echo $foo['d'];
+<?php
+    require 'includes/footer.html';
+?>

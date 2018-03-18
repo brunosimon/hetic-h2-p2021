@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 2 - Cours 18 - PHP - Bases de données</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 17</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>PHP</h3>
+                    <h1>Base de données</h1>
+                </section>
+
+                <section>
+                    <h2>Qu'est-ce que MySQL ?</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Système de Gestion de Bases de Données Relationnelles (SGBDR)</li>
+                        <li>Installé sur le serveur</li>
+                        <li>Utilisable en PHP</li>
+                        <li>Très répandu</li>
+                        <li>Inventé par Michael Widenius<br />(SQL = Structured Query Language / My = ?)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Une base de données contient des <span class="highlight">tables</span></li>
+                        <li>Ces tables contiennent des <span class="highlight">lignes</span></li>
+                        <li>Ces lignes contiennent des <span class="highlight">cellules</span> / <span class="highlight">colonnes</span></li>
+                        <li>Ces cellules contiennent des <span class="highlight">données</span></li>
+                    </ul>
+                    <p>Typiquement, nous allons créer une table par type de données (users, articles, products)</p>
+                </section>
+
+                <section>
+                    <p>
+                        <img class="no-style" src="src/img/bdd-schema.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>L'ID est presque toujours présent dans chaque table</p>
+                    <p>C'est un nombre qui commence à 1 et qui va s'incrémenter automatiquement à chaque nouvelle ligne</p>
+                    <p>Il permet d'identifier de façon unique chaque ligne</p>
+                </section>
+
+                <section>
+                    <p>Chaque colonne doit être d'un type particulier</p>
+                    <p>Il en existe plusieurs</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><span class="highlight">INT</span> : Un entier</li>
+                        <li><span class="highlight">TINYINT</span> : Un petit entier</li>
+                        <li><span class="highlight">FLOAT</span> : Un nombre à virgule</li>
+                        <li><span class="highlight">DATE</span> : Une date au format YYYY-MM-DD</li>
+                        <li><span class="highlight">DATETIME</span> : Une date au format YYYY-MM-DD HH:MM:SS</li>
+                        <li><span class="highlight">VARCHAR</span> : Un texte court</li>
+                        <li><span class="highlight">TEXT</span> : Un texte long</li>
+                        <li><span class="highlight">BOOLEAN</span> : Un booléen (équivalent au TINYINT)</li>
+                        <li><span class="highlight">ENUM</span> : Un choix parmi une liste</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Et encore <a href="http://www.techonthenet.com/mysql/datatypes.php" target="_blank">plein d'autres</a></p>
+                </section>
+
+                <section>
+                    <p>Pour les colonnes de type <span class="highlight">text</span> ou <span class="highlight">varchar</span>, il faut spécifier <span class="highlight">l'encodage</span></p>
+                    <p>L'encodage est important à la fois pour sauvegarder certains caractères, mais aussi pour faire des recherches sur la base de donnée</p>
+                </section>
+
+                <section>
+                    <p>Les plus utilisés sont :</p>
+                    <p>
+                        <ul>
+                            <li>
+                                <span class="highlight">utf8_unicode_ci</span> : Permet de sauvegarder la majorité des caractères
+                            </li>
+                            <li>
+                                <span class="highlight">utf8_general_ci</span> : Permet de sauvegarder la majorité des caractères et ne fait pas la différence entre certains caractères durant une recherche<br>(<span class="highlight">é = è = ê = e</span> par exemple)
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">PhpMyAdmin</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Interface permettant de manipuler les données</li>
+                        <li>Pas besoin de maîtriser SQL</li>
+                        <li>Installé avec WAMP et MAMP</li>
+                        <li>Existe en plusieurs versions</li>
+                        <li>Utile pour la maintenance (créer/modifier des bases de données, vérifier/modifier des données, etc.)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        MAMP : 
+                        <br /><img width="200" src="src/img/mamp-demarrage.png" alt=""> <img width="140" src="src/img/mamp-pro-demarrage.png" alt="">
+                        <br /><img width="350" src="src/img/mac-phpmyadmin.png" alt="">
+                    </p>
+                    <p>
+                        WAMP :
+                        <br /><img src="src/img/wamp-phpmyadmin.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Pour accéder à une base de données, il faut s'y connecter</li>
+                        <li>MySQL fonctionne avec des comptes</li>
+                        <li>Chaque compte possède des droits spécifiques (Ex : créer des tables, créer des colonnes, supprimer des lignes, ...)</li>
+                        <li>Le compte par défaut, appelé <span class="highlight">root</span>, possède tous les droits</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Comme nous sommes en local, nous allons utiliser le compte root</p>
+                    <p>Il est préférable, une fois en ligne, d'utiliser un compte avec moins de droits</p>
+                </section>
+
+                <section>
+                    <p>Pour rajouter un compte, dans PhpMyAdmin, allez dans l'onglet <span class="highlight">Utilisateurs</span> puis cliquez sur <span class="highlight">Ajouter un utilisateur</span></p>
+                    <p>
+                        <img src="src/img/phpmyadmin-utilisateurs.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Créez votre première base de données dans l'onglet <span class="highlight">Bases de données</span></p>
+                    <p>Appellez-la comme vous le voulez et choissez <span class="highlight">utf8_general_ci</span> (lettres et underscores uniquement)</p>
+                    <p>
+                        <img width="500" src="src/img/phpmyadmin-base-de-donnes.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Rentrez dans la base de données (menu de gauche)</p>
+                    <p>Créez une nouvelle table nommée <span class="highlight">users</span> avec <span class="highlight">4 colonnes</span></p>
+                    <p>Cliquez sur <span class="highlight">Exécuter</span></p>
+                    <p>
+                        <img width="600" src="src/img/phpmyadmin-new-table.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Dans le formulaire qui apparait, chacune des lignes correspond aux colonnes de la base de données</p>
+                    <p>Remplissez-les comme cela :</p>
+                    <p>
+                        <img src="src/img/phpmyadmin-new-table-datas.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Essayez :</p>
+                    <ul>
+                        <li>Ajouter des lignes</li>
+                        <li>Les modifier</li>
+                        <li>Les supprimer</li>
+                        <li>Rentrer de mauvaises valeurs<br />(trop de caractères, pas le bon type, etc.)</li>
+                        <li>Explorer les différents onglets</li>
+                    </ul>
+                    <p>
+                        <img src="src/img/phpmyadmin-tabs.png" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Lorsque l'on utilise PhpMyAdmin, celui-ci effectue des <span class="highlight">requêtes SQL</span></p>
+                    <p>Ce sont des requêtes indiquant à la base de donnée quoi faire (ajoute une donnée, supprime cette ligne, créé une colonne, ...)</p>
+                    <p>Nous allons apprendre à effectuer ces requêtes SQL nous-même</p>
+                </section>
+
+                <section>
+                    <h2 class="no-text-transform">SQL</h2>
+                </section>
+
+                <section>
+                    <p>SQL = Structured Query Language</p>
+                    <p>Langage qui permet de communiquer avec la base de données</p>
+                    <p>Nous allons l'utiliser directement dans PhpMyAdmin, mais par la suite nous l'utiliserons directement en PHP</p>
+                    <p>Les principales requêtes SQL sont <span class="highlight">INSERT INTO</span>, <span class="highlight">UPDATE</span>, <span class="highlight">DELETE</span>, <span class="highlight">SELECT</span></p>
+                </section>
+
+                <section>
+                    <p>Cliquez sur le petit icône SQL dans le menu de gauche pour ouvrir une popup</p>
+                    <p>
+                        <img width="170" src="src/img/phpmyadmin-sql-button.png" alt="">
+                    </p>
+                    <p>Un champ de texte devrait s'ouvrir. Celui-ci permet de rentrer des requêtes SQL</p>
+                </section>
+
+                <section>
+                    <p>Ajouter une ligne</p>
+                    <pre><code contenteditable class="sql" data-trim>
+INSERT INTO users (first_name, age, gender) 
+VALUES ('bruno', 27, 'male')
+                    </code></pre>
+                    <p>Ajouter plusieurs lignes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+INSERT INTO users (first_name, age, gender) 
+VALUES ('Toto', 22, 'male'), ('Tata', 30, 'female')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Modifier une colonne</p>
+                    <pre><code contenteditable class="sql" data-trim>
+UPDATE users SET first_name = 'bueno' WHERE id = 1
+                    </code></pre>
+                    <p>Modifier plusieurs colonnes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+UPDATE users SET first_name = 'bueno', age = 29 WHERE id = 1
+                    </code></pre>
+                    <p>Modifier plusieurs lignes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+UPDATE users SET first_name = 'bueno' WHERE id = 1 OR id = 2
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Récupérer toutes les lignes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+SELECT * FROM users
+                    </code></pre>
+                    <p>Récupérer certaines lignes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+SELECT * FROM users WHERE id < 3
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Supprimer une ligne</p>
+                    <pre><code contenteditable class="sql">
+DELETE FROM users WHERE id = 1
+                    </code></pre>
+                    <p>Supprimer toutes les lignes ⚠️</p>
+                    <pre><code contenteditable class="sql">
+DELETE FROM users
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Les retours à la ligne et les espaces n'ont aucune importance</li>
+                        <li>Les chaînes de caractères doivent être entre guillemets (simples ou doubles)</li>
+                        <li>Les commandes (<span class="highlight">SELECT</span>, <span class="highlight">WHERE</span>, <span class="highlight">FROM</span>, ...) n'ont pas besoin d'être en majuscules</li>
+                        <li>Si la colonne ou la table possède un nom composé de caractères spéciaux, on peut utiliser des back quotes <span class="hl">`</span></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>En PHP</h2>
+                </section>
+
+                <section>
+                    <p>Il faut se connecter à la base de données</p>
+                    <p>L'ancienne méthode :</p>
+                    <pre><code contenteditable class="php">
+$db = mysql_connect('localhost', 'user', 'password');
+mysql_select_db('database');
+                    </code></pre>
+                </section>
+
+                <section id="pdo">
+                    <p>Avec PDO</p>
+                    <pre><code contenteditable class="php">
+$pdo = new PDO('mysql:dbname=hetic_p2021_first;host=localhost;port=8889', 'root', 'root');
+                    </code></pre>
+                </section>
+
+                <section id="pdo">
+                    <p><span class="hl">Try ... Catch</span> permet de gérer les erreurs</p>
+                    <p>Si PDO n'arrive pas à se connecter, la fonction <span class="hl">catch</span> sera éxecuté</p><pre><code contenteditable class="php">
+try
+{
+    $pdo = new PDO('mysql:dbname=hetic_p2021_first;host=localhost;port=8889', 'root', 'root');
+}
+catch(PDOException $e)
+{
+    die('error');
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Avantages de PDO</p>
+                    <ul>
+                        <li>Plus sécurisé</li>
+                        <li>Plus logique</li>
+                        <li>Plus facile</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Version plus complète</p>
+                    <pre><code contenteditable class="php">// Connexion variables
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'hetic_p2021_first');
+define('DB_USER', 'root');
+define('DB_PASS', 'root');
+
+try
+{
+    // Try to connect to database
+    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+
+    // Set fetch mode to object
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+}
+catch (Exception $e)
+{
+    // Failed to connect
+    die('Could not connect');
+}
+
+// Delete next line if working
+die('All good ;)');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous avons donc maintenant une variable <span class="hl">$pdo</span> qui gère la connexion à la base de données</p>   
+                    <p>C'est un objet qui possède plusieurs méthodes permettant d'intéragir avec la base de données</p>
+                    <p>Cette variable aurait pu s'appeler autrement<br>($db, $connect, ...)</p>
+                </section>
+
+                <section>
+                    <p>Récupérer des données avec <a href="http://www.php.net/manual/fr/pdo.query.php" target="_blank">query()</a></p>
+                </section>
+
+                <section>
+                    <p>La méthode <a href="http://www.php.net/manual/fr/pdo.query.php" target="_blank">query()</a> permet de préparer une requête</p>
+                    <pre><code contenteditable class="php">
+$query = $pdo-&gt;query(&#039;SELECT * FROM users&#039;);
+                    </code></pre>
+                    <p>La requête n'est pas tout de suite executée</p>
+                    <p>Un objet <a href="http://www.php.net/manual/fr/class.pdostatement.php" target="_blank">PDOStatement</a> est renvoyé</p>
+                </section>
+
+                <section>
+                    <p>Cet objet possède des méthodes : </p>
+                    <ul>
+                        <li><a href="http://www.php.net/manual/fr/pdostatement.fetchall.php" target="_blank">fetchAll()</a> : renvoie un tableau de toutes les lignes</li>
+                        <li><a href="http://www.php.net/manual/fr/pdostatement.fetchall.php" target="_blank">fetch()</a> : renvoie chaque ligne une par une</li>
+                    </ul>
+                </section>
+
+                <section id="fetch-all">
+                    <p>Avec <a href="http://www.php.net/manual/fr/pdostatement.fetchall.php" target="_blank">fetchAll()</a></p>
+                    <pre><code contenteditable class="php">
+// Préparation de la requête
+$query = $pdo-&gt;query(&#039;SELECT * FROM users&#039;);
+
+// Éxécution de la requête et récupération des données
+$users = $query-&gt;fetchAll();
+
+// Affichage des données
+echo &#039;&lt;pre&gt;&#039;;
+print_r($users);
+echo &#039;&lt;/pre&gt;&#039;;
+                    </code></pre>
+                </section>
+
+                <section id="fetch">
+                    <p>Avec <a href="http://www.php.net/manual/fr/pdostatement.fetch.php" target="_blank">fetch()</a> dans un while</p>
+                    <pre><code contenteditable class="php">
+// Préparation de la requête
+$query = $pdo-&gt;query(&#039;SELECT * FROM users&#039;);
+
+// Boucle exécuté tant que le fetch renvoie quelque chose
+while($user = $query-&gt;fetch())
+{
+    // Affichage de la donnée
+    echo &#039;&lt;pre&gt;&#039;;
+    print_r($user);
+    echo &#039;&lt;/pre&gt;&#039;;
+}
+                    </code></pre>
+                    <p><span class="highlight">$user</span> correspond à chaque ligne</p>
+                    <p>Arrivée à la fin, <span class="highlight">fetch()</span> va renvoyer <span class="highlight">false</span> et le while va donc s'arrêter</p>
+                </section>
+
+                <section>
+                    <p>Par défaut, PDO renvoie un tableau dans un format étrange</p>
+                    <p>Dans notre exemple, la ligne de code juste après l'initialisation de PDO nous permet de le forcer à renvoyer des objets</p>
+                    <pre><code contenteditable class="php">
+$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+                    </code></pre>
+                </section>
+
+                <section id="exec">
+                    <p>Modifier, supprimer et ajouter des données avec <a href="http://www.php.net/manual/fr/pdo.exec.php" target="_blank">exec()</a></p>
+                </section>
+
+                <section>
+                    <p>La méthode <a href="http://www.php.net/manual/fr/pdo.exec.php" target="_blank">exec()</a> exécute une requête SQL et renvoie le nombre de lignes affectées</p>
+                    <p>Avant d'écrire une requête SQL dans <span class="highlight">exec()</span> il est conseillé de la tester directement dans PhpMyAdmin</p>
+                </section>
+
+                <section>
+                    <p>En PHP, essayez les requêtes suivantes</p>
+                    <pre><code contenteditable class="php">
+// Ajoute une ligne dans la table users
+$exec = $pdo->exec('INSERT INTO users (first_name, age, gender) VALUES (\'bruno\', 27, \'male\')');
+
+echo &#039;&lt;pre&gt;&#039;;
+var_dump($exec);
+echo &#039;&lt;/pre&gt;&#039;;
+                    </code></pre>
+
+                    <pre><code contenteditable class="php">
+// Met à jour une ligne dans la table users
+$exec = $pdo-&gt;exec(&#039;UPDATE users SET first_name = \&#039;toto\&#039; WHERE id = 2&#039;);
+
+echo &#039;&lt;pre&gt;&#039;;
+var_dump($exec);
+echo &#039;&lt;/pre&gt;&#039;;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Si la requête s'est bien exécutée, elle renvoie le nombre de ligne affectées</p>
+                    <p>Si la requête a échoué, elle renvoie false</p>
+                </section>
+
+                <section>
+                    <p>Les requêtes SQL deviennent vite trop compliquées comme ci-dessous</p>
+                    <pre><code contenteditable class="php">
+$exec = $pdo->exec('INSERT INTO users (first_name, age, gender) VALUES (\''.$data['first_name'].'\', '.$data['age'].', \''.$data['gender'].'\')');
+                    </code></pre>
+                    <p>Le mélange PHP/SQL rend trop difficile la distinction des différents éléments dans la requête SQL</p>
+                </section>
+
+                <section>
+                    <p>La solution : PDO Prepare</p>
+                    <pre><code contenteditable class="php">
+// Valeurs
+$data = ['first_name' => 'Tommy', 'age' => 30, 'gender' => 'male'];
+
+// Prépare la requête
+$prepare = $pdo->prepare('INSERT INTO users (first_name, age, gender) VALUES (:first_name, :age, :gender)');
+
+// Bind les valeurs
+$prepare->bindValue(':first_name', $data['first_name']);
+$prepare->bindValue(':age', $data['age']);
+$prepare->bindValue(':gender', $data['gender']);
+
+// Execute la requête
+$exec = $prepare->execute();
+                    </code></pre>
+                    <p>Ce n'est pas plus rapide à écrire, mais c'est beaucoup plus clair</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable class="php">
+$prepare = $pdo->prepare('INSERT INTO users (first_name, age, gender) VALUES (:first_name, :age, :gender)');
+
+/* ... */
+                    </code></pre>
+                    <p>La méthode <a href="http://www.php.net/manual/fr/pdo.prepare.php" target="_blank">prepare()</a> prépare la requête SQL</p>
+                    <p>Les différentes valeurs sont remplacées par des identifiants avec le signe <span class="highlight">:</span> devant</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable class="php">
+/* ... */
+
+$prepare->bindValue(':first_name', $data['first_name']);
+$prepare->bindValue(':age', $data['age']);
+$prepare->bindValue(':gender', $data['gender']);
+
+/* ... */
+                    </code></pre>
+                    <p>La méthode <a href="http://www.php.net/manual/en/pdostatement.bindvalue.php" target="_blank">bindValue()</a> sur l'objet renvoyé par <a href="http://www.php.net/manual/fr/pdo.prepare.php" target="_blank">prepare()</a> permet d'assigner les valeurs à chaque identifiant</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable class="php">
+/* ... */
+
+$exec = $prepare->execute();
+                    </code></pre>
+                    <p>Il ne reste plus qu'à exécuter la requête avec la méthode <a href="http://www.php.net/manual/en/pdostatement.execute.php" target="_blank">execute()</a> sur l'objet renvoyé par <a href="http://www.php.net/manual/fr/pdo.prepare.php" target="_blank">prepare()</a></p>
+                    <p>L'object renvoyé par <a href="http://www.php.net/manual/en/pdostatement.execute.php" target="_blank">execute()</a> fonctionne comme l'objet renvoyé par <a href="#exec">exec()</a> ou par <a href="#query">query()</a></p>
+                </section>
+
+                <section>
+                    <p>Il est possible de binder les valeurs directement dans le <a href="http://www.php.net/manual/en/pdostatement.execute.php" target="_blank">execute()</a> en lui passant un tableau associatif</p>
+                    <ul>
+                        <li>Les clés du tableau doivent correspondre aux identifiants dans la requête</li>
+                        <li>Il ne doit pas y avoir d'autres clés</li>
+                    </ul>
+                    <pre><code contenteditable class="php">
+// Valeurs
+$data = ['first_name' => 'Tommy', 'age' => 30, 'gender' => 'male'];
+
+// Prépare la requête
+$prepare = $pdo->prepare('INSERT INTO users (first_name, age, gender) VALUES (:first_name, :age, :gender)');
+
+// Execute la requête
+$exec = $prepare->execute($data);
+                    </code></pre>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
