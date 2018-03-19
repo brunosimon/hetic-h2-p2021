@@ -261,6 +261,10 @@ UPDATE users SET first_name = 'bueno' WHERE id = 1 OR id = 2
                     <pre><code contenteditable class="sql" data-trim>
 SELECT * FROM users
                     </code></pre>
+                    <p>Récupérer certaines colonnes de toutes les lignes</p>
+                    <pre><code contenteditable class="sql" data-trim>
+SELECT id, first_name FROM users
+                    </code></pre>
                     <p>Récupérer certaines lignes</p>
                     <pre><code contenteditable class="sql" data-trim>
 SELECT * FROM users WHERE id < 3
@@ -334,6 +338,7 @@ catch(PDOException $e)
                     <p>Version plus complète</p>
                     <pre><code contenteditable class="php">// Connexion variables
 define('DB_HOST', 'localhost');
+define('DB_PORT', '8889');
 define('DB_NAME', 'hetic_p2021_first');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
@@ -341,7 +346,7 @@ define('DB_PASS', 'root');
 try
 {
     // Try to connect to database
-    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT, DB_USER, DB_PASS);
 
     // Set fetch mode to object
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
