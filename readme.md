@@ -26,10 +26,6 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 ### Trimestre 2
 
 - [x] Versionning avec git
-- [ ] Fonts
-- [ ] Task runners
-- [ ] Preprocessing CSS
-- [ ] WebGL avec Three.js
 - [x] PHP les bases
 - [x] PHP variables
 - [x] PHP boucles
@@ -37,17 +33,20 @@ GitHub des cours de développement web en deuxième année pour la promotion P20
 - [x] PHP fonctions
 - [x] PHP includes
 - [x] PHP debug
-- [ ] HTML/PHP formulaire
-- [ ] PHP/SQL Base de données MySQL
-- [ ] PHP routing
-- [ ] PHP APIs
-- [ ] PHP/SQL Mots de passes
-- [ ] PHP cookies/sessions
-- [ ] PHP regex
+- [x] HTML/PHP formulaire
+- [x] PHP/SQL Base de données MySQL
+- [x] PHP APIs
 
 ### Trimestre 3
 
+- [ ] WebGL avec Three.js
+- [ ] PHP Cookies/Sessions
+- [ ] PHP/SQL Mots de passes
+- [ ] PHP routing
+- [ ] PHP frameworks
+
+- [ ] Task runners
+- [ ] Preprocessing CSS
+- [ ] PHP regex
 - [ ] PHP/SQL Avancé
 - [ ] PHP orienté objet
-- [ ] PHP frameworks
-- [ ] Silex

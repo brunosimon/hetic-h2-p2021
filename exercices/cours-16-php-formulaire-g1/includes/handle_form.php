@@ -46,6 +46,19 @@ if(!empty($_POST))
     // Success
     if(empty($errorMessages))
     {
+        $prepare = $pdo->prepare('
+            INSERT INTO
+                users (first_name, age, gender)
+            VALUES
+                (:first_name, :age, :gender)
+        ');
+
+        $prepare->bindValue('first_name', $firstName);
+        $prepare->bindValue('age', $age);
+        $prepare->bindValue('gender', $gender);
+
+        $prepare->execute();
+
         $successMessages[] = 'User registered';
 
         $_POST['first-name'] = '';

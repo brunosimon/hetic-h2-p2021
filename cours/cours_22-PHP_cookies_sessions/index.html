@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 22 - WebGL - Three.js</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 22</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>PHP</h3>
+                    <h1>Cookies et Sessions</h1>
+                </section>
+
+                <section>
+                    <h2>Cookies</h2>
+                </section>
+
+                <section>
+                    <p>Les cookies sont des données créées par le serveur et associées à chaque visiteur</p>
+                    <p>Elles vont suivre les visiteurs durant leur navigation</p>
+                </section>
+
+                <section>
+                    <h3>Exemples d'utilisation</h3>
+                    <ul>
+                        <li>Avoir un panier d'achat alors que l'on n'a pas encore créé de compte</li>
+                        <li>Garder le visiteur connecté</li>
+                        <li>Savoir s'il est déjà venu sur le site</li>
+                        <li>Obtenir des informations sur le parcours</li>
+                        <li>Enregistrer ses préférences</li>
+                        <li>Enregistrer que l'utilisateur a déjà accompli une action (voter, jouer, etc.) pour l'empêcher de le refaire</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Donnée créée par le serveur, mais stockée chez le visiteur</li>
+                        <li>Peut être modifiée par ce serveur en PHP</li>
+                        <li>Peut être modifiée par le visiteur</li>
+                        <li>Associé au domaine (impossible de lire les cookies d'un autre domaine)</li>
+                        <li>Les cookies sont envoyés au serveur à chaque requête</li>
+                        <li>La date d'expiration du cookie est paramétrable (dans quelques minutes, à la fermeture du navigateur, dans quelques années, etc.)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>La méthode <a href="http://www.php.net/manual/fr/function.setcookie.php" target="_blank">setcookie()</a> permet de créer/modifier ces cookies</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable class="php">
+setcookie(&#039;name&#039;, &#039;value&#039;, time() + 1000, '/');
+                    </code></pre>
+                    <ul>
+                        <li>
+                            Nom du cookie <span class="op5">(String)</span>
+                        </li>
+                        <li>
+                            Valeur du cookie <span class="op5">(String)</span>
+                        </li>
+                        <li>
+                            Date d'expiration <span class="op5">(Int)</span>
+                            <br>Exprimé en <a href="https://fr.wikipedia.org/wiki/Heure_Unix" target="_blank">timestamp unix</a>
+                            <br><span class="u">Ne pas confondre avec sa durée de vie</span>
+                        </li>
+                        <li>
+                            Chemin où le cookie existe <span class="op5">(String)</span>
+                            <br><span class="hl">/</span> veut dire qu'il sera disponible partout sur le domaine
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Récupération</h3>
+                    <p>La variable <a href="http://php.net/manual/fr/features.cookies.php" target="_blank">$_COOKIE</a> est un tableau associatif contenant les cookies associés au visiteur</p>
+                    <p>Lorsqu'on créé/modifie un cookie, on ne peut y accéder qu'à la prochaine requête</p>
+                    <pre><code contenteditable class="php">
+echo '&lt;pre&gt;';
+print_r($_COOKIE);
+echo '&lt;/pre&gt;';
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Erreur</h3>
+                    <p>setcookie ne fonctionnera pas si du HTML a déjà été renvoyé</p>
+                    <pre><code contenteditable class="php">
+echo &#039;test&#039;;
+setcookie(&#039;mon_cookie&#039;, &#039;ma_valeur&#039;);
+
+                    </code></pre>
+                    <p>Cela inclut les tabulations et les simples espaces avant l'ouverture de PHP</p>
+                </section>
+
+                <section>
+                    <h3>Modifier par le visiteur</h3>
+                    <p>Puisque ces données se trouvent chez le visiteur, il peut les modifier facilement.</p>
+                    <p><a href="https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=fr" target="_blank">Edit This Cookie</a> (plugin chrome)</p>
+                </section>
+
+                <section>
+                    <h3>Date d'expiration</h3>
+                    <p>Par défaut, le cookie sera supprimé à la fermeture du navigateur</p>
+                    <p>Il est possible de spécifier une date d'expiration en <a href="http://fr.wikipedia.org/wiki/Heure_Unix" target="_blank">timestamp unix</a></p>
+                    <p>La fonction <a href="http://php.net/manual/fr/function.time.php" target="_blank">time()</a> permet de récupérer le timestamp unix actuel</p>
+                    <pre><code contenteditable class="php">
+setcookie(&#039;mon_cookie&#039;, &#039;ma_valeur&#039;, time() + 60 * 60); // Le cookie expirera dans 1h
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Supprimer</h3>
+                    <p>Il suffit de spécifier une date d'expiration antérieure</p>
+                    <p>Le cookie ne sera réellement supprimé qu'après avoir actualisé la page</p>
+                    <pre><code contenteditable class="php">
+setcookie(&#039;mon_cookie&#039;, &#039;&#039;, time() - 3600); // Date d&#039;expiration ant&eacute;rieure à maintenant
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>À savoir</h3>
+                    <ul>
+                        <li>Certains utilisateurs désactivent les cookies</li>
+                        <li>La sauvegarde de données concernant les utilisateurs est réglementé et cette réglementation dépend tu pays</li>
+                        <li>Comme les cookies sont envoyés avec chaque requête, ces dernières peuvent devenir lourdes</li>
+                        <li>Les cookies peuvent être édités en JS</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Sessions</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Utilisation similaire aux cookies, mais donnée stockée côté serveur</li>
+                        <li>L'utilisateur ne peut pas les modifier</li>
+                        <li>L'utilisateur va tout de même stocker un cookie appelé <a href="http://us3.php.net/manual/fr/function.session-id.php" target="_blank">session_id</a> permettant au serveur de faire le lien avec le visiteur</li>
+                        <li>Permet de stocker plus que des chaînes de caractères (tableaux, booléens, objets, etc.)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Pour pouvoir utiliser les sessions, il faut la démarrer avec la fonction <a href="http://www.php.net/manual/fr/function.session-start.php" target="_blank">session_start</a></p>
+                    <pre><code contenteditable class="php">
+session_start();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>session_start ne fonctionnera pas si du HTML a déjà été renvoyé</p>
+                    <pre><code contenteditable class="php">
+echo &#039;test&#039;;
+session_start();
+
+                    </code></pre>
+                    <p>Cela inclut les tabulations et les simples espaces avant l'ouverture de PHP</p>
+                </section>
+
+                <section>
+                    <p>Pour créer et modifier une donnée de session, on changement direction le tableau <a href="http://php.net/manual/fr/reserved.variables.session.php" target="_blank">$_SESSION</a></p>
+                    <pre><code contenteditable class="php">
+$_SESSION['login']    = 'login_visiteur';
+$_SESSION['is_admin'] = true;
+$_SESSION['toto']     = array('tata', 'tutu');
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour récupérer une donnée, on y accède direction dans le tableau <a href="http://php.net/manual/fr/reserved.variables.session.php" target="_blank">$_SESSION</a></p>
+                    <pre><code contenteditable class="php">
+echo $_SESSION['login'];
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour supprimer une donnée de session, on peut utiliser la méthode <a href="http://php.net/manual/fr/function.unset.php" target="_blank">unset</a></p>
+                    <pre><code contenteditable class="php">
+unset($_SESSION['login']);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Plus simple et pratique</li>
+                        <li>Données immédiatement accessible après l'avoir créée/modifiée</li>
+                        <li>Permet de stocker autre chose que des chaînes de caractères</li>
+                        <li>Pas d'expiration automatique</li>
+                        <li>Idéal pour stocker des données sensibles ne pouvant figurer sur l'ordinateur du visiteur</li>
+                        <li>Nécessite tout de même un cookie permettant de faire le lien entre l'utilisateur et la session</li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

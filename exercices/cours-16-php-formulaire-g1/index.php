@@ -1,5 +1,9 @@
 <?php
+    include 'includes/config.php';
     include 'includes/handle_form.php';
+
+    $query = $pdo->query('SELECT * FROM users ORDER BY id DESC');
+    $users = $query->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +50,25 @@
         <input type="submit" value="submit">
 
     </form>
+
+    <h2>Users</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+        <?php foreach($users as $_user): ?>
+            <tr>
+                <td><?= $_user->id ?></td>
+                <td><?= $_user->first_name ?></td>
+                <td><?= $_user->age ?></td>
+                <td><?= $_user->gender ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 
 </body>
 </html>
