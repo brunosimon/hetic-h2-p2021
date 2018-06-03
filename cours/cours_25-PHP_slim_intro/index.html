@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 25 - PHP - Slim Intro</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 25</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p><img class="no-style" src="src/img/slim.png" width="600" alt="Logo Slim"></p>
+                    <p><a href="https://www.slimframework.com/" target="_blank">https://www.slimframework.com/</a></p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Slim est un "micro-framework" PHP</li>
+                        <li>Beaucoup moins complexe et lourd, mais très performant</li>
+                        <li>Courbe d'apprentissage élevée</li>
+                        <li>Nécessite au minimum PHP 5.5</li>
+                    </ul>
+                </section>
+
+                <section id="step-1">
+                    <h2>Gérer les dépendances</h2>
+                </section>
+
+                <section>
+                    <h3>Composer</h3>
+                    <p>Composer est l'équivalent de NPM, mais pour le PHP</p>
+                    <p>Nous allons donc devoir l'installer globalement sur nos ordinateurs</p>
+                </section>
+
+                <section>
+                    <h3>Mac</h3>
+                    <ul>
+                        <li>Ouvrez le terminal (dans n'importe quel dossier)</li>
+                        <li>Exécutez les commandes suivantes</li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="">
+                        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="">
+                        php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="">
+                        php composer-setup.php
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="">
+                        sudo php -r "unlink('composer-setup.php');"
+                    </code></pre>
+                    <pre><code contenteditable data-trim class="">
+                        sudo mv composer.phar /usr/local/bin/composer
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Window</h3>
+                    <ul>
+                        <li>Fermez le terminal</li>
+                        <li>Télécharger et lancez l'<a href="https://getcomposer.org/Composer-Setup.exe" target="_blank">installer</a></li>
+                        <li>Rouvrez le terminal</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Créer le projet</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Créez un nouveau dossier qui contiendra notre projet</li>
+                        <li>Ouvrez le terminal dans ce dossier</li>
+                        <li>Lancez la commande suivante pour "récupérer" Slim</li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="">
+                        composer require slim/slim "^3.0"
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Le dossier <span class="hl">vendor</span> contient Slim ainsi que d'autres dépendances que nous verrons plus tard</li>
+                        <li>Le fichier <span class="hl">composer.json</span> contient la liste des dépendances requises</li>
+                        <li>Le fichier <span class="hl">composer.lock</span> contient la liste des dépendances utilisées (permet de s'assurer que tous les développeurs ont les mêmes versions)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>.HTACCESS</h3>
+                    <p>Créer un fichier <span class="hl">.htaccess</span></p>
+                    <p>Comme pour le cours de routing, le fichier <span class="hl">.htaccess</span> va nous permettre de rediriger toutes les requêtes vers le fichier <span class="hl">index.php</span></p>
+                </section>
+
+                <section>
+                    <h3>.HTACCESS</h3>
+                    <pre><code contenteditable data-trim class="">
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>index.php</h3>
+                    <p>Créer un fichier <span class="hl">index.php</span></p>
+                    <p>Nous allons créer une seule route dans index.php pour commencer</p>
+                    <pre><code contenteditable data-trim class="php">
+&lt;?php
+
+// Namespaces
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
+// Autoload
+require 'vendor/autoload.php';
+
+// Initialise Slim
+$app = new \Slim\App();
+
+// Create routes
+$app->get(
+    '/hello',
+    function(Request $request, Response $response)
+    {
+        $response->getBody()->write('Hello!');
+
+        return $response;
+    }
+);
+
+// Run Slim
+$app->run();
+                    </code></pre>
+                    <p>Nous expliquerons le code par la suite</p>
+                </section>
+
+                <section>
+                    <h3>Tester</h3>
+                    <ul>
+                        <li class="fragment">
+                            Rendez-vous à l'adresse de votre site
+                            <br><a href="http://localhost/slim/" target="_blank">http://localhost/slim/</a>
+                            <br>Vous devriez obtenir un message d'erreur
+                        </li>
+                        <li class="fragment">
+                            Rajoutez <span class="hl">hello</span> à la fin de l'url
+                            <br><a href="http://localhost/slim/hello" target="_blank">http://localhost/slim/hello</a>
+                            <br>Vous devriez obtenir le message <span class="hl">Hello!</span>
+                            <img width="400" src="src/img/good-job.gif" alt="" class="no-style">
+                        </li>
+                    </ul>
+                    
+                </section>
+
+                <section>
+                    <p>Dans <span class="hl">index.php</span></p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// Namespaces
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+                    </code></pre>
+                    <ul>
+                        <li>Les namespaces permettent de spécifier un espace de nommage permettant de ne pas avoir à écrire tout le chemin à chaque fois</li>
+                        <li><span class="hl">\Psr\Http\Message\ServerRequestInterface\Request</span> pourra être remplacé par <span class="hl">Request</span> dans la suite du code</li>
+                        <li><a href="http://openclassrooms.com/courses/les-espaces-de-noms-en-php" target="_blank">Plus d'infos</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// Autoload
+require 'vendor/autoload.php';
+                    </code></pre>
+                    <ul>
+                        <li>Ce code va inclure un script php appelé autoload</li>
+                        <li>Créé et configuré automatiquement par Composer</li>
+                        <li>Permet de charger directement les scripts contenus dans <span class="hl">vendor/</span> sans avoir à faire d'include</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// Initialise Slim
+$app = new \Slim\App();
+                    </code></pre>
+                    <ul>
+                        <li>Ce code va instancier Slim</li>
+                        <li>Nous allons utiliser la variable $app plusieurs fois par la suite</li>
+                        <li>Il s'agit du cœur de notre site</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// Create routes
+$app->get(
+    '/hello',
+    function(Request $request, Response $response)
+    {
+        $response->getBody()->write('Hello!');
+
+        return $response;
+    }
+);
+                    </code></pre>
+                    <ul>
+                        <li>Ce code va demander à l'application Slim de créer une route accessible en tapant <span class="hl">hello</span> dans l'URL</li>
+                        <li>Elle va simplement renvoyer <span class="hl">Hello!</span></li>
+                        <li><span class="hl">Request $request, Response $response</span> permettent de récupérer ces objets qui nous serviront dans notre route et que nous verrons plus tard</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// Run Slim
+$app->run();
+                    </code></pre>
+                    <ul>
+                        <li>Lance Slim</li>
+                        <li>Les étapes précédentes ne servent qu'à le configurer</li>
+                        <li><span class="hl">run()</span> ne doit être appelé qu'une fois</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

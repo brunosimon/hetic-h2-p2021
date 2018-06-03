@@ -1,0 +1,21 @@
+{{ include('partials/header.twig', { toto: 'tata' }) }}
+
+<h1>Home</h1>
+<p>Bienvenue sur mon site</p>
+
+{% for _key, _value in values %}
+    <br>{{ _key ~ ': ' ~ _value }}
+{% endfor %}
+
+{% for i in range(0, 3) %}
+    <br>{{ i }}
+{% endfor %}
+
+{% for i in range(low = 3, high = 10, step = 2) %}
+    <br>{{ i }}
+{% endfor %}
+
+{% set foo = 'bar' %}
+<br>{{ foo }}
+
+{{ include('partials/footer.twig') }}

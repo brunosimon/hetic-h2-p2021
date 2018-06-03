@@ -1,0 +1,47 @@
+{{ include('partials/header.twig') }}
+
+<h2>{{ student.first_name }} {{ student.last_name }}</h2>
+<h5>P{{ promotion.year }}</h5>
+
+<p>
+    <img src="https://api.adorable.io/avatars/240/{{ student.slug }}" width="240" height="240" alt="">
+</p>
+
+<table class="table">
+    <tr>
+        <td>Development</td>
+        <td>
+            {% for i in 0..student.skill_development %}
+                ★
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Design</td>
+        <td>
+            {% for i in 0..student.skill_design %}
+                ★
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Marketing</td>
+        <td>
+            {% for i in 0..student.skill_marketing %}
+                ★
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>General culture</td>
+        <td>
+            {% for i in 0..student.skill_general_culture %}
+                ★
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+
+<a href="{{ path_for('random_student') }}">Random student</a>
+
+{{ include('partials/footer.twig') }}

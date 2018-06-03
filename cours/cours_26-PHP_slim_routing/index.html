@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 26 - Slim Routing</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 26</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Slim</h1>
+                    <h2>Routing</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Une route correspond au chemin vers une destination</li>
+                        <li>La méthode <span class="highlight">$app->get()</span> permet de définir une route</li>
+                        <li>Le premier paramètre correspond au chemin</li>
+                        <li>Le deuxième paramètre correspond à la fonction à executer</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Routes simples</h2>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/hello', function()
+{
+    echo 'Hello!';
+});
+                    </code></pre>
+                    <ul>
+                        <li>Le chemin est <span class="highlight">/hello</span></li>
+                        <li>La fonction à executer renvoie <span class="highlight">Hello!</span></li>
+                        <li>La page va donc simplement afficher <span class="highlight">Hello!</span> (pas de HTML)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Il est possible de créer n'importe quelle route</p>
+                    <ul>
+                        <li>/</li>
+                        <li>/category</li>
+                        <li>/category/films</li>
+                        <li>/category/films/articles/3</li>
+                        <li>/contact</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Requête et réponse</h2>
+                </section>
+
+                <section>
+                    <p>Lorsqu'une route est utilisée, Slim va utiliser deux variables nécessaires au fonctionnement</p>
+                    <ul>
+                        <li><span class="hl">Request</span> : Contient des informations sur la requête (méthode, paramètres, informations sur l'URL, ...)</li>
+                        <li><span class="hl">Response</span> : Contient l'information qui sera envoyée à l'utilisateur</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Afin de récupérer ces variables, il faut les rajouter dans les paramètres de la fonction de route</p>
+                    <p>Il faut aussi préciser le <span class="hl">namespace</span> de ces objets</p>
+                    <ul>
+                        <li>Request : \Psr\Http\Message\ServerRequestInterface</li>
+                        <li>Response : \Psr\Http\Message\ResponseInterface</li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/hello', function(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response)
+{
+    echo 'Hello!';
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Avoir ces longs namespaces dans les paramètres de la fonction n'est pas pratique</p>
+                    <p>Nous pouvoir utiliser des alias à mettre en début de code</p>
+                    <pre><code contenteditable data-trim class="php">
+// Namespaces
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
+// ...
+
+
+$app->get('/hello', function(Request $request, Response $response)
+{
+    echo 'Hello!';
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Nous n'utiliserons pas <span class="hl">$request</span> pour le moment, mais nous pouvons utiliser <span class="hl">$response</span> pour renvoyer un résultat proprement</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/hello', function(Request $request, Response $response)
+{
+    $response->getBody()->write('Hello!');
+
+    return $response;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Routes dynamiques</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Parfois, nous avons besoin qu'une partie du chemin puisse varier</li>
+                        <li>Exemple : <span class="highlight">page/1</span>, <span class="highlight">page/2</span>, <span class="highlight">page/3</span></li>
+                        <li>Le routing de Slim permet de gérer ça très simplement sans avoir à écrire chacune des valeurs possibles </li>
+                        <li>
+                            Il suffit de remplacer la partie dynamique par un nom de variable au choix entouré de <span class="hl">{}</span>
+                            <br>Exemple: <span class="hl">/page/{number}</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/page/{number}', function(Request $request, Response $response)
+{
+    $response->getBody()->write('Page ???');
+    
+    return $response;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour récupérer la valeur dans la fonction, il suffit de préciser un troisième argument qui sera automatiquement remplacé par un tableau associatif contenant les clés et valeurs de la route</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/page/{number}', function(Request $request, Response $response, $arguments)
+{
+    $response->getBody()->write('Page '.$arguments['number']);
+    
+    return $response;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>Il est bien sûr possible de spécifier des routes avec plusieurs paramètres</li>
+                    </ul>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/hello/{first_name}-{last_name}', function(Request $request, Response $response, $arguments)
+{
+    $response->getBody()->write('Hello '.$arguments['first_name'].' '.$arguments['last_name']);
+
+    return $response;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Routes dynamiques contraintes</h2>
+                </section>
+
+                <section>
+                    <p>Parfois, nous souhaitons empêcher l'utilisateur de mettre n'importe quoi dans les paramètres de l'URL</p>
+                    <p>S'il doit par exemple spécifier une année, nous souhaiterions que la route ne fonctionne que si le paramètre soit composé de 4 chiffres</p>
+                </section>
+
+                <section>
+                    <p>Pour cela, dans le paramètre entre <span class="hl">{}</span> il suffit de précisier une Regex</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/page/{number:\d+}', function(Request $request, Response $response, $arguments)
+{
+    $response->getBody()->write('Page number : '.$arguments['number']);
+
+    return $response;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Les regex classiques</p>
+                    <ul>
+                        <li><span class="highlight">\w+</span> : un mot</li>
+                        <li><span class="highlight">\d+</span> : un nombre</li>
+                        <li><span class="highlight">[a-z0-9_-]+</span> : un slug</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Ordre des routes</h2>
+                </section>
+
+                <section>
+                    <p>L'ordre des routes a son importance</p>
+                    <pre><code contenteditable data-trim class="php">
+// Route 1
+$app->get('/hello/{name}', function($name)
+{
+    echo 'Route 1';
+});
+
+// Route 2
+$app->get('/hello/tata', function()
+{
+    echo 'Route 2';
+});
+                    </code></pre>
+                    <p>Ici, Slim va renvoyer une erreur car ce cas est ambigu puisque si l'utilisateur tape <span class="u">/hello/tata</span> les deux routes correspondent</p>
+                </section>
+
+                <section>
+                    <p>Si nous inversons les routes, il n'y aura pas d'erreur et l'utilisateur obtiendra "Route 2"</p>
+                    <pre><code contenteditable data-trim class="php">
+// Route 2
+$app->get('/hello/tata', function()
+{
+    echo 'Route 2';
+});
+
+// Route 1
+$app->get('/hello/{name}', function($name)
+{
+    echo 'Route 1';
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Routes nommées</h2>
+                </section>
+
+                <section>
+                    <p>Il est possible de donner un nom à chaque route</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/page/{number}', function($number)
+{
+    return 'Page number : '.$number;
+})
+->setName('page')
+                    </code></pre>
+                    <p>Nous utiliserons ces noms plus tard</p>
+                </section>
+
+                <section>
+                    <p>Si le code des routes commence à devenir illisible, n'hésitez pas à refactorer jusqu'à trouver une syntaxe lisible</p>
+                    <p>Exemple :</p>
+                    <pre><code contenteditable data-trim class="php">
+$app
+    ->get(
+        '/page/{number:\d+}',
+        function(Request $request, Response $response, $arguments)
+        {
+            $response->getBody()->write('Page number : '.$arguments['number']);
+
+            return $response;
+        }
+    )
+    ->setName('page')
+;
+                    </code></pre>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

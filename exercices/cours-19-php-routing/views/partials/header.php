@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title><?= $title ?></title>
+    <link rel="stylesheet" href="<?= URL ?>/assets/style.css">
 </head>
 <body>
+    <h1><a href="<?= URL ?>">My website</a></h1>
     <header>
-        <h1><a href="/">Mon super site</a></h1>
         <ul>
-            <li></a></li>
+            <li><a href="<?= URL ?>/about">About</a></li>
+            <li><a href="<?= URL ?>/contact">Contact</a></li>
         </ul>
     </header>

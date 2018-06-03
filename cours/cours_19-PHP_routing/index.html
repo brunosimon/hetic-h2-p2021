@@ -56,6 +56,7 @@
                 <section>
                     <h3>Organisation des fichiers</h3>
                     <p>Pour commencer, nous allons séparer les fichiers dans des sous dossiers sans se soucier des URLs que l'utilisateur devra taper</p>
+                    <p>La structure qui suit est un choix bien particulier, libre à vous de l'adapter selon vos envies</p>
                 </section>
 
                 <section>
@@ -66,6 +67,7 @@
 └── views/
     ├── pages/
     │   ├── 404.php
+    │   ├── about.php
     │   ├── contact.php
     │   ├── home.php
     │   └── article.php
@@ -77,19 +79,26 @@
 
                 <section>
                     <ul>
-                        <li><span class="hl">config.php</span> va s'occuper des choses telles que la connexion à la BDD</li>
+                        <li><span class="hl">config.php</span> va s'occuper de la configuration (globales, BDD, session, etc.)</li>
                         <li><span class="hl">index.php</span> va s'occuper d'inclure les bons fichiers</li>
-                        <li><span class="hl">views/pages/</span> correspondent aux pages</li>
-                        <li><span class="hl">views/partials/</span> correspondent aux morceaux de pages</li>
+                        <li><span class="hl">views/pages/</span> contient les pages</li>
+                        <li><span class="hl">views/partials/</span> contient les morceaux de pages</li>
                     </ul>
                 </section>
 
                 <section>
-                    <p>Rajouter des contenus dans les pages et dans les partials</p>
+                    <p>Rajoutez des contenus dans les pages et dans les partials</p>
+                    <p>Ou téléchargez <a href="./base.zip">la base</a></p>
                 </section>
 
                 <section>
-                    <p>Dans <span class="hl">index.php</span>, incluez la config, les partials et la page selon le paramètre <span class="hl">q</span> envoyé en GET</p>
+                    <p>Nous souhaitons maintenant charger les différentes pages du site, mais toujours en pointant sur <span class="hl">index.php</span></p>
+                    <p>Une solution serait de spécifier la page dans un paramètre en GET</p>
+                    <p>Exemple: <span class="hl">/index.php?q=about</span></p>
+                </section>
+
+                <section>
+                    <p>Dans <span class="hl">index.php</span>, récupérez ce paramètre <span class="hl">q</span> envoyé en GET et incluez la page en fonction</p>
                     <pre><code class="php" contenteditable data-trim>
 &lt;?php
 
@@ -97,29 +106,32 @@
 include 'config.php';
 
 // Routing
-$q = $_GET['q'];
+$q = !empty($_GET['q']) ? $_GET['q'] : '';
 
-if($q === '')
+switch($q)
 {
-    $page = 'home';
-}
-else if($q === 'contact')
-{
-    $page = 'contact';
-}
-else if($q === 'article')
-{
-    $page = 'article';
-}
-else
-{
-    $page = '404';
+    case '':
+        $page = 'home';
+        break;
+
+    case 'about':
+        $page = 'about';
+        break;
+
+    case 'contact':
+        $page = 'contact';
+        break;
+
+    case 'article':
+        $page = 'article';
+        break;
+
+    default:
+        $page = '404';
+        break;
 }
 
-// Includes
-include 'views/partials/header.php';
 include 'views/pages/'.$page.'.php';
-include 'views/partials/footer.php';
                     </code></pre>
                 </section>
 
@@ -164,7 +176,7 @@ include 'views/partials/footer.php';
                         <li>À la racine de votre site, à côté de <span class="hl">index.php</span>, créez un fichier <span class="hl">.htaccess</span></li>
                         <li>Rajoutez-y le contenu suivant</li>
                     </ul>
-                    <pre><code contenteditable>
+                    <pre><code contenteditable data-trim>
 Options +FollowSymLinks
 RewriteEngine On
  
@@ -205,6 +217,51 @@ RewriteRule ^(.*)$ ./index.php?q=$1 [QSA]
                     <p>Rajoute une règle de réécriture basée sur une regex :<br><span class="hl">^(.*)$</span> devient <span class="hl">./index.php?q=$1</span></p>
                     <p>Apache fera toujours pointer sur <span class="hl">index.php</span> et rajoutera en <span class="hl">GET</span>, dans la variable <span class="hl">q</span>, le chemin demandé</p>
                     <p><span class="hl">[QSA]</span> permet de conserver les paramètres en GET</p>
+                </section>
+
+                <section>
+                    <p>Nous pouvons enfin utiliser des URL propres</p>
+                    <ul>
+                        <li><span class="hl">http://monsite.com</span> => Home</li>
+                        <li><span class="hl">http://monsite.com/contact</span> => Contact</li>
+                        <li><span class="hl">http://monsite.com/article</span> => Article</li>
+                        <li><span class="hl">http://monsite.com/dskfhsidfhisdfuh</span> => 404</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Problème</h2>
+                    <p>Chargez une feuille de style quelconque et modifiez les URL pour accéder aux articles par <span class="hl">/blog/article</span> et accédez à un article</p>
+                    <p class="fragment">Le CSS ne fonctionne pas car l'url du fichier n'est pas la bonne</p>
+                </section>
+
+                <section>
+                    <h2>Solution</h2>
+                    <p>Rajoutez une variable globale contenant l'URL absolue du site dans <span class="hl">config.php</span> et l'utiliser pour chaque lien (pages et ressources)</p>
+                    <pre><code class="php" contenteditable data-trim>
+&lt;?php
+
+define('URL', '/p2021/exercices/cours-19-php-routing');
+                    </code></pre>
+                    <pre><code class="php" contenteditable data-trim>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;&lt;?= $title ?&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="&lt;?= URL ?&gt;/assets/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;a href="&lt;?= URL ?&gt;"&gt;My website&lt;/a&gt;&lt;/h1&gt;
+    &lt;header&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="&lt;?= URL ?&gt;/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="&lt;?= URL ?&gt;/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/header&gt;
+                    </code></pre>
                 </section>
 
             </div>

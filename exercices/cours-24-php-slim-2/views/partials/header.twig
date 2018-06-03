@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My website</title>
+    <link rel="stylesheet" href="{{ base_url() }}/assets/style/main.css">
+</head>
+<body>
+    <header>
+        <h1>My website</h1>
+        <ul>
+            <li><a href="{{ path_for('home') }}">Home</a></li>
+            <li><a href="{{ path_for('hello') }}">Hello</a></li>
+            <li><a href="{{ path_for('page', { number: 1 }) }}">Page 1</a></li>
+            <li><a href="{{ path_for('page', { number: 2 }) }}">Page 2</a></li>
+            <li><a href="{{ path_for('page', { number: 3 }) }}">Page 3</a></li>
+            <li><a href="{{ path_for('page', { number: 4 }) }}">Page 4</a></li>
+            <li><a href="{{ path_for('category', { categoryName: 'auto' }) }}">Category auto</a></li>
+            <li><a href="{{ path_for('category', { categoryName: 'high-tech' }) }}">Category high-tech</a></li>
+            <li><a href="{{ path_for('category', { categoryName: 'nature' }) }}">Category nature</a></li>
+        </ul>
+    </header>
+
+    {{ toto }}

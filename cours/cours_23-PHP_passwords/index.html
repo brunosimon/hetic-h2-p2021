@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 23 - PHP - Passwords</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 23</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>PHP</h3>
+                    <h1>Passwords</h1>
+                </section>
+
+                <section>
+                    <p>Si votre site permet aux visiteurs de s'enregistrer et de se connecter, vous allez devoir gérer des mots de passe</p>
+                    <p>Cette donnée est l'une des plus sensibles que vous pourriez avoir à stocker</p>
+                    <p>Il est nécessaire de respecter un minimum de sécurité</p>
+                </section>
+
+                <section>
+                    <p>Nous allons simuler une connexion classique à un site avec email et mot de passe</p>
+                    <p>Inscription / Login</p>
+                </section>
+
+                <section>
+                    <p>Inscription</p>
+                    <small>(Sans validation par email)</small>
+                    <p>
+                        <img src="src/img/inscription-schema.png" class="no-style" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Login</p>
+                    <p>
+                        <img src="src/img/login-schema.png" class="no-style" alt="">
+                    </p>
+                </section>
+
+                <section>
+                    <p>Nous allons nous baser sur une BDD simple (<span class="u">id</span>, <span class="u">email</span>, <span class="u">password</span>)</p>
+                    <p>Créez une base de données et executez la requête SQL suivante</p>
+                    <pre><code contenteditable data-trim class="sql">
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Dans le cadre de l'exercice, nous allons créer 4 fichiers</p>
+                    <ul>
+                        <li><span class="u">config.php</span> : Connexion à la BDD + Session</li>
+                        <li><span class="u">login.php</span> : Formulaire de login</li>
+                        <li><span class="u">inscription.php</span> : Formulaire de d'inscription</li>
+                        <li><span class="u">private.php</span> : Page accessible uniquement par connexion</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4 class="default">config.php</h4>
+                    <p>Simple connexion à la BDD (pensez à changer <span class="u">DB_NAME</span> et <span class="u">DB_PASS</span>)</p>
+                    <pre><code contenteditable data-trim class="php">
+&lt;?php
+
+// Session
+session_start();
+
+// Connexion variables
+define('DB_HOST', 'localhost');
+define('DB_PORT', '8889');
+define('DB_NAME', 'hetic_p2021_passwords');
+define('DB_USER', 'root');
+define('DB_PASS', 'root');
+
+try
+{
+    $pdo = new PDO('mysql:dbname='.DB_NAME.';host='.DB_HOST.';port='.DB_PORT, DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+}
+catch(PDOException $e)
+{
+    die('Couldn\'t connect');
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">private.php</h4>
+                    <p>Simple redirection vers la page de login s'il n'y a pas de session</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;?php
+    include 'config.php';
+
+    if(empty($_SESSION['user']))
+    {
+        header('location:login.php');
+        exit;
+    }
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;Private&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Private&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="inscription.php"&gt;Inscription&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="login.php"&gt;Login&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="private.php"&gt;Private&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="disconnect.php"&gt;Disconnect&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Hello &lt;?= $_SESSION['user']['email'] ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">inscription.php</h4>
+                    <p>Ajout dans la BDD si le formulaire est envoyé</p>
+                    <p>Pas de mot de passe de confirmation ni de gestion d'erreur</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;?php
+    include 'config.php';
+
+    $message = '';
+
+    if(!empty($_POST))
+    {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $prepare = $pdo-&gt;prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
+        $prepare-&gt;bindValue('email', $email);
+        $prepare-&gt;bindValue('password', $password);
+        $prepare-&gt;execute();
+        $message = 'User registered';
+    }
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;Inscription&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Inscription&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="inscription.php"&gt;Inscription&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="login.php"&gt;Login&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="private.php"&gt;Private&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="disconnect.php"&gt;Disconnect&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;?= $message ?&gt;&lt;/p&gt;
+
+    &lt;form action="#" method="POST"&gt;
+        &lt;div&gt;
+            &lt;input type="email" name="email" id="email"&gt;
+            &lt;label for="email"&gt;Email&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;input type="password" name="password" id="password"&gt;
+            &lt;label for="password"&gt;Password&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;input type="submit"&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">login.php</h4>
+                    <p>Ajout dans la BDD si le formulaire est envoyé</p>
+                    <p>Pas de mot de passe de confirmation ni de gestion d'erreur</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;?php
+    include 'config.php';
+
+    $message = '';
+
+    if(!empty($_POST))
+    {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $prepare = $pdo-&gt;prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+        $prepare-&gt;bindValue(':email', $email);
+        $query = $prepare-&gt;execute();
+        $user = $prepare-&gt;fetch();
+
+        if(!$user)
+        {
+            $message = 'Email not found';
+        }
+        else
+        {
+            if($user-&gt;password === $password)
+            {
+                $message = 'You are now logged in';
+
+                $_SESSION['user'] = [
+                    'email' =&gt; $user-&gt;email,
+                ];
+            }
+            else
+            {
+                $message = 'Wrong password';
+            }
+        }
+    }
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;Login&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Login&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="inscription.php"&gt;Inscription&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="login.php"&gt;Login&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="private.php"&gt;Private&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="disconnect.php"&gt;Disconnect&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;?= $message ?&gt;&lt;/p&gt;
+
+    &lt;form action="#" method="POST"&gt;
+        &lt;div&gt;
+            &lt;input type="email" name="email" id="email"&gt;
+            &lt;label for="email"&gt;Email&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;input type="password" name="password" id="password"&gt;
+            &lt;label for="password"&gt;Password&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;input type="submit"&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">disconnect.php</h4>
+                    <p>Détruire la session</p>
+                    <pre><code contenteditable data-trim class="html">
+&lt;?php
+    include 'config.php';
+
+    session_destroy();
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;Disconnect&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Disconnect&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="inscription.php"&gt;Inscription&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="login.php"&gt;Login&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="private.php"&gt;Private&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="disconnect.php"&gt;Disconnect&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Vous avez été déconnecté&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h5>Problème 1</h5>
+                    <h2>Mot de passe en clair</h2>
+                    <p><img src="src/img/no.gif" alt="" width="300"></p>
+                </section>
+
+                <section>
+                    <p>Les mots de passe sont sauvegardés en clair</p>
+                    <p>
+                        <img src="src/img/table-clear.png" alt="" width="300">
+                    </p>
+                    <p>N'importe quel individu ayant accès à la base de données (administrateur ou hacker) pourra voir le mot de passe de chaque utilisateur</p>
+                </section>
+
+                <section>
+                    <p>Plusieurs utilisations possible pour un hacker</p>
+                    <ul>
+                        <li>Tester les comptes mail avec ces mots de passe</li>
+                        <li>Demander une rançon au propriétaire du site</li>
+                        <li>Revendre la BDD sur le deep web</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h5>Solution 1</h5>
+                    <h2>Hasher</h2>
+                </section>
+
+                <section>
+                    <p>La solution consiste à hasher le mot de passe pour le rendre méconnaissable</p>
+                    <ul>
+                        <li>
+                            <span class="hl">Encrypter</span> : Transformer une donnée pour la rendre méconnaissable, mais <span class="u">réversiblement</span>
+                            <br>
+                            <br>
+                        </li>
+                        <li>
+                            <span class="hl">Hasher</span> : Transformer une donnée pour la rendre méconnaissable, mais <span class="u">irréversiblement</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>À l'<span class="u">inscription</span>, nous allons hasher le mot de passe avant de l'enregistrer dans la BDD</p>
+                    <p>Un individu ayant accès à la BDD ne connaîtra pas le mot de passe d'origine</p>
+                    <p>Au <span class="u">login</span>, nous allons hasher le mot de passe et le comparer à celui sauvegardé en BDD</p>
+                    <p>Si les deux hash sont identiques, c'est le même mot de passe</p>
+                </section>
+
+                <section>
+                    <p>Pour cela nous allons utiliser la fonction <a href="http://www.php.net/manual/fr/function.hash.php" target="_blank">hash()</a></p>
+                    <pre><code contenteditable data-trim class="php">
+echo hash('sha256', 'monmotdepasse');
+
+// Ce qui affichera
+// a7af71ad2b0ce07c36781ab7c8a6d36bd703824c22647f85d6de62063b219bc6
+                    </code></pre>
+                    <ul>
+                        <li>Le premier paramètre correspond à l'algorithme de hash</li>
+                        <li>Le deuxième paramètre correspond à la variable à hasher</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Un même algorithme avec une même chaîne de caractères renvera toujours le même résultat</p>
+                    <pre><code contenteditable data-trim class="php">
+echo hash('sha256', 'azerty'); // f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9
+echo hash('sha256', 'azerty'); // f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9
+echo hash('sha256', 'azerty'); // f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9
+echo hash('sha256', 'azerty'); // f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Il existe de <a href="http://php.net/manual/fr/function.hash.php#104987" target="_blank">nombreux algorithmes de hash</a></p>
+                    <p>Certains sont lents, certains peuvent être décryptés (md5 et <a href="http://www.numerama.com/tech/235436-shattered-google-a-casse-la-methode-de-chiffrement-sha-1.html#commentaires" target="_blank">sha-1</a>)</p>
+                    <p><span class="hl">SHA-256</span> est rapide, populaire et n'a jamais été décrypté</p>
+                </section>
+
+                <section>
+                    <h4 class="default">inscription.php</h4>
+                    <p>Nous hashons le mot de passe avant de l'enregistrer dans la BDD</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = hash('sha256', $_POST['password']); // Hash
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">login.php</h4>
+                    <p>Et nous hashons également le mot de passe envoyé par le formulaire de login</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = hash('sha256', $_POST['password']); // Hash
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Si l'utilisateur a bien fourni le même mot de passe, les deux hash (celui formulaire de login et celui enregistré en BDD) seront identiques</p>
+                    <p>À aucun moment, nous enregistrons de mot de passe en clair</p>
+                    <p>
+                        <img src="src/img/table-hashed.png" alt="" width="600">
+                    </p>
+                </section>
+
+                <section>
+                    <h5>Problème 2</h5>
+                    <h2>Rainbow tables</h2>
+                </section>
+
+                <section>
+                    <p>Hasher, c'est pas mal, mais insuffisant</p>
+                    <p>Une rainbow table contient une grande quantité de mots de passes "classiques" et leurs versions hashés</p>
+                    <p>Si le visiteur a utilisé un de ces mots de passe, il sera facile de le retrouver dans la rainbow table à partir de la version encryptée</p>
+                </section>
+
+                <section>
+                    <ul>
+                        <li><a href="http://korben.info/120-go-de-rainbow-tables.html" target="_blank">120 Go de Rainbow Tables</a></li>
+                        <li><a href="https://crackstation.net/" target="_blank">Online Rainbow Table</a></li>
+                        <li><a href="https://gizmodo.com/the-25-most-popular-passwords-of-2017-you-sweet-misgu-1821425092" target="_blank">25 mots de passe les plus utilisés en 2017</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h5>Solution 2</h5>
+                    <h2>Salt</h2>
+                </section>
+
+                <section>
+                    <p>Nous allons rajouter quelques caractères au mot de passe pour être certain qu'il n'existe pas dans les rainbow tables</p>
+                    <p>Le mot de passe <span class="u">azerty</span> deviendra par exemple <span class="u">76t!"ed#azerty</span></p>
+                    <p>Cette technique s'appelle le salage (salt)</p>
+                </section>
+
+                <section>
+                    <h4 class="default">config.php</h4>
+                    <p>Nous créons une variable globale contenant le salt</p>
+                    <pre><code contenteditable class="php">
+// ...
+
+// Salt
+define('SALT', '76t!"ed#');
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">inscription.php</h4>
+                    <p>Nous rajoutons le salt au mot de passe avant de le hasher et de l'enregistrer dans la BDD</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = hash('sha256', SALT.$_POST['password']); // Hash + salt
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">login.php</h4>
+                    <p>Et nous le rajoutons également au mot de passe envoyé par le formulaire de login</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = hash('sha256', SALT.$_POST['password']); // Hash + salt
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h5>Problème 3</h5>
+                    <p>Si le hacker accède au scripts PHP, il pourra récupérer le SALT et regénérer l'intégralité de la rainbow table en prenant en compte le SALT</p>
+                </section>
+
+                <section>
+                    <h5>Solution 3</h5>
+                    <p>La technique consisterait à avoir un SALT aléatoire et donc différent associé à chaque utilisateur et sauvegardé dans la BDD</p>
+                    <p>Le hacker pourra toujours régénérer la rainbow table puisqu'il connaitra le salt, mais il devra le faire pour chaque utilisateur</p>
+                </section>
+
+                <section>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$salt = hash('md5', $email.SALT);
+$password = hash('sha256', $salt.$_POST['password']);
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Ce n'est pas tant une solution qu'une technique pour ralentir et dissuader le hacker</p>
+                    <p>Ne donnez pas les accès à n'importe qui</p>
+                </section>
+
+                <section>
+                    <p>Depuis un certain temps, PHP intègre deux nouvelles fonction s'occupant du hash et du salt</p>
+                    <ul>
+                        <li><a href="http://php.net/manual/fr/function.password-hash.php" target="_blank">password_hash</a> permet de hasher et d'inclure un salt automatiquement</li>
+                        <li><a href="http://php.net/manual/fr/function.password-verify.php" target="_blank">password_verify</a> permet de tester si un mot de passe correspond à hash sauvegardé</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4 class="default">inscription.php</h4>
+                    <p>Nous allons choisir <span class="u">bcrypt</span> comme algorithme (seul supporté actuellement)</p>
+                    <p>Nous allons choisir un cost de <span class="u">9</span> (rapide et efficace)</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+// ...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h4 class="default">login.php</h4>
+                    <p>Il ne faut ni saler, ni hasher le mot de passe nous-même</p>
+                    <pre><code contenteditable data-trim class="php">
+// ...
+
+$password = $_POST['password'];
+
+// ...
+
+if(password_verify($password, $user->password))
+
+// ...
+                    </code></pre>
+                </section>
+
+
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>

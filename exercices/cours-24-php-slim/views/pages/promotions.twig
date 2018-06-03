@@ -1,0 +1,11 @@
+{{ include('partials/header.twig') }}
+
+{% for promotion in promotions %}
+    <div>
+        <a href="{{ path_for('promotions_single', { year: promotion.year }) }}">
+            <div>{{ promotion.year }}: {{ promotion.description }}</div>
+        </a>
+    </div>
+{% endfor %}
+
+{{ include('partials/footer.twig') }}

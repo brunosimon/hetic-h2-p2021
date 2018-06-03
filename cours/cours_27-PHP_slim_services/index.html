@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>TRIM 3 - Cours 27 - Slim Services</title>
+        <meta name="description" content="">
+        <meta name="author" content="Bruno Simon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../src/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../src/reveal.js/css/theme/orange.css" id="theme">
+        <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/railscasts.css">
+        <!-- <link rel="stylesheet" href="../src/reveal.js/lib/css/highlight/github.css"> -->
+        <link rel="stylesheet" href="../src/custom/style.css">
+        <script>
+            document.write( '<link rel="stylesheet" href="../src/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="../src/reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h3>H2 - P2021</h3>
+                    <h1>Développement web</h1>
+                    <h3>Cours 27</h3>
+                    <ul>
+                        <li>github : <a target="_blank" href="https://github.com/brunosimon/hetic-p2021">https://github.com/brunosimon/hetic-p2021</a></li>
+                        <li>site : <a target="_blank" href="http://bruno-simon.com/hetic/p2021/">http://bruno-simon.com/hetic/p2021/</a></li>
+                        <li>contact : <a target="_blank" mailto="bruno.simon@hetic.net">bruno.simon@hetic.net</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Slim</h1>
+                    <h2>Services</h2>
+                </section>
+
+                <section>
+                    <p>Slim tout seul ne permet pas de faire grand chose à part du routing</p>
+                    <p>Nous allons lui rajouter des features, aussi appelées services</p>
+                    <ul>
+                        <li>Connexion à BDD</li>
+                        <li>Gestion des sessions</li>
+                        <li>Templating</li>
+                        <li>Cache</li>
+                        <li>Mails</li>
+                        <li>...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Avant de pouvoir rajouter des services, il est nécessaire de comprendre le principe de <span class="hl">Container</span></p>
+                    <p>Slim se base sur <a href="https://pimple.symfony.com/" target="_blank">Pimple</a></p>
+                </section>
+
+                <section>
+                    <p>Pimple est un <span class="u">containeur d'injection de dépendance</span>
+                    <p>Permet de gérer les dépendances de manière à ne les créer que lorsqu'on en a besoin</p>
+                    <p>Par exemple, nous allons rajouter le support de BDD, mais nous n'allons l'utiliser que dans certaines pages. Nous ne voulons donc pas que la connexion à la BDD se fasse sur les pages n'en ayant pas besoin.</p>
+                </section>
+
+                <section>
+                    <p>Pour récupérer le <span class="hl">Container</span>, il faut appeler <span class="hl">$app->getContainer()</span></p>
+                    <pre><code contenteditable data-trim class="php">
+$container = $app->getContainer();
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Pour rajouter un service au container, il faut l'utiliser comme un tableau associatif, choisir une clé (ici <span class="u">test</span>) et rajouter une fonction</p>
+                    <pre><code contenteditable data-trim class="php">
+$container['test'] = function($container)
+{
+    echo '<br>Service test créé';
+
+    return '<br>Service test appelé';
+};
+                    </code></pre>
+                    <p>Ce service ne sert à rien, nous en créerons de plus utiles par la suite</p>
+                </section>
+
+                <section>
+                    <p>Pour utiliser le service <span class="u">test</span> dans une route</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/test', function(Request $request, Response $response)
+{
+    echo $this->test;
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>Notez ce qu'il se passe si vous appelez plusieurs fois le service</p>
+                    <pre><code contenteditable data-trim class="php">
+$app->get('/test', function(Request $request, Response $response)
+{
+    echo $this->test;
+    echo $this->test;
+    echo $this->test;
+});
+                    </code></pre>
+                    <p>Il est créé la première fois, mais uniquement renvoyé les autres fois</p>
+                </section>
+
+                <section>
+                    <p>Il est possible de rajouter des variables d'options à Slim qui seront ensuite utilisables dans les services</p>
+                    <pre><code contenteditable data-trim class="php">
+// Options
+$settings = [
+    'lorem' => 'ipsum'
+];
+
+// Slim
+$app = new \Slim\App([ 'settings' => $settings ]);
+
+// Container / Services
+$container = $app->getContainer();
+
+$container['test'] = function()
+{
+    global $container;
+
+    echo '<br>Service test créé ';
+
+    return '<br>'.$container['settings']['lorem'];
+};
+                    </code></pre>
+                    <p>C'est un bon moyen de stocker des informations telles que les accès à la BDD</p>
+                </section>
+            </div>
+        </div>
+
+        <script src="../src/reveal.js/lib/js/head.min.js"></script>
+        <script src="../src/reveal.js/js/reveal.js"></script>
+        <script src="../src/custom/script.js"></script>
+    </body>
+</html>
