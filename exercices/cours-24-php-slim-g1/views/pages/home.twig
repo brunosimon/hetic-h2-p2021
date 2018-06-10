@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Home</h1>
-    <p>Bienvenue sur mon site</p>
-    {% if value %}
-        oui
-    {% else %}
-        non
-    {% endif %}
-</body>
-</html>
+{{ include('partials/header.twig') }}
+
+<h1>Home</h1>
+<p>Bienvenue sur mon site</p>
+
+{% for key, value in values %}
+    <div>{{ key ~ ' = ' ~ value }}</div>
+{% endfor %}
+
+{% for i in range(3, 10, 2) %}
+    <div>{{ i }}</div>
+{% endfor %}
+
+{% set toto = 'tata' %}
+{{ toto }}
+
+{{ include('partials/footer.twig') }}

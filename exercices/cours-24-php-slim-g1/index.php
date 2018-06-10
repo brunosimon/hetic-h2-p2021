@@ -13,9 +13,14 @@ $app = new \Slim\App([ 'settings' => $settings ]);
 
 $container = $app->getContainer();
 
-$container['view'] = function()
+$container['view'] = function($container)
 {
     $view = new \Slim\Views\Twig('./views');
+    
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
     return $view;
 };
 
@@ -25,7 +30,13 @@ $app
         function(Request $request, Response $response)
         {
             $dataView = [
-                'value' => false,
+                'values' => [
+                    'key1' => 'a',
+                    'key2' => 'b',
+                    'key3' => 'c',
+                    'key4' => 'd',
+                    'key5' => 'e',
+                ],
             ];
 
             return $this->view->render($response, 'pages/home.twig', $dataView);
